@@ -294,7 +294,7 @@ def insert_Quad(osmObject, objOsmGeom, NodeRefs, width, length, x0, y0):
 
 # todo: insert_circle should be NON-DESTRUCTIVE OPERATION
 # object remain, but geometry is changed
-def primitiveCircle(osmObject, objOsmGeom,  nVertices=12, radius=None):
+def primitiveCircle(osmObject, objOsmGeom,  nVertices=12, radius="'1"):
 
     new_obj = osmObject
     #new_obj = T3DObject()
@@ -304,10 +304,7 @@ def primitiveCircle(osmObject, objOsmGeom,  nVertices=12, radius=None):
     if new_obj.type == "relation":
         raise Exception ("relation is not supported")
 
-    if radius is None:
-        R = min(osmObject.scope_sx, osmObject.scope_sy)/2 #osmObject.size / 3
-    else:
-        R = radius
+    R = parseRelativeValue(radius, min(osmObject.scope_sx, osmObject.scope_sy)/2)
 
     Lat = [None] * nVertices
     Lon = [None] * nVertices
@@ -605,7 +602,7 @@ def rebuildBuildingOutline(Objects, objOsmGeom):
 
 
 # ======================================================================================================================
-class ZCGAContext:
+class OCGAContext:
     objOsmGeom = None
     Objects = None
     Objects2 = []
@@ -622,7 +619,7 @@ class ZCGAContext:
             obj.alignScopeToWorld()
 
     # ==================================================================================================================
-    # Wrappers for the ZCGA operations
+    # Wrappers for the OCGA operations
     # ==================================================================================================================
 
     # attributes
@@ -632,9 +629,27 @@ class ZCGAContext:
             value = parseHeightValue(value)
         return value
 
-    def setTag(self, key, value):
+    def _setTag(self, key, value):
         self.current_object.osmtags[key] = str(value)
+    
+    def tag(self, key, value):     
+        #if not self.current_object.isBuilding() and key in ['height', 'min_height', 'roof:height']:
+        #    print("WARNING: tag " + key + " cannot be changed directly. Please use scale/translate/create_roof operators instead") #raise Exception
+        
+        self._setTag(key, value) 
 
+    def colour(self, value):
+        self._setTag("building:colour", value) 
+        
+    def material(self, value):
+        self._setTag("building:material", value) 
+        
+    def roof_colour(self, value):
+        self._setTag("roof:colour", value) 
+        
+    def roof_material(self, value):
+        self._setTag("roof:material", value) 
+        
     # ========================================================================
     # Scope
     # ========================================================================
@@ -651,8 +666,14 @@ class ZCGAContext:
     def scope_rz(self):
         return self.current_object.scope_rz/pi*180
 
-    def alignScopeToGeometry(self):
-        self.current_object.alignScopeToGeometry(self.objOsmGeom)
+    def align_scope(self, alignment):
+        allowed_alignments = ['geometry']
+        alignment = str(alignment)
+        if alignment not in allowed_alignments:
+            raise Exception("Allowed parameters for align_scope operation are:" + str(allowed_alignments) )
+        
+        if alignment == 'geometry':
+            self.current_object.alignScopeToGeometry(self.objOsmGeom)
 
     def alignXToLongerScopeSide(self):
         if self.current_object.scope_sx < self.current_object.scope_sy:
@@ -664,22 +685,19 @@ class ZCGAContext:
     # ===========================================================================
     # Geometry creation
     # ===========================================================================
-    def outerRectangle(self, rule_name):
-        """Creates an outer (bbox) rectangle of the current shape"""
+    def outer_rectangle(self, rule_name):
+        """Creates an outer (bbox) rectangle in replacement of the current shape"""
         self.split_x((("~1", rule_name),))
 
         if self.current_object.isBuilding():
             # we cannot really delete building outline.
             self.restore()
 
-    def primitiveCylinder(self, nVertices=12, radius=None):
+    def primitive_cylinder(self, radius, nVertices=12):
         """replaces the geometry of the current object with cylinder/circle"""
         
         if type(nVertices) is str:
             nVertices=int(nVertices)
-        # serious bug. Relative value should be parsed!!!!
-        if type(radius) is str:
-            radius=float(radius)
 
         primitiveCircle(self.current_object, self.objOsmGeom, nVertices, radius)
         if radius is None:
@@ -690,12 +708,12 @@ class ZCGAContext:
         primitiveHalfCircle(self.current_object, self.objOsmGeom, nVertices,radius)
         scale(self.current_object, self.objOsmGeom, self.current_object.scope_sx,self.current_object.scope_sy)
         
-    def roof(self, roof_shape, roof_height):
+    def create_roof(self, roof_shape, roof_height):
         """ Not really a geometry operation, but rather tag setter."""    
-        self.setTag("roof:shape", roof_shape)
+        self._setTag("roof:shape", roof_shape)
         
         roof_height = parseRelativeValue(roof_height, self.scope_sz())
-        self.setTag("roof:height", roof_height)
+        self._setTag("roof:height", roof_height)
 
     # ===========================================================================
     # Geometry subdivision
@@ -715,6 +733,9 @@ class ZCGAContext:
         self.unprocessed_rules_exist = True
 
     def split_z_preserve_roof(self, split_pattern):
+        # for z axis it is much more convinient to go from top to bottom
+        # in such a case lines breaks look nicer.
+        split_pattern = split_pattern[::-1]  #reverse!
         new_objects = split_z_preserve_roof(self.current_object, split_pattern)
 
         self.nil()
@@ -844,7 +865,7 @@ def ocga_process(input_file, output_file, checkRulesMy, updatable=False, rebuild
 
     objOsmGeom, Objects = readOsmXml(input_file)
 
-    ctx = ZCGAContext(objOsmGeom, Objects)
+    ctx = OCGAContext(objOsmGeom, Objects)
     ctx.processRules(checkRulesMy)
 
     # todo: we need to rebuild building outline, because it should match parts

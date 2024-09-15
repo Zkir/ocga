@@ -16,7 +16,7 @@ def test(rules_file1, input_file1):
         
     if Path(rules_file1).suffix == '.ocga':
         lines = ocga2py(lines)
-        print(lines)
+        #print(lines)
         with open(SAMPLES_DIR + "\\" + Path(rules_file1).stem +'_ocga.py', "w") as f2:
             f2.write(lines)        
             

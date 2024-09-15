@@ -98,5 +98,23 @@ class ocgaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by ocgaParser#key_name.
+    def enterKey_name(self, ctx:ocgaParser.Key_nameContext):
+        pass
+
+    # Exit a parse tree produced by ocgaParser#key_name.
+    def exitKey_name(self, ctx:ocgaParser.Key_nameContext):
+        pass
+
+
+    # Enter a parse tree produced by ocgaParser#tag_value.
+    def enterTag_value(self, ctx:ocgaParser.Tag_valueContext):
+        pass
+
+    # Exit a parse tree produced by ocgaParser#tag_value.
+    def exitTag_value(self, ctx:ocgaParser.Tag_valueContext):
+        pass
+
+
 
 del ocgaParser

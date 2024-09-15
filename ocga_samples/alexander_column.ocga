@@ -1,31 +1,57 @@
-# OCGA rules example
+# OCGA rules example for osm-cga project
+#see https://github.com/Zkir/ocga
+#
 # Alexander Column
 # https://en.wikipedia.org/wiki/Alexander_Column
 #(c) Zkir 2024
 
 ocga 0.1
 
+# rules describe building and building parts.
+# a rule named "building" is mandatory, otherwise the script will do nothing. 
 rule building: 
-    alignScopeToGeometry
-        
+    # by default scope is aligned to world(noth, east)
+	# but we want rather local coordinate system
+    align_scope geometry
+	
+	# define the buidling height expicitly, 
+	# overwriting what is specified in the source file
+	tag height, 47.5
+
     # we will start from the rectangle and will rebuild the form
     # basing of this very algorithm
-    outerRectangle mass_model
+    outer_rectangle mass_model
     #massModel mass_model
 
 rule mass_model:
     scale 6.3, 6.3        
-    split_z 1.5: steps |
-	        ~2.0: stylobate | 
-		    ~6.8: metal_base | 
-		    0.3: column_base | 
-		    ~26.6: column | 
-		    ~1.25: platform | 
-		    ~3.8: column_top | 
-		    ~6.7: angel_and_cross
+	
+    # the most parts of the column are made from dark red granite	
+	colour        salmon
+    material      stone
+	roof_colour   salmon
+    roof_material stone
+	
+	# the main magic: split the structure in vertical parts
+	# ~ means approximate value, 
+	# so we should not vary that the sum of part should be equal total height. It will  by itself :)
+    split_z ~6.7:  angel_and_cross |
+			~3.8:  column_top | 
+			~1.25: platform | 
+			~26.6: column | 
+			~6.8:  metal_base | 
+			~2.0:  stylobate | 
+			 1.5:  steps 
+			 
+	# note: after split operation, the current part will disappear.
                                
 rule angel_and_cross:
-    split_z  ~4: cross_stem | 0.3: cross_bar | ~1: cross_stem
+	colour         darkslategrey
+    material       metal
+	roof_colour    darkslategrey
+    roof_material  metal
+	
+    split_z ~1: cross_stem | 0.3: cross_bar | ~4: cross_stem
                                
 rule cross_stem:                                   
     scale 0.3, 0.3
@@ -34,31 +60,47 @@ rule cross_bar:
     scale 0.3, 2.5
     
 rule column_top:  
-    primitiveCylinder 16, 1.7 
-    roof dome, 1.5   
+    primitive_cylinder  1.7, 16 
+    create_roof dome, 1.5   
+	
+	colour         darkslategrey
+    material       metal
+	roof_colour    darkslategrey
+    roof_material  metal
     
 rule platform:  
+	colour          darkslategrey
+    material        metal
+	roof_colour     darkslategrey
+    roof_material   metal
+	
     scale '0.8, '0.8
     
 rule column:   
-    primitiveCylinder 16, 1.7 
+    primitive_cylinder 1.7, 16
     
+rule metal_base:   
+	colour           darkslategrey
+    material         metal
+	roof_colour      darkslategrey
+    roof_material    metal
+    
+    split_z 0.3:  column_base |
+			~1:   base5 |
+			~1:   base4 | 
+			~0.5: base3 |
+			~3.5: base2_with_bas_relief | 
+			~2: base1 
+                               
 rule column_base:   
-    primitiveCylinder
+    primitive_cylinder '1
     scale '0.8, '0.8 
 	comp_border 0.8, column_base_part	
 	
 rule column_base_part:
-	roof round, '0.5
+	create_roof round, '0.5
 	scale '1, '1, '2
-    
-rule metal_base:       
-    split_z ~2: base1 | 
-		   ~3.5: base2_with_bas_relief | 
-		   ~0.5: base3 | 
-		   ~1:  base4 | 
-		   ~1:  base5
-                               
+
 rule base1:                                          
     scale '0.95, '0.95        
     
@@ -66,7 +108,7 @@ rule base2_with_bas_relief:
     scale '0.8, '0.8         
     
 rule base3:                                          
-    nope
+    nope # nope operation does nothing, but let us to have explicit rule definition
     
 rule base4:                                          
     scale '0.9, '0.9
@@ -78,7 +120,7 @@ rule stylobate:
     nope
 	
 rule steps: 
-    split_z ~1: step3 | ~1: step2 | ~1: step1
+    split_z  ~1: step1 | ~1: step2 | ~1: step3 
 
 rule step1:
     scale 8.1, 8.1
@@ -94,4 +136,4 @@ rule step3:
 rule obelisk:
    scale 1, 1, 1.25
    translate 4.55, 0, 0.5
-   roof pyramidal, 0.25   
+   create_roof pyramidal, 0.25   

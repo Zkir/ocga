@@ -8,17 +8,19 @@ first of all Gorky Park Entrance
 def checkRulesMy(ctx):
     if ctx.getTag("building:part") == "porch":
         # align local coordinates so that X matches the longest dimension
-        ctx.alignScopeToGeometry()
+        ctx.align_scope("geometry")
         ctx.alignXToLongerScopeSide()
 
         # we want to remove it, and replace with 3 orther objects: porch_base, porch_columns, porch_top
         # Split Z, preserve roof,  {1:porch_base| ~1:porch_columns | 1: porch_top}
-        ctx.split_z_preserve_roof(("1", "porch_base"),
+        ctx.split_z_preserve_roof(
+                                  ("1", "porch_top"),
                                   ("~5", "porch_columns"),
-                                  ("1", "porch_top"))
+                                  ("1", "porch_base"),
+                                  )
 
     elif ctx.getTag("building:part") == "porch_base":
-        ctx.setTag("building:colour", "red")
+        ctx.tag("building:colour", "red")
 
     elif ctx.getTag("building:part") == "porch_columns":
         # split(x){ {~sy:porch_column_pre| ~sy:Nil}* | ~sy:porch_column_pre }
@@ -28,20 +30,19 @@ def checkRulesMy(ctx):
                      ("~1", "porch_column_pre")))
 
     elif ctx.getTag("building:part") == "porch_column_pre":
-        ctx.split_z_preserve_roof((("~1", "porch_column_main"),
-                                   ("0.25", "porch_column_top_pre")))
+        ctx.split_z_preserve_roof((("0.25", "porch_column_top_pre"),("~1", "porch_column_main")))
 
     elif ctx.getTag("building:part") == "porch_column_top_pre":
         top_size = min(ctx.scope_sx(), ctx.scope_sy()) / 1.0
         ctx.scale(top_size, top_size)
-        ctx.setTag("building:part","porch_column_top")
+        ctx.tag("building:part","porch_column_top")
 
     elif ctx.getTag("building:part") == "porch_column_main":
         # osmObject.osmtags["building:colour"] = "green"
-        ctx.primitiveCylinder(12, min(ctx.scope_sx(), ctx.scope_sy()) / 3)
+        ctx.primitive_cylinder(min(ctx.scope_sx(), ctx.scope_sy()) / 3)
 
     elif ctx.getTag("building:part") == "porch_top":
-        ctx.setTag("building:colour","blue")
+        ctx.tag("building:colour","blue")
 
     # ===========================================================================================================
     # Kokoshnik
@@ -52,18 +53,18 @@ def checkRulesMy(ctx):
         # some kind of the comp operator
         # for each edge of the tholobate we create kokoshnik.
         # remove the kokoshniks tag, to prevent dead loops.
-        ctx.setTag("building:roof:kokoshniks", "")
+        ctx.tag("building:roof:kokoshniks", "")
         ctx.comp_border("kokoshnik_pre")
         ctx.restore()
 
     elif ctx.getTag("building:part") == "kokoshnik_pre":
         facade_len = ctx.scope_sx()
-        ctx.setTag("building:part", "kokoshnik")
-        ctx.setTag("roof:shape", "round")
-        ctx.setTag("roof:orientation", "across")
-        ctx.setTag("roof:height", str(facade_len / 2))
-        ctx.setTag("height", str(ctx.getTag("min_height") + facade_len / 2 + 0.1))
-        ctx.setTag("building:roof:kokoshniks", "")
+        ctx.tag("building:part", "kokoshnik")
+        ctx.tag("roof:shape", "round")
+        ctx.tag("roof:orientation", "across")
+        ctx.tag("roof:height", str(facade_len / 2))
+        ctx.tag("height", str(ctx.getTag("min_height") + facade_len / 2 + 0.1))
+        ctx.tag("building:roof:kokoshniks", "")
 
     # ===========================================================================================================
     # Entrance to the Gorky Park
@@ -72,12 +73,12 @@ def checkRulesMy(ctx):
             "building:architecture") == "stalinist_neoclassicism":
 
         if ctx.getTag("building:levels") != "" and ctx.getTag("height") == 0:
-            ctx.setTag("height", str(float(ctx.getTag("building:levels")) * 4))
+            ctx.tag("height", str(float(ctx.getTag("building:levels")) * 4))
 
-        ctx.setTag("building", "yes")
+        ctx.tag("building", "yes")
 
         # align local coordinates so that X matches the longest dimension
-        ctx.alignScopeToGeometry()
+        ctx.align_scope("geometry")
         ctx.alignXToLongerScopeSide()
         ctx.split_x((("~1", "building_outline"),))
         ctx.restore()
@@ -88,60 +89,67 @@ def checkRulesMy(ctx):
         ctx.split_x((("~0.06", "side_column_block"),("~1", "pylon_pre"), ("~3.5", "arch"), ("~1", "pylon_pre"),("~0.06", "side_column_block")))
 
     elif ctx.getTag("building:part") == "arch":
-        ctx.setTag("building:part", "no")
+        ctx.tag("building:part", "no")
         ctx.scale(ctx.scope_sx(), ctx.scope_sy() - 2.0)
-        ctx.split_z_preserve_roof((("0.2", "stilobate"),
-                                   ("~4", "arch_columns"),
+        ctx.split_z_preserve_roof((
+                                   ("~1", "NIL"),
                                    ("~1.5", "pylon_middle"),  # arch_top_pre
-                                   ("~1", "NIL")))
+                                   ("~4", "arch_columns"),
+                                   ("0.2", "stilobate"),
+                                   ))
 
 
     elif ctx.getTag("building:part") == "pylon_pre":
-        ctx.split_z_preserve_roof((("0.2", "stilobate"),
-                                   ("~4", "pylon"),
+        ctx.split_z_preserve_roof((
+                                   ("~1", "pylon_top"),
                                    ("~1.5", "pylon_middle"),
-                                   ("~1", "pylon_top")))
+                                   ("~4", "pylon"),
+                                   ("0.2", "stilobate")
+                                   ))
 
     elif ctx.getTag("building:part") == "side_column_block":
         ctx.rotateScope(90)
         ctx.split_x((("~1", "NIL"),("~1", "side_column_pre"), ("~1.5", "NIL"), ("~1", "side_column_pre"), ("~1", "NIL")))
 
     elif ctx.getTag("building:part") == "side_column_pre":
-        ctx.split_z_preserve_roof((("0.2", "stilobate"),
-                                   ("~4", "pylon"),
+        ctx.split_z_preserve_roof((
+                                   ("~1", "NIL"),
                                    ("~1.5", "pylon_middle"),
-                                   ("~1", "NIL")))
+                                   ("~4", "pylon"),
+                                   ("0.2", "stilobate"),
+                                   ))
 
 
     elif ctx.getTag("building:part") == "pylon_middle":
-        ctx.split_z_preserve_roof( (("~1", "pylon_middle_wall"),
-                                    ("0.6", "pylon_middle_cornice1_pre"),
-                                    ("0.6", "pylon_middle_cornice2_pre"),
-                                    ("~2", "pylon_middle_wall"),
+        ctx.split_z_preserve_roof(( ("0.3", "pylon_middle_cornice4_pre"),
                                     ("0.3", "pylon_middle_cornice3_pre"),
-                                    ("0.3", "pylon_middle_cornice4_pre")
-                                                        ))
+                                    ("~2", "pylon_middle_wall"),
+                                    ("0.6", "pylon_middle_cornice2_pre"),
+                                    ("0.6", "pylon_middle_cornice1_pre"),
+                                    ("~1", "pylon_middle_wall")))
 
     elif ctx.getTag("building:part") == "pylon_middle_cornice1_pre":
         ctx.scale(ctx.scope_sx() + 1.4, ctx.scope_sy() + 1.4)
-        ctx.setTag("building:part", "cornice1")
+        ctx.tag("building:part", "cornice1")
 
     elif ctx.getTag("building:part") == "pylon_middle_cornice2_pre":
         ctx.scale(ctx.scope_sx() + 2.45, ctx.scope_sy() + 2.45)
-        ctx.setTag("building:part", "cornice2")
+        ctx.tag("building:part", "cornice2")
 
     elif ctx.getTag("building:part") == "pylon_middle_cornice3_pre":
         ctx.scale(ctx.scope_sx() + 0.4, ctx.scope_sy() + 0.4)
-        ctx.setTag("building:part", "cornice3")
+        ctx.tag("building:part", "cornice3")
 
     elif ctx.getTag("building:part") == "pylon_middle_cornice4_pre":
         ctx.scale(ctx.scope_sx() + 0.9, ctx.scope_sy() + 0.9)
-        ctx.setTag("building:part", "cornice4")
+        ctx.tag("building:part", "cornice4")
 
     elif ctx.getTag("building:part") == "pylon_top":
-        ctx.split_z_preserve_roof((("~1", "pylon_top1_pre"),
+        ctx.split_z_preserve_roof((
+                                   ("~1", "pylon_top3_pre"),
                                    ("~1", "pylon_top2_pre"),
-                                   ("~1", "pylon_top3_pre")))
+                                   ("~1", "pylon_top1_pre")
+                                   ))
 
     elif ctx.getTag("building:part") == "pylon_top1_pre":
         ctx.split_x((("1.0", "pylon_top1_obelisk_block"),
@@ -150,7 +158,7 @@ def checkRulesMy(ctx):
 
     elif ctx.getTag("building:part") == "pylon_top1_pre2":
         ctx.scale((ctx.scope_sx()+2*1.0) * 0.6, ctx.scope_sy() * 0.6)
-        ctx.setTag("building:part",  "pylon_top1")
+        ctx.tag("building:part",  "pylon_top1")
 
     elif ctx.getTag("building:part") == "pylon_top1_obelisk_block":
         ctx.rotateScope(90)
@@ -161,21 +169,21 @@ def checkRulesMy(ctx):
     elif ctx.getTag("building:part") == "pylon_top1_obelisk_pre":
         #ctx.scale("'1", "'1", 1.8 )
         ctx.scale(ctx.scope_sx(), ctx.scope_sy(), 1.8)
-        ctx.setTag("building:part", "obelisk")
-        ctx.setTag("roof:shape", "skillion")
-        ctx.setTag("roof:height", "1.75")
-        ctx.setTag("roof:direction", str(90+ctx.scope_rz()))
+        ctx.tag("building:part", "obelisk")
+        ctx.tag("roof:shape", "skillion")
+        ctx.tag("roof:height", "1.75")
+        ctx.tag("roof:direction", str(90+ctx.scope_rz()))
 
     elif ctx.getTag("building:part") == "pylon_top2_pre":
         ctx.scale(ctx.scope_sx() * 0.5, ctx.scope_sy() * 0.5)
-        ctx.setTag("building:part", "pylon_top2")
+        ctx.tag("building:part", "pylon_top2")
 
     elif ctx.getTag("building:part") == "pylon_top3_pre":
         ctx.scale(ctx.scope_sx() * 0.4, ctx.scope_sy() * 0.4)
-        ctx.setTag("building:part", "pylon_top3")
+        ctx.tag("building:part", "pylon_top3")
 
     elif ctx.getTag("building:part") == "arch_columns":
-        #ctx.setTag("building:part","no")
+        #ctx.tag("building:part","no")
 
         ctx.split_x((("~0.2", "semi_column_block"), ("~1.2", "NIL"),
                                                     ("~1", "arch_column_block"), ("~1.1", "NIL"),
@@ -187,7 +195,7 @@ def checkRulesMy(ctx):
                                                     ("~0.2", "semi_column_block")))
 
     elif ctx.getTag("building:part") == "arch_column_block":
-        ctx.setTag("building:part", "no")
+        ctx.tag("building:part", "no")
         ctx.rotateScope(90)
         # split(x){ {~sy:porch_column_pre| ~sy:Nil}* | ~sy:porch_column_pre }
         ctx.split_x((("~1", "porch_column_pre"),
@@ -206,7 +214,7 @@ def checkRulesMy(ctx):
 
 
     elif ctx.getTag("building:part") == "semi_column_block":
-        ctx.setTag("building:part", "no")
+        ctx.tag("building:part", "no")
         ctx.rotateScope(90)
 
         ctx.split_x( (("~1", "semi_column_pre"),
@@ -218,26 +226,25 @@ def checkRulesMy(ctx):
                       ("~1", "semi_column_pre")))
 
     elif ctx.getTag("building:part") == "semi_column_pre":
-        ctx.split_z_preserve_roof((("~1", "semi_column_main"),
-                                   ("0.25", "semi_column_top")))
+        ctx.split_z_preserve_roof((("0.25", "semi_column_top"),("~1", "semi_column_main")))
 
     elif ctx.getTag("building:part") == "semi_column_top":
-        ctx.setTag("building:part", "abacus")
+        ctx.tag("building:part", "abacus")
         ctx.scale(ctx.scope_sx(), ctx.scope_sy() + 0.5)
 
     elif ctx.getTag("building:part") == "semi_column_main":
-        ctx.setTag("building:part", "fustis")
+        ctx.tag("building:part", "fustis")
         ctx.scale(ctx.scope_sx() - 0.5, ctx.scope_sy())
 
     elif ctx.getTag("building:part") == "obelisk_pre":
-        ctx.setTag("building:part", "obelisk")
+        ctx.tag("building:part", "obelisk")
         ctx.scale(1, 1.5)
-        ctx.setTag("building:part", "yes")
-        ctx.setTag("min_height", "18.3")
-        ctx.setTag("height", "20.1")
-        ctx.setTag("roof:height", "1.70")
-        ctx.setTag("roof:shape", "round")
-        ctx.setTag("roof:orientation", "across")
+        ctx.tag("building:part", "yes")
+        ctx.tag("min_height", "18.3")
+        ctx.tag("height", "20.1")
+        ctx.tag("roof:height", "1.70")
+        ctx.tag("roof:shape", "round")
+        ctx.tag("roof:orientation", "across")
 
     elif ctx.getTag("building:part") == "NIL":
         ctx.nil()
