@@ -1,0 +1,1245 @@
+<?xml version='1.0' encoding='utf-8'?>
+<osm version="0.6" generator="zkir manually">
+  <node id="-16" version="1"  lat="55.578874988095535" lon="36.82061479208037"/>
+  <node id="-17" version="1"  lat="55.57890599020964" lon="36.82091013294575"/>
+  <node id="-18" version="1"  lat="55.57907293767515" lon="36.8208552875479"/>
+  <node id="-19" version="1"  lat="55.579041935561044" lon="36.82055994668252"/>
+  <node id="-39" version="1"  lat="55.5788926825244" lon="36.82060897912605"/>
+  <node id="-40" version="1"  lat="55.578878273952846" lon="36.82064609471794"/>
+  <node id="-41" version="1"  lat="55.57890270435233" lon="36.82087883030818"/>
+  <node id="-42" version="1"  lat="55.578923684638504" lon="36.82090431999143"/>
+  <node id="-43" version="1"  lat="55.57905524324629" lon="36.82086110050222"/>
+  <node id="-44" version="1"  lat="55.57906965181784" lon="36.820823984910334"/>
+  <node id="-45" version="1"  lat="55.579045221418355" lon="36.82059124932009"/>
+  <node id="-46" version="1"  lat="55.57902424113218" lon="36.82056575963684"/>
+  <node id="-70" version="1"  lat="55.57898171342955" lon="36.82080887514904"/>
+  <node id="-71" version="1"  lat="55.57900154349455" lon="36.820792127474405"/>
+  <node id="-72" version="1"  lat="55.579013983357584" lon="36.82076008320731"/>
+  <node id="-73" version="1"  lat="55.579015699767396" lon="36.82072132858323"/>
+  <node id="-74" version="1"  lat="55.57900623281338" lon="36.82068624787241"/>
+  <node id="-75" version="1"  lat="55.5789881191582" lon="36.820664240922966"/>
+  <node id="-76" version="1"  lat="55.578966212341136" lon="36.82066120447924"/>
+  <node id="-77" version="1"  lat="55.578946382276136" lon="36.82067795215387"/>
+  <node id="-78" version="1"  lat="55.5789339424131" lon="36.820709996420966"/>
+  <node id="-79" version="1"  lat="55.57893222600329" lon="36.820748751045045"/>
+  <node id="-80" version="1"  lat="55.57894169295731" lon="36.82078383175587"/>
+  <node id="-81" version="1"  lat="55.57895980661249" lon="36.82080583870531"/>
+  <node id="-84" version="1"  lat="55.57885960399569" lon="36.82117563737814"/>
+  <node id="-85" version="1"  lat="55.579170113492594" lon="36.82107362957428"/>
+  <node id="-167" version="1"  lat="55.57898016332071" lon="36.82079410808206"/>
+  <node id="-168" version="1"  lat="55.57899602737271" lon="36.820780709942355"/>
+  <node id="-169" version="1"  lat="55.57900597926314" lon="36.82075507452868"/>
+  <node id="-170" version="1"  lat="55.57900735239099" lon="36.820724070829414"/>
+  <node id="-171" version="1"  lat="55.57899977882777" lon="36.820696006260754"/>
+  <node id="-172" version="1"  lat="55.57898528790363" lon="36.8206784007012"/>
+  <node id="-173" version="1"  lat="55.57896776244998" lon="36.820675971546216"/>
+  <node id="-174" version="1"  lat="55.578951898397975" lon="36.82068936968592"/>
+  <node id="-175" version="1"  lat="55.57894194650755" lon="36.8207150050996"/>
+  <node id="-176" version="1"  lat="55.5789405733797" lon="36.820746008798864"/>
+  <node id="-177" version="1"  lat="55.57894814694291" lon="36.820774073367524"/>
+  <node id="-178" version="1"  lat="55.57896263786706" lon="36.82079167892708"/>
+  <node id="-179" version="1"  lat="55.57888729247857" lon="36.82091627531042"/>
+  <node id="-180" version="1"  lat="55.578844066752914" lon="36.8210276220828"/>
+  <node id="-181" version="1"  lat="55.57915457624982" lon="36.82092561427895"/>
+  <node id="-182" version="1"  lat="55.57909163538468" lon="36.820849145089625"/>
+  <node id="-191" version="1"  lat="55.57914373042514" lon="36.82113940547293"/>
+  <node id="-192" version="1"  lat="55.579132305845896" lon="36.82107970129002"/>
+  <node id="-193" version="1"  lat="55.57911183586756" lon="36.821028109604036"/>
+  <node id="-194" version="1"  lat="55.57908397884602" lon="36.82098881006655"/>
+  <node id="-195" version="1"  lat="55.57905099159151" lon="36.820964986492385"/>
+  <node id="-196" version="1"  lat="55.57901554653519" lon="36.82095856892581"/>
+  <node id="-197" version="1"  lat="55.57898051522473" lon="36.82097007727992"/>
+  <node id="-198" version="1"  lat="55.57894873568856" lon="36.820998579216294"/>
+  <node id="-199" version="1"  lat="55.57892278251571" lon="36.82104176567756"/>
+  <node id="-200" version="1"  lat="55.578904758277886" lon="36.82109613795347"/>
+  <node id="-201" version="1"  lat="55.57889612319165" lon="36.821157291125594"/>
+  <node id="-202" version="1"  lat="55.578897576820324" lon="36.82122027092761"/>
+  <node id="-203" version="1"  lat="55.57871402637451" lon="36.82157383412185"/>
+  <node id="-204" version="1"  lat="55.578744499600006" lon="36.821864142233814"/>
+  <node id="-205" version="1"  lat="55.57882212699423" lon="36.82183864047342"/>
+  <node id="-206" version="1"  lat="55.57879165376875" lon="36.821548332361466"/>
+  <node id="-209" version="1"  lat="55.57930916911781" lon="36.821378319924804"/>
+  <node id="-210" version="1"  lat="55.5793396433852" lon="36.82166862769448"/>
+  <node id="-211" version="1"  lat="55.579417270751975" lon="36.82164312567252"/>
+  <node id="-212" version="1"  lat="55.579386796484584" lon="36.82135281790285"/>
+  <node id="-213" version="1"  lat="55.57897968627699" lon="36.822137251670824"/>
+  <node id="-214" version="1"  lat="55.57899238021737" lon="36.82220358966345"/>
+  <node id="-215" version="1"  lat="55.57901512457227" lon="36.82226091376903"/>
+  <node id="-216" version="1"  lat="55.57904607672931" lon="36.82230457992943"/>
+  <node id="-217" version="1"  lat="55.579082729128814" lon="36.82233105057204"/>
+  <node id="-218" version="1"  lat="55.57912211241134" lon="36.82233818120281"/>
+  <node id="-219" version="1"  lat="55.57916103597757" lon="36.82232539414046"/>
+  <node id="-220" version="1"  lat="55.579196346471655" lon="36.82229372531671"/>
+  <node id="-221" version="1"  lat="55.57922518324735" lon="36.82224574035134"/>
+  <node id="-222" version="1"  lat="55.57924521012061" lon="36.82218532670086"/>
+  <node id="-223" version="1"  lat="55.57925480463326" lon="36.82211737871994"/>
+  <node id="-224" version="1"  lat="55.579253189494935" lon="36.82204740114988"/>
+  <node id="-233" version="1"  lat="55.578987566567825" lon="36.82207755439917"/>
+  <node id="-234" version="1"  lat="55.57899899111532" lon="36.8221372585878"/>
+  <node id="-235" version="1"  lat="55.57901946103679" lon="36.82218885027873"/>
+  <node id="-236" version="1"  lat="55.57904731798093" lon="36.82222814981997"/>
+  <node id="-237" version="1"  lat="55.5790803051438" lon="36.822251973396426"/>
+  <node id="-238" version="1"  lat="55.579115750101636" lon="36.82225839096362"/>
+  <node id="-239" version="1"  lat="55.57915078131477" lon="36.822246882608404"/>
+  <node id="-240" version="1"  lat="55.57918256076264" lon="36.8222183806693"/>
+  <node id="-241" version="1"  lat="55.579208513863385" lon="36.82217519420389"/>
+  <node id="-242" version="1"  lat="55.57922653805113" lon="36.82212082192277"/>
+  <node id="-243" version="1"  lat="55.57923517311338" lon="36.82205966874479"/>
+  <node id="-244" version="1"  lat="55.57923371948875" lon="36.821996688936736"/>
+  <node id="-245" version="1"  lat="55.57892001494946" lon="36.82062749687981"/>
+  <node id="-246" version="1"  lat="55.578923735213145" lon="36.8206629378543"/>
+  <node id="-247" version="1"  lat="55.57900620929745" lon="36.82063584381073"/>
+  <node id="-248" version="1"  lat="55.57900248903376" lon="36.820600402836234"/>
+  <node id="-249" version="1"  lat="55.578897856677486" lon="36.82068457512314"/>
+  <node id="-250" version="1"  lat="55.57891317211974" lon="36.82083047733953"/>
+  <node id="-251" version="1"  lat="55.57893320582344" lon="36.82082389595166"/>
+  <node id="-252" version="1"  lat="55.578917890381184" lon="36.82067799373527"/>
+  <node id="-253" version="1"  lat="55.578936696016555" lon="36.82065562475981"/>
+  <node id="-254" version="1"  lat="55.57891868529712" lon="36.820702019185745"/>
+  <node id="-255" version="1"  lat="55.57892907195663" lon="36.82080096739669"/>
+  <node id="-256" version="1"  lat="55.57895529732265" lon="36.820832829563585"/>
+  <node id="-257" version="1"  lat="55.57901122975413" lon="36.82081445486846"/>
+  <node id="-258" version="1"  lat="55.57902924047357" lon="36.820768060442525"/>
+  <node id="-259" version="1"  lat="55.579018853814055" lon="36.82066911223158"/>
+  <node id="-260" version="1"  lat="55.578992628448034" lon="36.820637250064685"/>
+  <node id="-261" version="1"  lat="55.57901471994221" lon="36.82064618372792"/>
+  <node id="-262" version="1"  lat="55.579030035395164" lon="36.82079208584762"/>
+  <node id="-263" version="1"  lat="55.57905006909824" lon="36.820785504453816"/>
+  <node id="-264" version="1"  lat="55.57903475364528" lon="36.82063960233412"/>
+  <node id="-265" version="1"  lat="55.57894171647516" lon="36.82083423582439"/>
+  <node id="-266" version="1"  lat="55.57894543673686" lon="36.820869676799546"/>
+  <node id="-267" version="1"  lat="55.579027910819306" lon="36.820842582741605"/>
+  <node id="-268" version="1"  lat="55.579024190557604" lon="36.82080714176645"/>
+  <node id="-269" version="1"  lat="55.57880918409978" lon="36.82119220103244"/>
+  <node id="-270" version="1"  lat="55.57876595837313" lon="36.82130354791471"/>
+  <node id="-271" version="1"  lat="55.57884782237612" lon="36.8220834247894"/>
+  <node id="-272" version="1"  lat="55.57891076325458" lon="36.8221598941685"/>
+  <node id="-273" version="1"  lat="55.579322112519485" lon="36.822024759063865"/>
+  <node id="-274" version="1"  lat="55.579365338246134" lon="36.821913412181594"/>
+  <node id="-275" version="1"  lat="55.57928347424315" lon="36.821133535306906"/>
+  <node id="-276" version="1"  lat="55.57922053336469" lon="36.8210570659278"/>
+  <node id="-317" version="1"  lat="55.57895079207447" lon="36.82146049213245"/>
+  <node id="-318" version="1"  lat="55.578988482570516" lon="36.82181955038991"/>
+  <node id="-319" version="1"  lat="55.5791805045448" lon="36.82175646796385"/>
+  <node id="-320" version="1"  lat="55.57914281404876" lon="36.82139740970639"/>
+  <node id="-343" version="1"  lat="55.57883979671361" lon="36.821496955962544"/>
+  <node id="-344" version="1"  lat="55.578950792177096" lon="36.821460492267065"/>
+  <node id="-345" version="1"  lat="55.57892900564125" lon="36.82125294393771"/>
+  <node id="-353" version="1"  lat="55.579121027627785" lon="36.8211898615554"/>
+  <node id="-354" version="1"  lat="55.579142814001095" lon="36.821397409938164"/>
+  <node id="-355" version="1"  lat="55.579253809436025" lon="36.821360945970646"/>
+  <node id="-371" version="1"  lat="55.57901026907593" lon="36.822027098701646"/>
+  <node id="-372" version="1"  lat="55.57898848257199" lon="36.82181955036181"/>
+  <node id="-373" version="1"  lat="55.578877487114106" lon="36.821856014110686"/>
+  <node id="-381" version="1"  lat="55.579291499978154" lon="36.82172000386621"/>
+  <node id="-382" version="1"  lat="55.57918050454882" lon="36.82175646788713"/>
+  <node id="-383" version="1"  lat="55.57920229089023" lon="36.82196401628037"/>
+  <node id="-392" version="1"  lat="55.57895079208155" lon="36.82146049215775"/>
+  <node id="-393" version="1"  lat="55.57914281406808" lon="36.82139740977544"/>
+  <node id="-395" version="1"  lat="55.5789499490321" lon="36.821147298146485"/>
+  <node id="-396" version="1"  lat="55.57892473402431" lon="36.82121225043848"/>
+  <node id="-397" version="1"  lat="55.57911675601084" lon="36.82114916805617"/>
+  <node id="-398" version="1"  lat="55.57908004049925" lon="36.821104560958865"/>
+  <node id="-408" version="1"  lat="55.57898848272539" lon="36.821819550479745"/>
+  <node id="-409" version="1"  lat="55.57895079207447" lon="36.82146049213245"/>
+  <node id="-411" version="1"  lat="55.5788177689366" lon="36.82181896405392"/>
+  <node id="-412" version="1"  lat="55.578854484444506" lon="36.82186357098343"/>
+  <node id="-413" version="1"  lat="55.578816793793585" lon="36.82150451263614"/>
+  <node id="-414" version="1"  lat="55.57879157878326" lon="36.82156946469686"/>
+  <node id="-420" version="1"  lat="55.57912219850723" lon="36.8217624125008"/>
+  <node id="-421" version="1"  lat="55.57916716293148" lon="36.82164658683765"/>
+  <node id="-422" version="1"  lat="55.57915266146704" lon="36.821508438734035"/>
+  <node id="-423" version="1"  lat="55.5790871888751" lon="36.821428893475435"/>
+  <node id="-424" version="1"  lat="55.579009098112046" lon="36.82145454759551"/>
+  <node id="-425" version="1"  lat="55.57896413368779" lon="36.82157037325866"/>
+  <node id="-426" version="1"  lat="55.57897863515223" lon="36.821708521362275"/>
+  <node id="-427" version="1"  lat="55.579044107744174" lon="36.821788066620876"/>
+  <node id="-440" version="1"  lat="55.579079911711474" lon="36.82174436024994"/>
+  <node id="-441" version="1"  lat="55.579116405172826" lon="36.82171353926956"/>
+  <node id="-442" version="1"  lat="55.579139298373676" lon="36.821654567755644"/>
+  <node id="-443" version="1"  lat="55.57914245709935" lon="36.82158324707773"/>
+  <node id="-444" version="1"  lat="55.57912503497185" lon="36.82151868755387"/>
+  <node id="-445" version="1"  lat="55.57909170023616" lon="36.82147818785633"/>
+  <node id="-446" version="1"  lat="55.5790513849078" lon="36.82147259984637"/>
+  <node id="-447" version="1"  lat="55.57901489144645" lon="36.82150342082675"/>
+  <node id="-448" version="1"  lat="55.5789919982456" lon="36.82156239234067"/>
+  <node id="-449" version="1"  lat="55.57898883951992" lon="36.82163371301858"/>
+  <node id="-450" version="1"  lat="55.57900626164742" lon="36.82169827254244"/>
+  <node id="-451" version="1"  lat="55.57903959638311" lon="36.82173877223998"/>
+  <node id="-458" version="1"  lat="55.57914281404876" lon="36.821397409706385"/>
+  <node id="-459" version="1"  lat="55.57918050441848" lon="36.821756468146056"/>
+  <node id="-461" version="1"  lat="55.57931352781664" lon="36.821397996218906"/>
+  <node id="-462" version="1"  lat="55.57927681229967" lon="36.8213533888728"/>
+  <node id="-463" version="1"  lat="55.57931450266939" lon="36.82171244731247"/>
+  <node id="-464" version="1"  lat="55.57933971767349" lon="36.82164749467721"/>
+  <node id="-474" version="1"  lat="55.57918050454884" lon="36.82175646788713"/>
+  <node id="-475" version="1"  lat="55.57898848257199" lon="36.8218195503618"/>
+  <node id="-477" version="1"  lat="55.57918134756612" lon="36.822069662069"/>
+  <node id="-478" version="1"  lat="55.57920656257275" lon="36.82200470966501"/>
+  <node id="-479" version="1"  lat="55.5790145405959" lon="36.822067792139684"/>
+  <node id="-480" version="1"  lat="55.579051256109175" lon="36.822112399317994"/>
+  <node id="-485" version="1"  lat="55.57884012822049" lon="36.821282141520236"/>
+  <node id="-486" version="1"  lat="55.578822117501055" lon="36.821328535840344"/>
+  <node id="-491" version="1"  lat="55.57884455920334" lon="36.82130215642881"/>
+  <node id="-492" version="1"  lat="55.57883375277168" lon="36.82132999302087"/>
+  <node id="-493" version="1"  lat="55.5788462532124" lon="36.82144907783577"/>
+  <node id="-494" version="1"  lat="55.57886198843202" lon="36.821468195092294"/>
+  <node id="-495" version="1"  lat="55.578924243151526" lon="36.821447743471445"/>
+  <node id="-496" version="1"  lat="55.57893504958319" lon="36.821419906879385"/>
+  <node id="-497" version="1"  lat="55.57892254914247" lon="36.82130082206448"/>
+  <node id="-498" version="1"  lat="55.57890681392285" lon="36.82128170480796"/>
+  <node id="-511" version="1"  lat="55.578892645926004" lon="36.821453493129404"/>
+  <node id="-512" version="1"  lat="55.57891374043184" lon="36.82143567759958"/>
+  <node id="-513" version="1"  lat="55.578926973508146" lon="36.82140159014513"/>
+  <node id="-514" version="1"  lat="55.57892879936283" lon="36.821360364471936"/>
+  <node id="-515" version="1"  lat="55.57891872875959" lon="36.821323046965844"/>
+  <node id="-516" version="1"  lat="55.578899460108424" lon="36.82129963682248"/>
+  <node id="-517" version="1"  lat="55.57887615642886" lon="36.82129640677085"/>
+  <node id="-518" version="1"  lat="55.57885506192303" lon="36.82131422230067"/>
+  <node id="-519" version="1"  lat="55.57884182884672" lon="36.82134830975512"/>
+  <node id="-520" version="1"  lat="55.57884000299204" lon="36.82138953542832"/>
+  <node id="-521" version="1"  lat="55.57885007359528" lon="36.82142685293441"/>
+  <node id="-522" version="1"  lat="55.57886934224644" lon="36.82145026307777"/>
+  <node id="-524" version="1"  lat="55.578958331533514" lon="36.821160820987664"/>
+  <node id="-525" version="1"  lat="55.5789356380265" lon="36.821219278050464"/>
+  <node id="-526" version="1"  lat="55.57895909027801" lon="36.8214426955978"/>
+  <node id="-527" version="1"  lat="55.57913191006589" lon="36.82138592145373"/>
+  <node id="-528" version="1"  lat="55.57910845781438" lon="36.821162503906386"/>
+  <node id="-529" version="1"  lat="55.57907541385394" lon="36.82112235751881"/>
+  <node id="-530" version="1"  lat="55.57923613038601" lon="36.82119252609703"/>
+  <node id="-531" version="1"  lat="55.57920990501999" lon="36.82116066375691"/>
+  <node id="-536" version="1"  lat="55.579225566550534" lon="36.8212012759284"/>
+  <node id="-537" version="1"  lat="55.579209831330914" lon="36.82118215852433"/>
+  <node id="-538" version="1"  lat="55.57914757663425" lon="36.821202610295515"/>
+  <node id="-539" version="1"  lat="55.57913677020259" lon="36.821230447102415"/>
+  <node id="-540" version="1"  lat="55.57914927051328" lon="36.82134953159765"/>
+  <node id="-541" version="1"  lat="55.5791650057329" lon="36.82136864900172"/>
+  <node id="-542" version="1"  lat="55.57922726042956" lon="36.821348197230535"/>
+  <node id="-543" version="1"  lat="55.57923806686122" lon="36.821320360423634"/>
+  <node id="-556" version="1"  lat="55.579143020357925" lon="36.821289989350035"/>
+  <node id="-557" version="1"  lat="55.579153090958584" lon="36.82132730713453"/>
+  <node id="-558" version="1"  lat="55.57917235960478" lon="36.821350717452546"/>
+  <node id="-559" version="1"  lat="55.57919566327835" lon="36.82135394752828"/>
+  <node id="-560" version="1"  lat="55.57921675777876" lon="36.82133613186554"/>
+  <node id="-561" version="1"  lat="55.57922999085167" lon="36.82130204415677"/>
+  <node id="-562" version="1"  lat="55.57923181670588" lon="36.821260818176015"/>
+  <node id="-563" version="1"  lat="55.57922174610522" lon="36.82122350039152"/>
+  <node id="-564" version="1"  lat="55.57920247745902" lon="36.8212000900735"/>
+  <node id="-565" version="1"  lat="55.579179173785455" lon="36.82119685999777"/>
+  <node id="-566" version="1"  lat="55.579158079285044" lon="36.82121467566051"/>
+  <node id="-567" version="1"  lat="55.57914484621213" lon="36.821248763369276"/>
+  <node id="-569" version="1"  lat="55.578824995118374" lon="36.82180327080432"/>
+  <node id="-570" version="1"  lat="55.578858039075484" lon="36.82184341704088"/>
+  <node id="-571" version="1"  lat="55.57897863752829" lon="36.82180379858757"/>
+  <node id="-572" version="1"  lat="55.578944715942455" lon="36.821480646075"/>
+  <node id="-573" version="1"  lat="55.57882411748966" lon="36.82152026452832"/>
+  <node id="-574" version="1"  lat="55.578801423980366" lon="36.82157872138296"/>
+  <node id="-575" version="1"  lat="55.57907705903111" lon="36.82171718420958"/>
+  <node id="-576" version="1"  lat="55.57910625380019" lon="36.82169252742528"/>
+  <node id="-577" version="1"  lat="55.57912456836087" lon="36.82164535021415"/>
+  <node id="-578" version="1"  lat="55.579127095341406" lon="36.821588293671816"/>
+  <node id="-579" version="1"  lat="55.57911315763941" lon="36.82153664605273"/>
+  <node id="-580" version="1"  lat="55.57908648985086" lon="36.821504246294694"/>
+  <node id="-581" version="1"  lat="55.57905423758817" lon="36.82149977588673"/>
+  <node id="-582" version="1"  lat="55.57902504281908" lon="36.82152443267103"/>
+  <node id="-583" version="1"  lat="55.579006728258406" lon="36.82157160988216"/>
+  <node id="-584" version="1"  lat="55.57900420127787" lon="36.821628666424495"/>
+  <node id="-585" version="1"  lat="55.57901813897986" lon="36.82168031404358"/>
+  <node id="-586" version="1"  lat="55.579044806768415" lon="36.82171271380162"/>
+  <node id="-587" version="1"  lat="55.57930630162109" lon="36.82141368944796"/>
+  <node id="-588" version="1"  lat="55.579273257655814" lon="36.82137354283646"/>
+  <node id="-589" version="1"  lat="55.57915265923" lon="36.82141316158669"/>
+  <node id="-590" version="1"  lat="55.57918658056275" lon="36.821736314182395"/>
+  <node id="-591" version="1"  lat="55.579307178988564" lon="36.821696695432166"/>
+  <node id="-592" version="1"  lat="55.57932987249225" lon="36.82163823806043"/>
+  <node id="-593" version="1"  lat="55.57889516629476" lon="36.822024434184094"/>
+  <node id="-594" version="1"  lat="55.57892139166078" lon="36.822056296326565"/>
+  <node id="-599" version="1"  lat="55.578905730119466" lon="36.822015684281794"/>
+  <node id="-600" version="1"  lat="55.578921465339086" lon="36.82203480156728"/>
+  <node id="-601" version="1"  lat="55.578983720054104" lon="36.82201434991693"/>
+  <node id="-602" version="1"  lat="55.578994526485765" lon="36.82198651328269"/>
+  <node id="-603" version="1"  lat="55.57898202607057" lon="36.82186742853054"/>
+  <node id="-604" version="1"  lat="55.57896629085095" lon="36.821848311245056"/>
+  <node id="-605" version="1"  lat="55.57890403613593" lon="36.821868762895406"/>
+  <node id="-606" version="1"  lat="55.57889322970427" lon="36.821896599529644"/>
+  <node id="-619" version="1"  lat="55.578988276278174" lon="36.82192697090662"/>
+  <node id="-620" version="1"  lat="55.57897820567544" lon="36.821889653345885"/>
+  <node id="-621" version="1"  lat="55.57895893702525" lon="36.82186624316824"/>
+  <node id="-622" version="1"  lat="55.578935633346866" lon="36.82186301311187"/>
+  <node id="-623" version="1"  lat="55.5789145388421" lon="36.82188082866778"/>
+  <node id="-624" version="1"  lat="55.57890130576645" lon="36.821914916172155"/>
+  <node id="-625" version="1"  lat="55.57889947991186" lon="36.821956141905716"/>
+  <node id="-626" version="1"  lat="55.578909550514595" lon="36.82199345946645"/>
+  <node id="-627" version="1"  lat="55.57892881916479" lon="36.822016869644095"/>
+  <node id="-628" version="1"  lat="55.57895212284317" lon="36.82202009970046"/>
+  <node id="-629" version="1"  lat="55.57897321734794" lon="36.82200228414455"/>
+  <node id="-630" version="1"  lat="55.578986450423585" lon="36.82196819664018"/>
+  <node id="-632" version="1"  lat="55.579172965066746" lon="36.822056139222354"/>
+  <node id="-633" version="1"  lat="55.579195658572715" lon="36.821997682058765"/>
+  <node id="-634" version="1"  lat="55.57917220635119" lon="36.82177426445867"/>
+  <node id="-635" version="1"  lat="55.57899938657202" lon="36.82183103868588"/>
+  <node id="-636" version="1"  lat="55.57902283879355" lon="36.822054456285976"/>
+  <node id="-637" version="1"  lat="55.5790558827555" lon="36.82209460274645"/>
+  <node id="-638" version="1"  lat="55.57929116827683" lon="36.82193481843949"/>
+  <node id="-639" version="1"  lat="55.57930917899627" lon="36.821888423691036"/>
+  <node id="-644" version="1"  lat="55.57928673731685" lon="36.82191480353024"/>
+  <node id="-645" version="1"  lat="55.57929754374851" lon="36.82188696668117"/>
+  <node id="-646" version="1"  lat="55.579285043463344" lon="36.82176788224868"/>
+  <node id="-647" version="1"  lat="55.579269308243724" lon="36.82174876481565"/>
+  <node id="-648" version="1"  lat="55.579207053551535" lon="36.82176921661634"/>
+  <node id="-649" version="1"  lat="55.579196247119874" lon="36.82179705346541"/>
+  <node id="-650" version="1"  lat="55.57920874740504" lon="36.8219161378979"/>
+  <node id="-651" version="1"  lat="55.57922448262466" lon="36.82193525533093"/>
+  <node id="-664" version="1"  lat="55.57923865068816" lon="36.82176346619301"/>
+  <node id="-665" version="1"  lat="55.579217556188816" lon="36.82178128188184"/>
+  <node id="-666" version="1"  lat="55.57920432311658" lon="36.821815369640525"/>
+  <node id="-667" version="1"  lat="55.57920249726246" lon="36.82185659568166"/>
+  <node id="-668" version="1"  lat="55.57921256786261" lon="36.8218939135208"/>
+  <node id="-669" version="1"  lat="55.57923183650784" lon="36.82191732387311"/>
+  <node id="-670" version="1"  lat="55.57925514018023" lon="36.82192055395357"/>
+  <node id="-671" version="1"  lat="55.579276234679575" lon="36.82190273826474"/>
+  <node id="-672" version="1"  lat="55.57928946775181" lon="36.821868650506055"/>
+  <node id="-673" version="1"  lat="55.579291293605934" lon="36.82182742446492"/>
+  <node id="-674" version="1"  lat="55.57928122300578" lon="36.82179010662578"/>
+  <node id="-675" version="1"  lat="55.579261954360554" lon="36.82176669627347"/>
+  <node id="-677" version="1"  lat="55.57889099697629" lon="36.82143778449355"/>
+  <node id="-678" version="1"  lat="55.578907872580956" lon="36.82142353206969"/>
+  <node id="-679" version="1"  lat="55.578918459042" lon="36.82139626210613"/>
+  <node id="-680" version="1"  lat="55.57891991972575" lon="36.82136328156757"/>
+  <node id="-681" version="1"  lat="55.57891186324316" lon="36.8213334275627"/>
+  <node id="-682" version="1"  lat="55.578896448322226" lon="36.82131469944801"/>
+  <node id="-683" version="1"  lat="55.578877805378575" lon="36.821312115406705"/>
+  <node id="-684" version="1"  lat="55.57886092977391" lon="36.821326367830565"/>
+  <node id="-685" version="1"  lat="55.578850343312865" lon="36.821353637794125"/>
+  <node id="-686" version="1"  lat="55.57884888262912" lon="36.82138661833268"/>
+  <node id="-687" version="1"  lat="55.57885693911171" lon="36.82141647233755"/>
+  <node id="-688" version="1"  lat="55.57887235403264" lon="36.82143520045224"/>
+  <node id="-689" version="1"  lat="55.57915189999272" lon="36.821287072232636"/>
+  <node id="-690" version="1"  lat="55.57915995647325" lon="36.82131692646023"/>
+  <node id="-691" version="1"  lat="55.57917537139021" lon="36.821335654714645"/>
+  <node id="-692" version="1"  lat="55.57919401432906" lon="36.821338238775226"/>
+  <node id="-693" version="1"  lat="55.579210889929385" lon="36.82132398624504"/>
+  <node id="-694" version="1"  lat="55.579221476387715" lon="36.821296716078024"/>
+  <node id="-695" version="1"  lat="55.57922293707108" lon="36.821263735293414"/>
+  <node id="-696" version="1"  lat="55.579214880590555" lon="36.82123388106582"/>
+  <node id="-697" version="1"  lat="55.5791994656736" lon="36.821215152811405"/>
+  <node id="-698" version="1"  lat="55.57918082273474" lon="36.82121256875082"/>
+  <node id="-699" version="1"  lat="55.57916394713442" lon="36.82122682128101"/>
+  <node id="-700" version="1"  lat="55.57915336067609" lon="36.821254091448026"/>
+  <node id="-701" version="1"  lat="55.57897939664154" lon="36.82192988800653"/>
+  <node id="-702" version="1"  lat="55.578971340159356" lon="36.82190003395794"/>
+  <node id="-703" version="1"  lat="55.5789559252392" lon="36.82188130581582"/>
+  <node id="-704" version="1"  lat="55.57893728229649" lon="36.82187872177073"/>
+  <node id="-705" version="1"  lat="55.57892040669268" lon="36.82189297421546"/>
+  <node id="-706" version="1"  lat="55.57890982023216" lon="36.82192024421896"/>
+  <node id="-707" version="1"  lat="55.57890835954849" lon="36.8219532248058"/>
+  <node id="-708" version="1"  lat="55.57891641603068" lon="36.821983078854394"/>
+  <node id="-709" version="1"  lat="55.578931830950836" lon="36.82200180699651"/>
+  <node id="-710" version="1"  lat="55.57895047389354" lon="36.8220043910416"/>
+  <node id="-711" version="1"  lat="55.578967349497354" lon="36.821990138596874"/>
+  <node id="-712" version="1"  lat="55.57897793595787" lon="36.821962868593374"/>
+  <node id="-713" version="1"  lat="55.57924029963737" lon="36.821779174969066"/>
+  <node id="-714" version="1"  lat="55.57922342403789" lon="36.82179342752013"/>
+  <node id="-715" version="1"  lat="55.5792128375801" lon="36.82182069772708"/>
+  <node id="-716" version="1"  lat="55.57921137689681" lon="36.82185367855998"/>
+  <node id="-717" version="1"  lat="55.57921943337693" lon="36.8218835328313"/>
+  <node id="-718" version="1"  lat="55.57923484829311" lon="36.821902261113145"/>
+  <node id="-719" version="1"  lat="55.57925349123102" lon="36.821904845177514"/>
+  <node id="-720" version="1"  lat="55.5792703668305" lon="36.82189059262645"/>
+  <node id="-721" version="1"  lat="55.57928095328829" lon="36.8218633224195"/>
+  <node id="-722" version="1"  lat="55.57928241397158" lon="36.8218303415866"/>
+  <node id="-723" version="1"  lat="55.579274357491464" lon="36.82180048731528"/>
+  <node id="-724" version="1"  lat="55.57925894257528" lon="36.821781759033435"/>
+  <node id="-729" version="1"  lat="55.578617796897966" lon="36.82069026046711"/>
+  <node id="-730" version="1"  lat="55.578802740338304" lon="36.8224521231475"/>
+  <node id="-731" version="1"  lat="55.57948223919874" lon="36.822228896391465"/>
+  <node id="-732" version="1"  lat="55.5792972957584" lon="36.820467033711076"/>
+  <way id="-20" version="1" >
+    <nd ref="-16" />
+    <nd ref="-17" />
+    <nd ref="-18" />
+    <nd ref="-19" />
+    <nd ref="-16" />
+    <tag k="building:part" v="belltower_layer1" />
+    <tag k="height" v="21.946" />
+    <tag k="min_height" v="0" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-21" version="1" >
+    <nd ref="-39" />
+    <nd ref="-40" />
+    <nd ref="-41" />
+    <nd ref="-42" />
+    <nd ref="-43" />
+    <nd ref="-44" />
+    <nd ref="-45" />
+    <nd ref="-46" />
+    <nd ref="-39" />
+    <tag k="building:part" v="belltower_layer1a" />
+    <tag k="height" v="28.216" />
+    <tag k="min_height" v="21.946" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-127" version="1" >
+    <nd ref="-245" />
+    <nd ref="-246" />
+    <nd ref="-247" />
+    <nd ref="-248" />
+    <nd ref="-245" />
+    <tag k="building:part" v="belltower_layer2_portico" />
+    <tag k="height" v="45.773" />
+    <tag k="min_height" v="28.216" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="2" />
+    <tag k="roof:shape" v="gabled" />
+    <tag k="roof:orientation" v="across" />
+  </way>
+  <way id="-137" version="1" >
+    <nd ref="-249" />
+    <nd ref="-250" />
+    <nd ref="-251" />
+    <nd ref="-252" />
+    <nd ref="-249" />
+    <tag k="building:part" v="belltower_layer2_portico" />
+    <tag k="height" v="45.773" />
+    <tag k="min_height" v="28.216" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="2" />
+    <tag k="roof:shape" v="gabled" />
+    <tag k="roof:orientation" v="across" />
+  </way>
+  <way id="-142" version="1" >
+    <nd ref="-253" />
+    <nd ref="-254" />
+    <nd ref="-255" />
+    <nd ref="-256" />
+    <nd ref="-257" />
+    <nd ref="-258" />
+    <nd ref="-259" />
+    <nd ref="-260" />
+    <nd ref="-253" />
+    <tag k="building:part" v="belltower_layer2" />
+    <tag k="height" v="50.162" />
+    <tag k="min_height" v="28.216" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-147" version="1" >
+    <nd ref="-261" />
+    <nd ref="-262" />
+    <nd ref="-263" />
+    <nd ref="-264" />
+    <nd ref="-261" />
+    <tag k="building:part" v="belltower_layer2_portico" />
+    <tag k="height" v="45.773" />
+    <tag k="min_height" v="28.216" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="2" />
+    <tag k="roof:shape" v="gabled" />
+    <tag k="roof:orientation" v="across" />
+  </way>
+  <way id="-157" version="1" >
+    <nd ref="-265" />
+    <nd ref="-266" />
+    <nd ref="-267" />
+    <nd ref="-268" />
+    <nd ref="-265" />
+    <tag k="building:part" v="belltower_layer2_portico" />
+    <tag k="height" v="45.773" />
+    <tag k="min_height" v="28.216" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="2" />
+    <tag k="roof:shape" v="gabled" />
+    <tag k="roof:orientation" v="across" />
+  </way>
+  <way id="-23" version="1" >
+    <nd ref="-70" />
+    <nd ref="-71" />
+    <nd ref="-72" />
+    <nd ref="-73" />
+    <nd ref="-74" />
+    <nd ref="-75" />
+    <nd ref="-76" />
+    <nd ref="-77" />
+    <nd ref="-78" />
+    <nd ref="-79" />
+    <nd ref="-80" />
+    <nd ref="-81" />
+    <nd ref="-70" />
+    <tag k="building:part" v="helm1" />
+    <tag k="height" v="70" />
+    <tag k="min_height" v="50.162" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="4.718" />
+    <tag k="roof:shape" v="dome" />
+  </way>
+  <way id="-82" version="1" >
+    <nd ref="-167" />
+    <nd ref="-168" />
+    <nd ref="-169" />
+    <nd ref="-170" />
+    <nd ref="-171" />
+    <nd ref="-172" />
+    <nd ref="-173" />
+    <nd ref="-174" />
+    <nd ref="-175" />
+    <nd ref="-176" />
+    <nd ref="-177" />
+    <nd ref="-178" />
+    <nd ref="-167" />
+    <tag k="building:part" v="helm2" />
+    <tag k="height" v="72.65" />
+    <tag k="min_height" v="67.933" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="4.707" />
+    <tag k="roof:shape" v="pyramidal" />
+  </way>
+  <way id="-87" version="1" >
+    <nd ref="-179" />
+    <nd ref="-180" />
+    <nd ref="-84" />
+    <nd ref="-85" />
+    <nd ref="-181" />
+    <nd ref="-182" />
+    <nd ref="-179" />
+    <tag k="building:part" v="west_apse_1_pre" />
+    <tag k="height" v="21.6" />
+    <tag k="min_height" v="0" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="glass" />
+    <tag k="roof:colour" v="gray" />
+    <tag k="roof:height" v="5" />
+    <tag k="roof:shape" v="half-dome" />
+  </way>
+  <way id="-88" version="1" >
+    <nd ref="-191" />
+    <nd ref="-192" />
+    <nd ref="-193" />
+    <nd ref="-194" />
+    <nd ref="-195" />
+    <nd ref="-196" />
+    <nd ref="-197" />
+    <nd ref="-198" />
+    <nd ref="-199" />
+    <nd ref="-200" />
+    <nd ref="-201" />
+    <nd ref="-202" />
+    <nd ref="-191" />
+    <tag k="building:part" v="apse_2_pre" />
+    <tag k="height" v="37.35" />
+    <tag k="min_height" v="16.6" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="6" />
+    <tag k="roof:shape" v="half-dome" />
+  </way>
+  <way id="-95" version="1" >
+    <nd ref="-203" />
+    <nd ref="-204" />
+    <nd ref="-205" />
+    <nd ref="-206" />
+    <nd ref="-203" />
+    <tag k="building:part" v="entrance" />
+    <tag k="height" v="18" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:height" v="6" />
+    <tag k="roof:shape" v="round" />
+    <tag k="roof:orientation" v="across" />
+  </way>
+  <way id="-207" version="1" >
+    <nd ref="-269" />
+    <nd ref="-270" />
+    <nd ref="-271" />
+    <nd ref="-272" />
+    <nd ref="-273" />
+    <nd ref="-274" />
+    <nd ref="-275" />
+    <nd ref="-276" />
+    <nd ref="-269" />
+    <tag k="building:part" v="cube1" />
+    <tag k="height" v="21.6" />
+    <tag k="min_height" v="0" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="glass" />
+    <tag k="roof:colour" v="gray" />
+    <tag k="roof:height" v="5" />
+    <tag k="roof:shape" v="dome" />
+  </way>
+  <way id="-384" version="1" >
+    <nd ref="-485" />
+    <nd ref="-486" />
+    <nd ref="-343" />
+    <nd ref="-344" />
+    <nd ref="-345" />
+    <nd ref="-485" />
+    <tag k="building:part" v="side_head_layer1" />
+    <tag k="height" v="38.6" />
+    <tag k="min_height" v="16.6" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-385" version="1" >
+    <nd ref="-491" />
+    <nd ref="-492" />
+    <nd ref="-493" />
+    <nd ref="-494" />
+    <nd ref="-495" />
+    <nd ref="-496" />
+    <nd ref="-497" />
+    <nd ref="-498" />
+    <nd ref="-491" />
+    <tag k="building:part" v="side_head_layer2" />
+    <tag k="height" v="59.4" />
+    <tag k="min_height" v="38.6" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-386" version="1" >
+    <nd ref="-511" />
+    <nd ref="-512" />
+    <nd ref="-513" />
+    <nd ref="-514" />
+    <nd ref="-515" />
+    <nd ref="-516" />
+    <nd ref="-517" />
+    <nd ref="-518" />
+    <nd ref="-519" />
+    <nd ref="-520" />
+    <nd ref="-521" />
+    <nd ref="-522" />
+    <nd ref="-511" />
+    <tag k="building:part" v="helm1" />
+    <tag k="height" v="66.4" />
+    <tag k="min_height" v="59.4" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="5.018" />
+    <tag k="roof:shape" v="dome" />
+  </way>
+  <way id="-523" version="1" >
+    <nd ref="-677" />
+    <nd ref="-678" />
+    <nd ref="-679" />
+    <nd ref="-680" />
+    <nd ref="-681" />
+    <nd ref="-682" />
+    <nd ref="-683" />
+    <nd ref="-684" />
+    <nd ref="-685" />
+    <nd ref="-686" />
+    <nd ref="-687" />
+    <nd ref="-688" />
+    <nd ref="-677" />
+    <tag k="building:part" v="helm2" />
+    <tag k="height" v="69.219" />
+    <tag k="min_height" v="64.201" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="5.018" />
+    <tag k="roof:shape" v="pyramidal" />
+  </way>
+  <way id="-346" version="1" >
+    <nd ref="-395" />
+    <nd ref="-396" />
+    <nd ref="-392" />
+    <nd ref="-393" />
+    <nd ref="-397" />
+    <nd ref="-398" />
+    <nd ref="-395" />
+    <tag k="building:part" v="side_erker" />
+    <tag k="height" v="43.16" />
+    <tag k="min_height" v="16.6" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:height" v="5" />
+    <tag k="roof:shape" v="gabled" />
+    <tag k="roof:orientation" v="across" />
+  </way>
+  <way id="-399" version="1" >
+    <nd ref="-524" />
+    <nd ref="-525" />
+    <nd ref="-526" />
+    <nd ref="-527" />
+    <nd ref="-528" />
+    <nd ref="-529" />
+    <nd ref="-524" />
+    <tag k="building:part" v="side_erker_dome" />
+    <tag k="height" v="45.16" />
+    <tag k="min_height" v="38.16" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:height" v="7" />
+    <tag k="roof:shape" v="half-dome" />
+    <tag k="roof:orientation" v="across" />
+  </way>
+  <way id="-400" version="1" >
+    <nd ref="-530" />
+    <nd ref="-531" />
+    <nd ref="-353" />
+    <nd ref="-354" />
+    <nd ref="-355" />
+    <nd ref="-530" />
+    <tag k="building:part" v="side_head_layer1" />
+    <tag k="height" v="38.6" />
+    <tag k="min_height" v="16.6" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-401" version="1" >
+    <nd ref="-536" />
+    <nd ref="-537" />
+    <nd ref="-538" />
+    <nd ref="-539" />
+    <nd ref="-540" />
+    <nd ref="-541" />
+    <nd ref="-542" />
+    <nd ref="-543" />
+    <nd ref="-536" />
+    <tag k="building:part" v="side_head_layer2" />
+    <tag k="height" v="59.4" />
+    <tag k="min_height" v="38.6" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-402" version="1" >
+    <nd ref="-556" />
+    <nd ref="-557" />
+    <nd ref="-558" />
+    <nd ref="-559" />
+    <nd ref="-560" />
+    <nd ref="-561" />
+    <nd ref="-562" />
+    <nd ref="-563" />
+    <nd ref="-564" />
+    <nd ref="-565" />
+    <nd ref="-566" />
+    <nd ref="-567" />
+    <nd ref="-556" />
+    <tag k="building:part" v="helm1" />
+    <tag k="height" v="66.4" />
+    <tag k="min_height" v="59.4" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="5.018" />
+    <tag k="roof:shape" v="dome" />
+  </way>
+  <way id="-568" version="1" >
+    <nd ref="-689" />
+    <nd ref="-690" />
+    <nd ref="-691" />
+    <nd ref="-692" />
+    <nd ref="-693" />
+    <nd ref="-694" />
+    <nd ref="-695" />
+    <nd ref="-696" />
+    <nd ref="-697" />
+    <nd ref="-698" />
+    <nd ref="-699" />
+    <nd ref="-700" />
+    <nd ref="-689" />
+    <tag k="building:part" v="helm2" />
+    <tag k="height" v="69.219" />
+    <tag k="min_height" v="64.201" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="5.018" />
+    <tag k="roof:shape" v="pyramidal" />
+  </way>
+  <way id="-356" version="1" >
+    <nd ref="-411" />
+    <nd ref="-412" />
+    <nd ref="-408" />
+    <nd ref="-409" />
+    <nd ref="-413" />
+    <nd ref="-414" />
+    <nd ref="-411" />
+    <tag k="building:part" v="side_erker" />
+    <tag k="height" v="43.16" />
+    <tag k="min_height" v="16.6" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:height" v="5" />
+    <tag k="roof:shape" v="gabled" />
+    <tag k="roof:orientation" v="across" />
+  </way>
+  <way id="-415" version="1" >
+    <nd ref="-569" />
+    <nd ref="-570" />
+    <nd ref="-571" />
+    <nd ref="-572" />
+    <nd ref="-573" />
+    <nd ref="-574" />
+    <nd ref="-569" />
+    <tag k="building:part" v="side_erker_dome" />
+    <tag k="height" v="45.16" />
+    <tag k="min_height" v="38.16" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:height" v="7" />
+    <tag k="roof:shape" v="half-dome" />
+    <tag k="roof:orientation" v="across" />
+  </way>
+  <way id="-361" version="1" >
+    <nd ref="-317" />
+    <nd ref="-318" />
+    <nd ref="-319" />
+    <nd ref="-320" />
+    <nd ref="-317" />
+    <tag k="building:part" v="main_head_layer1" />
+    <tag k="height" v="45.6" />
+    <tag k="min_height" v="16.6" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-362" version="1" >
+    <nd ref="-420" />
+    <nd ref="-421" />
+    <nd ref="-422" />
+    <nd ref="-423" />
+    <nd ref="-424" />
+    <nd ref="-425" />
+    <nd ref="-426" />
+    <nd ref="-427" />
+    <nd ref="-420" />
+    <tag k="building:part" v="main_head_layer2_pre" />
+    <tag k="height" v="70" />
+    <tag k="min_height" v="45.6" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-363" version="1" >
+    <nd ref="-440" />
+    <nd ref="-441" />
+    <nd ref="-442" />
+    <nd ref="-443" />
+    <nd ref="-444" />
+    <nd ref="-445" />
+    <nd ref="-446" />
+    <nd ref="-447" />
+    <nd ref="-448" />
+    <nd ref="-449" />
+    <nd ref="-450" />
+    <nd ref="-451" />
+    <nd ref="-440" />
+    <tag k="building:part" v="helm1" />
+    <tag k="height" v="83" />
+    <tag k="min_height" v="70" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="8.682" />
+    <tag k="roof:shape" v="dome" />
+  </way>
+  <way id="-452" version="1" >
+    <nd ref="-575" />
+    <nd ref="-576" />
+    <nd ref="-577" />
+    <nd ref="-578" />
+    <nd ref="-579" />
+    <nd ref="-580" />
+    <nd ref="-581" />
+    <nd ref="-582" />
+    <nd ref="-583" />
+    <nd ref="-584" />
+    <nd ref="-585" />
+    <nd ref="-586" />
+    <nd ref="-575" />
+    <tag k="building:part" v="helm2" />
+    <tag k="height" v="87.878" />
+    <tag k="min_height" v="79.196" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="8.682" />
+    <tag k="roof:shape" v="pyramidal" />
+  </way>
+  <way id="-364" version="1" >
+    <nd ref="-461" />
+    <nd ref="-462" />
+    <nd ref="-458" />
+    <nd ref="-459" />
+    <nd ref="-463" />
+    <nd ref="-464" />
+    <nd ref="-461" />
+    <tag k="building:part" v="side_erker" />
+    <tag k="height" v="43.16" />
+    <tag k="min_height" v="16.6" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:height" v="5" />
+    <tag k="roof:shape" v="gabled" />
+    <tag k="roof:orientation" v="across" />
+  </way>
+  <way id="-465" version="1" >
+    <nd ref="-587" />
+    <nd ref="-588" />
+    <nd ref="-589" />
+    <nd ref="-590" />
+    <nd ref="-591" />
+    <nd ref="-592" />
+    <nd ref="-587" />
+    <tag k="building:part" v="side_erker_dome" />
+    <tag k="height" v="45.16" />
+    <tag k="min_height" v="38.16" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:height" v="7" />
+    <tag k="roof:shape" v="half-dome" />
+    <tag k="roof:orientation" v="across" />
+  </way>
+  <way id="-466" version="1" >
+    <nd ref="-593" />
+    <nd ref="-594" />
+    <nd ref="-371" />
+    <nd ref="-372" />
+    <nd ref="-373" />
+    <nd ref="-593" />
+    <tag k="building:part" v="side_head_layer1" />
+    <tag k="height" v="38.6" />
+    <tag k="min_height" v="16.6" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-467" version="1" >
+    <nd ref="-599" />
+    <nd ref="-600" />
+    <nd ref="-601" />
+    <nd ref="-602" />
+    <nd ref="-603" />
+    <nd ref="-604" />
+    <nd ref="-605" />
+    <nd ref="-606" />
+    <nd ref="-599" />
+    <tag k="building:part" v="side_head_layer2" />
+    <tag k="height" v="59.4" />
+    <tag k="min_height" v="38.6" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-468" version="1" >
+    <nd ref="-619" />
+    <nd ref="-620" />
+    <nd ref="-621" />
+    <nd ref="-622" />
+    <nd ref="-623" />
+    <nd ref="-624" />
+    <nd ref="-625" />
+    <nd ref="-626" />
+    <nd ref="-627" />
+    <nd ref="-628" />
+    <nd ref="-629" />
+    <nd ref="-630" />
+    <nd ref="-619" />
+    <tag k="building:part" v="helm1" />
+    <tag k="height" v="66.4" />
+    <tag k="min_height" v="59.4" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="5.018" />
+    <tag k="roof:shape" v="dome" />
+  </way>
+  <way id="-631" version="1" >
+    <nd ref="-701" />
+    <nd ref="-702" />
+    <nd ref="-703" />
+    <nd ref="-704" />
+    <nd ref="-705" />
+    <nd ref="-706" />
+    <nd ref="-707" />
+    <nd ref="-708" />
+    <nd ref="-709" />
+    <nd ref="-710" />
+    <nd ref="-711" />
+    <nd ref="-712" />
+    <nd ref="-701" />
+    <tag k="building:part" v="helm2" />
+    <tag k="height" v="69.219" />
+    <tag k="min_height" v="64.201" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="5.018" />
+    <tag k="roof:shape" v="pyramidal" />
+  </way>
+  <way id="-374" version="1" >
+    <nd ref="-477" />
+    <nd ref="-478" />
+    <nd ref="-474" />
+    <nd ref="-475" />
+    <nd ref="-479" />
+    <nd ref="-480" />
+    <nd ref="-477" />
+    <tag k="building:part" v="side_erker" />
+    <tag k="height" v="43.16" />
+    <tag k="min_height" v="16.6" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:height" v="5" />
+    <tag k="roof:shape" v="gabled" />
+    <tag k="roof:orientation" v="across" />
+  </way>
+  <way id="-481" version="1" >
+    <nd ref="-632" />
+    <nd ref="-633" />
+    <nd ref="-634" />
+    <nd ref="-635" />
+    <nd ref="-636" />
+    <nd ref="-637" />
+    <nd ref="-632" />
+    <tag k="building:part" v="side_erker_dome" />
+    <tag k="height" v="45.16" />
+    <tag k="min_height" v="38.16" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:height" v="7" />
+    <tag k="roof:shape" v="half-dome" />
+    <tag k="roof:orientation" v="across" />
+  </way>
+  <way id="-482" version="1" >
+    <nd ref="-638" />
+    <nd ref="-639" />
+    <nd ref="-381" />
+    <nd ref="-382" />
+    <nd ref="-383" />
+    <nd ref="-638" />
+    <tag k="building:part" v="side_head_layer1" />
+    <tag k="height" v="38.6" />
+    <tag k="min_height" v="16.6" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-483" version="1" >
+    <nd ref="-644" />
+    <nd ref="-645" />
+    <nd ref="-646" />
+    <nd ref="-647" />
+    <nd ref="-648" />
+    <nd ref="-649" />
+    <nd ref="-650" />
+    <nd ref="-651" />
+    <nd ref="-644" />
+    <tag k="building:part" v="side_head_layer2" />
+    <tag k="height" v="59.4" />
+    <tag k="min_height" v="38.6" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-484" version="1" >
+    <nd ref="-664" />
+    <nd ref="-665" />
+    <nd ref="-666" />
+    <nd ref="-667" />
+    <nd ref="-668" />
+    <nd ref="-669" />
+    <nd ref="-670" />
+    <nd ref="-671" />
+    <nd ref="-672" />
+    <nd ref="-673" />
+    <nd ref="-674" />
+    <nd ref="-675" />
+    <nd ref="-664" />
+    <tag k="building:part" v="helm1" />
+    <tag k="height" v="66.4" />
+    <tag k="min_height" v="59.4" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="5.018" />
+    <tag k="roof:shape" v="dome" />
+  </way>
+  <way id="-676" version="1" >
+    <nd ref="-713" />
+    <nd ref="-714" />
+    <nd ref="-715" />
+    <nd ref="-716" />
+    <nd ref="-717" />
+    <nd ref="-718" />
+    <nd ref="-719" />
+    <nd ref="-720" />
+    <nd ref="-721" />
+    <nd ref="-722" />
+    <nd ref="-723" />
+    <nd ref="-724" />
+    <nd ref="-713" />
+    <tag k="building:part" v="helm2" />
+    <tag k="height" v="69.219" />
+    <tag k="min_height" v="64.201" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="5.018" />
+    <tag k="roof:shape" v="pyramidal" />
+  </way>
+  <way id="-105" version="1" >
+    <nd ref="-209" />
+    <nd ref="-210" />
+    <nd ref="-211" />
+    <nd ref="-212" />
+    <nd ref="-209" />
+    <tag k="building:part" v="entrance" />
+    <tag k="height" v="18" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:height" v="6" />
+    <tag k="roof:shape" v="round" />
+    <tag k="roof:orientation" v="across" />
+  </way>
+  <way id="-119" version="1" >
+    <nd ref="-213" />
+    <nd ref="-214" />
+    <nd ref="-215" />
+    <nd ref="-216" />
+    <nd ref="-217" />
+    <nd ref="-218" />
+    <nd ref="-219" />
+    <nd ref="-220" />
+    <nd ref="-221" />
+    <nd ref="-222" />
+    <nd ref="-223" />
+    <nd ref="-224" />
+    <nd ref="-213" />
+    <tag k="building:part" v="apse_1_pre" />
+    <tag k="height" v="21.6" />
+    <tag k="min_height" v="0" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="glass" />
+    <tag k="roof:colour" v="gray" />
+    <tag k="roof:height" v="5" />
+    <tag k="roof:shape" v="half-dome" />
+  </way>
+  <way id="-120" version="1" >
+    <nd ref="-233" />
+    <nd ref="-234" />
+    <nd ref="-235" />
+    <nd ref="-236" />
+    <nd ref="-237" />
+    <nd ref="-238" />
+    <nd ref="-239" />
+    <nd ref="-240" />
+    <nd ref="-241" />
+    <nd ref="-242" />
+    <nd ref="-243" />
+    <nd ref="-244" />
+    <nd ref="-233" />
+    <tag k="building:part" v="apse_2_pre" />
+    <tag k="height" v="37.35" />
+    <tag k="min_height" v="16.6" />
+    <tag k="building:material" v="plaster" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="roof:material" v="metal" />
+    <tag k="roof:colour" v="gold" />
+    <tag k="roof:height" v="6" />
+    <tag k="roof:shape" v="half-dome" />
+  </way>
+  <way id="810726514" version="1" >
+    <nd ref="-729" />
+    <nd ref="-730" />
+    <nd ref="-731" />
+    <nd ref="-732" />
+    <nd ref="-729" />
+    <tag k="amenity" v="place_of_worship" />
+    <tag k="building" v="temple" />
+    <tag k="building:architecture" v="pseudo-russian" />
+    <tag k="denomination" v="orthodox" />
+    <tag k="description" v="Главный храм Вооружённых Сил РФ" />
+    <tag k="height" v="83" />
+    <tag k="name" v="Храм Воскресения Христова" />
+    <tag k="religion" v="christian" />
+    <tag k="start_date" v="2020" />
+    <tag k="building:colour" v="#103010" />
+    <tag k="building:material" v="plaster" />
+  </way>
+</osm>

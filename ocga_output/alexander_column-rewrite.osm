@@ -1,0 +1,706 @@
+<?xml version='1.0' encoding='utf-8'?>
+<osm version="0.6" generator="zkir manually">
+  <node id="1304037433" version="1"  lat="59.9390901" lon="30.3158314"/>
+  <node id="1304037460" version="1"  lat="59.9390369" lon="30.3159101"/>
+  <node id="1304037477" version="1"  lat="59.9389965" lon="30.3158013"/>
+  <node id="1304037508" version="1"  lat="59.9390496" lon="30.3157225"/>
+  <node id="-6" version="1"  lat="59.939003612738745" lon="30.31580464641114"/>
+  <node id="-7" version="1"  lat="59.939037406232764" lon="30.315895513013878"/>
+  <node id="-8" version="1"  lat="59.939082923229286" lon="30.31582805030254"/>
+  <node id="-9" version="1"  lat="59.93904912973527" lon="30.315737183699802"/>
+  <node id="-51" version="1"  lat="59.93905678538164" lon="30.315852695003837"/>
+  <node id="-52" version="1"  lat="59.93906407779306" lon="30.315834332927068"/>
+  <node id="-53" version="1"  lat="59.939058436818556" lon="30.31582540469923"/>
+  <node id="-54" version="1"  lat="59.93905114440713" lon="30.315843766776"/>
+  <node id="-56" version="1"  lat="59.93906407779306" lon="30.315834332936014"/>
+  <node id="-57" version="1"  lat="59.93906579423296" lon="30.31581115190291"/>
+  <node id="-58" version="1"  lat="59.939058672837945" lon="30.31580905043505"/>
+  <node id="-59" version="1"  lat="59.93905695639805" lon="30.315832231468153"/>
+  <node id="-61" version="1"  lat="59.93906579423296" lon="30.3158111519129"/>
+  <node id="-62" version="1"  lat="59.93906147478265" lon="30.315789363265363"/>
+  <node id="-63" version="1"  lat="59.93905478113918" lon="30.31579465164494"/>
+  <node id="-64" version="1"  lat="59.93905910058949" lon="30.315816440292476"/>
+  <node id="-66" version="1"  lat="59.93906147478264" lon="30.31578936327287"/>
+  <node id="-67" version="1"  lat="59.939052276835326" lon="30.315774805263136"/>
+  <node id="-68" version="1"  lat="59.93904780449976" lon="30.315786066471134"/>
+  <node id="-69" version="1"  lat="59.93905700244707" lon="30.315800624480868"/>
+  <node id="-71" version="1"  lat="59.93905227683533" lon="30.315774805267132"/>
+  <node id="-72" version="1"  lat="59.9390406649736" lon="30.31577137869933"/>
+  <node id="-73" version="1"  lat="59.93903961230463" lon="30.31578559530132"/>
+  <node id="-74" version="1"  lat="59.93905122416637" lon="30.315789021869122"/>
+  <node id="-76" version="1"  lat="59.93904066497359" lon="30.315771378702276"/>
+  <node id="-77" version="1"  lat="59.93902975058639" lon="30.315780001716227"/>
+  <node id="-78" version="1"  lat="59.93903239964584" lon="30.31579336438435"/>
+  <node id="-79" version="1"  lat="59.939043314033036" lon="30.3157847413704"/>
+  <node id="-81" version="1"  lat="59.9390297505864" lon="30.315780001721645"/>
+  <node id="-82" version="1"  lat="59.939022458174975" lon="30.315798363782534"/>
+  <node id="-83" version="1"  lat="59.93902809914948" lon="30.31580729200265"/>
+  <node id="-84" version="1"  lat="59.93903539156091" lon="30.31578892994176"/>
+  <node id="-86" version="1"  lat="59.939022458174975" lon="30.315798363791473"/>
+  <node id="-87" version="1"  lat="59.93902074173508" lon="30.31582154479926"/>
+  <node id="-88" version="1"  lat="59.93902786313009" lon="30.315823646264825"/>
+  <node id="-89" version="1"  lat="59.93902957956999" lon="30.315800465257038"/>
+  <node id="-91" version="1"  lat="59.93902074173508" lon="30.31582154480925"/>
+  <node id="-92" version="1"  lat="59.93902506118539" lon="30.31584333343442"/>
+  <node id="-93" version="1"  lat="59.93903175482886" lon="30.31583804506027"/>
+  <node id="-94" version="1"  lat="59.93902743537855" lon="30.315816256435102"/>
+  <node id="-96" version="1"  lat="59.9390250611854" lon="30.31584333344194"/>
+  <node id="-97" version="1"  lat="59.93903425913271" lon="30.31585789144169"/>
+  <node id="-98" version="1"  lat="59.93903873146828" lon="30.315846630241417"/>
+  <node id="-99" version="1"  lat="59.939029533520966" lon="30.315832072241665"/>
+  <node id="-101" version="1"  lat="59.939034259132704" lon="30.315857891445678"/>
+  <node id="-102" version="1"  lat="59.93904587099444" lon="30.315861318012924"/>
+  <node id="-103" version="1"  lat="59.939046923663405" lon="30.31584710141323"/>
+  <node id="-104" version="1"  lat="59.93903531180167" lon="30.315843674845983"/>
+  <node id="-106" version="1"  lat="59.93904587099445" lon="30.31586131801587"/>
+  <node id="-107" version="1"  lat="59.939056785381645" lon="30.315852694998416"/>
+  <node id="-108" version="1"  lat="59.9390541363222" lon="30.315839332324863"/>
+  <node id="-109" version="1"  lat="59.939043221935" lon="30.315847955342317"/>
+  <node id="-110" version="1"  lat="59.93905238686337" lon="30.31584086791631"/>
+  <node id="-111" version="1"  lat="59.939056392987276" lon="30.315832035021174"/>
+  <node id="-112" version="1"  lat="59.939058400948426" lon="30.315820813973595"/>
+  <node id="-113" version="1"  lat="59.939058105052915" lon="30.315808913076342"/>
+  <node id="-114" version="1"  lat="59.93905555034817" lon="30.315798144133147"/>
+  <node id="-115" version="1"  lat="59.93905112576482" lon="30.31579014661799"/>
+  <node id="-116" version="1"  lat="59.93904550490557" lon="30.315786138080046"/>
+  <node id="-117" version="1"  lat="59.9390395434953" lon="30.315786728782893"/>
+  <node id="-118" version="1"  lat="59.93903414910467" lon="30.31579182879737"/>
+  <node id="-119" version="1"  lat="59.93903014298076" lon="30.315800661692506"/>
+  <node id="-120" version="1"  lat="59.93902813501961" lon="30.315811882740086"/>
+  <node id="-121" version="1"  lat="59.93902843091512" lon="30.315823783637338"/>
+  <node id="-122" version="1"  lat="59.939030985619866" lon="30.315834552580533"/>
+  <node id="-123" version="1"  lat="59.93903541020322" lon="30.31584255009569"/>
+  <node id="-124" version="1"  lat="59.939041031062466" lon="30.315846558633634"/>
+  <node id="-125" version="1"  lat="59.93904699247274" lon="30.315845967930787"/>
+  <node id="-126" version="1"  lat="59.9390115437878" lon="30.315806986800283"/>
+  <node id="-127" version="1"  lat="59.939038578583016" lon="30.31587968008247"/>
+  <node id="-128" version="1"  lat="59.93907499218023" lon="30.315825709913398"/>
+  <node id="-129" version="1"  lat="59.939047957385014" lon="30.31575301663121"/>
+  <node id="-130" version="1"  lat="59.93905238686337" lon="30.31584086791631"/>
+  <node id="-131" version="1"  lat="59.939056392987276" lon="30.315832035021174"/>
+  <node id="-132" version="1"  lat="59.939058400948426" lon="30.315820813973595"/>
+  <node id="-133" version="1"  lat="59.939058105052915" lon="30.315808913076342"/>
+  <node id="-134" version="1"  lat="59.93905555034817" lon="30.315798144133147"/>
+  <node id="-135" version="1"  lat="59.93905112576482" lon="30.31579014661799"/>
+  <node id="-136" version="1"  lat="59.93904550490557" lon="30.315786138080046"/>
+  <node id="-137" version="1"  lat="59.9390395434953" lon="30.315786728782893"/>
+  <node id="-138" version="1"  lat="59.93903414910467" lon="30.31579182879737"/>
+  <node id="-139" version="1"  lat="59.93903014298076" lon="30.315800661692506"/>
+  <node id="-140" version="1"  lat="59.93902813501961" lon="30.315811882740086"/>
+  <node id="-141" version="1"  lat="59.93902843091512" lon="30.315823783637338"/>
+  <node id="-142" version="1"  lat="59.939030985619866" lon="30.315834552580533"/>
+  <node id="-143" version="1"  lat="59.93903541020322" lon="30.31584255009569"/>
+  <node id="-144" version="1"  lat="59.939041031062466" lon="30.315846558633634"/>
+  <node id="-145" version="1"  lat="59.93904699247274" lon="30.315845967930787"/>
+  <node id="-149" version="1"  lat="59.93897969370191" lon="30.31579758809469"/>
+  <node id="-150" version="1"  lat="59.939033870573276" lon="30.31594326312447"/>
+  <node id="-151" version="1"  lat="59.93910684226611" lon="30.31583510861899"/>
+  <node id="-152" version="1"  lat="59.93905266539475" lon="30.31568943358921"/>
+  <node id="-173" version="1"  lat="59.93898598818529" lon="30.31579944554639"/>
+  <node id="-174" version="1"  lat="59.93903480100998" lon="30.315930697305895"/>
+  <node id="-175" version="1"  lat="59.939100547782736" lon="30.31583325116729"/>
+  <node id="-176" version="1"  lat="59.93905173495804" lon="30.315701999407786"/>
+  <node id="-177" version="1"  lat="59.938992282668664" lon="30.315801302998086"/>
+  <node id="-178" version="1"  lat="59.93903573144669" lon="30.315918131487315"/>
+  <node id="-179" version="1"  lat="59.93909425329936" lon="30.315831393715595"/>
+  <node id="-180" version="1"  lat="59.93905080452134" lon="30.315714565226365"/>
+  <node id="-181" version="1"  lat="59.93900559550101" lon="30.315805231508428"/>
+  <node id="-182" version="1"  lat="59.93903769932032" lon="30.315891554781025"/>
+  <node id="-183" version="1"  lat="59.93908094046702" lon="30.315827465205253"/>
+  <node id="-184" version="1"  lat="59.93904883664771" lon="30.315741141932655"/>
+  <node id="-185" version="1"  lat="59.9390115437878" lon="30.315806986800283"/>
+  <node id="-186" version="1"  lat="59.939038578583016" lon="30.31587968008247"/>
+  <node id="-187" version="1"  lat="59.93907499218023" lon="30.315825709913398"/>
+  <node id="-188" version="1"  lat="59.939047957385014" lon="30.31575301663121"/>
+  <node id="-189" version="1"  lat="59.93900757826327" lon="30.31580581660571"/>
+  <node id="-190" version="1"  lat="59.93903799240789" lon="30.315887596548173"/>
+  <node id="-191" version="1"  lat="59.93907895770476" lon="30.31582688010797"/>
+  <node id="-192" version="1"  lat="59.93904854356014" lon="30.315745100165508"/>
+  <node id="-193" version="1"  lat="59.9390115437878" lon="30.315806986800283"/>
+  <node id="-194" version="1"  lat="59.939038578583016" lon="30.31587968008247"/>
+  <node id="-195" version="1"  lat="59.93907499218023" lon="30.315825709913398"/>
+  <node id="-196" version="1"  lat="59.939047957385014" lon="30.31575301663121"/>
+  <node id="-197" version="1"  lat="59.93904137963901" lon="30.31581579112133"/>
+  <node id="-198" version="1"  lat="59.939042988853004" lon="30.315820118102412"/>
+  <node id="-199" version="1"  lat="59.93904515632903" lon="30.31581690559235"/>
+  <node id="-200" version="1"  lat="59.939043547115034" lon="30.31581257861127"/>
+  <node id="-201" version="1"  lat="59.939033432226914" lon="30.31582757032489"/>
+  <node id="-202" version="1"  lat="59.93903504144091" lon="30.31583189730598"/>
+  <node id="-203" version="1"  lat="59.939053103741124" lon="30.315805126388796"/>
+  <node id="-204" version="1"  lat="59.93905149452713" lon="30.315800799407704"/>
+  <node id="-205" version="1"  lat="59.93904137963901" lon="30.31581579112133"/>
+  <node id="-206" version="1"  lat="59.939042988853004" lon="30.315820118102412"/>
+  <node id="-207" version="1"  lat="59.93904515632903" lon="30.31581690559235"/>
+  <node id="-208" version="1"  lat="59.939043547115034" lon="30.31581257861127"/>
+  <node id="-213" version="1"  lat="59.939028506526604" lon="30.315928839791"/>
+  <node id="-214" version="1"  lat="59.939033870573276" lon="30.315943263046982"/>
+  <node id="-215" version="1"  lat="59.93904109549337" lon="30.315932554690725"/>
+  <node id="-216" version="1"  lat="59.9390357314467" lon="30.315918131434742"/>
+  <node id="-221" version="1"  lat="59.939099617346045" lon="30.31584581695923"/>
+  <node id="-222" version="1"  lat="59.939106842266135" lon="30.315835108584466"/>
+  <node id="-223" version="1"  lat="59.939101478219456" lon="30.31582068530358"/>
+  <node id="-224" version="1"  lat="59.939094253299366" lon="30.315831393678344"/>
+  <node id="-229" version="1"  lat="59.93905802944142" lon="30.315703856796254"/>
+  <node id="-230" version="1"  lat="59.93905266539475" lon="30.315689433511675"/>
+  <node id="-231" version="1"  lat="59.93904544047465" lon="30.31570014188916"/>
+  <node id="-232" version="1"  lat="59.93905080452132" lon="30.31571456517374"/>
+  <node id="-237" version="1"  lat="59.93898691862198" lon="30.315786879701225"/>
+  <node id="-238" version="1"  lat="59.93897969370189" lon="30.315797588060228"/>
+  <node id="-239" version="1"  lat="59.93898505774857" lon="30.31581201131988"/>
+  <node id="-240" version="1"  lat="59.93899228266866" lon="30.315801302960878"/>
+  <node id="-246" version="1"  lat="59.938979057948636" lon="30.315797400429776"/>
+  <node id="-247" version="1"  lat="59.93903377660104" lon="30.31594453224301"/>
+  <node id="-248" version="1"  lat="59.939107478021256" lon="30.31583529617699"/>
+  <node id="-249" version="1"  lat="59.93905275936885" lon="30.31568816436376"/>
+  <way id="115401822" version="1" >
+    <nd ref="1304037508" />
+    <nd ref="1304037433" />
+    <nd ref="1304037460" />
+    <nd ref="1304037477" />
+    <nd ref="1304037508" />
+  </way>
+  <way id="-153" version="1" >
+    <nd ref="-213" />
+    <nd ref="-214" />
+    <nd ref="-215" />
+    <nd ref="-216" />
+    <nd ref="-213" />
+    <tag k="building:part" v="obelisk" />
+    <tag k="height" v="1.75" />
+    <tag k="min_height" v="0.5" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0.25" />
+    <tag k="roof:shape" v="pyramidal" />
+  </way>
+  <way id="-158" version="1" >
+    <nd ref="-221" />
+    <nd ref="-222" />
+    <nd ref="-223" />
+    <nd ref="-224" />
+    <nd ref="-221" />
+    <tag k="building:part" v="obelisk" />
+    <tag k="height" v="1.75" />
+    <tag k="min_height" v="0.5" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0.25" />
+    <tag k="roof:shape" v="pyramidal" />
+  </way>
+  <way id="-163" version="1" >
+    <nd ref="-229" />
+    <nd ref="-230" />
+    <nd ref="-231" />
+    <nd ref="-232" />
+    <nd ref="-229" />
+    <tag k="building:part" v="obelisk" />
+    <tag k="height" v="1.75" />
+    <tag k="min_height" v="0.5" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0.25" />
+    <tag k="roof:shape" v="pyramidal" />
+  </way>
+  <way id="-168" version="1" >
+    <nd ref="-237" />
+    <nd ref="-238" />
+    <nd ref="-239" />
+    <nd ref="-240" />
+    <nd ref="-237" />
+    <tag k="building:part" v="obelisk" />
+    <tag k="height" v="1.75" />
+    <tag k="min_height" v="0.5" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0.25" />
+    <tag k="roof:shape" v="pyramidal" />
+  </way>
+  <way id="-18" version="1" >
+    <nd ref="-149" />
+    <nd ref="-150" />
+    <nd ref="-151" />
+    <nd ref="-152" />
+    <nd ref="-149" />
+    <tag k="building:part" v="step3" />
+    <tag k="height" v="0.5" />
+    <tag k="min_height" v="0" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-19" version="1" >
+    <nd ref="-173" />
+    <nd ref="-174" />
+    <nd ref="-175" />
+    <nd ref="-176" />
+    <nd ref="-173" />
+    <tag k="building:part" v="step2" />
+    <tag k="height" v="1" />
+    <tag k="min_height" v="0.5" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-20" version="1" >
+    <nd ref="-177" />
+    <nd ref="-178" />
+    <nd ref="-179" />
+    <nd ref="-180" />
+    <nd ref="-177" />
+    <tag k="building:part" v="step1" />
+    <tag k="height" v="1.5" />
+    <tag k="min_height" v="1" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-11" version="1" >
+    <nd ref="-6" />
+    <nd ref="-7" />
+    <nd ref="-8" />
+    <nd ref="-9" />
+    <nd ref="-6" />
+    <tag k="building:part" v="stylobate" />
+    <tag k="height" v="3.438" />
+    <tag k="min_height" v="1.5" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-21" version="1" >
+    <nd ref="-181" />
+    <nd ref="-182" />
+    <nd ref="-183" />
+    <nd ref="-184" />
+    <nd ref="-181" />
+    <tag k="building:part" v="base1" />
+    <tag k="height" v="5.086" />
+    <tag k="min_height" v="3.438" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-22" version="1" >
+    <nd ref="-185" />
+    <nd ref="-186" />
+    <nd ref="-187" />
+    <nd ref="-188" />
+    <nd ref="-185" />
+    <tag k="building:part" v="base2_with_bas_relief" />
+    <tag k="height" v="7.97" />
+    <tag k="min_height" v="5.086" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-23" version="1" >
+    <nd ref="-6" />
+    <nd ref="-7" />
+    <nd ref="-8" />
+    <nd ref="-9" />
+    <nd ref="-6" />
+    <tag k="building:part" v="base3" />
+    <tag k="height" v="8.382" />
+    <tag k="min_height" v="7.97" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-24" version="1" >
+    <nd ref="-189" />
+    <nd ref="-190" />
+    <nd ref="-191" />
+    <nd ref="-192" />
+    <nd ref="-189" />
+    <tag k="building:part" v="base4" />
+    <tag k="height" v="9.206" />
+    <tag k="min_height" v="8.382" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-25" version="1" >
+    <nd ref="-193" />
+    <nd ref="-194" />
+    <nd ref="-195" />
+    <nd ref="-196" />
+    <nd ref="-193" />
+    <tag k="building:part" v="base5" />
+    <tag k="height" v="10.029" />
+    <tag k="min_height" v="9.206" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-50" version="1" >
+    <nd ref="-51" />
+    <nd ref="-52" />
+    <nd ref="-53" />
+    <nd ref="-54" />
+    <nd ref="-51" />
+    <tag k="building:part" v="column_base_part" />
+    <tag k="height" v="10.629" />
+    <tag k="min_height" v="10.029" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0.3" />
+    <tag k="roof:shape" v="round" />
+  </way>
+  <way id="-55" version="1" >
+    <nd ref="-56" />
+    <nd ref="-57" />
+    <nd ref="-58" />
+    <nd ref="-59" />
+    <nd ref="-56" />
+    <tag k="building:part" v="column_base_part" />
+    <tag k="height" v="10.629" />
+    <tag k="min_height" v="10.029" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0.3" />
+    <tag k="roof:shape" v="round" />
+  </way>
+  <way id="-60" version="1" >
+    <nd ref="-61" />
+    <nd ref="-62" />
+    <nd ref="-63" />
+    <nd ref="-64" />
+    <nd ref="-61" />
+    <tag k="building:part" v="column_base_part" />
+    <tag k="height" v="10.629" />
+    <tag k="min_height" v="10.029" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0.3" />
+    <tag k="roof:shape" v="round" />
+  </way>
+  <way id="-65" version="1" >
+    <nd ref="-66" />
+    <nd ref="-67" />
+    <nd ref="-68" />
+    <nd ref="-69" />
+    <nd ref="-66" />
+    <tag k="building:part" v="column_base_part" />
+    <tag k="height" v="10.629" />
+    <tag k="min_height" v="10.029" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0.3" />
+    <tag k="roof:shape" v="round" />
+  </way>
+  <way id="-70" version="1" >
+    <nd ref="-71" />
+    <nd ref="-72" />
+    <nd ref="-73" />
+    <nd ref="-74" />
+    <nd ref="-71" />
+    <tag k="building:part" v="column_base_part" />
+    <tag k="height" v="10.629" />
+    <tag k="min_height" v="10.029" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0.3" />
+    <tag k="roof:shape" v="round" />
+  </way>
+  <way id="-75" version="1" >
+    <nd ref="-76" />
+    <nd ref="-77" />
+    <nd ref="-78" />
+    <nd ref="-79" />
+    <nd ref="-76" />
+    <tag k="building:part" v="column_base_part" />
+    <tag k="height" v="10.629" />
+    <tag k="min_height" v="10.029" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0.3" />
+    <tag k="roof:shape" v="round" />
+  </way>
+  <way id="-80" version="1" >
+    <nd ref="-81" />
+    <nd ref="-82" />
+    <nd ref="-83" />
+    <nd ref="-84" />
+    <nd ref="-81" />
+    <tag k="building:part" v="column_base_part" />
+    <tag k="height" v="10.629" />
+    <tag k="min_height" v="10.029" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0.3" />
+    <tag k="roof:shape" v="round" />
+  </way>
+  <way id="-85" version="1" >
+    <nd ref="-86" />
+    <nd ref="-87" />
+    <nd ref="-88" />
+    <nd ref="-89" />
+    <nd ref="-86" />
+    <tag k="building:part" v="column_base_part" />
+    <tag k="height" v="10.629" />
+    <tag k="min_height" v="10.029" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0.3" />
+    <tag k="roof:shape" v="round" />
+  </way>
+  <way id="-90" version="1" >
+    <nd ref="-91" />
+    <nd ref="-92" />
+    <nd ref="-93" />
+    <nd ref="-94" />
+    <nd ref="-91" />
+    <tag k="building:part" v="column_base_part" />
+    <tag k="height" v="10.629" />
+    <tag k="min_height" v="10.029" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0.3" />
+    <tag k="roof:shape" v="round" />
+  </way>
+  <way id="-95" version="1" >
+    <nd ref="-96" />
+    <nd ref="-97" />
+    <nd ref="-98" />
+    <nd ref="-99" />
+    <nd ref="-96" />
+    <tag k="building:part" v="column_base_part" />
+    <tag k="height" v="10.629" />
+    <tag k="min_height" v="10.029" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0.3" />
+    <tag k="roof:shape" v="round" />
+  </way>
+  <way id="-100" version="1" >
+    <nd ref="-101" />
+    <nd ref="-102" />
+    <nd ref="-103" />
+    <nd ref="-104" />
+    <nd ref="-101" />
+    <tag k="building:part" v="column_base_part" />
+    <tag k="height" v="10.629" />
+    <tag k="min_height" v="10.029" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0.3" />
+    <tag k="roof:shape" v="round" />
+  </way>
+  <way id="-105" version="1" >
+    <nd ref="-106" />
+    <nd ref="-107" />
+    <nd ref="-108" />
+    <nd ref="-109" />
+    <nd ref="-106" />
+    <tag k="building:part" v="column_base_part" />
+    <tag k="height" v="10.629" />
+    <tag k="min_height" v="10.029" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0.3" />
+    <tag k="roof:shape" v="round" />
+  </way>
+  <way id="-14" version="1" >
+    <nd ref="-110" />
+    <nd ref="-111" />
+    <nd ref="-112" />
+    <nd ref="-113" />
+    <nd ref="-114" />
+    <nd ref="-115" />
+    <nd ref="-116" />
+    <nd ref="-117" />
+    <nd ref="-118" />
+    <nd ref="-119" />
+    <nd ref="-120" />
+    <nd ref="-121" />
+    <nd ref="-122" />
+    <nd ref="-123" />
+    <nd ref="-124" />
+    <nd ref="-125" />
+    <nd ref="-110" />
+    <tag k="building:part" v="column" />
+    <tag k="height" v="36.111" />
+    <tag k="min_height" v="10.329" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-15" version="1" >
+    <nd ref="-126" />
+    <nd ref="-127" />
+    <nd ref="-128" />
+    <nd ref="-129" />
+    <nd ref="-126" />
+    <tag k="building:part" v="platform" />
+    <tag k="height" v="37.323" />
+    <tag k="min_height" v="36.111" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-16" version="1" >
+    <nd ref="-130" />
+    <nd ref="-131" />
+    <nd ref="-132" />
+    <nd ref="-133" />
+    <nd ref="-134" />
+    <nd ref="-135" />
+    <nd ref="-136" />
+    <nd ref="-137" />
+    <nd ref="-138" />
+    <nd ref="-139" />
+    <nd ref="-140" />
+    <nd ref="-141" />
+    <nd ref="-142" />
+    <nd ref="-143" />
+    <nd ref="-144" />
+    <nd ref="-145" />
+    <nd ref="-130" />
+    <tag k="building:part" v="column_top" />
+    <tag k="height" v="41.006" />
+    <tag k="min_height" v="37.323" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="1.5" />
+    <tag k="roof:shape" v="dome" />
+  </way>
+  <way id="-146" version="1" >
+    <nd ref="-197" />
+    <nd ref="-198" />
+    <nd ref="-199" />
+    <nd ref="-200" />
+    <nd ref="-197" />
+    <tag k="building:part" v="cross_stem" />
+    <tag k="height" v="45.961" />
+    <tag k="min_height" v="41.006" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-147" version="1" >
+    <nd ref="-201" />
+    <nd ref="-202" />
+    <nd ref="-203" />
+    <nd ref="-204" />
+    <nd ref="-201" />
+    <tag k="building:part" v="cross_bar" />
+    <tag k="height" v="46.261" />
+    <tag k="min_height" v="45.961" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:height" v="0" />
+    <tag k="roof:shape" v="flat" />
+  </way>
+  <way id="-148" version="1" >
+    <nd ref="-205" />
+    <nd ref="-206" />
+    <nd ref="-207" />
+    <nd ref="-208" />
+    <nd ref="-205" />
+    <tag k="building:part" v="cross_stem" />
+    <tag k="height" v="47.5" />
+    <tag k="min_height" v="46.261" />
+    <tag k="building:material" v="stone" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+  </way>
+  <way id="-241" version="1" >
+    <nd ref="-246" />
+    <nd ref="-247" />
+    <nd ref="-248" />
+    <nd ref="-249" />
+    <nd ref="-246" />
+    <tag k="alt_name" v="Александрийский столп" />
+    <tag k="building" v="yes" />
+    <tag k="building:parts" v="vertical" />
+    <tag k="building:colour" v="#8d5334" />
+    <tag k="building:material" v="stone" />
+    <tag k="roof:colour" v="#8d5334" />
+    <tag k="roof:material" v="stone" />
+    <tag k="height" v="47.5" />
+    <tag k="historic" v="monument" />
+    <tag k="name" v="Александровская колонна" />
+    <tag k="name:de" v="Alexandersäule" />
+    <tag k="name:en" v="Alexander Column" />
+    <tag k="name:fr" v="Colonne d&apos;Alexandre" />
+    <tag k="name:ru" v="Александровская колонна" />
+    <tag k="tourism" v="attraction" />
+    <tag k="type" v="multipolygon" />
+    <tag k="wheelchair" v="yes" />
+    <tag k="wikidata" v="Q907366" />
+    <tag k="wikipedia" v="ru:Александровская колонна" />
+  </way>
+</osm>

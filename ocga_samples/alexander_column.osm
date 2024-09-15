@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='1304037433' timestamp='2020-08-10T22:43:05Z' uid='3846961' user='mini-me' visible='true' version='15' changeset='89219340' lat='59.9390901' lon='30.3158314' />
+  <node id='1304037460' timestamp='2020-08-10T22:43:05Z' uid='3846961' user='mini-me' visible='true' version='15' changeset='89219340' lat='59.9390369' lon='30.3159101' />
+  <node id='1304037477' timestamp='2020-08-10T22:43:05Z' uid='3846961' user='mini-me' visible='true' version='15' changeset='89219340' lat='59.9389965' lon='30.3158013' />
+  <node id='1304037508' timestamp='2020-08-10T22:43:05Z' uid='3846961' user='mini-me' visible='true' version='15' changeset='89219340' lat='59.9390496' lon='30.3157225' />
+  <way id='115401822' timestamp='2012-02-01T17:28:00Z' uid='39040' user='Dinamik' visible='true' version='2' changeset='10560702'>
+    <nd ref='1304037508' />
+    <nd ref='1304037433' />
+    <nd ref='1304037460' />
+    <nd ref='1304037477' />
+    <nd ref='1304037508' />
+  </way>
+  <relation id='2000648' timestamp='2023-09-16T23:25:51Z' uid='149719' user='Bloodmage' visible='true' version='31' changeset='141361808'>
+    <member type='way' ref='115401822' role='outer' />
+    <tag k='alt_name' v='Александрийский столп' />
+    <tag k='building' v='yes' />
+    <tag k='building:parts' v='vertical' />
+	<tag k='building:colour' v='#8d5334' />
+	<tag k='building:material' v='stone' />
+	<tag k='roof:colour' v='#8d5334' />
+	<tag k='roof:material' v='stone' />
+    <tag k='height' v='47.5' />
+    <tag k='historic' v='monument' />
+    <tag k='name' v='Александровская колонна' />
+    <tag k='name:de' v='Alexandersäule' />
+    <tag k='name:en' v='Alexander Column' />
+    <tag k='name:fr' v='Colonne d&apos;Alexandre' />
+    <tag k='name:ru' v='Александровская колонна' />
+    <tag k='tourism' v='attraction' />
+    <tag k='type' v='multipolygon' />
+    <tag k='wheelchair' v='yes' />
+    <tag k='wikidata' v='Q907366' />
+    <tag k='wikipedia' v='ru:Александровская колонна' />
+  </relation>
+</osm>

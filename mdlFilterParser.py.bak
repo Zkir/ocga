@@ -1,0 +1,507 @@
+# this module contains partial implementation of the osmfilter commandline parser,
+# including object filtering. Some features are supported, others are not.
+# see  https://wiki.openstreetmap.org/wiki/Osmfilter
+
+import re
+from copy import deepcopy
+
+
+# CONSTRUCTORS FOR RULES AND LITERALS
+# string constant
+class l: # string constant
+    def __init__(self, s):
+        self.value = s
+
+    def __str__(self):
+        return self.value
+
+    def match(self, s):
+        return self.value == s
+
+# string constant
+class r: # string constant
+    def __init__(self, s):
+        self.value = s
+
+    def __str__(self):
+        return self.value
+
+    def match(self, s):
+        return not (re.fullmatch(self.value, s) is None)
+
+class SyntaxTreeNode:
+    def __init__(self, s):
+        self.nodename = s
+        self.nodevalue = ''
+        self.children = []
+        fully_matched = False
+
+    def str_representation(self):
+
+        if len(str(self.nodevalue))>0:
+            s = "'"+ str(self.nodevalue) + "'"
+        else:
+            s = str(self.nodename)
+        if len (self.children) > 0:
+            s = s + ' ['
+            for child in self.children:
+                s = s + child.str_representation()
+            s = s + '] '
+        return s
+
+    def __str__(self):
+        s='[ '
+        s = s + self.str_representation()
+        s = s + ' ]'
+        return s
+
+    def get_tokens(self):
+        tokens=[]
+        if len(self.children) == 0:
+            tokens.append(self.nodename)
+        else:
+            for child in self.children:
+                tokens=tokens + child.get_tokens()
+        return tokens
+
+    def get_tokens_str(self):
+        tokens = []
+        if len(self.children) == 0  or (type(self.children[0].nodename) is r) : #terminal lexeme  
+            tokens.append(str(self.nodevalue))
+
+        else:
+            for child in self.children:
+                tokens = tokens + child.get_tokens_str()
+        return tokens
+
+
+
+
+
+# GRAMMAR DEFINITION
+# Terminals/atoms in UPPER case
+# non-terminals in lower case
+
+
+GRAMMAR = [
+    ['s', ['ocga_header', 'rule+']],
+    ['ocga_header', ['OCGA','VALUE', 'CRLF']],
+    ['rule', ['rule_header','operator+']],
+    ['rule_header', ['RULE', 'rule_name', 'COLUMN', 'CRLF' ]],
+    
+    # operators 
+    ['operator', ['ALIGNSCOPETOGEOMETRY', 'CRLF' ]], #alignScopeToGeometry
+    ['operator', ['OUTERRECTANGLE', 'rule_name', 'CRLF' ]],
+    ['operator', ['MASSMODEL', 'rule_name', 'CRLF' ]],
+    ['operator', ['SCALE', 'VALUE', 'COMMA', 'VALUE', 'CRLF' ]],
+    ['operator', ['SPLIT_Z', 'split_pattern', 'CRLF' ]],
+    ['operator', ['PRIMITIVECYLINDER','VALUE', 'COMMA', 'VALUE', 'CRLF' ]],
+    ['operator', ['PRIMITIVECYLINDER', 'CRLF' ]],
+    ['operator', ['ROOF', 'VALUE', 'VALUE', 'CRLF' ]],
+    ['operator', ['NOPE', 'CRLF' ]],
+    
+    # spit pattern
+    ['split_pattern', ['split_pattern_element','PIPE','split_pattern']],
+    ['split_pattern', ['split_pattern_element']],
+    ['split_pattern_element', ['VALUE','COLUMN','rule_name']],
+    
+    # reserved words 
+    ['RULE',                 [l('rule')]],
+    ['OCGA',                 [l('ocga')]],
+    
+    ['ALIGNSCOPETOGEOMETRY', [l('alignScopeToGeometry')]],
+    ['OUTERRECTANGLE',       [l('outerRectangle')]],
+    ['MASSMODEL',            [l('massModel')]],
+    ['SCALE',                [l('scale')]],
+    ['SPLIT_Z',              [l('split_z')]],
+    ['PRIMITIVECYLINDER',    [l('primitiveCylinder')]],
+    ['ROOF',                 [l('roof')]],
+    ['NOPE',                 [l('nope')]],
+    
+    ['rule_name', ['RULE_NAME1']],
+    ['rule_name', ['RULE_NAME2']],
+    ['rule_name', ['RULE_NAME3']],
+    ['rule_name', ['RULE_NAME4']],
+    ['rule_name', ['RULE_NAME5']],
+    ['rule_name', ['RULE_NAME6']],
+    ['rule_name', ['RULE_NAME7']],
+    ['rule_name', ['RULE_NAME8']],
+    ['rule_name', ['RULE_NAME9']],
+    ['rule_name', ['RULE_NAME10']],
+    ['rule_name', ['RULE_NAME11']],
+    ['rule_name', ['RULE_NAME12']],
+    ['rule_name', ['RULE_NAME13']],
+    ['rule_name', ['RULE_NAME14']],
+    ['rule_name', ['RULE_NAME15']],
+    ['rule_name', ['RULE_NAME16']],
+    
+    
+    ['RULE_NAME1', [l('building')]], 
+    ['RULE_NAME2', [l('mass_model')]], 
+    ['RULE_NAME3', [l('angel_and_cross')]], 
+    ['RULE_NAME4', [l('cross_stem')]], 
+    ['RULE_NAME5', [l('cross_bar')]], 
+    ['RULE_NAME6', [l('column_top')]], 
+    ['RULE_NAME7', [l('platform')]], 
+    ['RULE_NAME8', [l('column')]], 
+    ['RULE_NAME9', [l('column_base')]], 
+    ['RULE_NAME10', [l('metal_base')]], 
+    ['RULE_NAME11', [l('base1')]], 
+    ['RULE_NAME12', [l('base2_with_bas_relief')]], 
+    ['RULE_NAME13', [l('base3')]], 
+    ['RULE_NAME14', [l('base4')]], 
+    ['RULE_NAME15', [l('base5')]], 
+    ['RULE_NAME16', [l('stylobate')]], 
+
+    #['RULE_NAME',            [r(r'[\w]+')]],   #Letters, numbers and underscore 
+    ['VALUE',                [r(r'[^()=)]+')]], # Value can be anything, but we will exclude symbols used in this grammar, to make parsing a bit faster.
+
+    ['COLUMN',               [l(':')]],
+    ['COMMA',                [l(',')]],
+    ['PIPE',                 [l('|')]],
+    ['CRLF',                 [l('\n')]]
+     
+
+]
+
+
+#1. TOKENIZE. Initial string is separated into the list of tokens.
+def tokenize(s):
+    tokens = []
+    # 1. remove redundant spaces
+    s = s.strip()
+    s = s + ' \n' + ' '
+
+    # 2. separate into tokens
+    k = 0
+    for i in range(len(s)):
+        if s[i] == " ":
+            token = s[k:i]
+            if token != '' and not (token=='\n' and tokens[-1]=='\n') :  # no need to add empty token 
+                tokens.append(token)
+            k = i + 1
+
+    return tokens
+
+
+#2. APPLY RULES.
+#For each variant in the variant list we expand non-terminal lexeme to receive a new variant set.
+def expand_node(variant, GRAMMAR):
+    B = []
+    if len(variant.children) == 0:
+        lexeme = variant.nodename
+        matching_rules = []
+        if ((type(lexeme) is str) and (lexeme[-1] == '+')):
+            matching_rules.append([lexeme, [lexeme[0:-1]]])
+            matching_rules.append([lexeme, [lexeme[0:-1], lexeme]])
+        else:
+            for R in GRAMMAR:
+                if (R[0] == lexeme) and (R[0][0].islower()):
+                    matching_rules.append(R)
+         
+        #apply rule     
+        if len(matching_rules) > 0:
+            blnVariantMatched = True
+            for R in matching_rules:
+                variant1 = deepcopy(variant)
+                for R1 in R[1]:
+                    variant1.children.append(SyntaxTreeNode(R1))
+                B.append(variant1)
+                #print('B:' + str(variant1))
+                #print('B: tokens' + str(variant1.get_tokens()))
+
+    else:
+        for i in range(len(variant.children)):
+            C = expand_node(variant.children[i], GRAMMAR)
+            for c in C:
+                #print('c ' + str(c))
+                variant1 = deepcopy(variant)
+                variant1.children[i]= c
+                B.append(variant1)
+
+            if len(C)>0:
+                break
+            else:
+                #B.append(deepcopy(variant))
+                pass
+
+    return B
+    
+    
+def expand_node_terminals(variant, GRAMMAR):
+    
+    if len(variant.children) == 0:
+        lexeme = variant.nodename
+        matching_rules = []
+        for R in GRAMMAR:
+            if (R[0] == lexeme) and (R[0][0].isupper ()):
+                matching_rules.append(R)
+                
+        #Check that there is only one rule for terminal. 
+        if  len(matching_rules) > 1:
+            raise Exception("Terminals should be unique")
+         
+        #apply rule     
+        if len(matching_rules) > 0:
+            blnVariantMatched = True
+            for R in matching_rules:
+                for R1 in R[1]:
+                    variant.children.append(SyntaxTreeNode(R1))
+
+    else:
+        for i in range(len(variant.children)):
+            expand_node_terminals(variant.children[i], GRAMMAR)
+            
+
+    return None
+
+
+def apply_grammar(A, GRAMMAR):
+    blnAnyVariantTransformed = False
+    B = []
+    for variant in A:
+       
+        new_variants= expand_node(variant, GRAMMAR)
+        blnVariantMatched = (len(new_variants) > 0)
+        if blnVariantMatched:
+            B = B + new_variants
+            blnAnyVariantTransformed = True
+        else:
+            B.append(deepcopy(variant))  # Just copy variant if it was not transformed. it will be removed later.
+            
+    for variant in B:        
+        #separate process for terminal lexemes, they can be processed in place
+        expand_node_terminals(variant, GRAMMAR)
+        
+    return B, blnAnyVariantTransformed
+
+
+#3. ELIMINATE
+# variants, even partially expanded, are eliminated if they do not match string to be parsed
+# obviously, only expanded lexemes are compared
+def eliminate_non_matching_variants (A, tokens):
+    B = []
+    for v in A:
+        variant = v.get_tokens()
+        blnAcceptVariant = True
+        if len(variant) > len(tokens):
+            # There are more lexems in variant than in parsed string. Variant is too long!
+            blnAcceptVariant = False
+        else:  
+            j = 0
+            k = 0
+            blnMaySkipTokens = False
+            blnContainNonTerminals = False
+            for i in range(len(variant)):
+              
+                if type(variant[i]) is str:  # it's non-terminal lexeme, it cannot be tested (NB: terminal lexemes are l, non terminal lexemes are str
+                    pass  # just skip variant,since it contains non-terminals, maybe it's correct after all lexemes expanded
+                    blnMaySkipTokens = True
+                    blnContainNonTerminals = True
+                else:
+                    blnTokenMatched = False
+                    if k>=len(tokens):
+                        pass
+                    else:
+                        if blnMaySkipTokens:
+                            for j in range (k,len(tokens)):
+                                if variant[i].match(tokens[j]):
+                                    # print('token matched! ' + tokens[i])
+                                    blnTokenMatched = True
+                                    blnMaySkipTokens = False
+                                    variant[i].nodevalue = tokens[j]
+                                    k = j + 1
+                                    break
+                        else:
+                            if variant[i].match(tokens[k]):
+                                # print('token matched! ' + tokens[i])
+                                blnTokenMatched = True
+                                blnMaySkipTokens = False
+                                variant[i].nodevalue = tokens[k]
+                                k = k + 1
+
+                    if not blnTokenMatched:
+                        # no such token found
+                        blnAcceptVariant = False
+                        break
+            #all terminal tokens of variant are matched. But are there more tokens in the tail of original tokens?
+            if (not blnContainNonTerminals) and ( len(variant) != len(tokens) ):
+                #last token of varian is terminal and there are more tokens in original string
+                blnAcceptVariant = False
+
+            # print("variant fully matched")
+            #v.fully_matched = True
+            
+        if blnAcceptVariant:
+            B.append(v)
+    return B
+
+def assign_nodes_to_parsed_tree(variant, tokens):
+    if len(variant.children) == 0:
+        if type (variant.nodename) is str:
+            raise Exception ('non-terminal lexem ' + variant.nodename + ' cannot be matched with token' )
+        else:
+            variant.nodevalue = tokens.pop(0)
+    else:
+        for child in variant.children:
+            assign_nodes_to_parsed_tree(child, tokens)
+
+    return None
+
+#parse string according to GRAMMAR.
+def parse_ast(s, verbose = False  ):
+    #1. tokenize
+    tokens = tokenize(s)
+
+    if verbose:
+        print(tokens)
+        print('---')
+
+    A = [SyntaxTreeNode("s"), ]  # initial rule
+    #A = [SyntaxTreeNode("SIMPLE_EXPRESSION"), ]  # initial rule
+
+    if verbose:
+        for variant in A:
+            print(variant)
+        print(' tokens: ' + str(variant.get_tokens()))
+
+    for ii in range(200):
+        if verbose:
+            print()
+            print('---')
+            print('step ' + str(ii))
+        # 2. produce.
+        B, blnAnyVariantTransformed = apply_grammar(A, GRAMMAR)
+        A = deepcopy(B)
+        if verbose:
+            print(str(len(A)) + ' variants before elimination')
+
+        # 3. eliminate non matched variants
+        B = eliminate_non_matching_variants(A, tokens)
+        A = deepcopy(B)
+
+        if verbose:
+            print(str(len(A)) + ' variants after elimination')
+            for variant in A:
+                var_tokens= variant.get_tokens_str()
+                print(var_tokens)
+                print()
+
+
+
+        if not blnAnyVariantTransformed:
+            if verbose:
+                print('no rules left!')
+                print('Completed in ' + str(ii) + ' steps.')
+            break
+
+    if len(A) == 0:
+        raise Exception("unable to parse filter expression: " + s)
+
+    for variant in A:
+        assign_nodes_to_parsed_tree(variant, deepcopy(tokens))
+
+    return A[0] #the first variant is considered to be the best one from all the alternatives
+
+
+#=================================================================================
+def main():
+    
+    s = """
+
+ocga 0.1
+
+rule building: 
+    alignScopeToGeometry
+    outerRectangle mass_model
+    
+
+rule mass_model:
+    scale 6.3, 6.3        
+    split_z ~2.7: stylobate | ~6.2: metal_base |    ~1: column_base |     ~25.6: column |     ~1.25: platform |     ~3.8: column_top |    ~6.7: angel_and_cross
+                               
+rule angel_and_cross:
+    split_z  ~4: cross_stem | 0.3: cross_bar | ~1: cross_stem
+                               
+rule cross_stem:                                   
+    scale 0.3, 0.3
+    
+rule cross_bar:                                           
+    scale 0.3, 3
+    
+rule column_top:  
+    primitiveCylinder 1.7, 16
+    roof dome 1.5   
+    
+rule platform:  
+    scale '0.8, '0.8
+    
+rule column:   
+    primitiveCylinder 1.7, 16
+    
+rule column_base:   
+    primitiveCylinder
+    scale '0.8, '0.8        
+    
+rule metal_base:       
+    split_z ~2: base1 |   ~3.5: base2_with_bas_relief |   ~0.5: base3 |    ~1:  base4 |    ~1:  base5
+                               
+rule base1:                                          
+    scale '0.95, '0.95        
+    
+rule base2_with_bas_relief:                                          
+    scale '0.8, '0.8         
+    
+rule base3:                                          
+    nope
+    
+rule base4:                                          
+    scale '0.9, '0.9
+    
+rule base5:                                          
+    scale '0.8, '0.8
+    
+rule stylobate: 
+    nope
+    
+    
+    
+    """
+    s=s.replace(":"," : ")
+    s=s.replace(","," , ")
+    s=s.replace("\n"," \n ")
+    s=s.replace("\t"," ")
+    print(tokenize(s))
+
+    variant = parse_ast(s, True )
+
+    print('parsing result:')
+
+    print(variant)
+    print(' tokens: ', end='')
+    var_tokens = variant.get_tokens_str()
+    for t in var_tokens:
+        if type(t) is str:
+            print(t, end=' ')
+        else:
+            print(t.value, end=' ')
+    print()
+
+    print("-----------------------------------------")
+    #polish = []
+    #precompile_parsed_tree(variant, polish)
+    #for i in reversed(range (len(polish))):
+    #        print(polish[i], end=' ')
+    #print()
+
+    ###print( evaluate_tree(variant, osmtags, object_type))
+
+    # variant.print_as_tree()
+    print("-----------------------------------------")
+
+
+    print()
+    print("That's all, folks!")
+
+if __name__ == '__main__':
+    main()

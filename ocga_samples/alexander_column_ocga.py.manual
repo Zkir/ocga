@@ -1,0 +1,79 @@
+"""
+OCGA/PY rules example
+Alexander Column
+(c) Zkir 2020
+"""
+
+""""
+Общая высота сооружения — 47,5 м
+высота фигуры ангела — 4,26 м (2 сажени)
+высота креста — 6,4 м (3 сажени)
+высота навершия колонны с крестом ~12 м
+высота ствола (монолитной части колонны) — 25,6 м 
+нижний диаметр колонны — 3,66 м, верхний — 3,15 м 
+высота пьедестала колонны из 8 гранитных блоков, уложенных в три ряда — 4,25 м
+размеры барельефов — 5,24×3,1 м
+высота цоколя из монолитного гранита — 3,9 м
+горизонтальные размеры цоколя — 6,3×6,3 м
+высота колонны до ствола ~10 м
+Размеры ограды (длина х ширина х высота) 16,5 × 16,5 × 1,5 м
+"""
+
+def checkRulesMy(ctx):
+    if ctx.getTag("building") != "":
+        ctx.alignScopeToGeometry()
+        
+        # we will start from the rectangle and will rebuild the form
+        # basing of this very algorithm
+        ctx.outerRectangle("mass_model")
+        #ctx.massModel("mass_model")
+
+    if ctx.getTag("building:part") == "mass_model":
+        ctx.scale("6.3","6.3")        
+        ctx.split_z((("~2.7", "stylobate"), ("~6.2", "metal_base"), ("~1", "column_base"), ("~25.6", "column"), ("~1.25", "platform"), ("~3.8", "column_top"), ("~6.7", "angel_and_cross")))
+                                   
+    if ctx.getTag("building:part") == "angel_and_cross":
+        ctx.split_z((("~4","cross_stem"), ("0.3", "cross_bar"), ("~1", "cross_stem")))
+                                   
+    if ctx.getTag("building:part") == "cross_stem":                                   
+        ctx.scale("0.3","0.3")
+        
+    if ctx.getTag("building:part") == "cross_bar":                                           
+        ctx.scale("0.3","3")
+        
+    if ctx.getTag("building:part") == "column_top":  
+        ctx.primitiveCylinder(16, 1.7)
+        ctx.setTag("roof:shape","dome")
+        ctx.setTag("roof:height", "1.5")
+        
+        
+    if ctx.getTag("building:part") == "platform":  
+        ctx.scale("'0.8","'0.8")
+        
+    if ctx.getTag("building:part") == "column":   
+        ctx.primitiveCylinder(16, 1.7)
+        
+    if ctx.getTag("building:part") == "column_base":   
+        ctx.primitiveCylinder()
+        ctx.scale("'0.8","'0.8")        
+        
+    if ctx.getTag("building:part") == "metal_base":       
+        ctx.split_z((("~2", "base1"), ("~3.5", "base2_with_bas_relief"), ("~0.5", "base3"), ("~1", "base4"), ("~1", "base5")))
+                                   
+    if ctx.getTag("building:part") == "base1":                                          
+        ctx.scale("'0.95","'0.95")        
+		
+    if ctx.getTag("building:part") == "base2_with_bas_relief":                                          
+        ctx.scale("'0.8","'0.8")        
+		
+    if ctx.getTag("building:part") == "base3":                                          
+        pass
+    if ctx.getTag("building:part") == "base4":                                          
+        ctx.scale("'0.9","'0.9")
+		
+    if ctx.getTag("building:part") == "base5":                                          
+        ctx.scale("'0.8","'0.8")
+    
+    if ctx.getTag("building:part") == "stylobate": 
+        pass    
+        

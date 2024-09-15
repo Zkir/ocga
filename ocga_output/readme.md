@@ -1,0 +1,1 @@
+Here automatically generated osm-xmls with generated building models are put.

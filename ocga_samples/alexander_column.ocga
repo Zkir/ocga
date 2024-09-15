@@ -1,0 +1,97 @@
+# OCGA rules example
+# Alexander Column
+# https://en.wikipedia.org/wiki/Alexander_Column
+#(c) Zkir 2024
+
+ocga 0.1
+
+rule building: 
+    alignScopeToGeometry
+        
+    # we will start from the rectangle and will rebuild the form
+    # basing of this very algorithm
+    outerRectangle mass_model
+    #massModel mass_model
+
+rule mass_model:
+    scale 6.3, 6.3        
+    split_z 1.5: steps |
+	        ~2.0: stylobate | 
+		    ~6.8: metal_base | 
+		    0.3: column_base | 
+		    ~26.6: column | 
+		    ~1.25: platform | 
+		    ~3.8: column_top | 
+		    ~6.7: angel_and_cross
+                               
+rule angel_and_cross:
+    split_z  ~4: cross_stem | 0.3: cross_bar | ~1: cross_stem
+                               
+rule cross_stem:                                   
+    scale 0.3, 0.3
+    
+rule cross_bar:                                           
+    scale 0.3, 2.5
+    
+rule column_top:  
+    primitiveCylinder 16, 1.7 
+    roof dome, 1.5   
+    
+rule platform:  
+    scale '0.8, '0.8
+    
+rule column:   
+    primitiveCylinder 16, 1.7 
+    
+rule column_base:   
+    primitiveCylinder
+    scale '0.8, '0.8 
+	comp_border 0.8, column_base_part	
+	
+rule column_base_part:
+	roof round, '0.5
+	scale '1, '1, '2
+    
+rule metal_base:       
+    split_z ~2: base1 | 
+		   ~3.5: base2_with_bas_relief | 
+		   ~0.5: base3 | 
+		   ~1:  base4 | 
+		   ~1:  base5
+                               
+rule base1:                                          
+    scale '0.95, '0.95        
+    
+rule base2_with_bas_relief:                                          
+    scale '0.8, '0.8         
+    
+rule base3:                                          
+    nope
+    
+rule base4:                                          
+    scale '0.9, '0.9
+    
+rule base5:                                          
+    scale '0.8, '0.8
+    
+rule stylobate: 
+    nope
+	
+rule steps: 
+    split_z ~1: step3 | ~1: step2 | ~1: step1
+
+rule step1:
+    scale 8.1, 8.1
+	
+rule step2:
+    scale 9.1, 9.1
+
+rule step3:	
+   scale 10.1, 10.1
+   comp_border 1, obelisk
+   restore 
+   
+rule obelisk:
+   scale 1, 1, 1.25
+   translate 4.55, 0, 0.5
+   roof pyramidal, 0.25   
