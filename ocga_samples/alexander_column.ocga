@@ -37,7 +37,7 @@ rule mass_model:
 	# so we should not vary that the sum of part should be equal total height. It will  by itself :)
     split_z ~6.7:  angel_and_cross |
 			~3.8:  column_top | 
-			~1.25: platform | 
+			~1.20: platform | 
 			~26.6: column | 
 			~6.8:  metal_base | 
 			~2.0:  stylobate | 
@@ -57,16 +57,25 @@ rule cross_stem:
     scale 0.3, 0.3
     
 rule cross_bar:                                           
-    scale 0.3, 2.5
+    scale 2.5, 0.3
     
 rule column_top:  
-    primitive_cylinder  1.7, 16 
-    create_roof dome, 1.5   
-	
-	colour         darkslategrey
+    colour         darkslategrey
     material       metal
 	roof_colour    darkslategrey
     roof_material  metal
+	primitive_cylinder  1.5, 16 
+	
+    split_z ~1: column_dome | 0.25: column_top_cornice | ~1: column_top_column
+	
+rule column_dome:
+    create_roof dome, '0.95   
+	
+rule column_top_cornice:
+    scale '1.2, '1.2
+	
+rule column_top_column:	
+    nope 
     
 rule platform:  
 	colour          darkslategrey
@@ -93,7 +102,7 @@ rule metal_base:
 			~2: base1 
                                
 rule column_base:   
-    primitive_cylinder '1
+    primitive_cylinder '1, 16
     scale '0.8, '0.8 
 	comp_border 0.8, column_base_part	
 	
