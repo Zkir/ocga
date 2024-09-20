@@ -10,54 +10,57 @@ else:
 
 def serializedATN():
     return [
-        4,1,32,145,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        4,1,33,150,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
         6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,1,0,1,0,4,0,27,8,0,
         11,0,12,0,28,1,0,1,0,1,1,1,1,1,1,1,2,1,2,4,2,38,8,2,11,2,12,2,39,
         1,3,1,3,1,3,1,3,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,
         1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,
         1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,
         1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,
-        1,4,1,4,1,4,1,4,3,4,110,8,4,1,5,1,5,1,5,5,5,115,8,5,10,5,12,5,118,
-        9,5,1,6,1,6,1,6,1,6,1,7,1,7,1,8,1,8,1,9,1,9,1,9,1,9,1,9,3,9,133,
-        8,9,1,10,1,10,1,10,5,10,138,8,10,10,10,12,10,141,9,10,1,11,1,11,
-        1,11,0,0,12,0,2,4,6,8,10,12,14,16,18,20,22,0,1,1,0,22,23,156,0,24,
-        1,0,0,0,2,32,1,0,0,0,4,35,1,0,0,0,6,41,1,0,0,0,8,109,1,0,0,0,10,
-        111,1,0,0,0,12,119,1,0,0,0,14,123,1,0,0,0,16,125,1,0,0,0,18,132,
-        1,0,0,0,20,134,1,0,0,0,22,142,1,0,0,0,24,26,3,2,1,0,25,27,3,4,2,
-        0,26,25,1,0,0,0,27,28,1,0,0,0,28,26,1,0,0,0,28,29,1,0,0,0,29,30,
-        1,0,0,0,30,31,5,0,0,1,31,1,1,0,0,0,32,33,5,3,0,0,33,34,3,18,9,0,
-        34,3,1,0,0,0,35,37,3,6,3,0,36,38,3,8,4,0,37,36,1,0,0,0,38,39,1,0,
-        0,0,39,37,1,0,0,0,39,40,1,0,0,0,40,5,1,0,0,0,41,42,5,2,0,0,42,43,
-        3,14,7,0,43,44,5,26,0,0,44,7,1,0,0,0,45,46,5,9,0,0,46,110,5,1,0,
-        0,47,48,5,4,0,0,48,49,3,20,10,0,49,50,5,27,0,0,50,51,3,22,11,0,51,
-        110,1,0,0,0,52,53,5,5,0,0,53,110,3,22,11,0,54,55,5,6,0,0,55,110,
-        3,22,11,0,56,57,5,7,0,0,57,110,3,22,11,0,58,59,5,8,0,0,59,110,3,
-        22,11,0,60,61,5,10,0,0,61,110,3,14,7,0,62,63,5,11,0,0,63,110,3,14,
-        7,0,64,65,5,12,0,0,65,66,3,18,9,0,66,67,5,27,0,0,67,68,3,18,9,0,
-        68,110,1,0,0,0,69,70,5,12,0,0,70,71,3,18,9,0,71,72,5,27,0,0,72,73,
-        3,18,9,0,73,74,5,27,0,0,74,75,3,18,9,0,75,110,1,0,0,0,76,77,5,13,
-        0,0,77,78,3,18,9,0,78,79,5,27,0,0,79,80,3,18,9,0,80,110,1,0,0,0,
-        81,82,5,13,0,0,82,83,3,18,9,0,83,84,5,27,0,0,84,85,3,18,9,0,85,86,
-        5,27,0,0,86,87,3,18,9,0,87,110,1,0,0,0,88,89,5,14,0,0,89,110,3,10,
-        5,0,90,91,5,17,0,0,91,110,3,18,9,0,92,93,5,17,0,0,93,94,3,18,9,0,
-        94,95,5,27,0,0,95,96,3,18,9,0,96,110,1,0,0,0,97,98,5,18,0,0,98,99,
-        3,16,8,0,99,100,5,27,0,0,100,101,3,18,9,0,101,110,1,0,0,0,102,103,
-        5,19,0,0,103,104,3,18,9,0,104,105,5,27,0,0,105,106,3,14,7,0,106,
-        110,1,0,0,0,107,110,5,20,0,0,108,110,5,21,0,0,109,45,1,0,0,0,109,
-        47,1,0,0,0,109,52,1,0,0,0,109,54,1,0,0,0,109,56,1,0,0,0,109,58,1,
-        0,0,0,109,60,1,0,0,0,109,62,1,0,0,0,109,64,1,0,0,0,109,69,1,0,0,
-        0,109,76,1,0,0,0,109,81,1,0,0,0,109,88,1,0,0,0,109,90,1,0,0,0,109,
-        92,1,0,0,0,109,97,1,0,0,0,109,102,1,0,0,0,109,107,1,0,0,0,109,108,
-        1,0,0,0,110,9,1,0,0,0,111,116,3,12,6,0,112,113,5,28,0,0,113,115,
-        3,12,6,0,114,112,1,0,0,0,115,118,1,0,0,0,116,114,1,0,0,0,116,117,
-        1,0,0,0,117,11,1,0,0,0,118,116,1,0,0,0,119,120,3,18,9,0,120,121,
-        5,26,0,0,121,122,3,14,7,0,122,13,1,0,0,0,123,124,5,23,0,0,124,15,
-        1,0,0,0,125,126,5,23,0,0,126,17,1,0,0,0,127,133,5,22,0,0,128,129,
-        5,24,0,0,129,133,5,22,0,0,130,131,5,25,0,0,131,133,5,22,0,0,132,
-        127,1,0,0,0,132,128,1,0,0,0,132,130,1,0,0,0,133,19,1,0,0,0,134,139,
-        5,23,0,0,135,136,5,26,0,0,136,138,5,23,0,0,137,135,1,0,0,0,138,141,
-        1,0,0,0,139,137,1,0,0,0,139,140,1,0,0,0,140,21,1,0,0,0,141,139,1,
-        0,0,0,142,143,7,0,0,0,143,23,1,0,0,0,6,28,39,109,116,132,139
+        1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,3,4,115,8,4,1,5,1,5,1,5,5,5,
+        120,8,5,10,5,12,5,123,9,5,1,6,1,6,1,6,1,6,1,7,1,7,1,8,1,8,1,9,1,
+        9,1,9,1,9,1,9,3,9,138,8,9,1,10,1,10,1,10,5,10,143,8,10,10,10,12,
+        10,146,9,10,1,11,1,11,1,11,0,0,12,0,2,4,6,8,10,12,14,16,18,20,22,
+        0,1,1,0,23,24,164,0,24,1,0,0,0,2,32,1,0,0,0,4,35,1,0,0,0,6,41,1,
+        0,0,0,8,114,1,0,0,0,10,116,1,0,0,0,12,124,1,0,0,0,14,128,1,0,0,0,
+        16,130,1,0,0,0,18,137,1,0,0,0,20,139,1,0,0,0,22,147,1,0,0,0,24,26,
+        3,2,1,0,25,27,3,4,2,0,26,25,1,0,0,0,27,28,1,0,0,0,28,26,1,0,0,0,
+        28,29,1,0,0,0,29,30,1,0,0,0,30,31,5,0,0,1,31,1,1,0,0,0,32,33,5,3,
+        0,0,33,34,3,18,9,0,34,3,1,0,0,0,35,37,3,6,3,0,36,38,3,8,4,0,37,36,
+        1,0,0,0,38,39,1,0,0,0,39,37,1,0,0,0,39,40,1,0,0,0,40,5,1,0,0,0,41,
+        42,5,2,0,0,42,43,3,14,7,0,43,44,5,27,0,0,44,7,1,0,0,0,45,46,5,9,
+        0,0,46,115,5,1,0,0,47,48,5,4,0,0,48,49,3,20,10,0,49,50,5,28,0,0,
+        50,51,3,22,11,0,51,115,1,0,0,0,52,53,5,5,0,0,53,115,3,22,11,0,54,
+        55,5,6,0,0,55,115,3,22,11,0,56,57,5,7,0,0,57,115,3,22,11,0,58,59,
+        5,8,0,0,59,115,3,22,11,0,60,61,5,10,0,0,61,115,3,14,7,0,62,63,5,
+        11,0,0,63,115,3,14,7,0,64,65,5,12,0,0,65,66,3,18,9,0,66,67,5,28,
+        0,0,67,68,3,18,9,0,68,115,1,0,0,0,69,70,5,12,0,0,70,71,3,18,9,0,
+        71,72,5,28,0,0,72,73,3,18,9,0,73,74,5,28,0,0,74,75,3,18,9,0,75,115,
+        1,0,0,0,76,77,5,13,0,0,77,78,3,18,9,0,78,79,5,28,0,0,79,80,3,18,
+        9,0,80,115,1,0,0,0,81,82,5,13,0,0,82,83,3,18,9,0,83,84,5,28,0,0,
+        84,85,3,18,9,0,85,86,5,28,0,0,86,87,3,18,9,0,87,115,1,0,0,0,88,89,
+        5,15,0,0,89,115,3,10,5,0,90,91,5,16,0,0,91,115,3,10,5,0,92,93,5,
+        14,0,0,93,115,3,10,5,0,94,95,5,17,0,0,95,115,3,18,9,0,96,97,5,17,
+        0,0,97,98,3,18,9,0,98,99,5,28,0,0,99,100,3,18,9,0,100,115,1,0,0,
+        0,101,102,5,18,0,0,102,103,3,16,8,0,103,104,5,28,0,0,104,105,3,18,
+        9,0,105,115,1,0,0,0,106,107,5,19,0,0,107,108,3,18,9,0,108,109,5,
+        28,0,0,109,110,3,14,7,0,110,115,1,0,0,0,111,115,5,20,0,0,112,115,
+        5,21,0,0,113,115,5,22,0,0,114,45,1,0,0,0,114,47,1,0,0,0,114,52,1,
+        0,0,0,114,54,1,0,0,0,114,56,1,0,0,0,114,58,1,0,0,0,114,60,1,0,0,
+        0,114,62,1,0,0,0,114,64,1,0,0,0,114,69,1,0,0,0,114,76,1,0,0,0,114,
+        81,1,0,0,0,114,88,1,0,0,0,114,90,1,0,0,0,114,92,1,0,0,0,114,94,1,
+        0,0,0,114,96,1,0,0,0,114,101,1,0,0,0,114,106,1,0,0,0,114,111,1,0,
+        0,0,114,112,1,0,0,0,114,113,1,0,0,0,115,9,1,0,0,0,116,121,3,12,6,
+        0,117,118,5,29,0,0,118,120,3,12,6,0,119,117,1,0,0,0,120,123,1,0,
+        0,0,121,119,1,0,0,0,121,122,1,0,0,0,122,11,1,0,0,0,123,121,1,0,0,
+        0,124,125,3,18,9,0,125,126,5,27,0,0,126,127,3,14,7,0,127,13,1,0,
+        0,0,128,129,5,24,0,0,129,15,1,0,0,0,130,131,5,24,0,0,131,17,1,0,
+        0,0,132,138,5,23,0,0,133,134,5,25,0,0,134,138,5,23,0,0,135,136,5,
+        26,0,0,136,138,5,23,0,0,137,132,1,0,0,0,137,133,1,0,0,0,137,135,
+        1,0,0,0,138,19,1,0,0,0,139,144,5,24,0,0,140,141,5,27,0,0,141,143,
+        5,24,0,0,142,140,1,0,0,0,143,146,1,0,0,0,144,142,1,0,0,0,144,145,
+        1,0,0,0,145,21,1,0,0,0,146,144,1,0,0,0,147,148,7,0,0,0,148,23,1,
+        0,0,0,6,28,39,114,121,137,144
     ]
 
 class ocgaParser ( Parser ):
@@ -75,7 +78,7 @@ class ocgaParser ( Parser ):
                      "'align_scope'", "'outer_rectangle'", "'massModel'", 
                      "'scale'", "'translate'", "'split_z'", "'split_x'", 
                      "'split_y'", "'primitive_cylinder'", "'create_roof'", 
-                     "'comp_border'", "'restore'", "'nope'", "<INVALID>", 
+                     "'comp_border'", "'restore'", "'nil'", "'nope'", "<INVALID>", 
                      "<INVALID>", "'''", "'~'", "':'", "','", "'|'", "<INVALID>", 
                      "<INVALID>", "' '", "'\\t'" ]
 
@@ -83,7 +86,7 @@ class ocgaParser ( Parser ):
                       "ROOFMATERIAL", "COLOUR", "MATERIAL", "ALIGNSCOPE", 
                       "OUTERRECTANGLE", "MASSMODEL", "SCALE", "TRANSLATE", 
                       "SPLIT_Z", "SPLIT_X", "SPLIT_Y", "PRIMITIVECYLINDER", 
-                      "ROOF", "COMPBORDER", "RESTORE", "NOPE", "NUMBER", 
+                      "ROOF", "COMPBORDER", "RESTORE", "NIL", "NOPE", "NUMBER", 
                       "RULE_NAME", "RELATIVE_MARK", "APPROX_MARK", "COLUMN", 
                       "COMMA", "PIPE", "COMMENT", "NEWLINE", "WS", "TAB" ]
 
@@ -125,18 +128,19 @@ class ocgaParser ( Parser ):
     ROOF=18
     COMPBORDER=19
     RESTORE=20
-    NOPE=21
-    NUMBER=22
-    RULE_NAME=23
-    RELATIVE_MARK=24
-    APPROX_MARK=25
-    COLUMN=26
-    COMMA=27
-    PIPE=28
-    COMMENT=29
-    NEWLINE=30
-    WS=31
-    TAB=32
+    NIL=21
+    NOPE=22
+    NUMBER=23
+    RULE_NAME=24
+    RELATIVE_MARK=25
+    APPROX_MARK=26
+    COLUMN=27
+    COMMA=28
+    PIPE=29
+    COMMENT=30
+    NEWLINE=31
+    WS=32
+    TAB=33
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -311,7 +315,7 @@ class ocgaParser ( Parser ):
                 self.state = 39 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & 4095984) != 0)):
+                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & 8388592) != 0)):
                     break
 
         except RecognitionException as re:
@@ -437,12 +441,18 @@ class ocgaParser ( Parser ):
         def TRANSLATE(self):
             return self.getToken(ocgaParser.TRANSLATE, 0)
 
-        def SPLIT_Z(self):
-            return self.getToken(ocgaParser.SPLIT_Z, 0)
+        def SPLIT_X(self):
+            return self.getToken(ocgaParser.SPLIT_X, 0)
 
         def split_pattern(self):
             return self.getTypedRuleContext(ocgaParser.Split_patternContext,0)
 
+
+        def SPLIT_Y(self):
+            return self.getToken(ocgaParser.SPLIT_Y, 0)
+
+        def SPLIT_Z(self):
+            return self.getToken(ocgaParser.SPLIT_Z, 0)
 
         def PRIMITIVECYLINDER(self):
             return self.getToken(ocgaParser.PRIMITIVECYLINDER, 0)
@@ -459,6 +469,9 @@ class ocgaParser ( Parser ):
 
         def RESTORE(self):
             return self.getToken(ocgaParser.RESTORE, 0)
+
+        def NIL(self):
+            return self.getToken(ocgaParser.NIL, 0)
 
         def NOPE(self):
             return self.getToken(ocgaParser.NOPE, 0)
@@ -482,7 +495,7 @@ class ocgaParser ( Parser ):
         localctx = ocgaParser.OperatorContext(self, self._ctx, self.state)
         self.enterRule(localctx, 8, self.RULE_operator)
         try:
-            self.state = 109
+            self.state = 114
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,2,self._ctx)
             if la_ == 1:
@@ -612,7 +625,7 @@ class ocgaParser ( Parser ):
             elif la_ == 13:
                 self.enterOuterAlt(localctx, 13)
                 self.state = 88
-                self.match(ocgaParser.SPLIT_Z)
+                self.match(ocgaParser.SPLIT_X)
                 self.state = 89
                 self.split_pattern()
                 pass
@@ -620,56 +633,78 @@ class ocgaParser ( Parser ):
             elif la_ == 14:
                 self.enterOuterAlt(localctx, 14)
                 self.state = 90
-                self.match(ocgaParser.PRIMITIVECYLINDER)
+                self.match(ocgaParser.SPLIT_Y)
                 self.state = 91
-                self.argument()
+                self.split_pattern()
                 pass
 
             elif la_ == 15:
                 self.enterOuterAlt(localctx, 15)
                 self.state = 92
-                self.match(ocgaParser.PRIMITIVECYLINDER)
+                self.match(ocgaParser.SPLIT_Z)
                 self.state = 93
-                self.argument()
-                self.state = 94
-                self.match(ocgaParser.COMMA)
-                self.state = 95
-                self.argument()
+                self.split_pattern()
                 pass
 
             elif la_ == 16:
                 self.enterOuterAlt(localctx, 16)
-                self.state = 97
-                self.match(ocgaParser.ROOF)
-                self.state = 98
-                self.string_const()
-                self.state = 99
-                self.match(ocgaParser.COMMA)
-                self.state = 100
+                self.state = 94
+                self.match(ocgaParser.PRIMITIVECYLINDER)
+                self.state = 95
                 self.argument()
                 pass
 
             elif la_ == 17:
                 self.enterOuterAlt(localctx, 17)
-                self.state = 102
-                self.match(ocgaParser.COMPBORDER)
-                self.state = 103
+                self.state = 96
+                self.match(ocgaParser.PRIMITIVECYLINDER)
+                self.state = 97
                 self.argument()
-                self.state = 104
+                self.state = 98
                 self.match(ocgaParser.COMMA)
-                self.state = 105
-                self.rule_name()
+                self.state = 99
+                self.argument()
                 pass
 
             elif la_ == 18:
                 self.enterOuterAlt(localctx, 18)
-                self.state = 107
-                self.match(ocgaParser.RESTORE)
+                self.state = 101
+                self.match(ocgaParser.ROOF)
+                self.state = 102
+                self.string_const()
+                self.state = 103
+                self.match(ocgaParser.COMMA)
+                self.state = 104
+                self.argument()
                 pass
 
             elif la_ == 19:
                 self.enterOuterAlt(localctx, 19)
+                self.state = 106
+                self.match(ocgaParser.COMPBORDER)
+                self.state = 107
+                self.argument()
                 self.state = 108
+                self.match(ocgaParser.COMMA)
+                self.state = 109
+                self.rule_name()
+                pass
+
+            elif la_ == 20:
+                self.enterOuterAlt(localctx, 20)
+                self.state = 111
+                self.match(ocgaParser.RESTORE)
+                pass
+
+            elif la_ == 21:
+                self.enterOuterAlt(localctx, 21)
+                self.state = 112
+                self.match(ocgaParser.NIL)
+                pass
+
+            elif la_ == 22:
+                self.enterOuterAlt(localctx, 22)
+                self.state = 113
                 self.match(ocgaParser.NOPE)
                 pass
 
@@ -724,17 +759,17 @@ class ocgaParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 111
-            self.split_pattern_element()
             self.state = 116
+            self.split_pattern_element()
+            self.state = 121
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==28:
-                self.state = 112
+            while _la==29:
+                self.state = 117
                 self.match(ocgaParser.PIPE)
-                self.state = 113
-                self.split_pattern_element()
                 self.state = 118
+                self.split_pattern_element()
+                self.state = 123
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -785,11 +820,11 @@ class ocgaParser ( Parser ):
         self.enterRule(localctx, 12, self.RULE_split_pattern_element)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 119
+            self.state = 124
             self.argument()
-            self.state = 120
+            self.state = 125
             self.match(ocgaParser.COLUMN)
-            self.state = 121
+            self.state = 126
             self.rule_name()
         except RecognitionException as re:
             localctx.exception = re
@@ -830,7 +865,7 @@ class ocgaParser ( Parser ):
         self.enterRule(localctx, 14, self.RULE_rule_name)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 123
+            self.state = 128
             self.match(ocgaParser.RULE_NAME)
         except RecognitionException as re:
             localctx.exception = re
@@ -871,7 +906,7 @@ class ocgaParser ( Parser ):
         self.enterRule(localctx, 16, self.RULE_string_const)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 125
+            self.state = 130
             self.match(ocgaParser.RULE_NAME)
         except RecognitionException as re:
             localctx.exception = re
@@ -917,26 +952,26 @@ class ocgaParser ( Parser ):
         localctx = ocgaParser.ArgumentContext(self, self._ctx, self.state)
         self.enterRule(localctx, 18, self.RULE_argument)
         try:
-            self.state = 132
+            self.state = 137
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [22]:
+            if token in [23]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 127
-                self.match(ocgaParser.NUMBER)
-                pass
-            elif token in [24]:
-                self.enterOuterAlt(localctx, 2)
-                self.state = 128
-                self.match(ocgaParser.RELATIVE_MARK)
-                self.state = 129
+                self.state = 132
                 self.match(ocgaParser.NUMBER)
                 pass
             elif token in [25]:
+                self.enterOuterAlt(localctx, 2)
+                self.state = 133
+                self.match(ocgaParser.RELATIVE_MARK)
+                self.state = 134
+                self.match(ocgaParser.NUMBER)
+                pass
+            elif token in [26]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 130
+                self.state = 135
                 self.match(ocgaParser.APPROX_MARK)
-                self.state = 131
+                self.state = 136
                 self.match(ocgaParser.NUMBER)
                 pass
             else:
@@ -991,17 +1026,17 @@ class ocgaParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 134
-            self.match(ocgaParser.RULE_NAME)
             self.state = 139
+            self.match(ocgaParser.RULE_NAME)
+            self.state = 144
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==26:
-                self.state = 135
+            while _la==27:
+                self.state = 140
                 self.match(ocgaParser.COLUMN)
-                self.state = 136
-                self.match(ocgaParser.RULE_NAME)
                 self.state = 141
+                self.match(ocgaParser.RULE_NAME)
+                self.state = 146
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1048,9 +1083,9 @@ class ocgaParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 142
+            self.state = 147
             _la = self._input.LA(1)
-            if not(_la==22 or _la==23):
+            if not(_la==23 or _la==24):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)

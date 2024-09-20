@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='253472811' timestamp='2021-04-22T18:16:49Z' uid='485808' user='Alexey Lukin' visible='true' version='10' changeset='103430605' lat='55.7527682' lon='37.6115347' />
+  <node id='253472812' timestamp='2021-04-22T18:16:49Z' uid='485808' user='Alexey Lukin' visible='true' version='11' changeset='103430605' lat='55.7526382' lon='37.6123547' />
+  <node id='253472813' timestamp='2021-04-22T18:16:49Z' uid='485808' user='Alexey Lukin' visible='true' version='11' changeset='103430605' lat='55.7541604' lon='37.6131167' />
+  <node id='253472814' timestamp='2021-04-22T18:16:49Z' uid='485808' user='Alexey Lukin' visible='true' version='10' changeset='103430605' lat='55.7542904' lon='37.6122967' />
+  <node id='1563541588' timestamp='2021-04-22T18:16:49Z' uid='485808' user='Alexey Lukin' visible='true' version='7' changeset='103430605' lat='55.7542238' lon='37.6127167'>
+    <tag k='entrance' v='main' />
+  </node>
+  <node id='2459967704' timestamp='2021-04-22T18:16:49Z' uid='485808' user='Alexey Lukin' visible='true' version='2' changeset='103430605' lat='55.7527032' lon='37.6119447'>
+    <tag k='entrance' v='main' />
+  </node>
+  <node id='2459967744' timestamp='2021-04-22T18:16:49Z' uid='485808' user='Alexey Lukin' visible='true' version='2' changeset='103430605' lat='55.7529855' lon='37.6125286' />
+  <node id='2459967788' timestamp='2021-04-22T18:16:49Z' uid='485808' user='Alexey Lukin' visible='true' version='2' changeset='103430605' lat='55.7530813' lon='37.6125765' />
+  <node id='2459967856' timestamp='2021-04-22T18:16:49Z' uid='485808' user='Alexey Lukin' visible='true' version='2' changeset='103430605' lat='55.7533205' lon='37.6126963' />
+  <node id='2459967877' timestamp='2021-04-22T18:16:49Z' uid='485808' user='Alexey Lukin' visible='true' version='2' changeset='103430605' lat='55.7533621' lon='37.6127171'>
+    <tag k='entrance' v='main' />
+  </node>
+  <node id='2459967882' timestamp='2021-04-22T18:16:49Z' uid='485808' user='Alexey Lukin' visible='true' version='2' changeset='103430605' lat='55.7534057' lon='37.6127389'>
+    <tag k='entrance' v='main' />
+  </node>
+  <node id='2459967890' timestamp='2021-04-22T18:16:49Z' uid='485808' user='Alexey Lukin' visible='true' version='2' changeset='103430605' lat='55.7534474' lon='37.6127598'>
+    <tag k='entrance' v='main' />
+  </node>
+  <node id='2459967891' timestamp='2021-04-22T18:16:49Z' uid='485808' user='Alexey Lukin' visible='true' version='2' changeset='103430605' lat='55.7534833' lon='37.6127777' />
+  <node id='2459967911' timestamp='2021-04-22T18:16:49Z' uid='485808' user='Alexey Lukin' visible='true' version='2' changeset='103430605' lat='55.7537678' lon='37.6129201' />
+  <node id='2459967917' timestamp='2021-04-22T18:16:49Z' uid='485808' user='Alexey Lukin' visible='true' version='2' changeset='103430605' lat='55.7538034' lon='37.612938' />
+  <node id='4628302208' timestamp='2021-04-22T18:16:49Z' uid='485808' user='Alexey Lukin' visible='true' version='2' changeset='103430605' lat='55.7527858' lon='37.6115435' />
+  <way id='23412305' timestamp='2017-01-24T10:21:28Z' uid='3580412' user='Alexander-II' visible='true' version='20' changeset='45427454'>
+    <nd ref='253472814' />
+    <nd ref='4628302208' />
+    <nd ref='253472811' />
+  </way>
+  <way id='238140351' timestamp='2013-09-15T23:32:04Z' uid='266092' user='luch86' visible='true' version='1' changeset='17859776'>
+    <nd ref='2459967891' />
+    <nd ref='2459967911' />
+  </way>
+  <way id='238140355' timestamp='2013-09-15T23:32:04Z' uid='266092' user='luch86' visible='true' version='1' changeset='17859776'>
+    <nd ref='253472812' />
+    <nd ref='2459967744' />
+  </way>
+  <way id='238140367' timestamp='2013-09-15T23:32:05Z' uid='266092' user='luch86' visible='true' version='1' changeset='17859776'>
+    <nd ref='2459967911' />
+    <nd ref='2459967917' />
+  </way>
+  <way id='238140369' timestamp='2013-09-15T23:32:05Z' uid='266092' user='luch86' visible='true' version='1' changeset='17859776'>
+    <nd ref='2459967788' />
+    <nd ref='2459967856' />
+  </way>
+  <way id='238140371' timestamp='2013-09-15T23:32:05Z' uid='266092' user='luch86' visible='true' version='1' changeset='17859776'>
+    <nd ref='2459967917' />
+    <nd ref='253472813' />
+  </way>
+  <way id='238140373' timestamp='2013-09-15T23:32:05Z' uid='266092' user='luch86' visible='true' version='1' changeset='17859776'>
+    <nd ref='2459967744' />
+    <nd ref='2459967788' />
+  </way>
+  <way id='238140383' timestamp='2013-09-15T23:32:05Z' uid='266092' user='luch86' visible='true' version='1' changeset='17859776'>
+    <nd ref='253472813' />
+    <nd ref='1563541588' />
+    <nd ref='253472814' />
+  </way>
+  <way id='238140389' timestamp='2013-09-15T23:32:06Z' uid='266092' user='luch86' visible='true' version='1' changeset='17859776'>
+    <nd ref='253472811' />
+    <nd ref='2459967704' />
+    <nd ref='253472812' />
+  </way>
+  <way id='238140408' timestamp='2013-09-15T23:32:07Z' uid='266092' user='luch86' visible='true' version='1' changeset='17859776'>
+    <nd ref='2459967856' />
+    <nd ref='2459967877' />
+    <nd ref='2459967882' />
+    <nd ref='2459967890' />
+    <nd ref='2459967891' />
+  </way>
+  <relation id='3062892' timestamp='2024-09-19T20:37:30Z' uid='100812' user='Zkir' visible='true' version='33' changeset='156839575'>
+    <member type='way' ref='238140371' role='outer' />
+    <member type='way' ref='238140367' role='outer' />
+    <member type='way' ref='238140351' role='outer' />
+    <member type='way' ref='238140408' role='outer' />
+    <member type='way' ref='238140369' role='outer' />
+    <member type='way' ref='238140373' role='outer' />
+    <member type='way' ref='238140355' role='outer' />
+    <member type='way' ref='238140389' role='outer' />
+    <member type='way' ref='23412305' role='outer' />
+    <member type='way' ref='238140383' role='outer' />
+    <tag k='addr2:housenumber' v='18' />
+    <tag k='addr2:street' v='Моховая улица' />
+    <tag k='addr:housenumber' v='1' />
+    <tag k='addr:postcode' v='103009' />
+    <tag k='addr:street' v='Манежная площадь' />
+    <tag k='amenity' v='events_centre' />
+    <tag k='building' v='Museum' />
+    <tag k='building:architecture' v='empire' />
+    <tag k='building:part' v='no' />
+    <tag k='contact:phone' v='+7 495 6459277' />
+    <tag k='contact:website' v='http://moscowmanege.ru' />
+    <tag k='description' v='Перестроен после пожара 2004 года' />
+    <tag k='height' v='27' />
+    <tag k='int_name' v='Manezh Moscow State Exhibition Hall' />
+    <tag k='name' v='Манеж' />
+    <tag k='name:ca' v='Manège' />
+    <tag k='name:de' v='Manege' />
+    <tag k='name:en' v='Moscow Manege' />
+    <tag k='name:ml' v='മോസ്കോ മനേജ്' />
+    <tag k='official_name' v='Центральный выставочный зал «Манеж»' />
+    <tag k='roof:colour' v='green' />
+    <tag k='roof:shape' v='gabled' />
+    <tag k='start_date' v='1817;2004..2005' />
+    <tag k='tourism' v='attraction' />
+    <tag k='type' v='multipolygon' />
+    <tag k='wikidata' v='Q1889165' />
+    <tag k='wikipedia' v='ru:Манеж (Москва)' />
+  </relation>
+</osm>

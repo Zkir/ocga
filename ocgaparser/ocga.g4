@@ -20,12 +20,15 @@ operator:
 	SCALE argument COMMA argument COMMA argument  |
 	TRANSLATE argument COMMA argument  |
 	TRANSLATE argument COMMA argument COMMA argument  |
+	SPLIT_X split_pattern |
+	SPLIT_Y split_pattern |
 	SPLIT_Z split_pattern |
 	PRIMITIVECYLINDER argument |
 	PRIMITIVECYLINDER argument COMMA argument| 
 	ROOF string_const COMMA argument|  
 	COMPBORDER argument COMMA rule_name |
 	RESTORE |
+	NIL |
 	NOPE
 	;  
     
@@ -61,6 +64,7 @@ PRIMITIVECYLINDER:    'primitive_cylinder';
 ROOF:                 'create_roof';
 COMPBORDER:           'comp_border'; 
 RESTORE:              'restore';
+NIL:                  'nil';
 NOPE:                 'nope';
 
 NUMBER

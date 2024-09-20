@@ -1,0 +1,75 @@
+# OCGA rules example for osm-cga project
+#see https://github.com/Zkir/ocga
+#
+# Moscow Manage
+# https://en.wikipedia.org/wiki/Moscow_Manege
+#(c) Zkir 2024
+
+ocga 0.1
+
+rule building:
+
+    align_scope geometry
+	
+	# define the buidling height expicitly, 
+	# overwriting what is specified in the source file
+	tag height, 27
+
+    # we will start from the rectangle and will rebuild the form
+    # basing of this very algorithm
+    outer_rectangle mass_model
+    #massModel mass_model
+	
+	
+rule mass_model:
+    split_z 12:roof | 3: entablature | ~11: main_part | 2: stylobate 
+	
+rule roof: 	
+	create_roof gabled, 11.5
+	
+rule entablature:
+	scale '0.975, '0.9
+	#scale scope_sx-2, scope_sy+2
+	#scale '1-1.57, '1-1.57
+	
+rule main_part:
+	scale '0.975, '0.9
+	comp_border 1.5, colonade
+	restore
+	scale '0.98, '0.94
+	
+rule stylobate: 	
+	scale '0.975, '0.9
+	colour grey
+	material granite
+	
+	
+rule colonade:
+	
+	split_x  1.5:column_pre | ~4.9: NIL|
+	         1.5:column_pre | ~4.9: NIL|
+			 1.5:column_pre | ~4.9: NIL|
+			 1.5:column_pre | ~4.9: NIL|
+			 1.5:column_pre | ~4.9: NIL|
+			 1.5:column_pre | ~4.9: NIL|
+			 1.5:column_pre | ~4.9: NIL|
+			 1.5:column_pre | ~4.9: NIL|
+			 1.5:column_pre | ~4.9: NIL| 1.5:NIL # the last column is created as a first one of the adjusent side
+			 
+	#split_x  {1.5:column_pre | ~4.9: NIL}* | 1.5:NIL   		 
+	#split_x  [[1.5:column_pre | ~4.9: NIL]* | 1.5:NIL]   		 
+			 
+rule column_pre:
+	split_z 0.3:abacus| 0.2:echinus |  ~11: column | 0.3: abacus
+	
+rule column:	
+	primitive_cylinder '0.9  
+	
+rule abacus:	
+	scale '1.1, '1.1
+	
+rule echinus:
+	primitive_cylinder '1
+	
+rule NIL:
+	nil

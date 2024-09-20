@@ -603,14 +603,11 @@ def rebuildBuildingOutline(Objects, objOsmGeom):
 
 # ======================================================================================================================
 class OCGAContext:
-    objOsmGeom = None
-    Objects = None
-    Objects2 = []
-    current_object = None
-    unprocessed_rules_exist = True
-    current_object_destructed = False
 
     def __init__(self, objOsmGeom, Objects):
+        self.current_object = None
+        self.unprocessed_rules_exist = True
+        self.current_object_destructed = False
         self.objOsmGeom= objOsmGeom
         self.Objects = Objects
         self.Objects2 = []
