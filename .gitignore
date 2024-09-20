@@ -2,3 +2,4 @@
 *.pyc
 ocga_samples/moscow_manege_ocga.py
 ocga_samples/alexander_column_ocga.py
+ocga_output/*.osm

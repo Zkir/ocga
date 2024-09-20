@@ -71,6 +71,42 @@ class ocgaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by ocgaParser#split_selector.
+    def enterSplit_selector(self, ctx:ocgaParser.Split_selectorContext):
+        pass
+
+    # Exit a parse tree produced by ocgaParser#split_selector.
+    def exitSplit_selector(self, ctx:ocgaParser.Split_selectorContext):
+        pass
+
+
+    # Enter a parse tree produced by ocgaParser#expr.
+    def enterExpr(self, ctx:ocgaParser.ExprContext):
+        pass
+
+    # Exit a parse tree produced by ocgaParser#expr.
+    def exitExpr(self, ctx:ocgaParser.ExprContext):
+        pass
+
+
+    # Enter a parse tree produced by ocgaParser#relative_number.
+    def enterRelative_number(self, ctx:ocgaParser.Relative_numberContext):
+        pass
+
+    # Exit a parse tree produced by ocgaParser#relative_number.
+    def exitRelative_number(self, ctx:ocgaParser.Relative_numberContext):
+        pass
+
+
+    # Enter a parse tree produced by ocgaParser#simple_expr.
+    def enterSimple_expr(self, ctx:ocgaParser.Simple_exprContext):
+        pass
+
+    # Exit a parse tree produced by ocgaParser#simple_expr.
+    def exitSimple_expr(self, ctx:ocgaParser.Simple_exprContext):
+        pass
+
+
     # Enter a parse tree produced by ocgaParser#rule_name.
     def enterRule_name(self, ctx:ocgaParser.Rule_nameContext):
         pass
@@ -80,21 +116,12 @@ class ocgaListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by ocgaParser#string_const.
-    def enterString_const(self, ctx:ocgaParser.String_constContext):
+    # Enter a parse tree produced by ocgaParser#roof_shape.
+    def enterRoof_shape(self, ctx:ocgaParser.Roof_shapeContext):
         pass
 
-    # Exit a parse tree produced by ocgaParser#string_const.
-    def exitString_const(self, ctx:ocgaParser.String_constContext):
-        pass
-
-
-    # Enter a parse tree produced by ocgaParser#argument.
-    def enterArgument(self, ctx:ocgaParser.ArgumentContext):
-        pass
-
-    # Exit a parse tree produced by ocgaParser#argument.
-    def exitArgument(self, ctx:ocgaParser.ArgumentContext):
+    # Exit a parse tree produced by ocgaParser#roof_shape.
+    def exitRoof_shape(self, ctx:ocgaParser.Roof_shapeContext):
         pass
 
 

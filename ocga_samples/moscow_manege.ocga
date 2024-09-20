@@ -28,18 +28,18 @@ rule roof:
 	create_roof gabled, 11.5
 	
 rule entablature:
-	scale '0.975, '0.9
-	#scale scope_sx-2, scope_sy+2
-	#scale '1-1.57, '1-1.57
+	#scale '0.975, '0.9
+	scale scope_sx-2, scope_sy-2
+	
 	
 rule main_part:
-	scale '0.975, '0.9
+	scale scope_sx-2, scope_sy-2
 	comp_border 1.5, colonade
 	restore
-	scale '0.98, '0.94
+	scale scope_sx-1.2*2, scope_sy-1.2*2
 	
 rule stylobate: 	
-	scale '0.975, '0.9
+	scale scope_sx-2, scope_sy-2
 	colour grey
 	material granite
 	
@@ -57,19 +57,19 @@ rule colonade:
 			 1.5:column_pre | ~4.9: NIL| 1.5:NIL # the last column is created as a first one of the adjusent side
 			 
 	#split_x  {1.5:column_pre | ~4.9: NIL}* | 1.5:NIL   		 
-	#split_x  [[1.5:column_pre | ~4.9: NIL]* | 1.5:NIL]   		 
+  		 
 			 
 rule column_pre:
 	split_z 0.3:abacus| 0.2:echinus |  ~11: column | 0.3: abacus
 	
 rule column:	
-	primitive_cylinder '0.9  
+	primitive_cylinder '0.8  
 	
 rule abacus:	
-	scale '1.1, '1.1
+	scale '1.0, '1.0
 	
 rule echinus:
-	primitive_cylinder '1
+	primitive_cylinder '0.9
 	
 rule NIL:
 	nil

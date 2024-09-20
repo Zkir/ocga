@@ -1,7 +1,7 @@
 grammar ocga;
 
 prog: ocga_header rule+ EOF ;
-ocga_header: OCGA argument;
+ocga_header: OCGA NUMBER;
 rule: rule_header operator+;
 rule_header: RULE rule_name COLUMN; 
     
@@ -16,32 +16,48 @@ operator:
     MATERIAL tag_value |
 	OUTERRECTANGLE rule_name  |
 	MASSMODEL rule_name |  
-	SCALE argument COMMA argument  |
-	SCALE argument COMMA argument COMMA argument  |
-	TRANSLATE argument COMMA argument  |
-	TRANSLATE argument COMMA argument COMMA argument  |
+	SCALE expr COMMA expr  |
+	SCALE expr COMMA expr COMMA expr  |
+	TRANSLATE expr COMMA expr  |
+	TRANSLATE expr COMMA expr COMMA expr  |
 	SPLIT_X split_pattern |
 	SPLIT_Y split_pattern |
 	SPLIT_Z split_pattern |
-	PRIMITIVECYLINDER argument |
-	PRIMITIVECYLINDER argument COMMA argument| 
-	ROOF string_const COMMA argument|  
-	COMPBORDER argument COMMA rule_name |
+	PRIMITIVECYLINDER expr |
+	PRIMITIVECYLINDER expr COMMA expr | 
+	ROOF roof_shape COMMA expr |  
+	COMPBORDER expr COMMA rule_name |
 	RESTORE |
 	NIL |
 	NOPE
 	;  
-    
-/* spit pattern */
-split_pattern: split_pattern_element (PIPE split_pattern_element)* ;
-    
-split_pattern_element: argument COLUMN rule_name;
 
-rule_name:            RULE_NAME;
-string_const:         RULE_NAME;
-argument:             NUMBER | RELATIVE_MARK NUMBER | APPROX_MARK NUMBER ; 
-key_name  : RULE_NAME (COLUMN RULE_NAME)* ;
-tag_value : RULE_NAME | NUMBER ;
+
+    
+/* spit pattern for split operator */
+split_pattern:         split_pattern_element (PIPE split_pattern_element)* ;
+split_pattern_element: split_selector COLUMN rule_name | LPAREN split_pattern RPAREN MULT;
+split_selector:        NUMBER | APPROX_MARK NUMBER ;
+
+/* arithmetic expressions, allowed in certain operators*/
+expr:            relative_number 
+    |            simple_expr
+    |            expr (MULT|DIV) expr 
+    |            expr (PLUS|MINUS) expr
+	;
+relative_number: RELATIVE_MARK NUMBER;
+	
+simple_expr:     LITERAL
+           |     NUMBER
+           |     LPAREN expr RPAREN 
+		   ;
+
+
+rule_name:            LITERAL;
+roof_shape:           LITERAL;
+    
+key_name  : LITERAL (COLUMN LITERAL)* ;
+tag_value : LITERAL | NUMBER ;
     
 /* reserved words */
 RULE:                 'rule';
@@ -72,17 +88,26 @@ NUMBER
     ;
 //it seems that literal definitions in ANTLR cannot intersect	
 //that's why more narrow definition NUMBER should precede RULE_NAME
-RULE_NAME:            [A-Za-z0-9_]+;   /*Letters, numbers and underscore */
+LITERAL:            [A-Za-z0-9_]+;   /*Letters, numbers and underscore */
 
 
 RELATIVE_MARK: '\'';
 APPROX_MARK: '~';
 
+COLUMN:   ':';
+COMMA:    ',';
+PIPE:     '|';
 
+LCURLY:   '{';
+RCURLY:   '}';
+LPAREN:   '(';
+RPAREN:   ')';
 
-COLUMN:               ':';
-COMMA:                ',';
-PIPE:                 '|';
+PLUS:     '+';
+MINUS:    '-';
+MULT:    '*';
+DIV:      '/';
+
                      
 COMMENT: '#' ~[\r\n]* ->skip;
 NEWLINE : [\r\n]+ -> skip;

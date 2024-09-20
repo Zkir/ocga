@@ -53,11 +53,28 @@ def ocga2py(ocga_lines):
 
                 for  j in range(1,len(operator_ctx.children)):
                     op_element = operator_ctx.children[j]
+                    
                     parameter = op_element.getText()
                     if parameter == ',':
                         continue
                     if type(op_element) is ocgaParser.Split_patternContext:
                         parameter = str(parse_split_pattern(op_element.getText()))
+                    elif type(op_element) is ocgaParser.ExprContext:
+                        
+                        if type(op_element.children[0]) is ocgaParser.Relative_numberContext:
+                            parameter ='"'+parameter + '"'    
+                        else:    
+                           
+                            #exit(123)
+                            #TODO: we need proper check for build in immutables!
+                            # and also check that literals are defined!
+                            if "scope_sx" in parameter or "scope_sy" in parameter or "scope_sz" in parameter:
+                                #print(parameter)
+                                #print(type(op_element.children[0]))
+                                parameter = parameter.replace("scope_sx", "ctx.scope_sx()")
+                                parameter = parameter.replace("scope_sy", "ctx.scope_sy()")
+                                parameter = parameter.replace("scope_sz", "ctx.scope_sz()")
+                                #print()
                     else:
                         parameter ='"'+parameter + '"'
                     #print (parameter, end=" ")
