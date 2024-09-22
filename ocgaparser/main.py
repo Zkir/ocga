@@ -7,14 +7,30 @@ from antlr4 import *
 from ocgaparser.ocgaLexer import ocgaLexer
 from ocgaparser.ocgaParser import ocgaParser
 
-def parse_split_pattern(split_pattern):
-    split_pattern_as_list =[]
-    split_elements = split_pattern.split("|")
-    for split_element in split_elements:
-        size, rule_name = split_element.split(":")
-        split_pattern_as_list.append((size, rule_name))
+def parse_split_pattern_element(split_element):
+    size, rule_name = split_element.split(":")
+    return (size.strip(), rule_name.strip())
 
-    return tuple(split_pattern_as_list)
+def parse_split_pattern(op_element):
+    
+    
+    parameter = [] #str(parse_split_pattern(op_element.getText()))
+    for pattern_element in op_element.children:
+        if type(pattern_element) is ocgaParser.Simple_split_patternContext:
+            parameter += [parse_split_pattern_element(pattern_element.getText())]
+            
+        elif type(pattern_element) is ocgaParser.Repeat_split_patternContext:
+            child_split_pattern_parsed = parse_split_pattern(pattern_element.children[1])
+            Multiplicity =pattern_element.children[-1].getText()
+            parameter += [(Multiplicity,child_split_pattern_parsed)]
+            
+        elif pattern_element.getText() in ['|']:
+            pass
+        else:
+            raise Exception("unexpected split pattern element: "+str(type(pattern_element)) + '  '+ pattern_element.getText() )
+            
+    parameter = tuple(parameter)  
+    return parameter
 
 
 def ocga2py(ocga_lines):
@@ -47,7 +63,6 @@ def ocga2py(ocga_lines):
             #print ("rule " + rule_name  +':' )
             for i in range(1,len(child.children)):
                 operator_ctx=child.children[i]
-                #print ("    ", end="")
                 operator_name = operator_ctx.children[0].getText()
                 s += ' '*8 + 'ctx.'+operator_name +'('
 
@@ -58,7 +73,10 @@ def ocga2py(ocga_lines):
                     if parameter == ',':
                         continue
                     if type(op_element) is ocgaParser.Split_patternContext:
-                        parameter = str(parse_split_pattern(op_element.getText()))
+                        #recursive parsing of split pattern
+                        parameter = parse_split_pattern(op_element)
+                        parameter = str(parameter)        
+
                     elif type(op_element) is ocgaParser.ExprContext:
                         
                         if type(op_element.children[0]) is ocgaParser.Relative_numberContext:
@@ -77,7 +95,6 @@ def ocga2py(ocga_lines):
                                 #print()
                     else:
                         parameter ='"'+parameter + '"'
-                    #print (parameter, end=" ")
 
                     if parameter != ',':
                         if j >1:

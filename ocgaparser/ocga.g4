@@ -36,7 +36,10 @@ operator:
     
 /* spit pattern for split operator */
 split_pattern:         split_pattern_element (PIPE split_pattern_element)* ;
-split_pattern_element: split_selector COLUMN rule_name | LPAREN split_pattern RPAREN MULT;
+split_pattern_element: split_selector COLUMN rule_name     #simple_split_pattern
+                     | LPAREN split_pattern RPAREN MULT    #repeat_split_pattern 
+					 ;
+					 
 split_selector:        NUMBER | APPROX_MARK NUMBER ;
 
 /* arithmetic expressions, allowed in certain operators*/

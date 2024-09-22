@@ -46,17 +46,17 @@ rule stylobate:
 	
 rule colonade:
 	
-	split_x  1.5:column_pre | ~4.9: NIL|
-	         1.5:column_pre | ~4.9: NIL|
-			 1.5:column_pre | ~4.9: NIL|
-			 1.5:column_pre | ~4.9: NIL|
-			 1.5:column_pre | ~4.9: NIL|
-			 1.5:column_pre | ~4.9: NIL|
-			 1.5:column_pre | ~4.9: NIL|
-			 1.5:column_pre | ~4.9: NIL|
-			 1.5:column_pre | ~4.9: NIL| 1.5:NIL # the last column is created as a first one of the adjusent side
+	#split_x  1.5:column_pre | ~4.9: NIL|
+	#         1.5:column_pre | ~4.9: NIL|
+	#		 1.5:column_pre | ~4.9: NIL|
+	#		 1.5:column_pre | ~4.9: NIL|
+	#		 1.5:column_pre | ~4.9: NIL|
+	#		 1.5:column_pre | ~4.9: NIL|
+	#		 1.5:column_pre | ~4.9: NIL|
+	#		 1.5:column_pre | ~4.9: NIL|
+	#		 1.5:column_pre | ~4.9: NIL| 1.5:NIL # the last column is created as a first one of the adjusent side
 			 
-	#split_x  {1.5:column_pre | ~4.9: NIL}* | 1.5:NIL   		 
+	split_x  (1.5: column_pre | ~4.9: NIL)* | 1.5:NIL   		 
   		 
 			 
 rule column_pre:

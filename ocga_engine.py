@@ -29,30 +29,71 @@ def resetID():
 # ======================================================================================================================
 # Operations with building parts.
 # ======================================================================================================================
+# calculate the size of "linearized" split pattern
+def calculateTotalPatternSize(split_pattern):
+    sum_of_all_sizes = 0
+    #we do not expect * here.
+    for i in range(len(split_pattern)):
+        if str(split_pattern[i][0])[0:1] != "~":  # fixed height
+            sum_of_all_sizes = sum_of_all_sizes+ float(split_pattern[i][0])
+        else:
+            sum_of_all_sizes = sum_of_all_sizes+ float(split_pattern[i][0][1:])
+            
+    return sum_of_all_sizes        
+        
+    
 
 # calculate actual dimensions based on the given split pattern
+# the function accepts more complex structure, split pattern as it is defined in ocga, with "floating" sizes and repeat patterns,
+# but returns much more simple structure, ready for actual split operation: list of length and rule name pairs.  
 def calculateDimensionsForSplitPattern(h, split_pattern):
     # we need to calculate heights of the segments
-    # it is a bit tricky, because it could be "floating" height
-    N = len(split_pattern)
-    Heights = [None] * N
-    sum_of_explicit_heights = 0
-    sum_of_implicit_heights = 0
-    for i in range(N):
-        if str(split_pattern[i][0])[0:1] != "~":  # height starts with '~'
-            sum_of_explicit_heights = sum_of_explicit_heights + float(split_pattern[i][0])
-            Heights[i] = float(split_pattern[i][0])
+    # it is a bit tricky, because it could be "floating" height, starting with ~, like ~12.34
+    
+    segments = []    
+    sum_of_explicit_sizes = 0
+    sum_of_implicit_sizes = 0
+    
+    k=0 # todo: start with zero
+    bln_repeats_present = False
+    
+    while calculateTotalPatternSize(segments)<h:
+        segments = []    
+        for i in range(len(split_pattern)):
+            if str(str(split_pattern[i][0])[0:1]) == "*":  # complex pattern
+                segments += list(split_pattern[i][1])*k
+                bln_repeats_present = True
+            else: 
+                segments += [split_pattern[i]]        
+                
+        if not bln_repeats_present:
+            # if there are no repeat patterns, 
+            # we should exit, because nothing can be increased.
+            break
+        k = k + 1    
+        #print(round(h), calculateTotalPatternSize(segments), segments)     
+            
+            
+    for i in range(len(segments)):
+        if str(segments[i][0])[0:1] != "~":  # fixed height
+            sum_of_explicit_sizes= sum_of_explicit_sizes+ float(segments[i][0])
         else:
-            sum_of_implicit_heights = sum_of_implicit_heights + float(split_pattern[i][0][1:])
+            sum_of_implicit_sizes= sum_of_implicit_sizes+ float(segments[i][0][1:])
+            
+            
     # define values for floating segments proportionally
-    for i in range(N):
-        if str(split_pattern[i][0])[0:1] != "~":  # height starts with '~'
-            Heights[i] = float(split_pattern[i][0])
+    for i in range(len(segments)):
+        if str(segments[i][0])[0:1] != "~":  # fixed height, does NOT starts with '~'
+            size      = float(segments[i][0]) #size
+            rule_name = str(segments[i][1])   #rule name
         else:
-            Heights[i] = (h - sum_of_explicit_heights) * float(split_pattern[i][0][1:]) / sum_of_implicit_heights
-        if Heights[i] < 0:  # todo: more precise check for negative height. Such elements probably should be excluded from generaion.
-            Heights[i] = 0
-    return Heights
+            size = (h - sum_of_explicit_sizes) * float(segments[i][0][1:]) / sum_of_implicit_sizes
+            rule_name = str(segments[i][1])   #rule name
+        if size < 0:  # todo: more precise check for negative height. Such elements probably should be excluded from generaion.
+            size = 0
+            rule_name = 'zero_part'
+        segments[i] = (size, rule_name)
+    return segments
 
 
 def copyBuildingPartTags(new_object, old_object):
@@ -112,17 +153,17 @@ def split_z_preserve_roof(osmObject, split_pattern):
         new_obj.scope_max_y = osmObject.scope_max_y
 
         # we can assign building part tag, it is identical with rule name
-        new_obj.osmtags["building:part"] = split_pattern[i][1]
+        new_obj.osmtags["building:part"] = Heights[i][1]
         if i!=N-1:
             new_obj.osmtags["roof:shape"] = "flat"  # No roof for lower parts, roof shape remains for top-most part only
             new_obj.osmtags["roof:height"] = "0"
 
         new_obj.osmtags["min_height"] = str(min_height)
         if i != N - 1:
-           new_obj.osmtags["height"] = str(min_height+Heights[i])
+           new_obj.osmtags["height"] = str(min_height+Heights[i][0])
         else:
-            new_obj.osmtags["height"] = str(min_height + Heights[i]+roof_height)
-        min_height=min_height+Heights[i]
+            new_obj.osmtags["height"] = str(min_height + Heights[i][0]+roof_height)
+        min_height=min_height+Heights[i][0]
 
 
         Objects2.append(new_obj)
@@ -146,9 +187,9 @@ def split_x(osmObject, objOsmGeom, split_pattern):
         new_obj.type = "way"
 
         copyBuildingPartTags(new_obj, osmObject)
-        new_obj.osmtags["building:part"] = split_pattern[i][1]
+        new_obj.osmtags["building:part"] = Lengths[i][1]
 
-        dx = Lengths[i]
+        dx = Lengths[i][0]
 
         # todo: cut actual geometry, not bbox only
         insert_Quad(osmObject, objOsmGeom, new_obj.NodeRefs, dx, scope_sy, x0+dx/2, (osmObject.scope_min_y+osmObject.scope_max_y)/2)
@@ -179,9 +220,9 @@ def split_y(osmObject, objOsmGeom, split_pattern):
         new_obj.type = "way"
 
         copyBuildingPartTags(new_obj, osmObject)
-        new_obj.osmtags["building:part"] = split_pattern[i][1]
+        new_obj.osmtags["building:part"] = Lengths[i][1]
 
-        dy = Lengths[i]
+        dy = Lengths[i][0]
 
         # todo: cut actual geometry, not bbox only
         insert_Quad(osmObject, objOsmGeom, new_obj.NodeRefs,  scope_sx, dy, (osmObject.scope_min_x+osmObject.scope_max_x)/2, y0+dy/2)

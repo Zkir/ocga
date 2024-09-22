@@ -817,41 +817,63 @@ class ocgaParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def split_selector(self):
-            return self.getTypedRuleContext(ocgaParser.Split_selectorContext,0)
-
-
-        def COLUMN(self):
-            return self.getToken(ocgaParser.COLUMN, 0)
-
-        def rule_name(self):
-            return self.getTypedRuleContext(ocgaParser.Rule_nameContext,0)
-
-
-        def LPAREN(self):
-            return self.getToken(ocgaParser.LPAREN, 0)
-
-        def split_pattern(self):
-            return self.getTypedRuleContext(ocgaParser.Split_patternContext,0)
-
-
-        def RPAREN(self):
-            return self.getToken(ocgaParser.RPAREN, 0)
-
-        def MULT(self):
-            return self.getToken(ocgaParser.MULT, 0)
 
         def getRuleIndex(self):
             return ocgaParser.RULE_split_pattern_element
 
+     
+        def copyFrom(self, ctx:ParserRuleContext):
+            super().copyFrom(ctx)
+
+
+
+    class Simple_split_patternContext(Split_pattern_elementContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a ocgaParser.Split_pattern_elementContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def split_selector(self):
+            return self.getTypedRuleContext(ocgaParser.Split_selectorContext,0)
+
+        def COLUMN(self):
+            return self.getToken(ocgaParser.COLUMN, 0)
+        def rule_name(self):
+            return self.getTypedRuleContext(ocgaParser.Rule_nameContext,0)
+
+
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterSplit_pattern_element" ):
-                listener.enterSplit_pattern_element(self)
+            if hasattr( listener, "enterSimple_split_pattern" ):
+                listener.enterSimple_split_pattern(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitSplit_pattern_element" ):
-                listener.exitSplit_pattern_element(self)
+            if hasattr( listener, "exitSimple_split_pattern" ):
+                listener.exitSimple_split_pattern(self)
 
+
+    class Repeat_split_patternContext(Split_pattern_elementContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a ocgaParser.Split_pattern_elementContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def LPAREN(self):
+            return self.getToken(ocgaParser.LPAREN, 0)
+        def split_pattern(self):
+            return self.getTypedRuleContext(ocgaParser.Split_patternContext,0)
+
+        def RPAREN(self):
+            return self.getToken(ocgaParser.RPAREN, 0)
+        def MULT(self):
+            return self.getToken(ocgaParser.MULT, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterRepeat_split_pattern" ):
+                listener.enterRepeat_split_pattern(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitRepeat_split_pattern" ):
+                listener.exitRepeat_split_pattern(self)
 
 
 
@@ -864,6 +886,7 @@ class ocgaParser ( Parser ):
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [23, 26]:
+                localctx = ocgaParser.Simple_split_patternContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
                 self.state = 130
                 self.split_selector()
@@ -873,6 +896,7 @@ class ocgaParser ( Parser ):
                 self.rule_name()
                 pass
             elif token in [32]:
+                localctx = ocgaParser.Repeat_split_patternContext(self, localctx)
                 self.enterOuterAlt(localctx, 2)
                 self.state = 134
                 self.match(ocgaParser.LPAREN)

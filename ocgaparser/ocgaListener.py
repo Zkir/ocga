@@ -62,12 +62,21 @@ class ocgaListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by ocgaParser#split_pattern_element.
-    def enterSplit_pattern_element(self, ctx:ocgaParser.Split_pattern_elementContext):
+    # Enter a parse tree produced by ocgaParser#simple_split_pattern.
+    def enterSimple_split_pattern(self, ctx:ocgaParser.Simple_split_patternContext):
         pass
 
-    # Exit a parse tree produced by ocgaParser#split_pattern_element.
-    def exitSplit_pattern_element(self, ctx:ocgaParser.Split_pattern_elementContext):
+    # Exit a parse tree produced by ocgaParser#simple_split_pattern.
+    def exitSimple_split_pattern(self, ctx:ocgaParser.Simple_split_patternContext):
+        pass
+
+
+    # Enter a parse tree produced by ocgaParser#repeat_split_pattern.
+    def enterRepeat_split_pattern(self, ctx:ocgaParser.Repeat_split_patternContext):
+        pass
+
+    # Exit a parse tree produced by ocgaParser#repeat_split_pattern.
+    def exitRepeat_split_pattern(self, ctx:ocgaParser.Repeat_split_patternContext):
         pass
 
 
