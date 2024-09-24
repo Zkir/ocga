@@ -86,12 +86,14 @@ def ocga2py(ocga_lines):
                             #exit(123)
                             #TODO: we need proper check for build in immutables!
                             # and also check that literals are defined!
-                            if "scope_sx" in parameter or "scope_sy" in parameter or "scope_sz" in parameter:
+                            if "scope_sx" in parameter or "scope_sy" in parameter or "scope_sz" in parameter or "scope_rz" in parameter:
                                 #print(parameter)
                                 #print(type(op_element.children[0]))
                                 parameter = parameter.replace("scope_sx", "ctx.scope_sx()")
                                 parameter = parameter.replace("scope_sy", "ctx.scope_sy()")
                                 parameter = parameter.replace("scope_sz", "ctx.scope_sz()")
+                                parameter = parameter.replace("scope_rz", "ctx.scope_rz()")
+                                
                                 #print()
                     else:
                         parameter ='"'+parameter + '"'

@@ -22,54 +22,65 @@ rule building:
 	
 	
 rule mass_model:
-    split_z 12:roof | 3: entablature | ~11: main_part | 2: stylobate 
+    split_z 12:roof | 3: entablature | ~13: main_part 
 	
 rule roof: 	
 	create_roof gabled, 11.5
 	
 rule entablature:
-	#scale '0.975, '0.9
 	scale scope_sx-2, scope_sy-2
 	
 	
 rule main_part:
-	scale scope_sx-2, scope_sy-2
+	scale scope_sx-1.5, scope_sy-1.5
 	comp_border 1.5, colonade
 	restore
 	scale scope_sx-1.2*2, scope_sy-1.2*2
 	
-rule stylobate: 	
-	scale scope_sx-2, scope_sy-2
-	colour grey
-	material granite
-	
-	
 rule colonade:
-	
-	#split_x  1.5:column_pre | ~4.9: NIL|
-	#         1.5:column_pre | ~4.9: NIL|
-	#		 1.5:column_pre | ~4.9: NIL|
-	#		 1.5:column_pre | ~4.9: NIL|
-	#		 1.5:column_pre | ~4.9: NIL|
-	#		 1.5:column_pre | ~4.9: NIL|
-	#		 1.5:column_pre | ~4.9: NIL|
-	#		 1.5:column_pre | ~4.9: NIL|
-	#		 1.5:column_pre | ~4.9: NIL| 1.5:NIL # the last column is created as a first one of the adjusent side
-			 
-	split_x  (1.5: column_pre | ~4.9: NIL)* | 1.5:NIL   		 
+    # we can use repetion in the split pattern ()* 			 
+	split_x  (1.5: column_pre | ~4.5: wall_block)* |
+              1.5: column_pre | ~4.5: door_block | 1.5: column_pre | ~4.5: door_block| 1.5: column_pre | ~4.5: door_block |
+			 (1.5: column_pre | ~4.5: wall_block)* | 1.5:NIL   		 
   		 
 			 
 rule column_pre:
-	split_z 0.3:abacus| 0.2:echinus |  ~11: column | 0.3: abacus
+	split_z 0.3:abacus| 0.2:echinus |  ~11: column | 0.3: abacus | 2: stylobate 
+	
+rule wall_block:
+	split_z ~11.5: NIL | 2.3: stylobate2 
 	
 rule column:	
 	primitive_cylinder '0.8  
 	
 rule abacus:	
-	scale '1.0, '1.0
+	scale '0.95, '0.95
 	
 rule echinus:
 	primitive_cylinder '0.9
+	
+rule stylobate: 	
+	#scale scope_sx-2, scope_sy-2
+	colour grey
+	material granite
+	
+rule stylobate2: 	
+	colour grey
+	material granite		
+	roof_colour grey
+	roof_material metal		
+	create_roof skillion, 0.3
+	#roof_direction 16-90
+	roof_direction 180 #magic. direction is in local coordinate system, so it is the same for all parts!
+	
+rule door_block:
+	colour maroon
+	roof_colour maroon
+	material wood
+	scale '0.8, '0.1, '0.9
+	create_roof round, scope_sx/2
+	tag roof:orientation, across
+	translate 0, 0.5, 0
 	
 rule NIL:
 	nil

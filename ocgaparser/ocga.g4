@@ -26,6 +26,7 @@ operator:
 	PRIMITIVECYLINDER expr |
 	PRIMITIVECYLINDER expr COMMA expr | 
 	ROOF roof_shape COMMA expr |  
+	ROOFDIRECTION expr |  
 	COMPBORDER expr COMMA rule_name |
 	RESTORE |
 	NIL |
@@ -81,6 +82,7 @@ SPLIT_X:              'split_x';
 SPLIT_Y:              'split_y';
 PRIMITIVECYLINDER:    'primitive_cylinder';
 ROOF:                 'create_roof';
+ROOFDIRECTION:        'roof_direction';
 COMPBORDER:           'comp_border'; 
 RESTORE:              'restore';
 NIL:                  'nil';

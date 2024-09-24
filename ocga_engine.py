@@ -688,6 +688,8 @@ class OCGAContext:
     def roof_material(self, value):
         self._setTag("roof:material", value) 
         
+    def roof_direction(self, value):
+        self._setTag("roof:direction", (360-self.scope_rz()+value)%360) 
     # ========================================================================
     # Scope
     # ========================================================================
