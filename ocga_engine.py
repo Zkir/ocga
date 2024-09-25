@@ -5,14 +5,16 @@ The main difference is that we operate with building parts and their attributes 
 Input and output files are both osm-files.
 resulting OSM file can be uploaded to OSM DB
 """
+import argparse
+from pathlib import Path
 
 from copy import copy
 from math import cos, sin, atan2, pi
 from mdlOsmParser import readOsmXml, writeOsmXml, parseHeightValue, roundHeight
 from mdlOsmParser import T3DObject 
-#from zcga_gorky_park_entrance import checkRulesMy
-#from zcga_church_of_st_louis import checkRulesMy
 
+#ocga parser and translator 
+from ocgaparser import * #ocga2py
 
 _id_counter=0
 
@@ -919,4 +921,49 @@ def ocga_process(input_file, output_file, checkRulesMy, updatable=False, rebuild
     roundHeight(ctx.Objects)
     writeOsmXml(ctx.objOsmGeom, ctx.Objects, output_file, updatable)
 
+    
+def ocga_process2(input_file, output_file, rules_file, compiled_rules_file=None, updatable=False, rebuild_outline=True):     
+    
+    
+    with open(rules_file) as f:
+        lines = f.read()
+        
+    if Path(rules_file).suffix == '.ocga':
+        
+        # if ocga file is specified, let's compile it to python
+        lines = ocga2py(lines)
+        if compiled_rules_file:
+            # if a filename for compiled rules is specified,
+            # lets output the py file
+            # it maybe usefull for debug purposes
+            with open(compiled_rules_file, "w") as f2:
+                f2.write(lines)        
+            
+    exec(lines, globals()) # what the fuck those globals are, and how they help here, I dunno. But it works!
+    
+    # we expect that the rules file contains the funtion checkRulesMy(), 
+    # (either written manually or created by compiler)
+    # and we will pass it to the ocga engine
+    ocga_process(input_file, output_file, checkRulesMy)
+    
 
+
+def main():
+    parser = argparse.ArgumentParser(
+        prog='ocga',
+        description='ocga scripting engine',
+        epilog='Created by zkir (c) 2024')
+
+    parser.add_argument('-i', '--input', required=True, type=str, help='input file, should be osm-xml' )
+    parser.add_argument('-o', '--output', required=True, type=str, help='output osm-xml with created parts' )
+    parser.add_argument('-r', '--rules', required=True, type=str, help='transformation rules in .ocga file' )
+    args = parser.parse_args()
+
+    input_file_name = args.input
+    output_file_name = args.output
+    rules_file_name = args.rules
+    
+    ocga_process2(input_file_name, output_file_name, rules_file_name)
+
+if __name__ == '__main__':
+    main()

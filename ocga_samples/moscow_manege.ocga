@@ -13,7 +13,7 @@ rule building:
 	
 	# define the buidling height expicitly, 
 	# overwriting what is specified in the source file
-	tag height, 27
+	tag height, 24
 
     # we will start from the rectangle and will rebuild the form
     # basing of this very algorithm
@@ -22,20 +22,27 @@ rule building:
 	
 	
 rule mass_model:
-    split_z 12:roof | 3: entablature | ~13: main_part 
+    split_z 10:roof | 2.25: entablature | ~13: main_part 
 	
 rule roof: 	
-	create_roof gabled, 11.5
+	create_roof gabled, scope_sz-0.40
+	colour white
+	roof_material metal
+	roof_colour darkgreen
 	
 rule entablature:
-	scale scope_sx-2, scope_sy-2
-	
+	scale scope_sx-3, scope_sy-3
+	split_z ~2: fries | ~1:  architrav
+
+rule fries:
+	scale scope_sx+0.1, scope_sy+0.1
+	colour white
 	
 rule main_part:
-	scale scope_sx-1.5, scope_sy-1.5
+	scale scope_sx-2.5, scope_sy-2.5
 	comp_border 1.5, colonade
 	restore
-	scale scope_sx-1.2*2, scope_sy-1.2*2
+	scale scope_sx-1*2, scope_sy-1*2
 	
 rule colonade:
     # we can use repetion in the split pattern ()* 			 
@@ -45,19 +52,21 @@ rule colonade:
   		 
 			 
 rule column_pre:
+    colour white
+	roof_colour white
 	split_z 0.3:abacus| 0.2:echinus |  ~11: column | 0.3: abacus | 2: stylobate 
 	
 rule wall_block:
 	split_z ~11.5: NIL | 2.3: stylobate2 
 	
 rule column:	
-	primitive_cylinder '0.8  
+	primitive_cylinder '0.7  
 	
 rule abacus:	
 	scale '0.95, '0.95
 	
 rule echinus:
-	primitive_cylinder '0.9
+	primitive_cylinder '0.85
 	
 rule stylobate: 	
 	#scale scope_sx-2, scope_sy-2
@@ -80,7 +89,7 @@ rule door_block:
 	scale '0.8, '0.1, '0.9
 	create_roof round, scope_sx/2
 	tag roof:orientation, across
-	translate 0, 0.5, 0
+	translate 0, 0.25, 0
 	
 rule NIL:
 	nil
