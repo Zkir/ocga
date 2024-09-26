@@ -15,6 +15,7 @@ from mdlOsmParser import T3DObject
 
 #ocga parser and translator 
 from ocgaparser import * #ocga2py
+from osmGeometry import DEGREE_LENGTH_M
 
 _id_counter=0
 
@@ -626,6 +627,9 @@ def rebuildBuildingOutline(Objects, objOsmGeom):
                 new_obj.id = getID()
                 new_obj.type = "way"
                 new_obj.osmtags = obj.osmtags
+                if new_obj.osmtags.get("type","") == "multipolygon":
+                    new_obj.osmtags.pop("type")
+                    
                 new_obj.parts = obj.parts
                 new_obj.scope_sx = obj.scope_sx
                 new_obj.scope_sy = obj.scope_sy
@@ -901,6 +905,46 @@ class OCGAContext:
 
 
 # =============== main part
+def checkDuplicatedNodes(objOsmGeom):
+    duplicated_nodes = {}
+    ids =  list(objOsmGeom.nodes.keys())
+                
+    for i in range(len(ids)):
+        for j in range(len(ids)):
+            if i==j: 
+                continue
+                
+            node1 = objOsmGeom.nodes[ids[i]]
+            node2 = objOsmGeom.nodes[ids[j]]
+            pi = 3.14
+            
+            dist =  (((node1.lat-node2.lat)*DEGREE_LENGTH_M)**2 +  ((node1.lon-node2.lon)*DEGREE_LENGTH_M*cos(node1.lat / 180 * pi))**2)**0.5
+            
+                
+            if  dist < 0.01: #less then centimeter
+                if node1.id[0] == '-' and node2.id[0] == '-':
+                    # from two newly created node whe should prefer one created first
+                    if abs(int(node1.id)) <abs(int(node2.id)):
+                        duplicate = (node1.id, node2.id)
+                    else:     
+                        duplicate = (node2.id, node1.id)
+                        
+                elif node1.id[0] == '-' or node2.id[0] == '-': 
+                    # at list one node is old, we should prefer it                 
+                    #print ("two old nodes, skipping")
+                
+                    if node1.id[0] != '-' :
+                        duplicate = (node1.id, node2.id)
+                    else:    
+                        duplicate = (node2.id, node1.id)
+                    
+                if duplicate[1] not in duplicated_nodes:
+                    duplicated_nodes[duplicate[1]] = duplicate[0]
+                    
+    #print("duplicated nodes found:", len(duplicated_nodes))
+    return duplicated_nodes
+
+
 def ocga_process(input_file, output_file, checkRulesMy, updatable=False, rebuild_outline=True):
     print("processing file ", input_file)
     resetID()
@@ -915,10 +959,30 @@ def ocga_process(input_file, output_file, checkRulesMy, updatable=False, rebuild
     if rebuild_outline:
         ctx.Objects=rebuildBuildingOutline(ctx.Objects, ctx.objOsmGeom)
 
-    # todo: also we need to optimize geometry somehow, remove duplicated nodes and create multypolygons
+    #some optimizations, so that the output file will look a bit more nice  
 
     # round height
     roundHeight(ctx.Objects)
+    
+    #check for duplicated nodes. 
+    duplicated_nodes = checkDuplicatedNodes(ctx.objOsmGeom)
+    
+    #remove duplicated nodes
+    # we need to remove them from ways only, unused nodes will be dropped automatically.
+    
+    for osmObject in ctx.Objects:
+        if osmObject.type == "way":
+            for i in range(len(osmObject.NodeRefs)):
+                if osmObject.NodeRefs[i] in duplicated_nodes:
+                    #if osmObject.NodeRefs[i] in ctx.objOsmGeom.nodes:
+                    #    ctx.objOsmGeom.removeNode(osmObject.NodeRefs[i])
+                    osmObject.NodeRefs[i] = duplicated_nodes[osmObject.NodeRefs[i]]
+                    
+        if osmObject.osmtags.get("roof:shape","") == "flat":
+            osmObject.osmtags.pop ("roof:height")
+    
+    # todo: also we need to optimize geometry somehow, remove duplicated WAYS and create multypolygons    
+                
     writeOsmXml(ctx.objOsmGeom, ctx.Objects, output_file, updatable)
 
     

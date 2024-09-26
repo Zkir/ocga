@@ -16,38 +16,22 @@
   <node id="1490199594" version="1"  lat="55.725229" lon="37.5940102"/>
   <node id="1490199595" version="1"  lat="55.7252627" lon="37.5941057"/>
   <node id="1490199596" version="1"  lat="55.7252644" lon="37.5939996"/>
-  <node id="-103" version="1"  lat="55.72526308" lon="37.59400484"/>
-  <node id="-104" version="1"  lat="55.72525201" lon="37.59400034"/>
-  <node id="-105" version="1"  lat="55.725240850000006" lon="37.59400367"/>
-  <node id="-106" version="1"  lat="55.72523122" lon="37.59401438"/>
-  <node id="-107" version="1"  lat="55.72522465" lon="37.59403085"/>
-  <node id="-108" version="1"  lat="55.72522213" lon="37.59405047"/>
-  <node id="-109" version="1"  lat="55.72522402" lon="37.59407036"/>
-  <node id="-110" version="1"  lat="55.72523005" lon="37.594087460000004"/>
-  <node id="-111" version="1"  lat="55.72523923" lon="37.59409916"/>
-  <node id="-112" version="1"  lat="55.7252503" lon="37.59410366"/>
-  <node id="-113" version="1"  lat="55.72526155" lon="37.59410033"/>
-  <node id="-114" version="1"  lat="55.72527118" lon="37.594089620000005"/>
-  <node id="-115" version="1"  lat="55.72527775" lon="37.59407315"/>
-  <node id="-116" version="1"  lat="55.725280270000006" lon="37.594053530000004"/>
-  <node id="-117" version="1"  lat="55.72527838" lon="37.59403364"/>
-  <node id="-118" version="1"  lat="55.72527235" lon="37.59401654"/>
-  <node id="-119" version="1"  lat="55.72526308" lon="37.59400484"/>
-  <node id="-120" version="1"  lat="55.72525201" lon="37.59400034"/>
-  <node id="-121" version="1"  lat="55.725240850000006" lon="37.59400367"/>
-  <node id="-122" version="1"  lat="55.72523122" lon="37.59401438"/>
-  <node id="-123" version="1"  lat="55.72522465" lon="37.59403085"/>
-  <node id="-124" version="1"  lat="55.72522213" lon="37.59405047"/>
-  <node id="-125" version="1"  lat="55.72522402" lon="37.59407036"/>
-  <node id="-126" version="1"  lat="55.72523005" lon="37.594087460000004"/>
-  <node id="-127" version="1"  lat="55.72523923" lon="37.59409916"/>
-  <node id="-128" version="1"  lat="55.7252503" lon="37.59410366"/>
-  <node id="-129" version="1"  lat="55.72526155" lon="37.59410033"/>
-  <node id="-130" version="1"  lat="55.72527118" lon="37.594089620000005"/>
-  <node id="-131" version="1"  lat="55.72527775" lon="37.59407315"/>
-  <node id="-132" version="1"  lat="55.725280270000006" lon="37.594053530000004"/>
-  <node id="-133" version="1"  lat="55.72527838" lon="37.59403364"/>
-  <node id="-134" version="1"  lat="55.72527235" lon="37.59401654"/>
+  <node id="-7" version="1"  lat="55.72526308" lon="37.59400484"/>
+  <node id="-8" version="1"  lat="55.72525201" lon="37.59400034"/>
+  <node id="-9" version="1"  lat="55.725240850000006" lon="37.59400367"/>
+  <node id="-10" version="1"  lat="55.72523122" lon="37.59401438"/>
+  <node id="-11" version="1"  lat="55.72522465" lon="37.59403085"/>
+  <node id="-12" version="1"  lat="55.72522213" lon="37.59405047"/>
+  <node id="-13" version="1"  lat="55.72522402" lon="37.59407036"/>
+  <node id="-14" version="1"  lat="55.72523005" lon="37.594087460000004"/>
+  <node id="-15" version="1"  lat="55.72523923" lon="37.59409916"/>
+  <node id="-16" version="1"  lat="55.7252503" lon="37.59410366"/>
+  <node id="-17" version="1"  lat="55.72526155" lon="37.59410033"/>
+  <node id="-18" version="1"  lat="55.72527118" lon="37.594089620000005"/>
+  <node id="-19" version="1"  lat="55.72527775" lon="37.59407315"/>
+  <node id="-20" version="1"  lat="55.725280270000006" lon="37.594053530000004"/>
+  <node id="-21" version="1"  lat="55.72527838" lon="37.59403364"/>
+  <node id="-22" version="1"  lat="55.72527235" lon="37.59401654"/>
   <node id="-147" version="1"  lat="55.725261554310705" lon="37.59400190094091"/>
   <node id="-148" version="1"  lat="55.72525410914362" lon="37.5939988744498"/>
   <node id="-149" version="1"  lat="55.72525240473932" lon="37.59401209474741"/>
@@ -349,7 +333,6 @@
     <tag k="building:colour" v="#202020" />
     <tag k="roof:material" v="stone" />
     <tag k="roof:colour" v="#101010" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-407" version="1" >
@@ -371,7 +354,6 @@
     <tag k="min_height" v="0.6" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-408" version="1" >
@@ -393,7 +375,6 @@
     <tag k="min_height" v="5.399" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-152" version="1" >
@@ -407,7 +388,6 @@
     <tag k="min_height" v="5.484" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-421" version="1" >
@@ -429,7 +409,6 @@
     <tag k="min_height" v="0.6" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-422" version="1" >
@@ -451,7 +430,6 @@
     <tag k="min_height" v="5.399" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-178" version="1" >
@@ -465,7 +443,6 @@
     <tag k="min_height" v="5.484" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-435" version="1" >
@@ -487,7 +464,6 @@
     <tag k="min_height" v="0.6" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-436" version="1" >
@@ -509,7 +485,6 @@
     <tag k="min_height" v="5.399" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-204" version="1" >
@@ -523,7 +498,6 @@
     <tag k="min_height" v="5.484" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-449" version="1" >
@@ -545,7 +519,6 @@
     <tag k="min_height" v="0.6" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-450" version="1" >
@@ -567,7 +540,6 @@
     <tag k="min_height" v="5.399" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-230" version="1" >
@@ -581,7 +553,6 @@
     <tag k="min_height" v="5.484" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-463" version="1" >
@@ -603,7 +574,6 @@
     <tag k="min_height" v="0.6" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-464" version="1" >
@@ -625,7 +595,6 @@
     <tag k="min_height" v="5.399" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-256" version="1" >
@@ -639,7 +608,6 @@
     <tag k="min_height" v="5.484" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-477" version="1" >
@@ -661,7 +629,6 @@
     <tag k="min_height" v="0.6" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-478" version="1" >
@@ -683,7 +650,6 @@
     <tag k="min_height" v="5.399" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-282" version="1" >
@@ -697,7 +663,6 @@
     <tag k="min_height" v="5.484" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-491" version="1" >
@@ -719,7 +684,6 @@
     <tag k="min_height" v="0.6" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-492" version="1" >
@@ -741,7 +705,6 @@
     <tag k="min_height" v="5.399" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-308" version="1" >
@@ -755,7 +718,6 @@
     <tag k="min_height" v="5.484" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-505" version="1" >
@@ -777,7 +739,6 @@
     <tag k="min_height" v="0.6" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-506" version="1" >
@@ -799,7 +760,6 @@
     <tag k="min_height" v="5.399" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-334" version="1" >
@@ -813,33 +773,31 @@
     <tag k="min_height" v="5.484" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-4" version="1" >
-    <nd ref="-103" />
-    <nd ref="-104" />
-    <nd ref="-105" />
-    <nd ref="-106" />
-    <nd ref="-107" />
-    <nd ref="-108" />
-    <nd ref="-109" />
-    <nd ref="-110" />
-    <nd ref="-111" />
-    <nd ref="-112" />
-    <nd ref="-113" />
-    <nd ref="-114" />
-    <nd ref="-115" />
-    <nd ref="-116" />
-    <nd ref="-117" />
-    <nd ref="-118" />
-    <nd ref="-103" />
+    <nd ref="-7" />
+    <nd ref="-8" />
+    <nd ref="-9" />
+    <nd ref="-10" />
+    <nd ref="-11" />
+    <nd ref="-12" />
+    <nd ref="-13" />
+    <nd ref="-14" />
+    <nd ref="-15" />
+    <nd ref="-16" />
+    <nd ref="-17" />
+    <nd ref="-18" />
+    <nd ref="-19" />
+    <nd ref="-20" />
+    <nd ref="-21" />
+    <nd ref="-22" />
+    <nd ref="-7" />
     <tag k="building:part" v="entablement" />
     <tag k="height" v="6.445" />
     <tag k="min_height" v="5.626" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-5" version="1" >
@@ -865,27 +823,26 @@
     <tag k="min_height" v="6.445" />
     <tag k="building:material" v="plaster" />
     <tag k="building:colour" v="#B0B0B0" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-135" version="1" >
-    <nd ref="-119" />
-    <nd ref="-120" />
-    <nd ref="-121" />
-    <nd ref="-122" />
-    <nd ref="-123" />
-    <nd ref="-124" />
-    <nd ref="-125" />
-    <nd ref="-126" />
-    <nd ref="-127" />
-    <nd ref="-128" />
-    <nd ref="-129" />
-    <nd ref="-130" />
-    <nd ref="-131" />
-    <nd ref="-132" />
-    <nd ref="-133" />
-    <nd ref="-134" />
-    <nd ref="-119" />
+    <nd ref="-7" />
+    <nd ref="-8" />
+    <nd ref="-9" />
+    <nd ref="-10" />
+    <nd ref="-11" />
+    <nd ref="-12" />
+    <nd ref="-13" />
+    <nd ref="-14" />
+    <nd ref="-15" />
+    <nd ref="-16" />
+    <nd ref="-17" />
+    <nd ref="-18" />
+    <nd ref="-19" />
+    <nd ref="-20" />
+    <nd ref="-21" />
+    <nd ref="-22" />
+    <nd ref="-7" />
     <tag k="building:part" v="roof1" />
     <tag k="height" v="7.194" />
     <tag k="min_height" v="6.609" />
@@ -893,7 +850,6 @@
     <tag k="building:colour" v="brown" />
     <tag k="roof:material" v="metal" />
     <tag k="roof:colour" v="brown" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-136" version="1" >
@@ -921,7 +877,6 @@
     <tag k="building:colour" v="brown" />
     <tag k="roof:material" v="metal" />
     <tag k="roof:colour" v="brown" />
-    <tag k="roof:height" v="0" />
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-137" version="1" >

@@ -422,8 +422,7 @@ def writeOsmXml(objOsmGeom, Objects, strOutputOsmFileName, blnUpdatable):
     # fo.write('  <bounds minlat="' + str(object1.bbox.minLat) + '" minlon="' + str(object1.bbox.minLon) + '" maxlat="' + str(
     #    object1.bbox.maxLat) + '" maxlon="' + str(object1.bbox.maxLon) + '"/> ' + '\n')
 
-    for i in range(len(objOsmGeom.nodes)):
-        node=objOsmGeom.nodes[i]
+    for i, node in objOsmGeom.nodes.items():
         obj_id = node.id
         obj_ver = "1"
         node_lat = node.lat

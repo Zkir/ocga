@@ -34,11 +34,9 @@ class clsOsmGeometry():
 
 
     def __init__(self):
-        self.nodes = []
-        self.nodehash = {}
+        self.nodes = {}
         self.ways = []
         self.wayhash = {}
-        self.max_node = -1
         self.max_way = -1
 
     def AddNode(self, id, lat, lon):
@@ -47,38 +45,28 @@ class clsOsmGeometry():
         aNode.id = id
         aNode.lat = float(lat)
         aNode.lon = float(lon)
-        self.nodes.append(aNode)
+        
+        self.nodes[id]= aNode
+        
+        if id == "-1":
+            print( "problem, node id cannot be -1")
+        return id
+        
+    def removeNode(self, node_id):
+        self.nodes.pop(node_id)    
 
-        self.max_node = self.max_node + 1
-        self.nodehash[id]=self.max_node
-
-        return self.max_node
-
-    def FindNode(self, id):
-        #i = 0
-        #blnFound = False
-        #for i in range(0, self.max_node+1):
-        #    if self.nodes[i].id == id:
-        #        fn_return_value = i
-        #        blnFound = True
-        #        break
-        #if not blnFound:
-        #    #print("node id " + id + "not found!") 
-        #    fn_return_value = - 1
-        #return fn_return_value
-        return self.nodehash.get(id,-1)
+    #To be deleted
+    def FindNode(self, node_id):
+        return node_id
 
     def GetNodeID(self, intNodeNo):
-        fn_return_value = self.nodes[intNodeNo].id
-        return fn_return_value
+        return self.nodes[intNodeNo].id
 
     def GetNodeLat(self, intNodeNo):
-        fn_return_value = self.nodes[intNodeNo].lat
-        return fn_return_value
+        return self.nodes[intNodeNo].lat
 
     def GetNodeLon(self, intNodeNo):
-        fn_return_value = self.nodes[intNodeNo].lon
-        return fn_return_value
+        return self.nodes[intNodeNo].lon
 
     def AddWay(self, id, NodeRefs):
         i = 0
