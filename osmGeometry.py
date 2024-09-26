@@ -30,14 +30,10 @@ class TWay:
         self.maxLon = 0.0
 
 class clsOsmGeometry():
-    """coordinates of nodes"""
-
 
     def __init__(self):
         self.nodes = {}
-        self.ways = []
-        self.wayhash = {}
-        self.max_way = -1
+        self.ways = {}
 
     def AddNode(self, id, lat, lon):
         #print("debug",id, lat, lon)
@@ -57,7 +53,10 @@ class clsOsmGeometry():
 
     #To be deleted
     def FindNode(self, node_id):
-        return node_id
+        if node_id in self.nodes:
+            return node_id
+        else:
+            return None            
 
     def GetNodeID(self, intNodeNo):
         return self.nodes[intNodeNo].id
@@ -80,19 +79,16 @@ class clsOsmGeometry():
         node_count=len(NodeRefs)
         #save id
         aWay= TWay()
-        self.ways.append(aWay)
-        self.max_way = self.max_way + 1
-        self.ways[self.max_way].id = id
-        self.wayhash[id] = self.max_way
+        
         #save node refs
-        self.ways[self.max_way].NodeRefs = []
+        aWay.NodeRefs = []
         for i in range(node_count):
-            self.ways[self.max_way].NodeRefs.append( NodeRefs[i])
-        self.ways[self.max_way].node_count = node_count
+            aWay.NodeRefs.append( NodeRefs[i])
+        aWay.node_count = node_count
         #calculate bbox
         for i in range(node_count):
-            lat = self.nodes[self.ways[self.max_way].NodeRefs[i]].lat
-            lon = self.nodes[self.ways[self.max_way].NodeRefs[i]].lon
+            lat = self.nodes[aWay.NodeRefs[i]].lat
+            lon = self.nodes[aWay.NodeRefs[i]].lon
             if i == 0:
                 minLat = lat
                 minLon = lon
@@ -107,13 +103,18 @@ class clsOsmGeometry():
                     minLon = lon
                 if lon > maxLon:
                     maxLon = lon
+
         #store bbox
-        self.ways[self.max_way].minLat = minLat
-        self.ways[self.max_way].minLon = minLon
-        self.ways[self.max_way].maxLat = maxLat
-        self.ways[self.max_way].maxLon = maxLon
-        fn_return_value = self.max_way
-        return fn_return_value
+        aWay.minLat = minLat
+        aWay.minLon = minLon
+        aWay.maxLat = maxLat
+        aWay.maxLon = maxLon
+        
+        self.ways[id] = aWay
+        
+        if id == "-1":
+            print( "problem, node id cannot be -1")
+        return id 
 
     def GetWayBBox(self, intWayNo):
         bbox = TBbox()
@@ -124,22 +125,15 @@ class clsOsmGeometry():
         fn_return_value = bbox
         return fn_return_value
 
-    def FindWay(self, id):
-        #i = 0
-        #blnFound = False
-        #for i in range(self.max_way+1):
-        #    if self.ways[i].id == id:
-        #        fn_return_value = i
-        #        blnFound = True
-        #        break
-        #if not blnFound:
-        #    fn_return_value = - 1
-        #return fn_return_value
-        return self.wayhash.get(id,-1)
+    def FindWay(self, way_id):
+        
+        if way_id in self.ways:
+            return way_id
+        else: 
+            return None
 
     def GetWayID(self, intWayNo):
-        fn_return_value = self.ways[intWayNo].id
-        return fn_return_value
+        return self.ways[intWayNo].id
 
     def GetWayNodeRefsAndCount(self, intWayNo):
         #anode_count = self.ways(intWayNo).node_count
