@@ -6,6 +6,8 @@ from mdlXmlParser import *
 from mdlMisc import getColourName
 from math import pi, sin, cos
 
+from vbFunctions import Left, Right, Mid, Len, Trim, RegExp, IsNumeric
+
 #base version of T3DObject, should be the same as in OsmParser
 class T3DObject0:
     def __init__(self):

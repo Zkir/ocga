@@ -907,6 +907,7 @@ class OCGAContext:
 # =============== main part
 def checkDuplicatedNodes(objOsmGeom):
     duplicated_nodes = {}
+    duplicate = None
     ids =  list(objOsmGeom.nodes.keys())
                 
     for i in range(len(ids)):

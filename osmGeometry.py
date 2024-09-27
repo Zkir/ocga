@@ -2,9 +2,12 @@
 # some arrays to store osm-geometry
 # we need this geometry to determine bboxes of objects and find building parts
 #***********************************************************************************************************************
-from vbFunctions import *
 DEGREE_LENGTH_M = 111.13 * 1000
+from math import cos
 Pi = 3.14159265358979
+
+def Sqr(x):
+    return (x**0.5)
 
 class TBbox:
     def __init__(self):
@@ -30,7 +33,7 @@ class TWay:
         self.maxLon = 0.0
 
 class clsOsmGeometry():
-
+    """coordinates of nodes"""
     def __init__(self):
         self.nodes = {}
         self.ways = {}
@@ -140,7 +143,6 @@ class clsOsmGeometry():
         return self.ways[intWayNo].NodeRefs
 
     def CalculateBBoxSize(self, minLat, minLon, maxLat, maxLon):
-        #Debug.Print DEGREE_LENGTH_M * (maxLat - minLat), DEGREE_LENGTH_M * (maxLon - minLon) * Cos(minLatn / 180 * Pi)
         CalculateSize = DEGREE_LENGTH_M * Sqr(abs(maxLat - minLat) * abs(maxLon - minLon) * cos(minLat / 180 * Pi))
         CalculateSize = round(CalculateSize,3)
         return CalculateSize
@@ -163,11 +165,11 @@ class clsOsmGeometry():
             #s = s + (a[i].x*a[i+1].y - a[i].y*a[i+1].x);
 
             x0 = DEGREE_LENGTH_M *  ( self.nodes[NodeRefs[i]].lat - ZeroLat )
-            y0 = DEGREE_LENGTH_M *  ( self.nodes[NodeRefs[i]].lon - ZeroLon )  * Cos(ZeroLat / 180 * Pi)
+            y0 = DEGREE_LENGTH_M *  ( self.nodes[NodeRefs[i]].lon - ZeroLon )  * cos(ZeroLat / 180 * Pi)
             x1 = DEGREE_LENGTH_M *  ( self.nodes[NodeRefs[i + 1]].lat - ZeroLat )
-            y1 = DEGREE_LENGTH_M *  ( self.nodes[NodeRefs[i + 1]].lon - ZeroLon )  * Cos(ZeroLat / 180 * Pi)
+            y1 = DEGREE_LENGTH_M *  ( self.nodes[NodeRefs[i + 1]].lon - ZeroLon )  * cos(ZeroLat / 180 * Pi)
             S = S +  ( x0 * y1 - y0 * x1 )
-        S = Abs(S / 2)
+        S = abs(S / 2)
         fn_return_value = S
         return fn_return_value
 
@@ -182,7 +184,7 @@ class clsOsmGeometry():
     
         if self.ways[intWayNo].NodeRefs[0] != self.ways[intWayNo].NodeRefs[N]:
             # Debug.Print "way not closed " & ways(intWayNo).ID
-            fn_return_value = DEGREE_LENGTH_M * Sqr(Abs(bbox.maxLat - bbox.minLat) * Abs(bbox.maxLon - bbox.minLon) * Cos(( bbox.minLat + bbox.maxLat )  / 2.0 / 180 * Pi))
+            fn_return_value = DEGREE_LENGTH_M * Sqr(abs(bbox.maxLat - bbox.minLat) * abs(bbox.maxLon - bbox.minLon) * cos(( bbox.minLat + bbox.maxLat )  / 2.0 / 180 * Pi))
         else:
             # Debug.Print "way  closed"
             fn_return_value = Sqr(self.CalculateClosedNodeChainSqure(self.ways[intWayNo].NodeRefs, N))
