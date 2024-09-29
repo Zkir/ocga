@@ -15,7 +15,7 @@ from mdlOsmParser import T3DObject
 
 #ocga parser and translator 
 from ocgaparser import * #ocga2py
-from osmGeometry import DEGREE_LENGTH_M
+from osmparser  import DEGREE_LENGTH_M
 
 _id_counter=0
 
@@ -96,7 +96,12 @@ def calculateDimensionsForSplitPattern(h, split_pattern):
             size = 0
             rule_name = 'zero_part'
         segments[i] = (size, rule_name)
-    return segments
+    #remove zero lenght segments.
+    segments2 = []
+    for segment in segments:
+        if segment[0] != 0:
+            segments2 += [segment]
+    return segments2
 
 
 def copyBuildingPartTags(new_object, old_object):
@@ -371,20 +376,14 @@ def primitiveCircle(osmObject, objOsmGeom,  nVertices=12, radius="'1"):
     new_obj.updateScopeBBox(objOsmGeom)  # also Bbbox in local coordinates
 
 
-def primitiveHalfCircle(osmObject, objOsmGeom, nVertices=12, radius=None):
+def primitiveHalfCircle(osmObject, objOsmGeom, nVertices=12, radius="'1"):
 
     new_obj = osmObject
-    # new_obj = T3DObject()
-    # new_obj.id = getID()
-    # new_obj.type = "way"
     new_obj.NodeRefs = []
     if new_obj.type == "relation":
         raise Exception("relation is not supported")
-
-    if radius is None:
-        R = min(osmObject.scope_sx, osmObject.scope_sy)
-    else:
-        R = radius
+       
+    R = parseRelativeValue(radius, min(osmObject.scope_sx, osmObject.scope_sy))    
 
     Lat = [None] * nVertices
     Lon = [None] * nVertices
@@ -428,10 +427,9 @@ def scale(osmObject, objOsmGeom, sx, sy, sz=None):
         roof_height = parseHeightValue(osmObject.getTag("roof:height"))
         h = height - min_height
         sz=parseRelativeValue(sz,h)
-
-        kz=sz/h
         # min_height remains, we need to update height and roof height
         height=min_height+sz
+        kz=sz/h if h!=0 else 0
         roof_height =roof_height*kz
         if round(roof_height, 3) > round(height,3) - round(min_height,3):
             roof_height = round(height,3) - round(min_height,3)-0.01
@@ -725,7 +723,7 @@ class OCGAContext:
         if self.current_object.scope_sx < self.current_object.scope_sy:
             self.current_object.rotateScope(90, self.objOsmGeom)
 
-    def rotateScope(self, zAngle):
+    def rotate_scope(self, zAngle):
         self.current_object.rotateScope(zAngle, self.objOsmGeom)
 
     # ===========================================================================
@@ -749,7 +747,7 @@ class OCGAContext:
         if radius is None:
             scale(self.current_object, self.objOsmGeom, self.current_object.scope_sx,self.current_object.scope_sy)
 
-    def primitiveHalfCylinder(self, nVertices=12, radius=None):
+    def primitive_halfcylinder(self, radius, nVertices=12):
         """replaces the geometry of the current object with half of cylinder/circle"""
         primitiveHalfCircle(self.current_object, self.objOsmGeom, nVertices,radius)
         scale(self.current_object, self.objOsmGeom, self.current_object.scope_sx,self.current_object.scope_sy)
@@ -1028,7 +1026,7 @@ def main():
     output_file_name = args.output
     rules_file_name = args.rules
     
-    ocga_process2(input_file_name, output_file_name, rules_file_name)
+    ocga_process2(input_file_name, output_file_name, rules_file_name,output_file_name+'.py')
 
 if __name__ == '__main__':
     main()

@@ -18,7 +18,7 @@ def checkRulesMy(ctx):
         # align local coordinates so that X matches the longest dimension, and oriented east
         ctx.align_scope("geometry")
         ctx.alignXToLongerScopeSide()
-        ctx.rotateScope(180)
+        ctx.rotate_scope(180)
 
         # we will start from the rectangle and will rebuild the form
         # basing of this very algorithm
@@ -209,7 +209,7 @@ def checkRulesMy(ctx):
         ctx.tag("height",10)
         ctx.tag("roof:shape", "half-dome")
         ctx.tag("roof:height", "3")
-        ctx.primitiveHalfCylinder(8)
+        ctx.primitive_halfcylinder("'1",8)
 
 
     elif ctx.getTag("building:part") == "side_part_1_pre":

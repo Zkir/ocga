@@ -1,19 +1,18 @@
 # Simple OSM Parser.
 # It reads "objects" and geometry references into set []
 
-from osmGeometry import *
-from mdlXmlParser import *
 from mdlMisc import getColourName
 from math import pi, sin, cos
 
 from vbFunctions import Left, Right, Mid, Len, Trim, RegExp, IsNumeric
+from osmparser import readOsmXml0,encodeXmlString, Bbox,DEGREE_LENGTH_M
 
 #base version of T3DObject, should be the same as in OsmParser
 class T3DObject0:
     def __init__(self):
         self.id = ""
         self.type = ""
-        self.bbox = TBbox()
+        self.bbox = Bbox()
         self.NodeRefs = []
         self.WayRefs = []
         self.name = ""
@@ -60,6 +59,59 @@ class T3DObject0:
 
     def isBuildingPart(self):
         return (self.getTag("building:part") != "")
+        
+    def init_attributes(self):
+        for tag_key, tag_value in self.osmtags.items():
+
+            if tag_key == 'name':
+                self.name = tag_value
+            if tag_key == 'description':
+                self.descr = tag_value
+            if tag_key == 'building':
+                self.tagBuilding = tag_value
+                self.key_tags = self.key_tags + ' building=' + self.tagBuilding
+            if tag_key == 'building:architecture':
+                self.tagArchitecture = tag_value
+            if tag_key == 'start_date':
+                self.tagStartDate = tag_value
+            if tag_key == 'man_made':
+                self.tagManMade = tag_value
+                self.key_tags = self.key_tags + ' man_made=' + self.tagManMade
+            if tag_key == 'barrier':
+                self.tagBarrier = tag_value
+                self.key_tags = self.key_tags + ' barrier=' + self.tagBarrier
+            # wikipedia
+            if tag_key == 'wikipedia':
+                self.tagWikipedia = tag_value
+            if tag_key == 'addr:street':
+                self.tagAddrStreet = tag_value
+            if tag_key == 'addr:housenumber':
+                self.tagAddrHouseNumber = tag_value
+            if tag_key == 'addr:city':
+                self.tagAddrCity = tag_value
+            if tag_key == 'addr:district':
+                self.tagAddrDistrict = tag_value
+            if tag_key == 'addr:region':
+                self.tagAddrRegion = tag_value
+            #ref_temples_ru
+            if tag_key == 'ref:temples.ru':
+                ref_temples_ru = tag_value
+                #print ref_temples_ru
+            if tag_key == 'amenity':
+                self.tagAmenity = tag_value
+            if tag_key == 'denomination':
+                self.tagDenomination = tag_value
+            if tag_key == 'tower:type':
+                self.tagTowerType = tag_value
+            if tag_key == 'building:material':
+                self.material = tag_value
+            #for buildings we have building:colour, for other objects, e.g. fences, just colour
+            if ( tag_key == 'building:colour' )  or  ( tag_key == 'colour' ) :
+                self.colour = tag_value
+                if tag_value[0] == '#':
+                    self.colour = getColourName(tag_value)
+            if tag_key == 'ruins':
+                self.tagRuins = tag_value         
 
 #Extentions for T3DObject required specifically for ocga
 class T3DObject(T3DObject0):
@@ -111,7 +163,7 @@ class T3DObject(T3DObject0):
                 if lon>self.bbox.maxLon:
                     self.bbox.maxLon=lon
 
-            self.size=Sqr(objOsmGeom.CalculateClosedNodeChainSqure(self.NodeRefs, len(self.NodeRefs)-1))
+            self.size=(objOsmGeom.CalculateClosedNodeChainArea(self.NodeRefs, len(self.NodeRefs)-1))**0.5
         else:
             raise Exception("Only ways are supported currently")    
 
@@ -276,143 +328,55 @@ class T3DObject(T3DObject0):
 
 
 # we will read osm file into a set of objects + complex structure with geometry
-def readOsmXml(strSrcOsmFile):
 
-    dblMaxHeight = 0
-    blnObjectIncomplete=False
-    objOsmGeom = clsOsmGeometry()
-    objXML = clsXMLparser()
+def readOsmXml(strSrcOsmFile):    
+    objOsmGeom = readOsmXml0(strSrcOsmFile)
     Objects = []
-
-    objXML.OpenFile(strSrcOsmFile)
-    intModelsCreated = 0
-    while not objXML.bEOF:
-        objXML.ReadNextNode()
-        strTag = objXML.GetTag()
-        if strTag == 'node' or strTag == 'way' or strTag == 'relation':
-            osmObject = T3DObject()
-            osmObject.type = strTag
-            osmObject.id = objXML.GetAttribute('id')
-            blnObjectIncomplete= False
-
-        if strTag == 'node':
-            objOsmGeom.AddNode(osmObject.id, objXML.GetAttribute('lat'), objXML.GetAttribute('lon'))
-        # references to nodes in ways. we need to find coordinates
-        if strTag == 'nd':
-            node_id = objXML.GetAttribute('ref')
-            intNodeNo = objOsmGeom.FindNode(node_id)
-            if intNodeNo == - 1:
-                #raise Exception('FindNode', 'node not found! ' + node_id)
-                blnObjectIncomplete=True
-            else:
-                osmObject.NodeRefs.append( intNodeNo)
-
-        # references to ways in relations. we need find coordinates
-        if strTag == 'member':
-            if objXML.GetAttribute('type') == 'way':
-                way_id = objXML.GetAttribute('ref')
-                intWayNo = objOsmGeom.FindWay(way_id)
-                if intWayNo == - 1:
-                    #raise Exception('FindWay', 'way not found! ' + way_id)
-                    blnObjectIncomplete=True
-                else:
-                    waybbox = objOsmGeom.GetWayBBox(intWayNo)
-
-                    if len(osmObject.WayRefs)== 0:
-                        osmObject.bbox.minLat = waybbox.minLat
-                        osmObject.bbox.minLon = waybbox.minLon
-                        osmObject.bbox.maxLat = waybbox.maxLat
-                        osmObject.bbox.maxLon = waybbox.maxLon
-                    else:
-                        if waybbox.minLat < osmObject.bbox.minLat:
-                            osmObject.bbox.minLat = waybbox.minLat
-                        if waybbox.maxLat > osmObject.bbox.maxLat:
-                            osmObject.bbox.maxLat = waybbox.maxLat
-                        if waybbox.minLon < osmObject.bbox.minLon:
-                            osmObject.bbox.minLon = waybbox.minLon
-                        if waybbox.maxLon > osmObject.bbox.maxLon:
-                            osmObject.bbox.maxLon = waybbox.maxLon
-                    osmObject.WayRefs.append([intWayNo, objXML.GetAttribute('role')])
-
-        #get osmObject osm tags
-        if strTag == 'tag':
-            StrKey = objXML.GetAttribute('k')
-            strValue = objXML.GetAttribute('v')
-
-            osmObject.osmtags[StrKey] = strValue
-
-
-            if StrKey == 'name':
-                osmObject.name = strValue
-            if StrKey == 'description':
-                osmObject.descr = strValue
-            if StrKey == 'building':
-                osmObject.tagBuilding = strValue
-                osmObject.key_tags = osmObject.key_tags + ' building=' + osmObject.tagBuilding
-            if StrKey == 'building:architecture':
-                osmObject.tagArchitecture = strValue
-            if StrKey == 'start_date':
-                osmObject.tagStartDate = strValue
-            if StrKey == 'man_made':
-                osmObject.tagManMade = strValue
-                osmObject.key_tags = osmObject.key_tags + ' man_made=' + osmObject.tagManMade
-            if StrKey == 'barrier':
-                osmObject.tagBarrier = strValue
-                osmObject.key_tags = osmObject.key_tags + ' barrier=' + osmObject.tagBarrier
-            # wikipedia
-            if StrKey == 'wikipedia':
-                osmObject.tagWikipedia = strValue
-            if StrKey == 'addr:street':
-                osmObject.tagAddrStreet = strValue
-            if StrKey == 'addr:housenumber':
-                osmObject.tagAddrHouseNumber = strValue
-            if StrKey == 'addr:city':
-                osmObject.tagAddrCity = strValue
-            if StrKey == 'addr:district':
-                osmObject.tagAddrDistrict = strValue
-            if StrKey == 'addr:region':
-                osmObject.tagAddrRegion = strValue
-            #ref_temples_ru
-            if StrKey == 'ref:temples.ru':
-                ref_temples_ru = strValue
-                #print ref_temples_ru
-            if StrKey == 'amenity':
-                osmObject.tagAmenity = strValue
-            if StrKey == 'denomination':
-                osmObject.tagDenomination = strValue
-            if StrKey == 'tower:type':
-                osmObject.tagTowerType = strValue
-            if StrKey == 'building:material':
-                osmObject.material = strValue
-            #for buildings we have building:colour, for other objects, e.g. fences, just colour
-            if ( StrKey == 'building:colour' )  or  ( StrKey == 'colour' ) :
-                osmObject.colour = strValue
-                if Left(strValue, 1) == '#':
-                    osmObject.colour = getColourName(strValue)
-            if StrKey == 'ruins':
-                osmObject.tagRuins = strValue
-
-
-        if strTag == '/way':
-            intWayNo = objOsmGeom.AddWay(osmObject.id, osmObject.NodeRefs)
-            osmObject.bbox = objOsmGeom.GetWayBBox(intWayNo)
-            osmObject.size = objOsmGeom.CalculateWaySize(intWayNo)
-
-        if strTag == '/relation':
-            osmObject.size = objOsmGeom.CalculateRelationSize(osmObject.WayRefs)
-            # bbox is already calculated above
-
-        # Closing node
-        if strTag == '/node' or strTag == '/way' or strTag == '/relation':
-            if (blnObjectIncomplete != True) and (osmObject.type != 'node'):
-                # we will return only completed objects, and we will skip nodes (to save CPU time)
-                Objects.append(osmObject)
-            else:
-                #print('Object is incomplete ' + osmObject.type +' ' +  osmObject.id)
+    
+    # we will skip nodes, since single node buildings are boring 
+    
+    for _, way in objOsmGeom.ways.items():
+        osmObject = T3DObject()
+        osmObject.type = 'way'
+        osmObject.id = way.id
+        osmObject.version =  way.version
+        osmObject.timestamp = way.timestamp
+        osmObject.NodeRefs  = way.NodeRefs
+        osmObject.osmtags = way.osmtags
+        osmObject.init_attributes()
+        
+        osmObject.bbox = objOsmGeom.GetWayBBox(way.id)
+        osmObject.size = objOsmGeom.ways[way.id].size
+        
+        Objects.append(osmObject)
+        
+    for _, relation in objOsmGeom.relations.items():
+        osmObject = T3DObject()
+        osmObject.type = 'relation'
+        osmObject.id = relation.id
+        osmObject.version =  relation.version
+        osmObject.timestamp = relation.timestamp
+        
+        osmObject.WayRefs  = relation.WayRefs
+        osmObject.osmtags = relation.osmtags
+        osmObject.init_attributes()
+        
+        osmObject.bbox = objOsmGeom.GetRelationBBox(relation.id)
+        osmObject.size = objOsmGeom.relations[relation.id].size
+        
+        if 'type' not in osmObject.osmtags:
+            print('stange relation without type ' + osmObject.id  )
+            print('   ', osmObject.osmtags)                
+        
+        if ('type' in osmObject.osmtags and osmObject.osmtags['type'] == 'building'):
+                # also filter 
+                # relations of type building are strange objects! \
                 pass
-
-    objXML.CloseFile()
+        else: 
+            Objects.append(osmObject)
+    
     return objOsmGeom, Objects
+
 
 #osm file is rewritten  from Objects list and OsmGeom
 def writeOsmXml(objOsmGeom, Objects, strOutputOsmFileName, blnUpdatable):

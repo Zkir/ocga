@@ -108,7 +108,7 @@ def checkRulesMy(ctx):
                                    ))
 
     elif ctx.getTag("building:part") == "side_column_block":
-        ctx.rotateScope(90)
+        ctx.rotate_scope(90)
         ctx.split_x((("~1", "NIL"),("~1", "side_column_pre"), ("~1.5", "NIL"), ("~1", "side_column_pre"), ("~1", "NIL")))
 
     elif ctx.getTag("building:part") == "side_column_pre":
@@ -161,7 +161,7 @@ def checkRulesMy(ctx):
         ctx.tag("building:part",  "pylon_top1")
 
     elif ctx.getTag("building:part") == "pylon_top1_obelisk_block":
-        ctx.rotateScope(90)
+        ctx.rotate_scope(90)
         ctx.split_x((("1", "pylon_top1_obelisk_pre"),
                     ("~10", "NIL"),
                     ("1", "pylon_top1_obelisk_pre")))
@@ -196,7 +196,7 @@ def checkRulesMy(ctx):
 
     elif ctx.getTag("building:part") == "arch_column_block":
         ctx.tag("building:part", "no")
-        ctx.rotateScope(90)
+        ctx.rotate_scope(90)
         # split(x){ {~sy:porch_column_pre| ~sy:Nil}* | ~sy:porch_column_pre }
         ctx.split_x((("~1", "porch_column_pre"),
                      ("~0.2", "NIL"),
@@ -215,7 +215,7 @@ def checkRulesMy(ctx):
 
     elif ctx.getTag("building:part") == "semi_column_block":
         ctx.tag("building:part", "no")
-        ctx.rotateScope(90)
+        ctx.rotate_scope(90)
 
         ctx.split_x( (("~1", "semi_column_pre"),
                       ("~0.2", "NIL"),

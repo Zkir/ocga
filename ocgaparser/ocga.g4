@@ -23,8 +23,11 @@ operator:
 	SPLIT_X split_pattern |
 	SPLIT_Y split_pattern |
 	SPLIT_Z split_pattern |
+	ROTATESCOPE expr |
 	PRIMITIVECYLINDER expr |
 	PRIMITIVECYLINDER expr COMMA expr | 
+	PRIMITIVEHALFCYLINDER expr |
+	PRIMITIVEHALFCYLINDER expr COMMA expr | 
 	ROOF roof_shape COMMA expr |  
 	ROOFDIRECTION expr |  
 	COMPBORDER expr COMMA rule_name |
@@ -80,7 +83,9 @@ TRANSLATE:            'translate';
 SPLIT_Z:              'split_z';
 SPLIT_X:              'split_x';
 SPLIT_Y:              'split_y';
+ROTATESCOPE:          'rotate_scope';
 PRIMITIVECYLINDER:    'primitive_cylinder';
+PRIMITIVEHALFCYLINDER:'primitive_halfcylinder';
 ROOF:                 'create_roof';
 ROOFDIRECTION:        'roof_direction';
 COMPBORDER:           'comp_border'; 

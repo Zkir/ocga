@@ -42,7 +42,7 @@ def ocga2py(ocga_lines):
     tree = parser.prog()
     if parser.getNumberOfSyntaxErrors() > 0:
         print("Input file containts syntax errors")
-        exit()
+        exit(1)
     s = ""
     for child in tree.children:
         if type(child) is ocgaParser.Ocga_headerContext:

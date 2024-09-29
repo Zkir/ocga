@@ -1,0 +1,81 @@
+# OCGA rules example for osm-cga project
+# Rossi Pavilion
+# https://en.wikipedia.org/wiki/Rossi_Pavilion
+# (c) Zkir 2024
+
+ocga 0.1
+
+rule building:
+    align_scope geometry
+	rotate_scope 0-90
+	tag height, 0.1
+	outer_rectangle mass_model
+	
+rule mass_model:
+    tag windows, no
+	scale 24, 15, 8
+	split_y ~5: rotunda | ~5: main_part
+	
+rule main_part: 	
+	split_x 7.5: chamber | ~1: middle_part | 7.5: chamber
+	
+rule middle_part:
+	scale '1 , '0.75	
+	split_z 1.2: roof|0.5: cornice|0.75:entablature|~6:collonade_pre|1.2:stylobate
+	#comp_border 1, collonade
+
+rule roof:
+	nope
+	
+rule cornice:
+	colour white
+	scale scope_sx+1, scope_sy+1
+	
+rule entablature:
+	colour white
+	
+rule collonade_pre:
+	split_y 1:collonade | ~4:NIL | 1:collonade
+	
+rule stylobate:
+	colour grey
+	
+rule rotunda: 		
+    scale 12, 6
+    rotate_scope 0-90
+	primitive_halfcylinder '1, 6	
+	translate 0-2, 0, 0
+	split_z 0.6: NIL| 0.6: roof | 0.5: cornice | 0.75:entablature | ~6:rotunda_collonade_pre | 1.2:stylobate
+	
+rule rotunda_collonade_pre:
+	comp_border 1, rotunda_collonade	
+
+rule rotunda_collonade:
+	split_x 1: column_pre | ~2 : NIL 
+	
+	
+rule chamber:
+	comp_border 1, portico	
+	restore
+	scale scope_sx-2, scope_sy-2
+	split_z 1.2: roof | 0.5: cornice | 0.75:entablature | ~6:wall | 1.2:stylobate
+	
+rule portico:
+	scale '0.5, '1
+	split_z 1.2: portico_roof|0.5: cornice|0.75:entablature|~6:collonade|1.2:stylobate
+
+rule portico_roof:
+	scale '1, '1, '0.8
+	create_roof gabled, '0.95
+	tag roof:orientation, across
+
+rule collonade:
+	split_x (1: column_pre | ~2 : NIL )* | 1: column_pre 
+
+rule column_pre:
+	primitive_cylinder '1
+	colour white
+
+rule NIL:
+	nil
+	

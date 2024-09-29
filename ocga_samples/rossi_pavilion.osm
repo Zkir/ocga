@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='334794381' timestamp='2011-08-25T17:27:29Z' uid='437809' user='Anton Khorev' visible='true' version='4' changeset='9123226' lat='59.9408224' lon='30.3341026' />
+  <node id='334794384' timestamp='2011-08-25T17:27:29Z' uid='437809' user='Anton Khorev' visible='true' version='4' changeset='9123226' lat='59.9408608' lon='30.3337041' />
+  <node id='334794386' timestamp='2011-08-25T17:27:30Z' uid='437809' user='Anton Khorev' visible='true' version='4' changeset='9123226' lat='59.9408808' lon='30.334125' />
+  <node id='334794388' timestamp='2011-08-25T17:27:30Z' uid='437809' user='Anton Khorev' visible='true' version='4' changeset='9123226' lat='59.9409192' lon='30.3337265' />
+  <node id='1412435849' timestamp='2011-08-25T17:27:21Z' uid='437809' user='Anton Khorev' visible='true' version='1' changeset='9123226' lat='59.9407567' lon='30.3339166' />
+  <node id='1412435850' timestamp='2011-08-25T17:27:21Z' uid='437809' user='Anton Khorev' visible='true' version='1' changeset='9123226' lat='59.9407587' lon='30.3338721' />
+  <node id='1412435856' timestamp='2011-08-25T17:27:21Z' uid='437809' user='Anton Khorev' visible='true' version='1' changeset='9123226' lat='59.940759' lon='30.333961' />
+  <node id='1412435858' timestamp='2011-08-25T17:27:21Z' uid='437809' user='Anton Khorev' visible='true' version='1' changeset='9123226' lat='59.9407651' lon='30.3338293' />
+  <node id='1412435860' timestamp='2011-08-25T17:27:21Z' uid='437809' user='Anton Khorev' visible='true' version='1' changeset='9123226' lat='59.9407656' lon='30.3340037' />
+  <node id='1412435861' timestamp='2011-08-25T17:27:21Z' uid='437809' user='Anton Khorev' visible='true' version='1' changeset='9123226' lat='59.940771' lon='30.3340233' />
+  <node id='1412435864' timestamp='2011-08-25T17:27:21Z' uid='437809' user='Anton Khorev' visible='true' version='1' changeset='9123226' lat='59.9407755' lon='30.3337898' />
+  <node id='1412435871' timestamp='2011-08-25T17:27:21Z' uid='437809' user='Anton Khorev' visible='true' version='1' changeset='9123226' lat='59.9407896' lon='30.3337551' />
+  <node id='1412435879' timestamp='2011-08-25T17:27:22Z' uid='437809' user='Anton Khorev' visible='true' version='1' changeset='9123226' lat='59.9407982' lon='30.3337408' />
+  <node id='1412435880' timestamp='2011-08-25T17:27:22Z' uid='437809' user='Anton Khorev' visible='true' version='1' changeset='9123226' lat='59.940799' lon='30.3339928' />
+  <node id='1412435891' timestamp='2011-08-25T17:27:22Z' uid='437809' user='Anton Khorev' visible='true' version='1' changeset='9123226' lat='59.9408185' lon='30.3337895' />
+  <node id='1412435893' timestamp='2011-08-25T17:27:22Z' uid='437809' user='Anton Khorev' visible='true' version='1' changeset='9123226' lat='59.9408318' lon='30.3340054' />
+  <node id='1412435897' timestamp='2011-08-25T17:27:22Z' uid='437809' user='Anton Khorev' visible='true' version='1' changeset='9123226' lat='59.9408514' lon='30.3338022' />
+  <node id='1412435931' timestamp='2011-08-25T17:27:23Z' uid='437809' user='Anton Khorev' visible='true' version='1' changeset='9123226' lat='59.9408916' lon='30.3340135' />
+  <node id='1412435935' timestamp='2011-08-25T17:27:23Z' uid='437809' user='Anton Khorev' visible='true' version='1' changeset='9123226' lat='59.9409084' lon='30.3338383' />
+  <node id='1412435937' timestamp='2011-08-25T17:27:23Z' uid='437809' user='Anton Khorev' visible='true' version='1' changeset='9123226' lat='59.9409211' lon='30.3340248' />
+  <node id='1412435939' timestamp='2011-08-25T17:27:23Z' uid='437809' user='Anton Khorev' visible='true' version='1' changeset='9123226' lat='59.9409296' lon='30.3339368' />
+  <node id='1412435946' timestamp='2011-08-25T17:27:23Z' uid='437809' user='Anton Khorev' visible='true' version='1' changeset='9123226' lat='59.940938' lon='30.3338496' />
+  <way id='30353982' action='modify' timestamp='2024-09-14T09:06:01Z' uid='100812' user='Zkir' visible='true' version='8' changeset='156602165'>
+    <nd ref='1412435897' />
+    <nd ref='334794384' />
+    <nd ref='334794388' />
+    <nd ref='1412435935' />
+    <nd ref='1412435946' />
+    <nd ref='1412435939' />
+    <nd ref='1412435937' />
+    <nd ref='1412435931' />
+    <nd ref='334794386' />
+    <nd ref='334794381' />
+    <nd ref='1412435893' />
+    <nd ref='1412435880' />
+    <nd ref='1412435861' />
+    <nd ref='1412435860' />
+    <nd ref='1412435856' />
+    <nd ref='1412435849' />
+    <nd ref='1412435850' />
+    <nd ref='1412435858' />
+    <nd ref='1412435864' />
+    <nd ref='1412435871' />
+    <nd ref='1412435879' />
+    <nd ref='1412435891' />
+    <nd ref='1412435897' />
+    <tag k='building' v='gazebo' />
+    <tag k='building:architecture' v='neoclassicism' />
+    <tag k='building:levels' v='1' />
+    <tag k='name' v='Павильон Росси' />
+    <tag k='name:en' v='Pavilion Rossi' />
+    <tag k='start_date' v='1825' />
+    <tag k='wikidata' v='Q66088256' />
+    <tag k='wikipedia' v='ru:Павильон Росси (Михайловский сад)' />
+  </way>
+</osm>
