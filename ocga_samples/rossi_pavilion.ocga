@@ -48,14 +48,14 @@ rule rotunda:
 	split_z 0.6: NIL| 0.6: roof | 0.25: cornice | 0.75:entablature | ~6:rotunda_collonade_pre | 1.2:stylobate
 	
 rule rotunda_collonade_pre:
-	comp_border 1, rotunda_collonade	
+	comp_edges 1, rotunda_collonade	
 
 rule rotunda_collonade:
 	split_x 1: column_pre | ~2 : NIL 
 	
 	
 rule chamber:
-	comp_border 1, portico	
+	comp_edges 1, portico	
 	restore
 	scale scope_sx-2, scope_sy-2
 	split_z 1.2: roof | 0.5: cornice | 0.75:entablature | ~6:wall | 1.2:stylobate

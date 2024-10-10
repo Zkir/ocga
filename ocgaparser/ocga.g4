@@ -32,6 +32,7 @@ operator:
 	ROOF roof_shape COMMA expr |  
 	ROOFDIRECTION expr |  
 	COMPBORDER expr COMMA rule_name |
+	COMPEDGES  expr COMMA rule_name |
 	RESTORE |
 	NIL |
 	NOPE
@@ -91,6 +92,7 @@ PRIMITIVEHALFCYLINDER:'primitive_halfcylinder';
 ROOF:                 'create_roof';
 ROOFDIRECTION:        'roof_direction';
 COMPBORDER:           'comp_border'; 
+COMPEDGES:            'comp_edges'; 
 RESTORE:              'restore';
 NIL:                  'nil';
 NOPE:                 'nope';

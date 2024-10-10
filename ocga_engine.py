@@ -249,9 +249,9 @@ def split_y(osmObject, objOsmGeom, split_pattern):
     return Objects2
 
 
-# some kind of hybrid between offset and comp(border) operations
+# some kind of hybrid between offset and comp(edges) operations
 # we create geometry along edges of our roof, to create decorative elements
-def comp_border(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
+def comp_edges(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
     Objects2 = []
     distance = float(distance)
     
@@ -264,7 +264,7 @@ def comp_border(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
         new_obj.type = "way"
         new_obj.split_index=i
 
-        copyBuildingPartTags(new_obj, osmObject) # tags are inherited
+        #copyBuildingPartTags(new_obj, osmObject) # tags are inherited
 
         lat0 = objOsmGeom.nodes[osmObject.NodeRefs[i]].lat
         lon0 = objOsmGeom.nodes[osmObject.NodeRefs[i]].lon
@@ -302,6 +302,77 @@ def comp_border(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
         Objects2.append(new_obj)
     return Objects2
 
+# currently simplified/mock up operation. 
+# should work OK for symmetrical objects
+def comp_border(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
+    Objects2 = []
+    distance = float(distance)
+    
+    if osmObject.type == "relation":
+        raise Exception("relation is not yet supported in the comp_roof_border operation")
+
+    for i in range(len(osmObject.NodeRefs) - 1):
+        new_obj = T3DObject()
+        new_obj.id = getID()
+        new_obj.type = "way"
+        new_obj.split_index=i
+
+        #copyBuildingPartTags(new_obj, osmObject) # tags are inherited
+
+        lat0 = objOsmGeom.nodes[osmObject.NodeRefs[i]].lat
+        lon0 = objOsmGeom.nodes[osmObject.NodeRefs[i]].lon
+        x0, y0 = osmObject.LatLon2LocalXY(lat0, lon0)
+
+        lat1 = objOsmGeom.nodes[osmObject.NodeRefs[i + 1]].lat
+        lon1 = objOsmGeom.nodes[osmObject.NodeRefs[i + 1]].lon
+        x1, y1 = osmObject.LatLon2LocalXY(lat1, lon1)
+          
+        # we just create a new node, by moving from the current one to object centroid
+        # more proper algorithm should bisect angle, 
+        # but even this one gives suprisingly good results for symmetrical shapes.  
+        xc, yc = osmObject.LatLon2LocalXY((osmObject.bbox.minLat + osmObject.bbox.maxLat)/2, (osmObject.bbox.minLon + osmObject.bbox.maxLon) / 2 )
+        # this should be origin of the local coordinates, so xc=yc=0, but anyway  
+        #print(xc, yc)
+        #assert(xc==0 and yc==0) 
+        
+        rc = ((xc-x1) ** 2 + (yc-y1) ** 2) ** 0.5
+        
+        x2 =  x1+(xc-x1)/ rc * distance
+        y2 =  y1+(yc-y1)/ rc * distance
+        lat2, lon2 = osmObject.localXY2LatLon(x2, y2)
+        
+        rc = ((xc-x0) ** 2 + (yc-y0) ** 2) ** 0.5
+        x3 = x0+(xc-x0) / rc * distance
+        y3 = y0+(yc-y0) / rc * distance
+        lat3, lon3 = osmObject.localXY2LatLon(x3, y3)
+        
+        
+        #dlat, dlon = osmObject.localXY2LatLon(xc / rc * distance/2, yc / rc * distance/2)
+        #dlat = dlat - (osmObject.bbox.minLat + osmObject.bbox.maxLat) / 2
+        #dlon = dlon - (osmObject.bbox.minLon + osmObject.bbox.maxLon) / 2
+
+        
+
+        # 0
+        node_no_0 = objOsmGeom.AddNode(getID(), lat0, lon0)
+        new_obj.NodeRefs.append(node_no_0)
+        # 1
+        new_obj.NodeRefs.append(objOsmGeom.AddNode(getID(), lat1, lon1))
+        # 2
+        new_obj.NodeRefs.append(objOsmGeom.AddNode(getID(), lat2, lon2))
+        # 3
+        new_obj.NodeRefs.append(objOsmGeom.AddNode(getID(), lat3, lon3))
+        # 4  -- closed ring, same as the first one 
+        new_obj.NodeRefs.append(node_no_0)
+        
+        copyBuildingPartTags(new_obj, osmObject)
+        new_obj.osmtags["building:part"] = rule_name
+        new_obj.scope_rz = osmObject.scope_rz + atan2(y1 - y0, x1 - x0)
+        new_obj.updateBBox(objOsmGeom)
+        new_obj.updateScopeBBox(objOsmGeom)
+        
+        Objects2.append(new_obj)
+    return Objects2
 
 #  we cannot really do comp, because building parts are individable,
 #  but we will create one more object with the same geometry and height by roof height
@@ -815,7 +886,14 @@ class OCGAContext:
         self.split_z_preserve_roof(split_pattern) 
 
     def comp_roof_border(self, distance, rule_name ):
-        new_objects = comp_border(self.current_object, self.objOsmGeom, rule_name, distance, True)
+        new_objects = comp_edges(self.current_object, self.objOsmGeom, rule_name, distance, True)
+        self.nil()
+        self.Objects2.extend(new_objects)
+        setParentChildRelationship(self.current_object, new_objects)
+        self.unprocessed_rules_exist = True
+        
+    def comp_edges(self, distance, rule_name):
+        new_objects = comp_edges(self.current_object, self.objOsmGeom, rule_name, distance)
         self.nil()
         self.Objects2.extend(new_objects)
         setParentChildRelationship(self.current_object, new_objects)

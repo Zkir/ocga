@@ -85,7 +85,7 @@ rule dome_base:
 	
 rule dome_slides:
 	scale scope_sx-1, scope_sy-1
-	comp_border 1.2, dome_slide
+	comp_border 1.3, dome_slide
 	restore
 	scale scope_sx-2.4, scope_sy-2.4
 
@@ -112,7 +112,7 @@ rule dormers_pre:
     split_x ~1:NILL| 2:dormer | ~3:NILL | 2:dormer | ~1:NILL
 	
 rule dormer:
-    translate 0, 4.5, 0.25 
+    translate 0, 4.5, 0.2 
 	scale '1, 5.0, scope_sx/2
 	create_roof round, '0.99
     tag roof:orientation, along  	

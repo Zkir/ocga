@@ -40,7 +40,7 @@ rule fries:
 	
 rule main_part:
 	scale scope_sx-2.5, scope_sy-2.5
-	comp_border 1.5, colonade
+	comp_edges 1.5, colonade
 	restore
 	scale scope_sx-1*2, scope_sy-1*2
 	

@@ -55,7 +55,7 @@ def checkRulesMy(ctx):
 
     if ctx.getTag("building:part") == "collonade":
         ctx.scale("'0.9", "'0.9")
-        ctx.comp_border(ctx.current_object.size/8, "column_pre")
+        ctx.comp_edges(ctx.current_object.size/8, "column_pre")
 
     if ctx.getTag("building:part") == "entablement":
         ctx.scale("'0.9", "'0.9")
@@ -67,7 +67,7 @@ def checkRulesMy(ctx):
         ctx.scale("'1","'1", 0.75)
         ctx.tag("building:colour", "white")
         ctx.tag("building:material", "plaster")
-        ctx.comp_border(ctx.current_object.size/10, "roof_railing_pre")
+        ctx.comp_edges(ctx.current_object.size/10, "roof_railing_pre")
 
     if ctx.getTag("building:part") == "roof_railing_pre":
         if ctx.current_object.split_index % 2 == 0:

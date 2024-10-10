@@ -50,7 +50,7 @@ def checkRulesMy(ctx):
 
     if ctx.getTag("building:part") == "collonade":
         ctx.scale("'0.9", "'0.9")
-        ctx.comp_border(ctx.current_object.size/8, "column_pre")
+        ctx.comp_edges(ctx.current_object.size/8, "column_pre")
 
     if ctx.getTag("building:part") == "entablement":
         ctx.scale("'0.9", "'0.9")

@@ -104,7 +104,7 @@ rule metal_base:
 rule column_base:   
     primitive_cylinder '1, 16
     scale '0.8, '0.8 
-	comp_border 0.8, column_base_part	
+	comp_edges 0.8, column_base_part	
 	
 rule column_base_part:
 	create_roof round, '0.5
@@ -139,7 +139,7 @@ rule step2:
 
 rule step3:	
    scale 10.1, 10.1
-   comp_border 1, obelisk
+   comp_edges 1, obelisk
    restore 
    
 rule obelisk:
