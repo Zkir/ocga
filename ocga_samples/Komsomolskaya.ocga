@@ -8,36 +8,54 @@ rule building:
     align_scope geometry
 	rotate_scope 90
 	outer_rectangle mass_model
-	tag height, 0.1
+	#tag height, 0.1
 	
 rule mass_model:
     tag windows, no
-	tag height, 13
-	split_x ~10.5: side_part | ~43:main_part | ~10.5:side_part
+	scale '1, '1,  13
+	split_x ~10.5: side_part1 | ~43:main_part | ~10.5:side_part2
 	
 rule main_part:
-	tag height, 46
+	scale '1, '1, 49
 	split_z   ~33: roofs_and_spire | 0.1:roof0 | 13: wall_block 
 	
-rule side_part:
+rule side_part1:
 	scale '1, '0.6
+	translate 0.5, 0
+	split_x ~1: portico | ~1: wall_block		
+	
+rule side_part2:
+    # we definetly need IF operator 
+	# if split_index=3:
+	 	rotate_scope 180
+	# endif 
+	scale '1, '0.6
+	translate 0.5, 0
 	split_x ~1: portico | ~1: wall_block		
 
 rule roofs_and_spire: 	
-	rotate_scope 90
+    colour white
+	material plaster
+	roof_colour gray
+	roof_material metal
     primitive_cylinder '0.75, 8
-	split_z 9: spire |
+	rotate 22.5 # we need the dome face to look front
+	split_z 12: spire |
                2: baraban_dome| 0.3: baraban_dome_cornice| 3: baraban |0.3: baraban_cornice|
                ~3: dome_top |0.1: dome_middle |~6: dome_bottom | 1: dome_base |2.5: dome_slides | 3:slide_base 
 	
 rule spire:
 	scale 0.6, 0.6
-	translate 0,0, 0-0.5
+	translate 0,0, -0.5
 	create_roof pyramidal, '0.75
+	colour slategray 
+	material metal
+	roof_colour slategray 
+	roof_material metal
 	
 rule baraban_dome:
     scale 4, 4
-    create_roof dome, '1
+    create_roof dome, '0.99
 	
 rule baraban_dome_cornice:
 	scale 4.75, 4.75
@@ -47,17 +65,16 @@ rule baraban:
 	
 rule baraban_cornice:
 	scale 5, 5
-
 	
 rule dome_top:
     scale 9, 9,scope_sz+5
-	translate 0,0, 0-1
-	create_roof pyramidal, '1
+	translate 0,0, -1
+	create_roof pyramidal, '0.99
 
 rule dome_middle: 	
 	scale 14, 14,scope_sz+4.5
-	translate 0,0, 0-1.75
-	create_roof pyramidal, '1
+	translate 0,0, -1.75
+	create_roof pyramidal, '0.99
 	
 rule dome_bottom:
     scale '0.8, '0.8
@@ -80,19 +97,40 @@ rule slide_base:
 	nope 
 	
 rule roof0:
+    colour white
+	material plaster
+	roof_colour gray
+	roof_material metal
+    scale scope_sx,scope_sx
 	scale '0.9, '0.9, 3
-	create_roof pyramidal, '1 
+	comp_border 2, dormers_pre
+	restore
+	create_roof pyramidal, '0.99 
+	
+	
+rule dormers_pre:
+    split_x ~1:NILL| 2:dormer | ~3:NILL | 2:dormer | ~1:NILL
+	
+rule dormer:
+    translate 0, 4.5, 0.25 
+	scale '1, 5.0, scope_sx/2
+	create_roof round, '0.99
+    tag roof:orientation, along  	
 	
 rule wall_block:
-    split_z 3: entablement | ~1: wall | 0.6: stylobate 
+    split_z 4: entablement | ~1: wall | 0.6: stylobate 
 	
 rule wall:
+    colour tan
+    material plaster	
     scale scope_sx-0.5, scope_sy-0.5
 	
 rule portico:
-    split_z 3: entablement | ~1: collonade_pre  
+    split_z 4: entablement | ~1: collonade_pre  
 	
 rule entablement:
+    colour white
+    material plaster
 	split_z ~2:fries  | 0.4: cornice | ~3: architrave
 	
 rule cornice: 
@@ -107,13 +145,13 @@ rule collonade_pre:
 	split_x ~1.5: collonade | ~2: NILL		
 	
 rule collonade:
+    colour lightgray
+    material marble # ???
     # we can use repetion in the split pattern ()* 			 
 	split_y  (2: column | ~3.5: NILL)* |  2: column    		 
   		 
 			 
 rule column:
-    #colour white
-	#roof_colour white
 	scale scope_sy, scope_sy
 	split_z 0.15:abacus | 0.4:echinus1 | 0.4:echinus2 | 0.4:echinus3 |  ~11: column_fust | 0.3: column_base | 0.6: stylobate 
 
@@ -133,7 +171,7 @@ rule echinus3:
 rule column_fust:	
 	primitive_cylinder '0.7, 8  
     scale '1, '1, scope_sz+0.3
-    translate 0, 0, 0-0.3	
+    translate 0, 0, -0.3	
 	
 rule column_base:	
     primitive_cylinder '0.95
@@ -142,7 +180,10 @@ rule column_base:
 rule stylobate: 	
 	#scale scope_sx-2, scope_sy-2
 	colour brown
-	material granite	
+	material granite
+    roof_colour brown
+	roof_material granite	
+		
 	
 rule NILL:
     nil 
