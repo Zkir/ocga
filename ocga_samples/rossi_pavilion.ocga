@@ -45,7 +45,7 @@ rule rotunda:
     rotate_scope 0-90
 	primitive_halfcylinder '1, 6	
 	translate 0-2, 0, 0
-	split_z 0.6: NIL| 0.6: roof | 0.5: cornice | 0.75:entablature | ~6:rotunda_collonade_pre | 1.2:stylobate
+	split_z 0.6: NIL| 0.6: roof | 0.25: cornice | 0.75:entablature | ~6:rotunda_collonade_pre | 1.2:stylobate
 	
 rule rotunda_collonade_pre:
 	comp_border 1, rotunda_collonade	
@@ -62,7 +62,7 @@ rule chamber:
 	
 rule portico:
 	scale '0.5, '1
-	split_z 1.2: portico_roof|0.5: cornice|0.75:entablature|~6:collonade|1.2:stylobate
+	split_z 1.2: portico_roof|0.25: cornice|0.75:entablature|~6:collonade|1.2:stylobate
 
 rule portico_roof:
 	scale '1, '1, '0.8

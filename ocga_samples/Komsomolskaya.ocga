@@ -1,0 +1,148 @@
+# OCGA rules example for osm-cga project
+# Komsomolskaya metro station
+# https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%BC%D1%81%D0%BE%D0%BC%D0%BE%D0%BB%D1%8C%D1%81%D0%BA%D0%B0%D1%8F_(%D1%81%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D1%8F_%D0%BC%D0%B5%D1%82%D1%80%D0%BE,_%D0%9A%D0%BE%D0%BB%D1%8C%D1%86%D0%B5%D0%B2%D0%B0%D1%8F_%D0%BB%D0%B8%D0%BD%D0%B8%D1%8F)#%D0%92%D0%B5%D1%81%D1%82%D0%B8%D0%B1%D1%8E%D0%BB%D1%8C
+# (c) Zkir 2024
+ocga 0.1
+
+rule building:
+    align_scope geometry
+	rotate_scope 90
+	outer_rectangle mass_model
+	tag height, 0.1
+	
+rule mass_model:
+    tag windows, no
+	tag height, 13
+	split_x ~10.5: side_part | ~43:main_part | ~10.5:side_part
+	
+rule main_part:
+	tag height, 46
+	split_z   ~33: roofs_and_spire | 0.1:roof0 | 13: wall_block 
+	
+rule side_part:
+	scale '1, '0.6
+	split_x ~1: portico | ~1: wall_block		
+
+rule roofs_and_spire: 	
+	rotate_scope 90
+    primitive_cylinder '0.75, 8
+	split_z 9: spire |
+               2: baraban_dome| 0.3: baraban_dome_cornice| 3: baraban |0.3: baraban_cornice|
+               ~3: dome_top |0.1: dome_middle |~6: dome_bottom | 1: dome_base |2.5: dome_slides | 3:slide_base 
+	
+rule spire:
+	scale 0.6, 0.6
+	translate 0,0, 0-0.5
+	create_roof pyramidal, '0.75
+	
+rule baraban_dome:
+    scale 4, 4
+    create_roof dome, '1
+	
+rule baraban_dome_cornice:
+	scale 4.75, 4.75
+	
+rule baraban:
+	scale 4, 4
+	
+rule baraban_cornice:
+	scale 5, 5
+
+	
+rule dome_top:
+    scale 9, 9,scope_sz+5
+	translate 0,0, 0-1
+	create_roof pyramidal, '1
+
+rule dome_middle: 	
+	scale 14, 14,scope_sz+4.5
+	translate 0,0, 0-1.75
+	create_roof pyramidal, '1
+	
+rule dome_bottom:
+    scale '0.8, '0.8
+	create_roof dome, '0.99
+	
+rule dome_base:
+	scale scope_sx-4.25, scope_sy-4.25
+	
+rule dome_slides:
+	scale scope_sx-1, scope_sy-1
+	comp_border 1.2, dome_slide
+	restore
+	scale scope_sx-2.4, scope_sy-2.4
+
+rule dome_slide:
+	create_roof skillion, '0.99
+	roof_direction 180
+	
+rule slide_base: 	
+	nope 
+	
+rule roof0:
+	scale '0.9, '0.9, 3
+	create_roof pyramidal, '1 
+	
+rule wall_block:
+    split_z 3: entablement | ~1: wall | 0.6: stylobate 
+	
+rule wall:
+    scale scope_sx-0.5, scope_sy-0.5
+	
+rule portico:
+    split_z 3: entablement | ~1: collonade_pre  
+	
+rule entablement:
+	split_z ~2:fries  | 0.4: cornice | ~3: architrave
+	
+rule cornice: 
+    scale scope_sx+1.5, scope_sy+1.5	
+	
+rule fries: 
+    nope
+	#we cannot do this, because geometry will be separated
+	#scale scope_sx-0.5, scope_sy-0.5	
+	
+rule collonade_pre:
+	split_x ~1.5: collonade | ~2: NILL		
+	
+rule collonade:
+    # we can use repetion in the split pattern ()* 			 
+	split_y  (2: column | ~3.5: NILL)* |  2: column    		 
+  		 
+			 
+rule column:
+    #colour white
+	#roof_colour white
+	scale scope_sy, scope_sy
+	split_z 0.15:abacus | 0.4:echinus1 | 0.4:echinus2 | 0.4:echinus3 |  ~11: column_fust | 0.3: column_base | 0.6: stylobate 
+
+	
+rule abacus:	
+	scale '1.2, '1.2
+
+rule echinus1:
+	primitive_cylinder '1	
+	
+rule echinus2:
+	primitive_cylinder '0.85
+	
+rule echinus3:
+	primitive_cylinder '0.75	
+
+rule column_fust:	
+	primitive_cylinder '0.7, 8  
+    scale '1, '1, scope_sz+0.3
+    translate 0, 0, 0-0.3	
+	
+rule column_base:	
+    primitive_cylinder '0.95
+	create_roof dome, '0.95
+	
+rule stylobate: 	
+	#scale scope_sx-2, scope_sy-2
+	colour brown
+	material granite	
+	
+rule NILL:
+    nil 

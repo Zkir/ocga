@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='442603785' timestamp='2016-09-05T21:37:05Z' uid='830106' user='literan' visible='true' version='8' changeset='41942002' lat='55.7767785' lon='37.6560952' />
+  <node id='442603787' timestamp='2016-09-05T21:37:05Z' uid='830106' user='literan' visible='true' version='8' changeset='41942002' lat='55.7766935' lon='37.6561515' />
+  <node id='442603790' timestamp='2016-09-05T21:37:05Z' uid='830106' user='literan' visible='true' version='8' changeset='41942002' lat='55.7767239' lon='37.6562966' />
+  <node id='442603792' timestamp='2016-09-05T21:37:05Z' uid='830106' user='literan' visible='true' version='9' changeset='41942002' lat='55.7763556' lon='37.6565405' />
+  <node id='442603797' timestamp='2016-09-05T21:37:05Z' uid='830106' user='literan' visible='true' version='9' changeset='41942002' lat='55.7763275' lon='37.6564061' />
+  <node id='442603798' timestamp='2016-09-05T21:37:05Z' uid='830106' user='literan' visible='true' version='9' changeset='41942002' lat='55.7762378' lon='37.6564655' />
+  <node id='442603799' timestamp='2016-09-05T21:37:05Z' uid='830106' user='literan' visible='true' version='9' changeset='41942002' lat='55.7761706' lon='37.6561446' />
+  <node id='442603800' timestamp='2016-09-05T21:37:05Z' uid='830106' user='literan' visible='true' version='9' changeset='41942002' lat='55.7762587' lon='37.6560862' />
+  <node id='442603801' timestamp='2016-09-05T21:37:05Z' uid='830106' user='literan' visible='true' version='9' changeset='41942002' lat='55.7762272' lon='37.6559356' />
+  <node id='442603802' timestamp='2016-09-05T21:37:05Z' uid='830106' user='literan' visible='true' version='8' changeset='41942002' lat='55.7765935' lon='37.655693' />
+  <node id='442603807' timestamp='2016-09-05T21:37:05Z' uid='830106' user='literan' visible='true' version='8' changeset='41942002' lat='55.7767109' lon='37.6557725' />
+  <node id='1027312045' timestamp='2023-09-30T02:59:07Z' uid='485808' user='Alexey Lukin' visible='true' version='21' changeset='141935724' lat='55.7767424' lon='37.6559229'>
+    <tag k='entrance' v='exit' />
+    <tag k='network' v='Московский метрополитен' />
+    <tag k='operator' v='ГУП «Московский метрополитен»' />
+    <tag k='railway' v='subway_entrance' />
+    <tag k='ref' v='1' />
+    <tag k='wheelchair' v='yes' />
+  </node>
+  <node id='1461596071' timestamp='2016-09-05T21:37:02Z' uid='830106' user='literan' visible='true' version='2' changeset='41942002' lat='55.7766224' lon='37.6558311' />
+  <node id='5310940723' timestamp='2023-10-28T08:53:07Z' uid='599809' user='ig4map' visible='true' version='3' changeset='143249093' lat='55.7762012' lon='37.6562909'>
+    <tag k='network' v='Московский метрополитен' />
+    <tag k='railway' v='subway_entrance' />
+    <tag k='ref' v='2' />
+  </node>
+  <node id='8390987359' timestamp='2021-02-03T16:08:32Z' uid='10129333' user='solenoid jam' visible='true' version='1' changeset='98655058' lat='55.7762525' lon='37.6560564'>
+    <tag k='historic' v='memorial' />
+    <tag k='inscription' v='Сооружено 1950-1952 г.г. по проекту академика Алексея Викторовича Шусева' />
+    <tag k='memorial' v='plaque' />
+  </node>
+  <way id='37735408' timestamp='2021-03-05T15:58:54Z' uid='10129333' user='solenoid jam' visible='true' version='13' changeset='100502280'>
+    <nd ref='442603801' />
+    <nd ref='442603802' />
+    <nd ref='1461596071' />
+    <nd ref='442603807' />
+    <nd ref='1027312045' />
+    <nd ref='442603785' />
+    <nd ref='442603787' />
+    <nd ref='442603790' />
+    <nd ref='442603792' />
+  </way>
+  <way id='365059595' timestamp='2021-02-03T16:08:32Z' uid='10129333' user='solenoid jam' visible='true' version='4' changeset='98655058'>
+    <nd ref='442603792' />
+    <nd ref='442603797' />
+    <nd ref='442603798' />
+    <nd ref='5310940723' />
+    <nd ref='442603799' />
+    <nd ref='442603800' />
+    <nd ref='8390987359' />
+    <nd ref='442603801' />
+  </way>
+  <relation id='5428216' timestamp='2024-10-08T15:14:54Z' uid='100812' user='Zkir' visible='true' version='9' changeset='157632110'>
+    <member type='way' ref='37735408' role='outer' />
+    <member type='way' ref='365059595' role='outer' />
+    <tag k='addr:housenumber' v='5A' />
+    <tag k='addr:street' v='Комсомольская площадь' />
+    <tag k='architect' v='Алексей Викторович Шусев' />
+    <tag k='building' v='train_station' />
+    <tag k='building:architecture' v='stalinist_neoclassicism' />
+    <tag k='building:colour' v='lightgrey;white' />
+    <tag k='building:levels' v='2' />
+    <tag k='building:material' v='plaster' />
+    <tag k='description' v='Наземный вестибюль станции Комсомольская' />
+    <tag k='historic' v='building' />
+    <tag k='roof:colour' v='silver' />
+    <tag k='roof:material' v='metal' />
+    <tag k='start_date' v='1952' />
+    <tag k='type' v='multipolygon' />
+    <tag k='wikidata' v='Q1200275' />
+    <tag k='wikipedia' v='ru:Комсомольская (станция метро, Кольцевая линия)' />
+  </relation>
+</osm>
