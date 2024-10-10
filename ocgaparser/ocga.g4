@@ -24,6 +24,7 @@ operator:
 	SPLIT_Y split_pattern |
 	SPLIT_Z split_pattern |
 	ROTATESCOPE expr |
+	ROTATE expr |
 	PRIMITIVECYLINDER expr |
 	PRIMITIVECYLINDER expr COMMA expr | 
 	PRIMITIVEHALFCYLINDER expr |
@@ -56,6 +57,7 @@ relative_number: RELATIVE_MARK NUMBER;
 	
 simple_expr:     LITERAL
            |     NUMBER
+		   |     MINUS NUMBER
            |     LPAREN expr RPAREN 
 		   ;
 
@@ -92,6 +94,7 @@ COMPBORDER:           'comp_border';
 RESTORE:              'restore';
 NIL:                  'nil';
 NOPE:                 'nope';
+ROTATE:               'rotate';
 
 NUMBER
     : ('0' .. '9')+ ('.' ('0' .. '9')+)?

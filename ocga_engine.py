@@ -415,9 +415,64 @@ def parseRelativeValue(val, abs_size):
         val=float(val)
     return val
 
-def scale(osmObject, objOsmGeom, sx, sy, sz=None):
+# here we use closures, instead of matrix multiplication.
+# just for fun    
+def translate_op(dx,dy):
+    def transform_op(x, y):
+        # transfer
+        x1 = x + dx
+        y1 = y + dy
+        return x1, y1
+        
+    return transform_op  
+    
+def scale_op(kx,ky):
+    def transform_op(x, y):
+        # scale
+        x1 = x*kx
+        y1 = y*ky
+        return x1, y1
+        
+    return transform_op      
+
+def rotate_op(zAngle):
+    def transform_op(x, y):
+        # rotate
+        rz = zAngle/180*pi
+        x1 = x * cos(rz) - y * sin(rz)
+        y1 = x * sin(rz) + y * cos(rz)  
+        return x1, y1
+        
+    return transform_op      
+    
+#affine transform for scale, rotate and translate    
+def affine_transform(osmObject, objOsmGeom, transform_op):
     if osmObject.type == "relation":
-        raise Exception("todo: relations is not supported in scale operation")
+        raise Exception("todo: relations is not yet(?) supported in transform operations")
+        
+    # we should not transform the same node twice
+    if osmObject.NodeRefs[0] == osmObject.NodeRefs[-1]:
+        closed_way_flag = 1
+    else:
+        closed_way_flag = 0
+
+    new_node_refs =[]
+    for i in range(len(osmObject.NodeRefs)-closed_way_flag):
+        node = osmObject.NodeRefs[i]
+        # we need to do an affine transform in object local coordinates
+        x, y = osmObject.LatLon2LocalXY(objOsmGeom.nodes[node].lat, objOsmGeom.nodes[node].lon)
+        x, y = transform_op(x,y)
+        lat, lon=osmObject.localXY2LatLon(x, y)
+
+        node_ref=objOsmGeom.AddNode(getID(), lat, lon)
+        new_node_refs.append(node_ref)
+
+    if closed_way_flag == 1:
+        new_node_refs.append(new_node_refs[0])
+
+    osmObject.NodeRefs=new_node_refs    
+
+def scale(osmObject, objOsmGeom, sx, sy, sz=None):
 
     if sz is not None:
         # Luckily, z-scale is simple. No matrix, no geometry
@@ -442,33 +497,14 @@ def scale(osmObject, objOsmGeom, sx, sy, sz=None):
     ky = sy / osmObject.scope_sy
 
     if kx != 1 or ky != 1:
-        # we should not transfer the same node twice
-        if osmObject.NodeRefs[0] == osmObject.NodeRefs[-1]:
-            closed_way_flag = 1
-        else:
-            closed_way_flag = 0
-
-        new_node_refs =[]
-        for i in range(len(osmObject.NodeRefs)-closed_way_flag):
-            node = osmObject.NodeRefs[i]
-            x, y = osmObject.LatLon2LocalXY(objOsmGeom.nodes[node].lat, objOsmGeom.nodes[node].lon)
-            x = x*kx
-            y = y*ky
-            lat, lon=osmObject.localXY2LatLon(x, y)
-
-            node_ref=objOsmGeom.AddNode(getID(), lat, lon)
-            new_node_refs.append(node_ref)
-
-        if closed_way_flag == 1:
-            new_node_refs.append(new_node_refs[0])
-
-        osmObject.NodeRefs=new_node_refs
+        affine_transform(osmObject, objOsmGeom, scale_op(kx,ky))
 
     osmObject.updateBBox(objOsmGeom)
     osmObject.updateScopeBBox(objOsmGeom)
 
+    
 
-def translate (osmObject, objOsmGeom, dx, dy, dz=None):
+def translate(osmObject, objOsmGeom, dx, dy, dz=None):
     if osmObject.type == "relation":
         raise Exception("todo: relations is not supported")
 
@@ -488,30 +524,17 @@ def translate (osmObject, objOsmGeom, dx, dy, dz=None):
     dy = parseRelativeValue(dy, osmObject.scope_sy)
 
     if dx != 0 or dy != 0:
-        # we should not transfer the same node twice
-        if osmObject.NodeRefs[0] == osmObject.NodeRefs[-1]:
-            closed_way_flag = 1
-        else:
-            closed_way_flag = 0
-
-        new_node_refs =[]
-        for i in range(len(osmObject.NodeRefs)-closed_way_flag):
-            node = osmObject.NodeRefs[i]
-            x, y = osmObject.LatLon2LocalXY(objOsmGeom.nodes[node].lat, objOsmGeom.nodes[node].lon)
-            x = x + dx
-            y = y + dy
-            lat, lon=osmObject.localXY2LatLon(x, y)
-
-            node_ref=objOsmGeom.AddNode(getID(), lat, lon)
-            new_node_refs.append(node_ref)
-
-        if closed_way_flag == 1:
-            new_node_refs.append(new_node_refs[0])
-
-        osmObject.NodeRefs=new_node_refs
+        affine_transform(osmObject, objOsmGeom, translate_op(dx,dy))
 
     osmObject.updateBBox(objOsmGeom)
     osmObject.updateScopeBBox(objOsmGeom)
+    
+def rotate(osmObject, objOsmGeom, zAngle):
+
+    if zAngle != 0:
+        affine_transform(osmObject, objOsmGeom, rotate_op(zAngle))
+    osmObject.updateBBox(objOsmGeom)
+    osmObject.updateScopeBBox(objOsmGeom)        
 
 
 def bevel(osmObject, objOsmGeom, r, node_list=None):
@@ -821,7 +844,7 @@ class OCGAContext:
         translate(self.current_object, self.objOsmGeom, dx, dy, dz)
 
     def rotate(self, rz):
-        raise Exception("rotate operation is non implemented yet")
+        rotate(self.current_object, self.objOsmGeom, rz)
 
     # ===========================================================================
     # Geometry modifications
