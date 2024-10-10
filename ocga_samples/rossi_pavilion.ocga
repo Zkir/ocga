@@ -7,7 +7,7 @@ ocga 0.1
 
 rule building:
     align_scope geometry
-	rotate_scope 0-90
+	rotate_scope -90
 	tag height, 0.1
 	outer_rectangle mass_model
 	
@@ -42,9 +42,9 @@ rule stylobate:
 	
 rule rotunda: 		
     scale 12, 6
-    rotate_scope 0-90
+    rotate_scope -90
 	primitive_halfcylinder '1, 6	
-	translate 0-2, 0, 0
+	translate -2, 0, 0
 	split_z 0.6: NIL| 0.6: roof | 0.25: cornice | 0.75:entablature | ~6:rotunda_collonade_pre | 1.2:stylobate
 	
 rule rotunda_collonade_pre:
