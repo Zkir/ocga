@@ -88,38 +88,22 @@
   <node id="-145" version="1"  lat="59.93903161997954" lon="30.315855188581494"/>
   <node id="-146" version="1"  lat="59.93903995207677" lon="30.315861130649495"/>
   <node id="-147" version="1"  lat="59.939048788990824" lon="30.3158602550194"/>
-  <node id="-151" version="1"  lat="59.939057387479195" lon="30.31582995589916"/>
-  <node id="-152" version="1"  lat="59.93905144898963" lon="30.315843049372702"/>
-  <node id="-156" version="1"  lat="59.939058921184426" lon="30.315818133362438"/>
-  <node id="-157" version="1"  lat="59.93905594467732" lon="30.315834766924127"/>
-  <node id="-161" version="1"  lat="59.93905807183181" lon="30.3158060390758"/>
-  <node id="-162" version="1"  lat="59.93905851045338" lon="30.315823680415743"/>
-  <node id="-166" version="1"  lat="59.93905496872755" lon="30.315795514284346"/>
-  <node id="-167" version="1"  lat="59.93905875570164" lon="30.315811477667076"/>
-  <node id="-171" version="1"  lat="59.939050084291154" lon="30.315788161291206"/>
-  <node id="-172" version="1"  lat="59.9390566430853" lon="30.3158000164358"/>
-  <node id="-176" version="1"  lat="59.93904416213379" lon="30.315785099521932"/>
-  <node id="-177" version="1"  lat="59.93905249423102" lon="30.315791041591055"/>
-  <node id="-181" version="1"  lat="59.93903810385023" lon="30.315786795102728"/>
-  <node id="-182" version="1"  lat="59.939046940764285" lon="30.315785919472656"/>
-  <node id="-186" version="1"  lat="59.93903283175923" lon="30.315792989897215"/>
-  <node id="-187" version="1"  lat="59.93904082815004" lon="30.31578542987757"/>
-  <node id="-191" version="1"  lat="59.93902914848884" lon="30.315802740805044"/>
-  <node id="-192" version="1"  lat="59.93903508697841" lon="30.315789647342413"/>
-  <node id="-196" version="1"  lat="59.93902761478361" lon="30.315814563339877"/>
-  <node id="-197" version="1"  lat="59.93903059129072" lon="30.3157979297958"/>
-  <node id="-201" version="1"  lat="59.93902846413623" lon="30.315826657628378"/>
-  <node id="-202" version="1"  lat="59.93902802551466" lon="30.31580901630824"/>
-  <node id="-206" version="1"  lat="59.93903156724049" lon="30.315837182424346"/>
-  <node id="-207" version="1"  lat="59.9390277802664" lon="30.315821219057838"/>
-  <node id="-211" version="1"  lat="59.939036451676884" lon="30.315844535422023"/>
-  <node id="-212" version="1"  lat="59.939029892882736" lon="30.315832680286373"/>
-  <node id="-216" version="1"  lat="59.93904237383425" lon="30.315847597193184"/>
-  <node id="-217" version="1"  lat="59.93903404173702" lon="30.315841655126306"/>
-  <node id="-221" version="1"  lat="59.93904843211781" lon="30.315845901610526"/>
-  <node id="-222" version="1"  lat="59.93903959520375" lon="30.315846777240647"/>
-  <node id="-226" version="1"  lat="59.93905370420881" lon="30.315839706811524"/>
-  <node id="-227" version="1"  lat="59.939045707817996" lon="30.315847266834805"/>
+  <node id="-151" version="1"  lat="59.93905654739908" lon="30.315832219570165"/>
+  <node id="-152" version="1"  lat="59.9390524941443" lon="30.315841156381715"/>
+  <node id="-156" version="1"  lat="59.93905857898329" lon="30.31582086651026"/>
+  <node id="-161" version="1"  lat="59.93905827960667" lon="30.315808825602456"/>
+  <node id="-166" version="1"  lat="59.93905569484657" lon="30.31579792996581"/>
+  <node id="-171" version="1"  lat="59.9390512182093" lon="30.315789838362235"/>
+  <node id="-176" version="1"  lat="59.9390455312223" lon="30.315785782665028"/>
+  <node id="-181" version="1"  lat="59.93903949967779" lon="30.315786380317316"/>
+  <node id="-186" version="1"  lat="59.93903404182374" lon="30.315791540331965"/>
+  <node id="-191" version="1"  lat="59.939029988568954" lon="30.315800477143515"/>
+  <node id="-196" version="1"  lat="59.939027956984745" lon="30.31581183020342"/>
+  <node id="-201" version="1"  lat="59.93902825636137" lon="30.315823871111224"/>
+  <node id="-206" version="1"  lat="59.939030841121465" lon="30.31583476674787"/>
+  <node id="-211" version="1"  lat="59.93903531775874" lon="30.315842858351445"/>
+  <node id="-216" version="1"  lat="59.93904100474574" lon="30.315846914048652"/>
+  <node id="-221" version="1"  lat="59.93904703629025" lon="30.315846316396364"/>
   <node id="-228" version="1"  lat="59.93905292326804" lon="30.31584231024334"/>
   <node id="-229" version="1"  lat="59.93905716504629" lon="30.315832957766133"/>
   <node id="-230" version="1"  lat="59.9390592911228" lon="30.315821076656935"/>
@@ -374,7 +358,7 @@
     <nd ref="-133" />
     <nd ref="-134" />
     <nd ref="-156" />
-    <nd ref="-157" />
+    <nd ref="-151" />
     <nd ref="-133" />
     <tag k="building:part" v="column_base_part" />
     <tag k="height" v="10.394" />
@@ -390,7 +374,7 @@
     <nd ref="-134" />
     <nd ref="-135" />
     <nd ref="-161" />
-    <nd ref="-162" />
+    <nd ref="-156" />
     <nd ref="-134" />
     <tag k="building:part" v="column_base_part" />
     <tag k="height" v="10.394" />
@@ -406,7 +390,7 @@
     <nd ref="-135" />
     <nd ref="-136" />
     <nd ref="-166" />
-    <nd ref="-167" />
+    <nd ref="-161" />
     <nd ref="-135" />
     <tag k="building:part" v="column_base_part" />
     <tag k="height" v="10.394" />
@@ -422,7 +406,7 @@
     <nd ref="-136" />
     <nd ref="-137" />
     <nd ref="-171" />
-    <nd ref="-172" />
+    <nd ref="-166" />
     <nd ref="-136" />
     <tag k="building:part" v="column_base_part" />
     <tag k="height" v="10.394" />
@@ -438,7 +422,7 @@
     <nd ref="-137" />
     <nd ref="-138" />
     <nd ref="-176" />
-    <nd ref="-177" />
+    <nd ref="-171" />
     <nd ref="-137" />
     <tag k="building:part" v="column_base_part" />
     <tag k="height" v="10.394" />
@@ -454,7 +438,7 @@
     <nd ref="-138" />
     <nd ref="-139" />
     <nd ref="-181" />
-    <nd ref="-182" />
+    <nd ref="-176" />
     <nd ref="-138" />
     <tag k="building:part" v="column_base_part" />
     <tag k="height" v="10.394" />
@@ -470,7 +454,7 @@
     <nd ref="-139" />
     <nd ref="-140" />
     <nd ref="-186" />
-    <nd ref="-187" />
+    <nd ref="-181" />
     <nd ref="-139" />
     <tag k="building:part" v="column_base_part" />
     <tag k="height" v="10.394" />
@@ -486,7 +470,7 @@
     <nd ref="-140" />
     <nd ref="-141" />
     <nd ref="-191" />
-    <nd ref="-192" />
+    <nd ref="-186" />
     <nd ref="-140" />
     <tag k="building:part" v="column_base_part" />
     <tag k="height" v="10.394" />
@@ -502,7 +486,7 @@
     <nd ref="-141" />
     <nd ref="-142" />
     <nd ref="-196" />
-    <nd ref="-197" />
+    <nd ref="-191" />
     <nd ref="-141" />
     <tag k="building:part" v="column_base_part" />
     <tag k="height" v="10.394" />
@@ -518,7 +502,7 @@
     <nd ref="-142" />
     <nd ref="-143" />
     <nd ref="-201" />
-    <nd ref="-202" />
+    <nd ref="-196" />
     <nd ref="-142" />
     <tag k="building:part" v="column_base_part" />
     <tag k="height" v="10.394" />
@@ -534,7 +518,7 @@
     <nd ref="-143" />
     <nd ref="-144" />
     <nd ref="-206" />
-    <nd ref="-207" />
+    <nd ref="-201" />
     <nd ref="-143" />
     <tag k="building:part" v="column_base_part" />
     <tag k="height" v="10.394" />
@@ -550,7 +534,7 @@
     <nd ref="-144" />
     <nd ref="-145" />
     <nd ref="-211" />
-    <nd ref="-212" />
+    <nd ref="-206" />
     <nd ref="-144" />
     <tag k="building:part" v="column_base_part" />
     <tag k="height" v="10.394" />
@@ -566,7 +550,7 @@
     <nd ref="-145" />
     <nd ref="-146" />
     <nd ref="-216" />
-    <nd ref="-217" />
+    <nd ref="-211" />
     <nd ref="-145" />
     <tag k="building:part" v="column_base_part" />
     <tag k="height" v="10.394" />
@@ -582,7 +566,7 @@
     <nd ref="-146" />
     <nd ref="-147" />
     <nd ref="-221" />
-    <nd ref="-222" />
+    <nd ref="-216" />
     <nd ref="-146" />
     <tag k="building:part" v="column_base_part" />
     <tag k="height" v="10.394" />
@@ -597,8 +581,8 @@
   <way id="-223" version="1" >
     <nd ref="-147" />
     <nd ref="-132" />
-    <nd ref="-226" />
-    <nd ref="-227" />
+    <nd ref="-152" />
+    <nd ref="-221" />
     <nd ref="-147" />
     <tag k="building:part" v="column_base_part" />
     <tag k="height" v="10.394" />

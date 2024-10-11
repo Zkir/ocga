@@ -104,7 +104,8 @@ rule metal_base:
 rule column_base:   
     primitive_cylinder '1, 16
     scale '0.8, '0.8 
-	comp_edges 0.8, column_base_part	
+	# comp_border operation, we create half-torus like figure, nodes connected 
+	comp_border 0.8, column_base_part	
 	
 rule column_base_part:
 	create_roof round, '0.5
@@ -139,6 +140,8 @@ rule step2:
 
 rule step3:	
    scale 10.1, 10.1
+   # comp_edges is like com_border operation, but it just creates rectangle for each egde.
+   # it's usefull here, because we would like to create a cube for each corner
    comp_edges 1, obelisk
    restore 
    
