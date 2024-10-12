@@ -1085,9 +1085,12 @@ def ocga_process(input_file, output_file, checkRulesMy, updatable=False, rebuild
                 
     writeOsmXml(ctx.objOsmGeom, ctx.Objects, output_file, updatable)
 
+# for pylint, it will be defined in exec(lines) below
+checkRulesMy = None  
     
 def ocga_process2(input_file, output_file, rules_file, compiled_rules_file=None, updatable=False, rebuild_outline=True):     
     
+    global checkRulesMy
     
     with open(rules_file) as f:
         lines = f.read()
