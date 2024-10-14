@@ -31,6 +31,7 @@ assert test("tsaritsino_rotunda_ocga.py",             "tsaritsino_rotunda.osm")
 #new ocga rules
 assert test("alexander_column.ocga",                  "alexander_column.osm")
 assert test("moscow_manege.ocga",                     "moscow_manege.osm")
+assert test("komsomolskaya_station.ocga",              "komsomolskaya_station.osm")
 
 
 print("Tests passed OK")
