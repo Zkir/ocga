@@ -53,6 +53,15 @@ class ocgaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by ocgaParser#сonditional.
+    def enterСonditional(self, ctx:ocgaParser.СonditionalContext):
+        pass
+
+    # Exit a parse tree produced by ocgaParser#сonditional.
+    def exitСonditional(self, ctx:ocgaParser.СonditionalContext):
+        pass
+
+
     # Enter a parse tree produced by ocgaParser#split_pattern.
     def enterSplit_pattern(self, ctx:ocgaParser.Split_patternContext):
         pass
@@ -86,6 +95,24 @@ class ocgaListener(ParseTreeListener):
 
     # Exit a parse tree produced by ocgaParser#split_selector.
     def exitSplit_selector(self, ctx:ocgaParser.Split_selectorContext):
+        pass
+
+
+    # Enter a parse tree produced by ocgaParser#list.
+    def enterList(self, ctx:ocgaParser.ListContext):
+        pass
+
+    # Exit a parse tree produced by ocgaParser#list.
+    def exitList(self, ctx:ocgaParser.ListContext):
+        pass
+
+
+    # Enter a parse tree produced by ocgaParser#lexpr.
+    def enterLexpr(self, ctx:ocgaParser.LexprContext):
+        pass
+
+    # Exit a parse tree produced by ocgaParser#lexpr.
+    def exitLexpr(self, ctx:ocgaParser.LexprContext):
         pass
 
 

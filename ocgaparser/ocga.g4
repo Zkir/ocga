@@ -8,70 +8,90 @@ rule_header: RULE rule_name COLUMN;
 /* operators  */
 
 operator:
-	ALIGNSCOPE 'geometry' |  
-	TAG key_name COMMA tag_value |
-	ROOFCOLOUR tag_value |
+    сonditional |
+    ALIGNSCOPE ('geometry' | 'x_to_longer_side') |  
+    TAG key_name COMMA tag_value |
+    ROOFCOLOUR tag_value |
     ROOFMATERIAL tag_value |
     COLOUR tag_value |
     MATERIAL tag_value |
-	OUTERRECTANGLE rule_name  |
-	MASSMODEL rule_name |  
-	SCALE expr COMMA expr  |
-	SCALE expr COMMA expr COMMA expr  |
-	TRANSLATE expr COMMA expr  |
-	TRANSLATE expr COMMA expr COMMA expr  |
-	SPLIT_X split_pattern |
-	SPLIT_Y split_pattern |
-	SPLIT_Z split_pattern |
-	ROTATESCOPE expr |
-	ROTATE expr |
-	PRIMITIVECYLINDER expr |
-	PRIMITIVECYLINDER expr COMMA expr | 
-	PRIMITIVEHALFCYLINDER expr |
-	PRIMITIVEHALFCYLINDER expr COMMA expr | 
-	ROOF roof_shape COMMA expr |  
-	ROOFDIRECTION expr |  
-	COMPBORDER expr COMMA rule_name |
-	COMPEDGES  expr COMMA rule_name |
-	RESTORE |
-	NIL |
-	NOPE
-	;  
+    OUTERRECTANGLE rule_name  |
+    MASSMODEL rule_name |  
+    SCALE expr COMMA expr  |
+    SCALE expr COMMA expr COMMA expr  |
+    TRANSLATE expr COMMA expr  |
+    TRANSLATE expr COMMA expr COMMA expr  |
+    SPLIT_X split_pattern |
+    SPLIT_Y split_pattern |
+    SPLIT_Z split_pattern |
+    ROTATESCOPE expr |
+    ROTATE expr |
+    PRIMITIVECYLINDER expr |
+    PRIMITIVECYLINDER expr COMMA expr | 
+    PRIMITIVEHALFCYLINDER expr |
+    PRIMITIVEHALFCYLINDER expr COMMA expr | 
+    ROOF roof_shape COMMA expr |  
+    ROOFDIRECTION expr |  
+    COMPBORDER expr COMMA rule_name |
+    COMPEDGES  expr COMMA rule_name |
+    COMPROOF rule_name |     
+    BEVEL expr |
+    BEVEL expr COMMA list |
+    RESTORE |
+    NIL |
+    NOPE |
+    PRINT expr
+    ;  
 
-
+сonditional: IF lexpr THEN operator+ ENDIF | 
+             IF lexpr THEN operator+ ELSE operator+ ENDIF;
     
 /* spit pattern for split operator */
 split_pattern:         split_pattern_element (PIPE split_pattern_element)* ;
 split_pattern_element: split_selector COLUMN rule_name     #simple_split_pattern
                      | LPAREN split_pattern RPAREN MULT    #repeat_split_pattern 
-					 ;
-					 
+                     ;
+                     
 split_selector:        NUMBER | APPROX_MARK NUMBER ;
+list: LBRACKET NUMBER (COMMA NUMBER)* RBRACKET;
+
+/* logical expressions, allowed in conditional */
+lexpr: expr '<' expr | 
+       expr '>' expr | 
+       expr '<=' expr | 
+       expr '>=' expr | 
+       expr '==' expr ;             
 
 /* arithmetic expressions, allowed in certain operators*/
 expr:            relative_number 
     |            simple_expr
     |            expr (MULT|DIV) expr 
     |            expr (PLUS|MINUS) expr
-	;
+    ;
 relative_number: RELATIVE_MARK NUMBER;
-	
+    
 simple_expr:     LITERAL
            |     NUMBER
-		   |     MINUS NUMBER
+           |     MINUS NUMBER
            |     LPAREN expr RPAREN 
-		   ;
+           ;
 
 
 rule_name:            LITERAL;
 roof_shape:           LITERAL;
     
 key_name  : LITERAL (COLUMN LITERAL)* ;
-tag_value : LITERAL | NUMBER ;
+tag_value : LITERAL | HEX_COLOUR_MARK? NUMBER ;
     
 /* reserved words */
-RULE:                 'rule';
 OCGA:                 'ocga';
+RULE:                 'rule';
+IF:                   'if'; 
+THEN:                 'then';
+ELSE:                 'else' ;
+ENDIF:                'endif';
+
+
 TAG:                  'tag' ;
 ROOFCOLOUR:           'roof_colour';
 ROOFMATERIAL:         'roof_material';
@@ -93,21 +113,25 @@ ROOF:                 'create_roof';
 ROOFDIRECTION:        'roof_direction';
 COMPBORDER:           'comp_border'; 
 COMPEDGES:            'comp_edges'; 
+COMPROOF:             'comp_roof';
 RESTORE:              'restore';
 NIL:                  'nil';
 NOPE:                 'nope';
 ROTATE:               'rotate';
+BEVEL:                'bevel';
+PRINT:                'print';   
 
 NUMBER
     : ('0' .. '9')+ ('.' ('0' .. '9')+)?
     ;
-//it seems that literal definitions in ANTLR cannot intersect	
+//it seems that literal definitions in ANTLR cannot intersect    
 //that's why more narrow definition NUMBER should precede RULE_NAME
 LITERAL:            [A-Za-z0-9_]+;   /*Letters, numbers and underscore */
 
 
 RELATIVE_MARK: '\'';
 APPROX_MARK: '~';
+HEX_COLOUR_MARK: '&';
 
 COLUMN:   ':';
 COMMA:    ',';
@@ -117,11 +141,15 @@ LCURLY:   '{';
 RCURLY:   '}';
 LPAREN:   '(';
 RPAREN:   ')';
+LBRACKET: '[';
+RBRACKET: ']';
 
 PLUS:     '+';
 MINUS:    '-';
 MULT:    '*';
 DIV:      '/';
+
+
 
                      
 COMMENT: '#' ~[\r\n]* ->skip;

@@ -256,7 +256,7 @@ def comp_edges(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
     distance = float(distance)
     
     if osmObject.type == "relation":
-        raise Exception("relation is not yet supported in the comp_roof_border operation")
+        raise Exception("relation is not yet supported in the comp_edges operation")
 
     for i in range(len(osmObject.NodeRefs) - 1):
         new_obj = T3DObject()
@@ -309,7 +309,7 @@ def comp_border(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
     distance = float(distance)
     
     if osmObject.type == "relation":
-        raise Exception("relation is not yet supported in the comp_roof_border operation")
+        raise Exception("relation is not yet supported in the comp_border operation")
 
     for i in range(len(osmObject.NodeRefs) - 1):
         new_obj = T3DObject()
@@ -771,16 +771,20 @@ class OCGAContext:
     def tag(self, key, value):     
         #if not self.current_object.isBuilding() and key in ['height', 'min_height', 'roof:height']:
         #    print("WARNING: tag " + key + " cannot be changed directly. Please use scale/translate/create_roof operators instead") #raise Exception
+        if type(value) is str:
+            value=value.replace("half_dome", "half-dome")
         
         self._setTag(key, value) 
 
     def colour(self, value):
+        value = value.replace("&","#") #TODO: remove
         self._setTag("building:colour", value) 
         
     def material(self, value):
         self._setTag("building:material", value) 
         
     def roof_colour(self, value):
+        value = value.replace("&","#") #TODO: remove
         self._setTag("roof:colour", value) 
         
     def roof_material(self, value):
@@ -805,13 +809,17 @@ class OCGAContext:
         return self.current_object.scope_rz/pi*180
 
     def align_scope(self, alignment):
-        allowed_alignments = ['geometry']
+        allowed_alignments = ['geometry', 'x_to_longer_side']
         alignment = str(alignment)
         if alignment not in allowed_alignments:
-            raise Exception("Allowed parameters for align_scope operation are:" + str(allowed_alignments) )
+            raise Exception("Allowed parameters for align_scope operation are:" + str(allowed_alignments) + " but '"+alignment+"' was submitted" )
         
         if alignment == 'geometry':
             self.current_object.alignScopeToGeometry(self.objOsmGeom)
+            
+        if alignment == 'x_to_longer_side':          
+            self.alignXToLongerScopeSide()
+        
 
     def alignXToLongerScopeSide(self):
         if self.current_object.scope_sx < self.current_object.scope_sy:
@@ -848,6 +856,10 @@ class OCGAContext:
         
     def create_roof(self, roof_shape, roof_height):
         """ Not really a geometry operation, but rather tag setter."""    
+        # some symbols have to be replaced
+        # as dash is not allowed in ocga ids
+        
+        roof_shape=roof_shape.replace("half_dome", "half-dome")
         self._setTag("roof:shape", roof_shape)
         
         roof_height = parseRelativeValue(roof_height, self.scope_sz())
@@ -968,6 +980,10 @@ class OCGAContext:
         if parent_building is not None:
             if parent_building.parts.count(self.current_object)>0:
                 parent_building.parts.remove(self.current_object)
+                
+                
+    def print(self, s):
+        print(s)    
 
     # ==================================================================================================================
     # Main loop for rule processing

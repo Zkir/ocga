@@ -7,6 +7,21 @@ from antlr4 import *
 from ocgaparser.ocgaLexer import ocgaLexer
 from ocgaparser.ocgaParser import ocgaParser
 
+built_in_immutables = {"scope_sx":    "ctx.scope_sx()",
+                       "scope_sy":    "ctx.scope_sy()",
+                       "scope_sz":    "ctx.scope_sz()",
+                       "scope_rz":    "ctx.scope_rz()",
+                       "relative_Ox": "ctx.current_object.relative_Ox"
+                      }
+
+def substitute_build_in_immutables(parameter):       
+    # TODO: we need proper check for built-in immutables!
+    # and also check that literals are defined!
+    for key, value in built_in_immutables.items():
+        parameter = parameter.replace(key, value)    
+        
+    return parameter
+
 def parse_split_pattern_element(split_element):
     size, rule_name = split_element.split(":")
     return (size.strip(), rule_name.strip())
@@ -31,6 +46,70 @@ def parse_split_pattern(op_element):
             
     parameter = tuple(parameter)  
     return parameter
+    
+    
+def visitOperator(operator_ctx, indent):
+    s =''
+    assert (type(operator_ctx) is ocgaParser.OperatorContext)
+    operator_name = operator_ctx.children[0].getText()
+    if type(operator_ctx.children[0]) is ocgaParser.СonditionalContext:
+        for child in operator_ctx.children[0].children:
+            #print (type(child), child.getText()) 
+            if type(child) is ocgaParser.LexprContext:
+                lexpr = child.getText()
+                lexpr=substitute_build_in_immutables(lexpr)
+                s += lexpr +  ' '    
+            elif type(child) is ocgaParser.OperatorContext:
+                #s += ' '*12 + 'pass \n'
+                s += visitOperator(child, indent+4)
+                
+            elif child.getText() in ['if', 'then', 'else', 'endif']:
+                if child.getText()=='if':
+                    s += ' '*indent +  'if '
+                elif child.getText()=='then':
+                    s += ': \n'
+                elif child.getText()=='else':
+                    s += ' '*indent +'else: \n'
+                elif child.getText()=='endif':
+                    pass # endif is not needed in python
+                
+            else:
+                raise Exception("smth unxepected found: " + child.getText())                            
+    else:    
+        s += ' '*indent + 'ctx.'+operator_name +'('
+
+        for  j in range(1,len(operator_ctx.children)):
+            op_element = operator_ctx.children[j]
+            
+            parameter = op_element.getText()
+            if parameter == ',':
+                continue
+            if type(op_element) is ocgaParser.Split_patternContext:
+                #recursive parsing of split pattern
+                parameter = parse_split_pattern(op_element)
+                parameter = str(parameter)        
+
+            elif type(op_element) is ocgaParser.ExprContext:
+                
+                if type(op_element.children[0]) is ocgaParser.Relative_numberContext:
+                    parameter ='"'+parameter + '"'    
+                else:    
+                    parameter = substitute_build_in_immutables(parameter)
+                    
+            elif type(op_element) is ocgaParser.ListContext:
+                #list (currently) goes to python exactly as it is 
+                pass
+            else:
+                parameter ='"'+parameter + '"'
+
+            if parameter != ',':
+                if j >1:
+                    s+=', '
+                s += parameter
+        s += ')\n'
+    
+    
+    return s     
 
 
 def ocga2py(ocga_lines):
@@ -63,47 +142,8 @@ def ocga2py(ocga_lines):
             #print ("rule " + rule_name  +':' )
             for i in range(1,len(child.children)):
                 operator_ctx=child.children[i]
-                operator_name = operator_ctx.children[0].getText()
-                s += ' '*8 + 'ctx.'+operator_name +'('
-
-                for  j in range(1,len(operator_ctx.children)):
-                    op_element = operator_ctx.children[j]
-                    
-                    parameter = op_element.getText()
-                    if parameter == ',':
-                        continue
-                    if type(op_element) is ocgaParser.Split_patternContext:
-                        #recursive parsing of split pattern
-                        parameter = parse_split_pattern(op_element)
-                        parameter = str(parameter)        
-
-                    elif type(op_element) is ocgaParser.ExprContext:
-                        
-                        if type(op_element.children[0]) is ocgaParser.Relative_numberContext:
-                            parameter ='"'+parameter + '"'    
-                        else:    
-                           
-                            #exit(123)
-                            #TODO: we need proper check for build in immutables!
-                            # and also check that literals are defined!
-                            if "scope_sx" in parameter or "scope_sy" in parameter or "scope_sz" in parameter or "scope_rz" in parameter:
-                                #print(parameter)
-                                #print(type(op_element.children[0]))
-                                parameter = parameter.replace("scope_sx", "ctx.scope_sx()")
-                                parameter = parameter.replace("scope_sy", "ctx.scope_sy()")
-                                parameter = parameter.replace("scope_sz", "ctx.scope_sz()")
-                                parameter = parameter.replace("scope_rz", "ctx.scope_rz()")
-                                
-                                #print()
-                    else:
-                        parameter ='"'+parameter + '"'
-
-                    if parameter != ',':
-                        if j >1:
-                            s+=', '
-                        s += parameter
-                s += ')\n'
-                #print()
+                s += visitOperator(operator_ctx, 8)
+                
             s += '\n'
 
     return s
