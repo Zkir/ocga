@@ -44,6 +44,15 @@ class ocgaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by ocgaParser#const.
+    def enterConst(self, ctx:ocgaParser.ConstContext):
+        pass
+
+    # Exit a parse tree produced by ocgaParser#const.
+    def exitConst(self, ctx:ocgaParser.ConstContext):
+        pass
+
+
     # Enter a parse tree produced by ocgaParser#operator.
     def enterOperator(self, ctx:ocgaParser.OperatorContext):
         pass

@@ -1,12 +1,13 @@
 grammar ocga;
 
-prog: ocga_header rule+ EOF ;
+prog: ocga_header const* rule+ EOF ;
 ocga_header: OCGA NUMBER;
 rule: rule_header operator+;
 rule_header: RULE rule_name COLUMN; 
+
+const: CONST LITERAL EQ expr; 
     
 /* operators  */
-
 operator:
     сonditional |
     ALIGNSCOPE ('geometry' | 'x_to_longer_side') |  
@@ -52,7 +53,7 @@ split_pattern_element: split_selector COLUMN rule_name     #simple_split_pattern
                      | LPAREN split_pattern RPAREN MULT    #repeat_split_pattern 
                      ;
                      
-split_selector:        NUMBER | APPROX_MARK NUMBER ;
+split_selector: expr | APPROX_MARK NUMBER ;      // NUMBER | APPROX_MARK NUMBER ;
 list: LBRACKET NUMBER (COMMA NUMBER)* RBRACKET;
 
 /* logical expressions, allowed in conditional */
@@ -65,10 +66,10 @@ lexpr: expr '<' expr |
 /* arithmetic expressions, allowed in certain operators*/
 expr:            relative_number 
     |            simple_expr
-    |            expr (MULT|DIV) expr 
+    |            expr (MULT|DIV|MODULUS) expr 
     |            expr (PLUS|MINUS) expr
     ;
-relative_number: RELATIVE_MARK NUMBER;
+relative_number: RELATIVE_MARK MINUS? NUMBER;
     
 simple_expr:     LITERAL
            |     NUMBER
@@ -81,10 +82,14 @@ rule_name:            LITERAL;
 roof_shape:           LITERAL;
     
 key_name  : LITERAL (COLUMN LITERAL)* ;
-tag_value : LITERAL | HEX_COLOUR_MARK? NUMBER ;
+tag_value : LITERAL |  NUMBER | HEXADECIMAL;
+
+HEXADECIMAL: HEX_COLOUR_MARK ([a-fA-F0-9])+ ;
+
     
 /* reserved words */
 OCGA:                 'ocga';
+CONST:                'const';
 RULE:                 'rule';
 IF:                   'if'; 
 THEN:                 'then';
@@ -148,8 +153,9 @@ PLUS:     '+';
 MINUS:    '-';
 MULT:    '*';
 DIV:      '/';
+MODULUS:  '%';
 
-
+EQ:       '=';
 
                      
 COMMENT: '#' ~[\r\n]* ->skip;

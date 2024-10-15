@@ -25,9 +25,9 @@ def test(rules_file1, input_file1):
 assert test("church_of_st_louis_ocga.py",             "church_of_st_louis.osm")
 assert test("gorky_park_entrance_ocga.py",            "gorky_park_entrance.osm")
 assert test("gorky_park_rotunda_ocga.py",             "gorky_park_rotunda.osm")
-assert test("tsaritsino_rotunda_ocga.py",             "tsaritsino_rotunda.osm")
 
 #new ocga rules
+assert test("tsaritsino_rotunda.ocga",               "tsaritsino_rotunda.osm")
 assert test("main_cathedral_of_russian_army.ocga",    "main_cathedral_of_russian_army.osm" )
 assert test("alexander_column.ocga",                  "alexander_column.osm")
 assert test("moscow_manege.ocga",                     "moscow_manege.osm")

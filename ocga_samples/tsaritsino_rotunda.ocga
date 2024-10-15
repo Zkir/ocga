@@ -1,0 +1,142 @@
+#OCGA rules example
+#Tsaritsino Rotunda
+#(c) Zkir 2020
+
+ocga 0.1
+
+const HEIGHT_RATE=1.3
+const SNOP_HEIGHT=1.25
+
+rule building:
+    if scope_sz == 0 then
+        scale '1, '1, scope_sx*HEIGHT_RATE+SNOP_HEIGHT
+    endif     
+    massModel mass_model 
+
+rule mass_model:
+    colour   &B0B0B0 
+    material plaster 
+    split_z  ~6: roof |
+             ~0.3: cornice |
+             ~1.5: entablement |
+             ~8.2: collonade |
+             0.6: stylobate 
+
+rule stylobate:
+    roof_colour   &101010 
+    roof_material stone 
+    colour        &202020 
+    material      stone 
+
+    split_z  ~1: stylobate3 |
+             ~1: stylobate2 |
+             ~1: stylobate1 
+
+rule roof:
+    scale '0.9, '0.9 
+    roof_colour    brown 
+    roof_material  metal 
+    colour         brown 
+    material       metal 
+    split_z SNOP_HEIGHT: roof4 |
+            ~3:  dome |
+            ~0.1 :  roof1 
+
+rule stylobate1:
+    scale '1.2,  '1.2 
+
+rule stylobate2:
+    scale '1.1, '1.1 
+
+rule stylobate3:
+    scale '1, '1 
+
+rule collonade:
+    scale '0.9,  '0.9 
+    comp_edges size/8,  column_pre 
+
+rule entablement:
+    scale '0.9,  '0.9 
+
+rule cornice:
+    scale '1, '1 
+
+rule roof1:
+    scale '1, '1, 0.75
+    colour    white 
+    material  plaster 
+    comp_edges size/10,  roof_railing_pre 
+
+rule roof_railing_pre:
+    if split_index % 2 == 0 then 
+        scale scope_sy,  '1 
+        create_roof pyramidal, scope_sz*0.2
+    else
+        scale '1.5,  '0.3,  '0.75 
+        split_z ~1: roof_railing_top    | 
+                ~5: roof_railing_middle |
+                ~1: roof_railing_base 
+    endif 
+    
+rule roof_railing_middle:
+    split_x       ~0.5: NIL |  ~1: roof_column  |
+                  ~0.5: NIL |  ~1: roof_column |
+                  ~0.5: NIL |  ~1: roof_column |
+                  ~0.5: NIL |  ~1: roof_column |
+                  ~0.5: NIL |  ~1: roof_column |
+                  ~0.5: NIL |  ~1: roof_column |
+                  ~0.5: NIL |  ~1: roof_column |
+                  ~0.5: NIL |  ~1: roof_column |
+                  ~0.5: NIL |  ~1: roof_column |
+                  ~0.5: NIL 
+
+rule roof_column:
+    primitive_cylinder '1 
+
+rule dome:
+    scale '0.85, '0.85 
+    create_roof dome, scope_sz - 0.01
+
+rule roof4:
+    scale '0.1, '0.1 
+    translate 0, 0, '-0.1 
+    roof_colour   gold 
+    roof_material metal 
+    colour        gold 
+    material      metal 
+
+rule column_pre:
+    if split_index % 2 == 0 then
+        scale scope_sy,  '1 
+        split_z
+            scope_sx/16:  column_capitel1 |
+             scope_sx/4:  column_capitel |
+                     ~1:  column_shaft |
+             scope_sx/6:  column_base 
+    else
+        nil 
+    endif    
+
+rule column_base:
+    split_z  
+            ~2: column_base2 | ~1 : column_base1
+
+rule column_base1:
+    scale '1.05,  '1.05 
+
+rule column_base2:
+    scale '1.05, '1.05
+    primitive_cylinder '1
+
+rule column_shaft:
+    primitive_cylinder '1
+    scale '0.9, '0.9
+
+rule column_capitel:
+    scale '1.25, '1
+
+rule column_capitel1:
+   scale '0.95, '0.95
+
+rule NIL:
+    nil

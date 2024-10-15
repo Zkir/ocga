@@ -11,7 +11,10 @@ built_in_immutables = {"scope_sx":    "ctx.scope_sx()",
                        "scope_sy":    "ctx.scope_sy()",
                        "scope_sz":    "ctx.scope_sz()",
                        "scope_rz":    "ctx.scope_rz()",
-                       "relative_Ox": "ctx.current_object.relative_Ox"
+                       "relative_Ox": "ctx.current_object.relative_Ox",
+                       "relative_Oy": "ctx.current_object.relative_Oy",
+                       "size":        "ctx.current_object.size",
+                       "split_index": "ctx.current_object.split_index",
                       }
 
 def substitute_build_in_immutables(parameter):       
@@ -23,28 +26,33 @@ def substitute_build_in_immutables(parameter):
     return parameter
 
 def parse_split_pattern_element(split_element):
-    size, rule_name = split_element.split(":")
-    return (size.strip(), rule_name.strip())
+
+    size = split_element.children[0].getText()
+    if type(split_element.children[0].children[0]) is ocgaParser.ExprContext:
+        size= substitute_build_in_immutables(size)
+    else:
+        size = '"' + size + '"'
+    
+    rule_name  = split_element.children[2].getText()
+    return '(' + size + ', "' + rule_name+'")'
 
 def parse_split_pattern(op_element):
-    
-    
-    parameter = [] #str(parse_split_pattern(op_element.getText()))
+    parameter = ""
     for pattern_element in op_element.children:
         if type(pattern_element) is ocgaParser.Simple_split_patternContext:
-            parameter += [parse_split_pattern_element(pattern_element.getText())]
+            parameter += parse_split_pattern_element(pattern_element) + ', '
             
         elif type(pattern_element) is ocgaParser.Repeat_split_patternContext:
             child_split_pattern_parsed = parse_split_pattern(pattern_element.children[1])
             Multiplicity =pattern_element.children[-1].getText()
-            parameter += [(Multiplicity,child_split_pattern_parsed)]
+            parameter += '("'+ Multiplicity + '", ' + child_split_pattern_parsed+'), '
             
         elif pattern_element.getText() in ['|']:
             pass
         else:
             raise Exception("unexpected split pattern element: "+str(type(pattern_element)) + '  '+ pattern_element.getText() )
             
-    parameter = tuple(parameter)  
+    parameter = '('+parameter+')'
     return parameter
     
     
@@ -87,7 +95,6 @@ def visitOperator(operator_ctx, indent):
             if type(op_element) is ocgaParser.Split_patternContext:
                 #recursive parsing of split pattern
                 parameter = parse_split_pattern(op_element)
-                parameter = str(parameter)        
 
             elif type(op_element) is ocgaParser.ExprContext:
                 
@@ -132,7 +139,16 @@ def ocga2py(ocga_lines):
                 s += 'def checkRulesMy(ctx):\n'
             else:
                 print("ERROR: unknown ocga version: "+ocga_verison)
-                exit()
+                exit(123)
+        if type(child) is ocgaParser.ConstContext: 
+            const_name = child.children[1].getText()
+            if const_name not in built_in_immutables:              
+                s += ' '*4 + const_name + child.children[2].getText() + child.children[3].getText() + '\n'
+            else:
+                print("ERROR: built-in immutable '" + const_name + "' cannot be redefined" )
+                print('Line ' +str(child.start.line)) # child.start.column
+                exit(123)    
+
         if type(child) is ocgaParser.RuleContext:
             rule_name = child.children[0].children[1].getText()
             if rule_name != "building":
