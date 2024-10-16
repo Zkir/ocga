@@ -22,9 +22,9 @@ def test(rules_file1, input_file1):
     return result     
 
 #old py rules
-
-assert test("gorky_park_entrance_ocga.py",            "gorky_park_entrance.osm")
+# note: we can process raw python files also, but all old files are converted to ocga!
 #new ocga rules
+assert test("gorky_park_entrance.ocga",               "gorky_park_entrance.osm")
 assert test("church_of_st_louis.ocga",                "church_of_st_louis.osm")
 assert test("gorky_park_rotunda.ocga",                "gorky_park_rotunda.osm")
 assert test("tsaritsino_rotunda.ocga",                "tsaritsino_rotunda.osm")

@@ -132,13 +132,17 @@ def copyBuildingPartTags(new_object, old_object):
 # min_height and height are assigned to the new parts.
 def split_z_preserve_roof(osmObject, split_pattern):
     Objects2 = []
-    N = len(split_pattern)
+    
     height= parseHeightValue(osmObject.getTag("height"))
     min_height = parseHeightValue(osmObject.getTag("min_height"))
     roof_height= parseHeightValue(osmObject.getTag("roof:height"))
     h = height-min_height-roof_height # osm tags are strange. Split ignores roof height
 
     Heights = calculateDimensionsForSplitPattern(h, split_pattern)
+    #N = len(split_pattern)
+    N = len(Heights)
+    if N<len(split_pattern):
+        print("WARNING: split pattern is to long, some elements excluded")
 
     for i in range(N) :
         # create new object and copy outline and tags
@@ -161,6 +165,7 @@ def split_z_preserve_roof(osmObject, split_pattern):
         new_obj.scope_max_y = osmObject.scope_max_y
 
         # we can assign building part tag, it is identical with rule name
+        
         new_obj.osmtags["building:part"] = Heights[i][1]
         if i!=N-1:
             new_obj.osmtags["roof:shape"] = "flat"  # No roof for lower parts, roof shape remains for top-most part only
