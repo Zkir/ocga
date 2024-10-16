@@ -15,7 +15,7 @@ rule building:
     #    tag  height, str float getTag  building:levels* 4  
  
     tag height, 21.6
-    #tag building, yes 
+
 
     # align local coordinates so that X matches the longest dimension
     align_scope geometry 
