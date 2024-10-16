@@ -932,7 +932,6 @@
     <tag k="building:colour" v="brown" />
     <tag k="roof:material" v="metal" />
     <tag k="roof:colour" v="brown" />
-    <tag k="roof:height" v="0" />
   </way>
   <way id="135732792" version="1" >
     <nd ref="-607" />

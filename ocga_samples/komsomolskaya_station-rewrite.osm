@@ -1883,7 +1883,6 @@
     <tag k="building:colour" v="white" />
     <tag k="roof:material" v="metal" />
     <tag k="roof:colour" v="silver" />
-    <tag k="roof:height" v="0" />
   </way>
   <way id="-62" version="1" >
     <nd ref="-31" />
@@ -1958,7 +1957,6 @@
     <tag k="building:colour" v="white" />
     <tag k="roof:material" v="metal" />
     <tag k="roof:colour" v="silver" />
-    <tag k="roof:height" v="0" />
   </way>
   <way id="-65" version="1" >
     <nd ref="-8" />
@@ -3568,7 +3566,6 @@
     <tag k="building:colour" v="white" />
     <tag k="roof:material" v="metal" />
     <tag k="roof:colour" v="silver" />
-    <tag k="roof:height" v="0" />
   </way>
   <way id="-121" version="1" >
     <nd ref="-52" />
@@ -3643,7 +3640,6 @@
     <tag k="building:colour" v="white" />
     <tag k="roof:material" v="metal" />
     <tag k="roof:colour" v="silver" />
-    <tag k="roof:height" v="0" />
   </way>
   <way id="-1495" version="1" >
     <nd ref="-1500" />

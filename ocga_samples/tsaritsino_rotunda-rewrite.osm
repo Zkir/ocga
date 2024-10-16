@@ -4172,7 +4172,6 @@
     <tag k="building:colour" v="gold" />
     <tag k="roof:material" v="metal" />
     <tag k="roof:colour" v="gold" />
-    <tag k="roof:height" v="0" />
   </way>
   <way id="104820755" version="1" >
     <nd ref="-2497" />
@@ -4194,6 +4193,5 @@
     <tag k="website" v="http://tsaritsyno-museum.ru/park/locations/besedka-hram-tserery/" />
     <tag k="wikidata" v="Q61983153" />
     <tag k="height" v="9.762" />
-    <tag k="roof:height" v="0" />
   </way>
 </osm>

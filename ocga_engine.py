@@ -556,11 +556,12 @@ def scale(osmObject, objOsmGeom, sx, sy, sz=None):
         # min_height remains, we need to update height and roof height
         height=min_height+sz
         kz=sz/h if h!=0 else 0
-        roof_height =roof_height*kz
+        roof_height = roof_height*kz
         if round(roof_height, 3) > round(height,3) - round(min_height,3):
             roof_height = round(height,3) - round(min_height,3)-0.01
         osmObject.osmtags["height"] = str(height)
-        osmObject.osmtags["roof:height"] = str(roof_height)
+        if roof_height!=0 or osmObject.getTag("roof:height")!="":
+            osmObject.osmtags["roof:height"] = str(roof_height)
 
     sx = parseRelativeValue(sx, osmObject.scope_sx)
     sy = parseRelativeValue(sy, osmObject.scope_sy)

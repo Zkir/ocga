@@ -278,7 +278,6 @@
     <tag k="building:colour" v="yellow" />
     <tag k="roof:material" v="brick" />
     <tag k="roof:colour" v="#202020" />
-    <tag k="roof:height" v="0" />
   </way>
   <way id="-35" version="1" >
     <nd ref="7761261021" />
@@ -309,7 +308,6 @@
     <tag k="building:colour" v="yellow" />
     <tag k="roof:material" v="brick" />
     <tag k="roof:colour" v="#202020" />
-    <tag k="roof:height" v="0" />
   </way>
   <way id="-112" version="1" >
     <nd ref="7761261023" />
