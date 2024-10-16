@@ -1,0 +1,191 @@
+#Set of rules to generate church of St Louis of France, Moscow
+# (c)  Zkir 2020
+
+ocga 0.1
+
+rule building:
+    # guess height
+    ##if getTag building:levels  !=    and scope_sz == 0:
+    ##    tag height, str float getTag building:levels   * 4  
+    tag height, 8
+    roof_material metal
+    roof_colour   &202020
+
+    # align local coordinates so that X matches the longest dimension, and oriented east
+    align_scope geometry 
+    align_scope x_to_longer_side
+    rotate_scope 180
+
+    # we will start from the rectangle and will rebuild the form
+    # basing of this very algorithm
+    outer_rectangle mass_model
+
+
+rule mass_model:
+     split_x  3: parvise_block | 4.4: entrance_block | ~5: main_block | ~1: apse_block
+
+rule parvise_block:
+    roof_material  brick 
+    roof_colour    &202020 
+    scale '1, '0.9, 1.5 
+    split_y 4.4: parvise | ~5: parvise_steps_pre | 4.4: parvise
+
+rule parvise_steps_pre:
+    scale scope_sx -0.5, '1 
+    translate -0.25, 0, 0 
+    tag building:part,  steps 
+    create_roof skillion, scope_sz-0.1
+    roof_direction 270
+
+rule entrance_block:
+    scale '1,  '0.9 
+    split_y   scope_sx:  bell_tower |  ~5: portico | scope_sx: bell_tower   
+
+#bell towers
+rule bell_tower:
+    scale '1, '1, 11 
+    split_z  
+            ~0.5:  bell_tower_dome_pre|
+             3.8:  bell_tower_layer_2|
+             7.0:  bell_tower_layer_1 
+                                 
+
+rule bell_tower_layer_1:
+    nope
+
+rule bell_tower_layer_2:
+    scale scope_sx-0.5, scope_sy-0.5 
+    scale '1, '1, scope_sz+0.75
+    create_roof  pyramidal,  0.75 
+    
+
+rule bell_tower_dome_pre:
+    scale scope_sx-1, scope_sy-1, (scope_sy-1)/2*1.2 
+    create_roof  dome, scope_sy/2  
+    primitive_cylinder '1  
+
+# portico
+rule portico:
+    scale scope_sx+0.5, '1, 7+1.5  # +0.2
+    translate -0.25, 0 
+    create_roof gabled ,  1.5 
+    tag roof:orientation,  across 
+    
+    split_z 
+           0.2:  portico_top |
+           1.5:  portico_entablement |
+            ~5:  portico_columns_block |
+           1.5:  portico_stilobate
+                                
+
+rule portico_stilobate:
+    nope
+
+rule portico_columns_block:
+    split_x   ~1: portico_columns |  ~2: NIL   
+
+rule portico_columns:
+    split_y   ~1:  porch_column_pre |  ~0.7:  NIL |
+              ~1:  porch_column_pre |  ~0.7:  NIL |
+              ~1:  porch_column_pre |  ~0.7:  NIL |
+              ~1:  porch_column_pre |  ~0.7:  NIL |
+              ~1:  porch_column_pre |  ~0.7:  NIL |
+              ~1:  porch_column_pre   
+
+rule porch_column_pre:
+    align_scope x_to_longer_side
+    split_z  0.25:  porch_column_top_pre | ~1: porch_column_main   
+
+rule porch_column_top_pre:
+    
+    scale  scope_sy,  scope_sy
+    tag building:part,  porch_column_top 
+
+rule porch_column_main:
+    primitive_cylinder scope_sy/3  #  porch_column 
+
+rule portico_top:
+    scale  scope_sx+0.5, scope_sy+1.0 
+    translate -0.25, 0, 0 
+
+# main block
+rule main_block:
+    split_y   ~1:  main_side_part_pre |
+              ~2:  main_main |
+              ~1:  main_side_part_pre   
+
+rule main_main:
+    scale '1,  '1,  13 
+    create_roof hipped, 1.5 
+    split_x  ~1:  dormer_base_main
+    restore 
+
+rule main_side_part_pre:
+    scale '1, '1, 8.5 
+    split_x ~1: dormer_base_side
+    restore 
+    
+    tag roof:shape,  skillion 
+    tag roof:height,  1.5 
+   
+    if relative_Oy > 0 then
+        # skillion roof should have upper edge from  inside  and lower from  outside 
+        # we try to define what is inside and what is outside by relative location of the split parts  relative to parent 
+        # Note: roof_direction  works in local space!
+        roof_direction 0
+    else
+        roof_direction 180
+    endif
+   
+             
+
+rule dormer_base_side:
+    translate 0, 0, 7
+    ##min_height=getTag(height) - getTag(roof:height) 
+    
+    scale '1,  '0.9,  1.1 
+    split_x   ~2.5:  NIL | 2:  dormer |
+                ~1:  NIL | 2:  dormer |
+                ~1:  NIL | 2:  dormer |
+                ~1:  NIL | 2:  dormer |
+              ~2.5:  NIL   
+
+rule dormer_base_main:
+    translate 0, 0, 11.5
+    ##min_height=getTag(height)- getTag(roof:height) 
+    
+    scale '1,  '0.9,  1.1 
+    split_x   ~2.5:  NIL | 2:  dormer |
+                ~3:  NIL | 2:  dormer |
+              ~2.5:  NIL   
+
+rule dormer:
+    tag roof:shape,  round 
+    tag roof:height,  1.0 
+
+#apse block
+rule apse_block:
+    split_y   ~1:  side_part_1_pre |
+               1:  NIL |
+              ~2:  apse_pre |
+             0.5:  NIL |
+              ~1:  side_part_2_pre   
+
+rule apse_pre:
+    scale '1, '1, 10
+    create_roof half_dome, 3 
+    primitive_halfcylinder '1, 8 
+
+
+rule side_part_1_pre:
+    split_x   ~1.5:  side_apse | ~1:  NIL   
+    
+rule side_part_2_pre:
+    split_x   ~3: side_apse |   ~1:  NIL   
+
+rule side_apse:
+    scale '1, '1, 6.5 
+    create_roof pyramidal, 1 
+
+rule NIL:
+    nil 
