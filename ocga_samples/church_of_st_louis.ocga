@@ -28,12 +28,11 @@ rule parvise_block:
     roof_material  brick 
     roof_colour    &202020 
     scale '1, '0.9, 1.5 
-    split_y 4.4: parvise | ~5: parvise_steps_pre | 4.4: parvise
+    split_y 4.4: parvise | ~5: steps | 4.4: parvise
 
-rule parvise_steps_pre:
+rule steps:
     scale scope_sx -0.5, '1 
     translate -0.25, 0, 0 
-    tag building:part,  steps 
     create_roof skillion, scope_sz-0.1
     roof_direction 270
 
@@ -94,12 +93,11 @@ rule portico_columns:
 
 rule porch_column_pre:
     align_scope x_to_longer_side
-    split_z  0.25:  porch_column_top_pre | ~1: porch_column_main   
+    split_z  0.25:  porch_column_top | ~1: porch_column_main   
 
-rule porch_column_top_pre:
-    
+rule porch_column_top:
     scale  scope_sy,  scope_sy
-    tag building:part,  porch_column_top 
+
 
 rule porch_column_main:
     primitive_cylinder scope_sy/3  #  porch_column 
@@ -124,9 +122,7 @@ rule main_side_part_pre:
     scale '1, '1, 8.5 
     split_x ~1: dormer_base_side
     restore 
-    
-    tag roof:shape,  skillion 
-    tag roof:height,  1.5 
+    create_roof  skillion, 1.5 
    
     if relative_Oy > 0 then
         # skillion roof should have upper edge from  inside  and lower from  outside 
@@ -141,7 +137,6 @@ rule main_side_part_pre:
 
 rule dormer_base_side:
     translate 0, 0, 7
-    ##min_height=getTag(height) - getTag(roof:height) 
     
     scale '1,  '0.9,  1.1 
     split_x   ~2.5:  NIL | 2:  dormer |
@@ -152,7 +147,6 @@ rule dormer_base_side:
 
 rule dormer_base_main:
     translate 0, 0, 11.5
-    ##min_height=getTag(height)- getTag(roof:height) 
     
     scale '1,  '0.9,  1.1 
     split_x   ~2.5:  NIL | 2:  dormer |
@@ -160,8 +154,7 @@ rule dormer_base_main:
               ~2.5:  NIL   
 
 rule dormer:
-    tag roof:shape,  round 
-    tag roof:height,  1.0 
+    create_roof round, 1.0 
 
 #apse block
 rule apse_block:
@@ -186,6 +179,12 @@ rule side_part_2_pre:
 rule side_apse:
     scale '1, '1, 6.5 
     create_roof pyramidal, 1 
+    
+rule parvise:
+    nope
+    
+rule portico_entablement:
+    nope
 
 rule NIL:
     nil 

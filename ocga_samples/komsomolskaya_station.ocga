@@ -190,6 +190,9 @@ rule stylobate:
 	material granite
     roof_colour brown
 	roof_material granite	
+
+rule architrave:
+    nope    
 	
 rule NILL:
     nil 

@@ -772,14 +772,15 @@ class OCGAContext:
         return value
 
     def _setTag(self, key, value):
+        if type(value) is str:
+            value=value.replace("half_dome", "half-dome")
         self.current_object.osmtags[key] = str(value)
     
     def tag(self, key, value):     
-        #if not self.current_object.isBuilding() and key in ['height', 'min_height', 'roof:height']:
-        #    print("WARNING: tag " + key + " cannot be changed directly. Please use scale/translate/create_roof operators instead") #raise Exception
-        if type(value) is str:
-            value=value.replace("half_dome", "half-dome")
-        
+        if not self.current_object.isBuilding() and key in ['height', 'min_height', 'roof:height', 'building:part']:
+            print("WARNING: changing of tag " + key + " directly is not recommened. Please operations instead")
+            #raise Exception
+
         self._setTag(key, value) 
 
     def colour(self, value):
@@ -1068,7 +1069,6 @@ def checkDuplicatedNodes(objOsmGeom):
 
 
 def ocga_process(input_file, output_file, checkRulesMy, updatable=False, rebuild_outline=True):
-    print("processing file ", input_file)
     resetID()
 
     objOsmGeom, Objects = readOsmXml(input_file)
@@ -1111,7 +1111,7 @@ def ocga_process(input_file, output_file, checkRulesMy, updatable=False, rebuild
 checkRulesMy = None  
     
 def ocga_process2(input_file, output_file, rules_file, compiled_rules_file=None, updatable=False, rebuild_outline=True):     
-    
+    print("processing file ", input_file)
     global checkRulesMy
     
     with open(rules_file) as f:

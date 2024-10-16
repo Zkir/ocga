@@ -477,7 +477,7 @@
     <nd ref="-80" />
     <nd ref="-81" />
     <nd ref="-70" />
-    <tag k="building:part" v="helm1" />
+    <tag k="building:part" v="belltower_layer3_pre" />
     <tag k="height" v="70" />
     <tag k="min_height" v="50.162" />
     <tag k="building:material" v="plaster" />
@@ -501,7 +501,7 @@
     <nd ref="-177" />
     <nd ref="-178" />
     <nd ref="-167" />
-    <tag k="building:part" v="helm2" />
+    <tag k="building:part" v="belltower_layer3a" />
     <tag k="height" v="72.65" />
     <tag k="min_height" v="67.933" />
     <tag k="building:material" v="plaster" />
@@ -636,7 +636,7 @@
     <nd ref="-521" />
     <nd ref="-522" />
     <nd ref="-511" />
-    <tag k="building:part" v="helm1" />
+    <tag k="building:part" v="side_head_onion_base_pre" />
     <tag k="height" v="66.4" />
     <tag k="min_height" v="59.4" />
     <tag k="building:material" v="plaster" />
@@ -660,7 +660,7 @@
     <nd ref="-687" />
     <nd ref="-688" />
     <nd ref="-677" />
-    <tag k="building:part" v="helm2" />
+    <tag k="building:part" v="side_head_onion_base2" />
     <tag k="height" v="69.219" />
     <tag k="min_height" v="64.201" />
     <tag k="building:material" v="plaster" />
@@ -753,7 +753,7 @@
     <nd ref="-566" />
     <nd ref="-567" />
     <nd ref="-556" />
-    <tag k="building:part" v="helm1" />
+    <tag k="building:part" v="side_head_onion_base_pre" />
     <tag k="height" v="66.4" />
     <tag k="min_height" v="59.4" />
     <tag k="building:material" v="plaster" />
@@ -777,7 +777,7 @@
     <nd ref="-699" />
     <nd ref="-700" />
     <nd ref="-689" />
-    <tag k="building:part" v="helm2" />
+    <tag k="building:part" v="side_head_onion_base2" />
     <tag k="height" v="69.219" />
     <tag k="min_height" v="64.201" />
     <tag k="building:material" v="plaster" />
@@ -869,7 +869,7 @@
     <nd ref="-450" />
     <nd ref="-451" />
     <nd ref="-440" />
-    <tag k="building:part" v="helm1" />
+    <tag k="building:part" v="side_head_onion_base_pre" />
     <tag k="height" v="83" />
     <tag k="min_height" v="70" />
     <tag k="building:material" v="plaster" />
@@ -893,7 +893,7 @@
     <nd ref="-585" />
     <nd ref="-586" />
     <nd ref="-575" />
-    <tag k="building:part" v="helm2" />
+    <tag k="building:part" v="side_head_onion_base2" />
     <tag k="height" v="87.878" />
     <tag k="min_height" v="79.196" />
     <tag k="building:material" v="plaster" />
@@ -986,7 +986,7 @@
     <nd ref="-629" />
     <nd ref="-630" />
     <nd ref="-619" />
-    <tag k="building:part" v="helm1" />
+    <tag k="building:part" v="side_head_onion_base_pre" />
     <tag k="height" v="66.4" />
     <tag k="min_height" v="59.4" />
     <tag k="building:material" v="plaster" />
@@ -1010,7 +1010,7 @@
     <nd ref="-711" />
     <nd ref="-712" />
     <nd ref="-701" />
-    <tag k="building:part" v="helm2" />
+    <tag k="building:part" v="side_head_onion_base2" />
     <tag k="height" v="69.219" />
     <tag k="min_height" v="64.201" />
     <tag k="building:material" v="plaster" />
@@ -1103,7 +1103,7 @@
     <nd ref="-674" />
     <nd ref="-675" />
     <nd ref="-664" />
-    <tag k="building:part" v="helm1" />
+    <tag k="building:part" v="side_head_onion_base_pre" />
     <tag k="height" v="66.4" />
     <tag k="min_height" v="59.4" />
     <tag k="building:material" v="plaster" />
@@ -1127,7 +1127,7 @@
     <nd ref="-723" />
     <nd ref="-724" />
     <nd ref="-713" />
-    <tag k="building:part" v="helm2" />
+    <tag k="building:part" v="side_head_onion_base2" />
     <tag k="height" v="69.219" />
     <tag k="min_height" v="64.201" />
     <tag k="building:material" v="plaster" />

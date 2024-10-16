@@ -16,6 +16,11 @@ built_in_immutables = {"scope_sx":    "ctx.scope_sx()",
                        "size":        "ctx.current_object.size",
                        "split_index": "ctx.current_object.split_index",
                       }
+                      
+immutables = set()                      
+rules_defined = set()
+rules_used= set()
+
 
 def substitute_build_in_immutables(parameter):       
     # TODO: we need proper check for built-in immutables!
@@ -26,7 +31,7 @@ def substitute_build_in_immutables(parameter):
     return parameter
 
 def parse_split_pattern_element(split_element):
-
+    global rules_used
     size = split_element.children[0].getText()
     if type(split_element.children[0].children[0]) is ocgaParser.ExprContext:
         size= substitute_build_in_immutables(size)
@@ -34,6 +39,7 @@ def parse_split_pattern_element(split_element):
         size = '"' + size + '"'
     
     rule_name  = split_element.children[2].getText()
+    rules_used.add(rule_name)
     return '(' + size + ', "' + rule_name+'")'
 
 def parse_split_pattern(op_element):
@@ -95,6 +101,10 @@ def visitOperator(operator_ctx, indent):
             if type(op_element) is ocgaParser.Split_patternContext:
                 #recursive parsing of split pattern
                 parameter = parse_split_pattern(op_element)
+                
+            elif type(op_element) is ocgaParser.Rule_nameContext:  
+                rules_used.add(parameter)
+                parameter ='"'+parameter + '"'                
 
             elif type(op_element) is ocgaParser.ExprContext:
                 
@@ -107,6 +117,7 @@ def visitOperator(operator_ctx, indent):
                 #list (currently) goes to python exactly as it is 
                 pass
             else:
+                #print("unexpected token ", type(op_element) )
                 parameter ='"'+parameter + '"'
 
             if parameter != ',':
@@ -120,6 +131,13 @@ def visitOperator(operator_ctx, indent):
 
 
 def ocga2py(ocga_lines):
+    global rules_defined
+    global rules_used
+    global immutables
+    immutables = set() 
+    rules_defined = set()
+    rules_used = set()
+    
     #input = FileStream(input_file)
     input = InputStream(ocga_lines)
     lexer = ocgaLexer(input)
@@ -142,15 +160,26 @@ def ocga2py(ocga_lines):
                 exit(123)
         if type(child) is ocgaParser.ConstContext: 
             const_name = child.children[1].getText()
-            if const_name not in built_in_immutables:              
-                s += ' '*4 + const_name + child.children[2].getText() + child.children[3].getText() + '\n'
-            else:
+            if const_name in built_in_immutables:              
                 print("ERROR: built-in immutable '" + const_name + "' cannot be redefined" )
                 print('Line ' +str(child.start.line)) # child.start.column
-                exit(123)    
+                exit(123)  
+            if const_name in immutables:
+                print("ERROR: constant '" + const_name + "' cannot be redefined" )
+                print('Line ' +str(child.start.line)) # child.start.column
+                exit(123)  
+            immutables.add(const_name)
+            
+            s += ' '*4 + const_name + child.children[2].getText() + child.children[3].getText() + '\n'
+            
 
         if type(child) is ocgaParser.RuleContext:
             rule_name = child.children[0].children[1].getText()
+            if rule_name in rules_defined:
+                print("WARNING: rule '" + rule_name + "' is redefined, it is not recommended" )
+                print('Line ' +str(child.start.line)) # child.start.column
+            
+            rules_defined.add(rule_name)
             if rule_name != "building":
                 s += ' '*4 + 'if ctx.getTag("building:part") == "'+rule_name+'":\n'
             else:
@@ -162,6 +191,17 @@ def ocga2py(ocga_lines):
                 
             s += '\n'
 
+    # some validations 
+    if 'building' not in rules_defined:
+        print("WARNING: starting rule 'building' is missing, so this ocga script will do nothing")
+
+    
+    for rule_name in rules_defined - (rules_used | {'building'}):
+        print("WARNING: rule '" + rule_name + "' is defined, but is not used")
+        
+    for rule_name in rules_used-rules_defined:
+        print("WARNING: rule '" + rule_name + "' is used, but is not defined")    
+        
     return s
 
 

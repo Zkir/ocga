@@ -1,69 +1,8 @@
 #Set of rules to generate some geometry for buildings,
 #first of all Gorky Park Entrance
-# (c)  Zkir 2020
+# (c)  Zkir 2020, 2024
 
 ocga 0.1
-
-rule porch:
-    # align local coordinates so that X matches the longest dimension
-    align_scope geometry 
-    align_scope x_to_longer_side
-
-    # we want to remove it, and replace with 3 orther objects: porch_base, porch_columns, porch_top
-    # Split Z, preserve roof,  {1:porch_base| ~1:porch_columns | 1: porch_top}
-    split_z 
-            1: porch_top |
-           ~5: porch_columns |
-            1: porch_base 
-                               
-
-rule porch_base:
-    colour red 
-
-rule porch_columns:
-    # split x { {~sy:porch_column_pre| ~sy:Nil}* | ~sy:porch_column_pre }
-    split_x   ~1: porch_column_pre  |
-              ~1: porch_column_pre  |
-              ~1: porch_column_pre  |
-              ~1: porch_column_pre    
-
-rule porch_column_pre:
-    split_z 0.25: porch_column_top_pre | ~1: porch_column_main   
-
-rule porch_column_top_pre:
-    #top_size = min(scope_sx, scope_sy )   / 1.0
-    #align_scope x_to_longer_side
-    scale scope_sx, scope_sx 
-    tag building:part, porch_column_top 
-
-rule porch_column_main:
-    primitive_cylinder scope_sx / 3  # min(ctx.scope_sx(), ctx.scope_sy()) / 3
-
-rule porch_top:
-    colour blue 
-
-# ===========================================================================================================
-# Kokoshnik
-# ===========================================================================================================
-#????
-rule kokoshniks_yes: #  elif  getTag  building:part   !=     and  getTag  building:roof:kokoshniks   ==  yes  :
-
-    # what do we here?
-    # some kind of the comp operator
-    # for each edge of the tholobate we create kokoshnik.
-    # remove the kokoshniks tag, to prevent dead loops.
-    # tag building:roof:kokoshniks, no 
-    comp_border 1, kokoshnik_pre  
-    restore  
-
-rule kokoshnik_pre:
-    create_roof round, scope_sx / 2  
-    
-    tag  building:part, kokoshnik 
-    tag  roof:orientation,  across  
-    
-    #tag  height, str getTag  min_height   + facade_len / 2 + 0.1  
-    #tag  building:roof:kokoshniks, _
 
 # ===========================================================================================================
 # Entrance to the Gorky Park
@@ -76,13 +15,13 @@ rule building:
     #    tag  height, str float getTag  building:levels* 4  
  
     tag height, 21.6
-    tag building, yes 
+    #tag building, yes 
 
     # align local coordinates so that X matches the longest dimension
     align_scope geometry 
     align_scope x_to_longer_side
-    split_x ~1: building_outline
-    restore  
+    outer_rectangle building_outline
+  
 
 rule building_outline:
     # we need to do offset inside, to compensate cornice, which is huge
@@ -90,7 +29,6 @@ rule building_outline:
     split_x    ~0.06 :  side_column_block  |  ~1 :  pylon_pre  |   ~3.5 :  arch  |   ~1 :  pylon_pre  |  ~0.06 :  side_column_block    
 
 rule arch:
-    tag  building:part,  no  
     scale scope_sx, scope_sy-2.0 
     split_z  
              ~1.0:  NIL  |
@@ -121,28 +59,24 @@ rule side_column_pre:
 
 rule pylon_middle:
     split_z   
-            0.3:  pylon_middle_cornice4_pre |
-            0.3:  pylon_middle_cornice3_pre |
+            0.3:  cornice4 |
+            0.3:  cornice3 |
             ~2:   pylon_middle_wall |
-            0.6:  pylon_middle_cornice2_pre |
-            0.6:  pylon_middle_cornice1_pre |
+            0.6:  cornice2 |
+            0.6:  cornice1 |
             ~1:   pylon_middle_wall    
 
-rule pylon_middle_cornice1_pre:
+rule cornice1:
     scale scope_sx+1.4, scope_sy+1.4 
-    tag  building:part,  cornice1  
-
-rule pylon_middle_cornice2_pre:
+ 
+rule cornice2:
     scale scope_sx+2.45, scope_sy+2.45 
-    tag  building:part,  cornice2  
 
-rule pylon_middle_cornice3_pre:
+rule cornice3:
     scale scope_sx+0.4, scope_sy+0.4 
-    tag  building:part,  cornice3  
 
-rule pylon_middle_cornice4_pre:
+rule cornice4:
     scale scope_sx+0.9, scope_sy+0.9 
-    tag  building:part,  cornice4  
 
 rule pylon_top:
     split_z  
@@ -153,37 +87,31 @@ rule pylon_top:
 rule pylon_top1_pre:
     split_x
             1.0:  pylon_top1_obelisk_block |
-             ~1:  pylon_top1_pre2 |
+             ~1:  pylon_top1 |
             1.0:  pylon_top1_obelisk_block    
 
-rule pylon_top1_pre2:
+rule pylon_top1:
     scale  (scope_sx+2*1.0)*0.6, scope_sy*0.6 
-    tag  building:part,   pylon_top1  
 
 rule pylon_top1_obelisk_block:
     rotate_scope 90 
-    split_x    1:  pylon_top1_obelisk_pre |
+    split_x    1:  pylon_top1_obelisk |
               ~10:  NIL |
-               1:  pylon_top1_obelisk_pre    
+               1:  pylon_top1_obelisk    
 
-rule pylon_top1_obelisk_pre:
-    #scale  '1,  '1, 1.8  
+rule pylon_top1_obelisk:
     scale scope_sx, scope_sy, 1.8 
     create_roof skillion, 1.75 
     roof_direction  211.704 # could it be 45? and should be properly rotated
-    tag building:part,  obelisk
 
 rule pylon_top2_pre:
     scale scope_sx*0.5, scope_sy*0.5 
-    tag  building:part,  pylon_top2  
 
 rule pylon_top3_pre:
     scale scope_sx*0.4, scope_sy*0.4 
-    tag  building:part,  pylon_top3  
+ 
 
 rule arch_columns:
-    #tag  building:part, no  
-
     split_x 
             ~0.2:  semi_column_block |   ~1.2:  NIL |
               ~1:  arch_column_block |   ~1.1:  NIL |
@@ -195,7 +123,6 @@ rule arch_columns:
             ~0.2:  semi_column_block    
 
 rule arch_column_block:
-    tag building:part,  no  
     rotate_scope 90 
     # split x { {~sy:porch_column_pre| ~sy:Nil}* | ~sy:porch_column_pre }
     split_x    ~1:  porch_column_pre |
@@ -213,8 +140,18 @@ rule arch_column_block:
                 ~1:  obelisk_pre    
 
 
+rule porch_column_pre:
+    split_z 0.25: porch_column_top | ~1: porch_column_main   
+
+rule porch_column_top:
+    #top_size = min(scope_sx, scope_sy )   / 1.0
+    #align_scope x_to_longer_side
+    scale scope_sx, scope_sx 
+
+rule porch_column_main:
+    primitive_cylinder scope_sx / 3  # min(ctx.scope_sx(), ctx.scope_sy()) / 3
+
 rule semi_column_block:
-    tag  building:part,  no  
     rotate_scope 90 
 
     split_x     ~1:  semi_column_pre |
@@ -226,25 +163,31 @@ rule semi_column_block:
                 ~1:  semi_column_pre    
 
 rule semi_column_pre:
-    split_z  0.25:  semi_column_top |  ~1:  semi_column_main    
+    split_z  0.25:  abacus |  ~1:  fustis    
 
-rule semi_column_top:
-    tag  building:part,  abacus  
+rule abacus:
     scale scope_sx, scope_sy+0.5 
 
-rule semi_column_main:
-    tag  building:part,  fustis  
+rule fustis:
     scale scope_sx-0.5, scope_sy   
 
 rule obelisk_pre:
-    tag  building:part,  obelisk  
-    scale 1, 1.5 
-    tag  building:part,  yes  
-    tag  min_height,  18.3  
-    tag  height,  20.1  
-    tag  roof:height,  1.70  
-    tag  roof:shape,  round  
+    
+    translate 0, 0, 18.1
+    scale 1, 1.5, 1.8 
+    #tag  min_height,  18.3  
+    #tag  height,  20.1  
+    create_roof round,  1.70  
     tag  roof:orientation,  across  
+    
+rule stilobate:
+    nope
+    
+rule pylon_middle_wall:
+    nope
+    
+rule pylon:
+    nope
 
 rule NIL:
     nil  

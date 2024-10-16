@@ -78,3 +78,9 @@ rule column_trunk_pre:
 
 rule column_trunk:
     scale '0.8,'0.8 
+    
+rule column_top1:
+    nope
+    
+rule column_top2:
+    nope

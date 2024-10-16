@@ -32,7 +32,7 @@ rule roof:
 	
 rule entablature:
 	scale scope_sx-3, scope_sy-3
-	split_z ~2: fries | ~1:  architrav
+	split_z ~2: fries | ~1:  architrave
 
 rule fries:
 	scale scope_sx+0.1, scope_sy+0.1
@@ -90,6 +90,9 @@ rule door_block:
 	create_roof round, scope_sx/2
 	tag roof:orientation, across
 	translate 0, 0.25, 0
+
+rule architrave:
+    nope    
 	
 rule NIL:
 	nil

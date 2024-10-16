@@ -137,6 +137,13 @@ rule column_capitel:
 
 rule column_capitel1:
    scale '0.95, '0.95
+   
+rule roof_railing_base:
+    nope
+    
+rule roof_railing_top:
+    nope 
 
 rule NIL:
     nil
+    

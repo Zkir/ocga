@@ -10088,7 +10088,7 @@
     <nd ref="-39" />
     <nd ref="-40" />
     <nd ref="-37" />
-    <tag k="building:part" v="architrav" />
+    <tag k="building:part" v="architrave" />
     <tag k="height" v="12.5" />
     <tag k="min_height" v="11.75" />
     <tag k="roof:colour" v="green" />
