@@ -5,6 +5,8 @@
 
 ocga 0.1
 
+const COLUMN_WIDTH=0.75
+
 rule building:
     align_scope geometry
 	rotate_scope -90
@@ -12,17 +14,16 @@ rule building:
 	outer_rectangle mass_model
 	
 rule mass_model:
-    tag windows, no
 	scale 24, 15, 8
 	split_y ~5: rotunda | ~5: main_part
 	
 rule main_part: 	
-	split_x 7.5: chamber | ~1: middle_part | 7.5: chamber
+	split_x 7.5: chamberL | ~1: middle_part | 7.5: chamberR
 	
 rule middle_part:
-	scale '1 , '0.75	
-	split_z 1.2: roof|0.5: cornice|0.75:entablature|~6:collonade_pre|1.2:stylobate
-	#comp_border 1, collonade
+	scale scope_sx+2, '0.65	
+	split_z 1.2: roof | 0.25: cornice| 0.75:entablature | ~6:collonade_pre | 1.2:stylobate
+    comp_edges -2, steps_pre
 
 rule roof:
 	nope
@@ -35,10 +36,11 @@ rule entablature:
 	colour white
 	
 rule collonade_pre:
-	split_y 1:collonade | ~4:NIL | 1:collonade
+	split_y COLUMN_WIDTH:collonade | ~4:NIL | COLUMN_WIDTH:collonade
 	
 rule stylobate:
 	colour grey
+    tag windows, no
 	
 rule rotunda: 		
     scale 12, 6
@@ -48,33 +50,139 @@ rule rotunda:
 	split_z 0.6: NIL| 0.6: roof | 0.25: cornice | 0.75:entablature | ~6:rotunda_collonade_pre | 1.2:stylobate
 	
 rule rotunda_collonade_pre:
-	comp_edges 1, rotunda_collonade	
+	comp_edges COLUMN_WIDTH, rotunda_collonade	
 
 rule rotunda_collonade:
-	split_x 1: column_pre | ~2 : NIL 
+	split_x COLUMN_WIDTH: column_pre | ~2 : NIL 
 	
-	
-rule chamber:
-	comp_edges 1, portico	
+rule chamberL:
+    comp_edges 1, porticoL	
 	restore
 	scale scope_sx-2, scope_sy-2
-	split_z 1.2: roof | 0.5: cornice | 0.75:entablature | ~6:wall | 1.2:stylobate
+	split_z 1.2: roof | 0.25: cornice | 0.75:entablature | ~6:wall | 1.2:stylobate
+    
+    
+rule chamberR:    
+    comp_edges 1, porticoR	
+	restore
+	scale scope_sx-2, scope_sy-2
+	split_z 1.2: roof | 0.25: cornice | 0.75:entablature | ~6:wall | 1.2:stylobate
+    
 	
-rule portico:
-	scale '0.5, '1
-	split_z 1.2: portico_roof|0.25: cornice|0.75:entablature|~6:collonade|1.2:stylobate
+rule porticoL:
+    # there are porticos on front and outer sides
+    if split_index == 0  then
+        split_x ~1: small_portico
+    endif    
+    
+    if split_index == 1  then
+        split_x ~1: NIL
+    endif    
+    
+    if split_index == 2  then
+        split_x ~1: portico
+    endif    
+    
+    if split_index == 3  then
+        split_x ~1: portico
+    endif    
+    
+rule porticoR:
+    # there are porticos on front and outer sides
+    if split_index == 0  then
+        split_x ~1: small_portico
+    endif    
+    
+    if split_index == 1  then
+        split_x ~1: portico
+    endif    
+    
+    if split_index == 2  then
+        split_x ~1: portico
+    endif    
+    
+    if split_index == 3  then
+        split_x ~1: NIL
+    endif        
+    
+    
+rule portico:    
+    scale '0.45, '1
+    split_z 1.2: portico_roof| 0.25: cornice|0.75:entablature|~6:collonade|1.2:stylobate
+    
+rule small_portico:    
+    translate    0, '0.35
+    scale     '0.45, '0.3
+    
+    split_z 1.2: small_portico_roof |0.25: cornice|0.75:entablature|~6:small_collonade|1.2:stylobate
 
 rule portico_roof:
-	scale '1, '1, '0.8
+	scale '1.075, '1, '0.8
 	create_roof gabled, '0.95
 	tag roof:orientation, across
 
 rule collonade:
-	split_x (1: column_pre | ~2 : NIL )* | 1: column_pre 
+	split_x (COLUMN_WIDTH: column_pre | ~2.75 : NIL )* | COLUMN_WIDTH: column_pre 
+    
+    
+rule small_collonade:    
+    # there are flat half columns on the back side!
+    split_x (COLUMN_WIDTH: half_column_pre | ~2.5 : NIL )* | COLUMN_WIDTH: half_column_pre 
 
 rule column_pre:
-	primitive_cylinder '1
 	colour white
+    split_z 0.10: abacus | ~1: column_fust 
+    
+rule half_column_pre:  
+    translate  0, '0.1  
+    scale '1, '0.8  
+    colour white
+    split_z 0.10: abacus | ~1: half_column_fust 
+
+    
+rule abacus:
+    scale scope_sx+0.2, scope_sy+0.2
+    #translate 0, -0.1
+    
+rule column_fust:
+    primitive_cylinder '0.9
+    
+rule roof:
+    split_z ~1: roof1 | ~8:roof2 | ~2:roof3
+
+rule small_portico_roof:
+    split_z ~1: roof1 | ~8:roof2 | ~2:roof3
+    
+rule roof1:
+    colour white
+    scale scope_sx+0.2, scope_sy+0.2
+rule roof2:
+    nope
+rule roof3:    
+    colour white
+    
+rule steps_pre:
+    colour grey
+    material stone
+    roof_colour stone
+    roof_material granite
+    
+    if split_index==2 then
+        scale '1, '1, 1.2
+        split_x COLUMN_WIDTH: steps_side_pre  |~1: steps | COLUMN_WIDTH: steps_side_pre
+    else
+        nil
+    endif    
+
+rule steps:
+    create_roof skillion, '0.9
+    roof_direction 180
+    
+rule steps_side_pre:
+    split_y ~1:steps_side | ~1:steps_side    
+
+rule steps_side:
+    scale '1, '1, scope_sz*(split_index+1)/2   
 
 rule NIL:
 	nil

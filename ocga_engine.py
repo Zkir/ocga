@@ -150,6 +150,8 @@ def split_z_preserve_roof(osmObject, split_pattern):
         new_obj = T3DObject()
         new_obj.id = getID()
         new_obj.type = osmObject.type
+        new_obj.split_index = i
+        
         new_obj.NodeRefs = copy(osmObject.NodeRefs)
         new_obj.WayRefs = copy(osmObject.WayRefs)
         copyBuildingPartTags(new_obj, osmObject)
@@ -198,6 +200,7 @@ def split_x(osmObject, objOsmGeom, split_pattern):
         new_obj = T3DObject()
         new_obj.id = getID()
         new_obj.type = "way"
+        new_obj.split_index = i
 
         copyBuildingPartTags(new_obj, osmObject)
         new_obj.osmtags["building:part"] = Lengths[i][1]
@@ -231,6 +234,7 @@ def split_y(osmObject, objOsmGeom, split_pattern):
         new_obj = T3DObject()
         new_obj.id = getID()
         new_obj.type = "way"
+        new_obj.split_index = i
 
         copyBuildingPartTags(new_obj, osmObject)
         new_obj.osmtags["building:part"] = Lengths[i][1]
@@ -239,8 +243,6 @@ def split_y(osmObject, objOsmGeom, split_pattern):
 
         # todo: cut actual geometry, not bbox only
         insert_Quad(osmObject, objOsmGeom, new_obj.NodeRefs,  scope_sx, dy, (osmObject.scope_min_x+osmObject.scope_max_x)/2, y0+dy/2)
-
-
 
         new_obj.scope_rz = osmObject.scope_rz  # coordinate system orientation is inherited, but centroid is moved and
         new_obj.updateBBox(objOsmGeom)         # bbox is updated
