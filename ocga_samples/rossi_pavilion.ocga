@@ -26,7 +26,16 @@ rule middle_part:
     comp_edges -2, steps_pre
 
 rule roof:
-	nope
+    split_z ~1: roof1 | ~8:roof2 | ~2:roof3
+    
+rule roof1:
+    colour white
+    scale scope_sx+0.2, scope_sy+0.2
+rule roof2:
+    nope
+rule roof3:    
+    colour white
+
 	
 rule cornice:
 	colour white
@@ -37,6 +46,9 @@ rule entablature:
 	
 rule collonade_pre:
 	split_y COLUMN_WIDTH:collonade | ~4:NIL | COLUMN_WIDTH:collonade
+    
+rule wall:
+    nope    
 	
 rule stylobate:
 	colour grey
@@ -113,8 +125,7 @@ rule portico:
 rule small_portico:    
     translate    0, '0.35
     scale     '0.45, '0.3
-    
-    split_z 1.2: small_portico_roof |0.25: cornice|0.75:entablature|~6:small_collonade|1.2:stylobate
+    split_z 1.2: roof | 0.25: cornice | 0.75:entablature | ~6:small_collonade | 1.2:stylobate
 
 rule portico_roof:
 	scale '1.075, '1, '0.8
@@ -147,19 +158,9 @@ rule abacus:
 rule column_fust:
     primitive_cylinder '0.9
     
-rule roof:
-    split_z ~1: roof1 | ~8:roof2 | ~2:roof3
-
-rule small_portico_roof:
-    split_z ~1: roof1 | ~8:roof2 | ~2:roof3
-    
-rule roof1:
-    colour white
-    scale scope_sx+0.2, scope_sy+0.2
-rule roof2:
-    nope
-rule roof3:    
-    colour white
+rule half_column_fust:
+    nope    
+   
     
 rule steps_pre:
     colour grey
