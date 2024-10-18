@@ -57,15 +57,42 @@ rule stylobate:
 rule rotunda: 		
     scale 12, 6
     rotate_scope -90
-	primitive_halfcylinder '1, 6	
+	primitive_halfcylinder '1, 17	
 	translate -2, 0, 0
 	split_z 0.6: NIL| 0.6: roof | 0.25: cornice | 0.75:entablature | ~6:rotunda_collonade_pre | 1.2:stylobate
+    comp_border -1.5, steps_collonade_pre
+    #comp_edges -1.5, steps_collonade_pre
 	
 rule rotunda_collonade_pre:
 	comp_edges COLUMN_WIDTH, rotunda_collonade	
 
 rule rotunda_collonade:
-	split_x COLUMN_WIDTH: column_pre | ~2 : NIL 
+    if split_index%3==0 then
+        split_x  COLUMN_WIDTH: half_column_pre 
+    else
+        nil    
+    endif  
+
+rule steps_collonade_pre:
+    colour grey
+    material stone
+    roof_colour stone
+    roof_material granite
+    scale '1, '1, 1.2
+        
+    if split_index<=2 or split_index>=13  then
+        nil
+    else    
+        if split_index%3!=0 then
+            create_roof skillion, '0.9
+            roof_direction 180
+        else 
+            nope 
+            #split_y ~1:steps_side | ~1:steps_side     
+        endif   
+    endif     
+    
+    
 	
 rule chamberL:
     comp_edges 1, porticoL	
@@ -174,6 +201,7 @@ rule steps_pre:
     else
         nil
     endif    
+    
 
 rule steps:
     create_roof skillion, '0.9

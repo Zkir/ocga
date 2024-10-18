@@ -61,7 +61,11 @@ lexpr: expr '<' expr |
        expr '>' expr | 
        expr '<=' expr | 
        expr '>=' expr | 
-       expr '==' expr ;             
+       expr '==' expr |
+       expr '!=' expr |
+       'not' lexpr |
+       lexpr ('and') lexpr |
+       lexpr ('or') lexpr;             
 
 /* arithmetic expressions, allowed in certain operators*/
 expr:            relative_number 

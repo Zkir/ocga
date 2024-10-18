@@ -271,8 +271,6 @@ def comp_edges(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
         new_obj.type = "way"
         new_obj.split_index=i
 
-        #copyBuildingPartTags(new_obj, osmObject) # tags are inherited
-
         lat0 = objOsmGeom.nodes[osmObject.NodeRefs[i]].lat
         lon0 = objOsmGeom.nodes[osmObject.NodeRefs[i]].lon
         x0, y0 = osmObject.LatLon2LocalXY(lat0, lon0)
@@ -287,7 +285,6 @@ def comp_edges(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
 
         new_obj.scope_rz = osmObject.scope_rz + atan2(y1 - y0, x1 - x0)
 
-        # we need to move the created shape "inwards", so that outer edges coincide.
         # todo: individual shift for each vertex/edge
         rc = (xc * xc + yc * yc) ** 0.5
         dlat, dlon = osmObject.localXY2LatLon(xc / rc * distance/2, yc / rc * distance/2)
@@ -301,7 +298,7 @@ def comp_edges(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
 
         insert_Quad(new_obj, objOsmGeom, new_obj.NodeRefs,  facade_len, distance, 0, 0)
         new_obj.updateScopeBBox(objOsmGeom)
-        copyBuildingPartTags(new_obj, osmObject)
+        copyBuildingPartTags(new_obj, osmObject) # tags are inherited
         new_obj.osmtags["building:part"] = rule_name
         if roof_only:
             new_obj.osmtags["min_height"] = str(
@@ -317,6 +314,14 @@ def comp_border(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
     
     if osmObject.type == "relation":
         raise Exception("relation is not yet supported in the comp_border operation")
+    
+    # for some reason, which i cannot fully explain,
+    # orign of the local coordinates (x=0, y=0) is not good enough.
+    # xc, yc = osmObject.LatLon2LocalXY((osmObject.bbox.minLat + osmObject.bbox.maxLat)/2, (osmObject.bbox.minLon + osmObject.bbox.maxLon) / 2 )
+    # so we need to find centorid in local coordinates
+    min_x, min_y, max_x, max_y = osmObject.calculateScopeBBox(objOsmGeom)
+    xc, yc = (min_x+max_x)/2, (min_y+max_y)/2
+    
 
     for i in range(len(osmObject.NodeRefs) - 1):
         new_obj = T3DObject()
@@ -337,10 +342,7 @@ def comp_border(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
         # we just create a new node, by moving from the current one to object centroid
         # more proper algorithm should bisect angle, 
         # but even this one gives suprisingly good results for symmetrical shapes.  
-        xc, yc = osmObject.LatLon2LocalXY((osmObject.bbox.minLat + osmObject.bbox.maxLat)/2, (osmObject.bbox.minLon + osmObject.bbox.maxLon) / 2 )
-        # this should be origin of the local coordinates, so xc=yc=0, but anyway  
-        #print(xc, yc)
-        #assert(xc==0 and yc==0) 
+        
         
         rc = ((xc-x1) ** 2 + (yc-y1) ** 2) ** 0.5
         
@@ -357,7 +359,6 @@ def comp_border(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
         #dlat, dlon = osmObject.localXY2LatLon(xc / rc * distance/2, yc / rc * distance/2)
         #dlat = dlat - (osmObject.bbox.minLat + osmObject.bbox.maxLat) / 2
         #dlon = dlon - (osmObject.bbox.minLon + osmObject.bbox.maxLon) / 2
-
         
 
         # 0
@@ -377,6 +378,7 @@ def comp_border(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
         new_obj.scope_rz = osmObject.scope_rz + atan2(y1 - y0, x1 - x0)
         new_obj.updateBBox(objOsmGeom)
         new_obj.updateScopeBBox(objOsmGeom)
+        #new_obj.osmtags["building:part:split_index"] = str(i)
         
         Objects2.append(new_obj)
     return Objects2

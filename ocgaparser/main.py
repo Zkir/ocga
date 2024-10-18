@@ -70,9 +70,11 @@ def visitOperator(operator_ctx, indent):
         for child in operator_ctx.children[0].children:
             #print (type(child), child.getText()) 
             if type(child) is ocgaParser.LexprContext:
-                lexpr = child.getText()
-                lexpr=substitute_build_in_immutables(lexpr)
-                s += lexpr +  ' '    
+                for lexpr_token in child.children:
+                    lexpr = lexpr_token.getText()
+                    lexpr=substitute_build_in_immutables(lexpr)
+                    s += lexpr +  ' '    
+                #print(lexpr)
             elif type(child) is ocgaParser.OperatorContext:
                 #s += ' '*12 + 'pass \n'
                 s += visitOperator(child, indent+4)
