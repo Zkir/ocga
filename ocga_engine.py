@@ -319,8 +319,9 @@ def comp_border(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
     # orign of the local coordinates (x=0, y=0) is not good enough.
     # xc, yc = osmObject.LatLon2LocalXY((osmObject.bbox.minLat + osmObject.bbox.maxLat)/2, (osmObject.bbox.minLon + osmObject.bbox.maxLon) / 2 )
     # so we need to find centorid in local coordinates
-    min_x, min_y, max_x, max_y = osmObject.calculateScopeBBox(objOsmGeom)
-    xc, yc = (min_x+max_x)/2, (min_y+max_y)/2
+    #min_x, min_y, max_x, max_y = osmObject.calculateScopeBBox(objOsmGeom)
+    #xc, yc = (min_x+max_x)/2, (min_y+max_y)/2
+    #print(xc, yc)
     
 
     for i in range(len(osmObject.NodeRefs) - 1):
@@ -328,8 +329,15 @@ def comp_border(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
         new_obj.id = getID()
         new_obj.type = "way"
         new_obj.split_index=i
-
+        
+        if i==0:
+            prev=2 #seems that in closed polygon first node = last node
+        else:     
+            prev=1
         #copyBuildingPartTags(new_obj, osmObject) # tags are inherited
+        lat2 = objOsmGeom.nodes[osmObject.NodeRefs[i-prev]].lat
+        lon2 = objOsmGeom.nodes[osmObject.NodeRefs[i-prev]].lon
+        x2, y2 = osmObject.LatLon2LocalXY(lat2, lon2)
 
         lat0 = objOsmGeom.nodes[osmObject.NodeRefs[i]].lat
         lon0 = objOsmGeom.nodes[osmObject.NodeRefs[i]].lon
@@ -338,27 +346,44 @@ def comp_border(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
         lat1 = objOsmGeom.nodes[osmObject.NodeRefs[i + 1]].lat
         lon1 = objOsmGeom.nodes[osmObject.NodeRefs[i + 1]].lon
         x1, y1 = osmObject.LatLon2LocalXY(lat1, lon1)
+        
+        if i+2<len(osmObject.NodeRefs):
+            nexti=i+2
+        else:
+            nexti=1    
+        #print(len(osmObject.NodeRefs), i+1, nexti )   
+        
+        lat3 = objOsmGeom.nodes[osmObject.NodeRefs[nexti]].lat
+        lon3 = objOsmGeom.nodes[osmObject.NodeRefs[nexti]].lon
+        x3, y3 = osmObject.LatLon2LocalXY(lat3, lon3)
+        
+        
+        r1 = ((x1-x0) ** 2 + (y1-y0) ** 2) ** 0.5
+        r2 = ((x2-x0) ** 2 + (y2-y0) ** 2) ** 0.5
+        x0c=x0+(x1-x0)/r1+(x2-x0)/r2
+        y0c=y0+(y1-y0)/r1+(y2-y0)/r2
+        
+        r0 = ((x0-x1) ** 2 + (y0-y1) ** 2) ** 0.5
+        r3 = ((x3-x1) ** 2 + (y3-y1) ** 2) ** 0.5
+        x1c=x1+(x0-x1)/r0+(x3-x1)/r3
+        y1c=y1+(y0-y1)/r0+(y3-y1)/r3
+        
           
         # we just create a new node, by moving from the current one to object centroid
         # more proper algorithm should bisect angle, 
         # but even this one gives suprisingly good results for symmetrical shapes.  
         
-        
-        rc = ((xc-x1) ** 2 + (yc-y1) ** 2) ** 0.5
-        
-        x2 =  x1+(xc-x1)/ rc * distance
-        y2 =  y1+(yc-y1)/ rc * distance
-        lat2, lon2 = osmObject.localXY2LatLon(x2, y2)
-        
-        rc = ((xc-x0) ** 2 + (yc-y0) ** 2) ** 0.5
-        x3 = x0+(xc-x0) / rc * distance
-        y3 = y0+(yc-y0) / rc * distance
-        lat3, lon3 = osmObject.localXY2LatLon(x3, y3)
+        rc = ((x1c-x1) ** 2 + (y1c-y1) ** 2) ** 0.5
+        xn1 =  x1+(x1c-x1)/ rc * distance
+        yn1 =  y1+(y1c-y1)/ rc * distance
+        lat2, lon2 = osmObject.localXY2LatLon(xn1, yn1)
         
         
-        #dlat, dlon = osmObject.localXY2LatLon(xc / rc * distance/2, yc / rc * distance/2)
-        #dlat = dlat - (osmObject.bbox.minLat + osmObject.bbox.maxLat) / 2
-        #dlon = dlon - (osmObject.bbox.minLon + osmObject.bbox.maxLon) / 2
+        
+        rc = ((x0c-x0) ** 2 + (y0c-y0) ** 2) ** 0.5
+        xn0 = x0+(x0c-x0) / rc * distance
+        yn0 = y0+(y0c-y0) / rc * distance
+        lat3, lon3 = osmObject.localXY2LatLon(xn0, yn0)
         
 
         # 0
