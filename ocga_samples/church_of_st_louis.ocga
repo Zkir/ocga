@@ -115,12 +115,12 @@ rule main_block:
 rule main_main:
     scale '1,  '1,  13 
     create_roof hipped, 1.5 
-    split_x  ~1:  dormer_base_main
+    continue dormer_base_main
     restore 
 
 rule main_side_part_pre:
     scale '1, '1, 8.5 
-    split_x ~1: dormer_base_side
+    continue dormer_base_side
     restore 
     create_roof  skillion, 1.5 
    

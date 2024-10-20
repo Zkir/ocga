@@ -41,6 +41,7 @@ operator:
     RESTORE |
     NIL |
     NOPE |
+    CONTINUE rule_name |
     PRINT expr
     ;  
 
@@ -128,7 +129,8 @@ NIL:                  'nil';
 NOPE:                 'nope';
 ROTATE:               'rotate';
 BEVEL:                'bevel';
-PRINT:                'print';   
+PRINT:                'print';  
+CONTINUE:             'continue';  
 
 NUMBER
     : ('0' .. '9')+ ('.' ('0' .. '9')+)?

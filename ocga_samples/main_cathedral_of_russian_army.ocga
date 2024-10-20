@@ -7,6 +7,8 @@ ocga 0.1
 rule building:
 
     # align local coordinates so that X matches the longest dimension, and oriented east
+    # align_scope geometry
+    # align_scope x_to_longer_side 
     rotate_scope 10.52
 
     colour  &103010 # should rather be #103010
@@ -18,8 +20,7 @@ rule building:
 
 rule mass_model:
     #print scope_sy
-    #split_x  ~1: belltower_block | scope_sy+5: main_block_pre   #
-    split_x  ~1: belltower_block |  92.74213958990671 : main_block_pre   
+    split_x  ~1: belltower_block | scope_sy+5: main_block_pre   
 
 rule belltower_block:
     scale '1 , scope_sx, 70 
@@ -90,12 +91,13 @@ rule apse_1_pre:
     primitive_halfcylinder '1 
 
 rule apse_2_pre:
-    translate -4.30, 0 
-    scale '0.9, '0.605 
+    translate '-0.38, 0 
+    scale '0.7, '0.7 #'0.605
     create_roof half_dome, 6 
     roof_colour gold 
     roof_material metal 
     primitive_halfcylinder '1 
+    #scale '1, '0.75 #0.605 
 
 rule west_apse_block:
     scale '1, '0.4 
@@ -114,7 +116,7 @@ rule west_apse_1_pre:
     
     roof_material glass 
     roof_colour gray 
-    bevel 6, [0,3] 
+    bevel 6, [1, 2] 
 
 rule main_block:
     split_y  ~0.4: NIL | ~0.6: entrance |  ~4: cube |  ~0.6: entrance | ~0.4: NIL  
@@ -165,19 +167,19 @@ rule main_head_layer2_pre:
     primitive_cylinder '1, 8
 
 rule side_head_L1:
-    split_x ~1: side_head  
+    continue side_head  
 
 rule side_head_L2:
     rotate_scope -90
-    split_x  ~1: side_head  
+    continue side_head  
 
 rule side_head_R1:
     rotate_scope 180
-    split_x  ~1: side_head  
+    continue side_head  
 
 rule side_head_R2:
     rotate_scope -270
-    split_x  ~1: side_head  
+    continue side_head  
 
 rule side_head:
     scale '1, '1, '0.75 
@@ -209,19 +211,19 @@ rule side_head_onion_base2:
 
 rule side_erkerL:
     rotate_scope 0 
-    split_x  ~1:side_erker  
+    continue side_erker  
     
 rule side_erkerR:
     rotate_scope 180 
-    split_x  ~1: side_erker  
+    continue side_erker  
     
 rule side_erkerF:
     rotate_scope 90 
-    split_x  ~1: side_erker
+    continue side_erker
     
 rule side_erkerB:
     rotate_scope -90 
-    split_x  ~1: side_erker  
+    continue side_erker  
 
 rule side_erker:
     scale '1, '1, '0.4 

@@ -117,7 +117,7 @@ rule roof0:
 	
 	
 rule dormers_pre:
-    if split_index%2==0 then 
+    if split_index%2==1 then 
         split_x ~1:NILL| 2:dormer | ~2.25:NILL | 2:dormer | ~1:NILL
     else
         nil

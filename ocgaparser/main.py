@@ -92,6 +92,10 @@ def visitOperator(operator_ctx, indent):
             else:
                 raise Exception("smth unxepected found: " + child.getText())                            
     else:    
+        # continue is reserved word in python 
+        if operator_name == 'continue':  
+            operator_name = 'continue1'
+         
         s += ' '*indent + 'ctx.'+operator_name +'('
 
         for  j in range(1,len(operator_ctx.children)):

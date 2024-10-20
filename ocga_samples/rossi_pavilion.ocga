@@ -21,11 +21,13 @@ rule main_part:
 	split_x 7.5: chamberL | ~1: middle_part | 7.5: chamberR
 	
 rule middle_part:
+    tag window, no 
 	scale scope_sx+2, '0.65	
 	split_z 1.2: roof | 0.25: cornice| 0.75:entablature | ~6:collonade_pre | 1.2:stylobate
-    comp_edges -2, steps_pre
+    comp_edges -2.5, steps_pre
 
 rule roof:
+    tag window, no
     split_z ~1: roof1 | ~8:roof2 | ~2:roof3
     
 rule roof1:
@@ -39,28 +41,42 @@ rule roof3:
 	
 rule cornice:
 	colour white
+    tag window, no
 	scale scope_sx+1, scope_sy+1
 	
 rule entablature:
+    tag window, no
 	colour white
 	
 rule collonade_pre:
 	split_y COLUMN_WIDTH:collonade | ~4:NIL | COLUMN_WIDTH:collonade
     
 rule wall:
-    nope    
+    tag window:center:shape, rectangle
+	tag window:top:shape, semicircle
+    tag window:width,   1.9
+	tag	window:height,  3.25
+	tag	window:breast,  0.7
+    tag window:panes,   2x2
+	#tag	window:shutter, both    
+
+rule wall_border:
+    colour white
+    tag window, no
 	
 rule stylobate:
 	colour grey
-    tag windows, no
+    tag window, no
+    
 	
-rule rotunda: 		
+rule rotunda:
+    tag window, no 		
     scale 12, 6
     rotate_scope -90
-	primitive_halfcylinder '1, 17	
+	primitive_halfcylinder '1, 22	
 	translate -2, 0, 0
 	split_z 0.6: NIL| 0.6: roof | 0.25: cornice | 0.75:entablature | ~6:rotunda_collonade_pre | 1.2:stylobate
-    comp_border -2, steps_collonade_pre
+    comp_border -2.5, steps_collonade_pre
     #comp_edges -2, steps_collonade_pre
     
 	
@@ -68,7 +84,7 @@ rule rotunda_collonade_pre:
 	comp_edges COLUMN_WIDTH, rotunda_collonade	
 
 rule rotunda_collonade:
-    if split_index%3==0 then
+    if split_index%4==1 then
         split_x  COLUMN_WIDTH: half_column_pre 
     else
         nil    
@@ -77,18 +93,18 @@ rule rotunda_collonade:
 rule steps_collonade_pre:
     colour grey
     material stone
-    roof_colour stone
-    roof_material granite
+    roof_colour grey
+    roof_material stone
     scale '1, '1, 1.2
     
-    if split_index==16 then 
+    if split_index==0 then 
         nil
     else
-        if split_index<=2 or split_index>=13  then
+        if split_index<=4 or split_index>=18  then
             
             split_y ~2: NIL  | ~1:rotunda_outer
         else    
-            if split_index%3!=0 then
+            if split_index%4!=1 then
                 split_y ~2: steps  | ~1:rotunda_outer
             else 
                 split_y ~1:steps_side | ~1:steps_side | ~1:rotunda_outer   
@@ -101,42 +117,43 @@ rule chamberL:
     comp_edges 1, porticoL	
 	restore
 	scale scope_sx-2, scope_sy-2
-	split_z 1.2: roof | 0.25: cornice | 0.75:entablature | ~6:wall | 1.2:stylobate
+	split_z 1.2: roof | 0.25: cornice | 0.75:entablature | ~6:wall | 0.3: wall_border | 1.2:stylobate
     
     
 rule chamberR:    
     comp_edges 1, porticoR	
 	restore
 	scale scope_sx-2, scope_sy-2
-	split_z 1.2: roof | 0.25: cornice | 0.75:entablature | ~6:wall | 1.2:stylobate
+	split_z 1.2: roof | 0.25: cornice | 0.75:entablature | ~6:wall | 0.3: wall_border |  1.2:stylobate
     
 	
 rule porticoL:
     # there are porticos on front and outer sides
-    if split_index == 0  then
+    
+    if split_index == 1  then
         split_x ~1: small_portico
     endif    
     
-    if split_index == 1  then
+    if split_index == 2  then
         split_x ~1: NIL
     endif    
     
-    if split_index == 2  then
+    if split_index == 3  then
         split_x ~1: portico
     endif    
     
-    if split_index == 3  then
+    if split_index == 0  then
         split_x ~1: portico
     endif    
     
 rule porticoR:
     # there are porticos on front and outer sides
     if split_index == 0  then
-        split_x ~1: small_portico
-    endif    
+        split_x ~1: NIL
+    endif        
     
     if split_index == 1  then
-        split_x ~1: portico
+        split_x ~1: small_portico
     endif    
     
     if split_index == 2  then
@@ -144,8 +161,12 @@ rule porticoR:
     endif    
     
     if split_index == 3  then
-        split_x ~1: NIL
-    endif        
+        split_x ~1: portico
+    endif    
+    
+    
+    
+    
     
     
 rule portico:    
@@ -195,16 +216,18 @@ rule half_column_fust:
 rule steps_pre:
     colour grey
     material stone
-    roof_colour stone
-    roof_material granite
+    roof_colour grey
+    roof_material stone
     
-    if split_index==2 then
+    if split_index==3 then
         scale '1, '1, 1.2
         split_x COLUMN_WIDTH: steps_side_pre  |~1: steps | COLUMN_WIDTH: steps_side_pre
     else
         nil
     endif    
-    
+
+rule rotunda_outer:
+    nope    
 
 rule steps:
     create_roof skillion, '0.9
@@ -218,4 +241,4 @@ rule steps_side:
 
 rule NIL:
 	nil
-	
+

@@ -29,6 +29,7 @@ def getID():
 def resetID():
     global _id_counter
     _id_counter=0
+    
 # ======================================================================================================================
 # Operations with building parts.
 # ======================================================================================================================
@@ -43,7 +44,6 @@ def calculateTotalPatternSize(split_pattern):
             sum_of_all_sizes = sum_of_all_sizes+ float(split_pattern[i][0][1:])
             
     return sum_of_all_sizes        
-        
     
 
 # calculate actual dimensions based on the given split pattern
@@ -120,6 +120,11 @@ def copyBuildingPartTags(new_object, old_object):
     osmtags["roof:shape"] = old_object.getTag("roof:shape")
     osmtags["roof:orientation"] = old_object.getTag("roof:orientation")
     osmtags["roof:direction"] = old_object.getTag("roof:direction")
+    
+    osmtags["window"] = old_object.getTag("window")
+    osmtags["window:shape"] = old_object.getTag("window:shape")
+    osmtags["window:material"] = old_object.getTag("window:material")
+    
 
     if new_object.type == "relation":
         osmtags["type"] = old_object.getTag("type")
@@ -187,74 +192,280 @@ def split_z_preserve_roof(osmObject, split_pattern):
 
 # Split the object along X axis
 def split_x(osmObject, objOsmGeom, split_pattern):
+    
+    if osmObject.type == "relation":
+        raise Exception("relation is not yet supported in the split_x/y operation")
+        
+    if len(split_pattern)<2:
+        print(split_pattern)
+        raise Exception("Split pattern should have at least one element")    
+    
     Objects2 = []
     scope_sx = osmObject.scope_sx
     scope_sy = osmObject.scope_sy
 
     Lengths = calculateDimensionsForSplitPattern(scope_sx, split_pattern)
-    n = len(Lengths)
-    #x0 = -scope_sx / 2
+    remaining_nodes = copy(osmObject.NodeRefs)
     x0 = osmObject.scope_min_x
+    #print("object scope", osmObject.scope_min_x , osmObject.scope_max_x)
 
-    for i in range(n):
+    for i in range(len(Lengths)):
+        
         new_obj = T3DObject()
         new_obj.id = getID()
         new_obj.type = "way"
         new_obj.split_index = i
-
-        copyBuildingPartTags(new_obj, osmObject)
-        new_obj.osmtags["building:part"] = Lengths[i][1]
-
         dx = Lengths[i][0]
+        x0 = x0 + dx
+         
+        left_nodes = []
+        right_nodes = []
+        #print('segment No '+str(i), x0, dx)
+        #print(remaining_nodes)
+        for j in range(len(remaining_nodes)-1):
+            # we should cycle EDGES, not nodes
+            node1 = remaining_nodes[j]
+            lat1 = objOsmGeom.nodes[node1].lat
+            lon1 = objOsmGeom.nodes[node1].lon
+            x1, y1 = osmObject.LatLon2LocalXY(lat1, lon1)
+            
+            node2 = remaining_nodes[j+1]
+            lat2 = objOsmGeom.nodes[node2].lat
+            lon2 = objOsmGeom.nodes[node2].lon
+            x2, y2 = osmObject.LatLon2LocalXY(lat2, lon2)
+            #print(node1, node2)
+            
+            
+            if x1<=x0 and x2<=x0: 
+                left_nodes.append(node2)
+                
+            elif x1<=x0 and x2>x0:      
+                #find crossing point
+                y0 = y1+(y2-y1)/(x2-x1)*(x0-x1)
+                lat0, lon0 = osmObject.localXY2LatLon(x0, y0)
+                node0 = objOsmGeom.AddNode(getID(), lat0, lon0)
+                
+                left_nodes.append(node0)
+                right_nodes.append(node0)
+                right_nodes.append(node2)
 
-        # todo: cut actual geometry, not bbox only
-        insert_Quad(osmObject, objOsmGeom, new_obj.NodeRefs, dx, scope_sy, x0+dx/2, (osmObject.scope_min_y+osmObject.scope_max_y)/2)
-
+            elif x1>x0 and x2<=x0: 
+                #find crossing point
+                y0 = y1+(y2-y1)/(x2-x1)*(x0-x1)
+                lat0, lon0 = osmObject.localXY2LatLon(x0, y0)
+                node0 = objOsmGeom.AddNode(getID(), lat0, lon0)
+                
+                left_nodes.append(node0)
+                left_nodes.append(node2)
+                right_nodes.append(node0)
+                
+            else:
+                right_nodes.append(node2)
+        
+        if not left_nodes:        
+           raise Exception("Split operation ended abruptly") # no more nodes to split
+        if left_nodes[0]!= left_nodes[-1]:
+            left_nodes = [left_nodes[-1]] + left_nodes
+        if right_nodes:            
+            if right_nodes[0]!= right_nodes[-1]:
+                right_nodes.insert(0,right_nodes[-1])    
+            
+        #print("segment results:")        
+        #print(left_nodes)
+        #if right_nodes:
+        #    print(right_nodes) 
+        #print()
+        remaining_nodes = right_nodes
+        
+        new_obj.NodeRefs=left_nodes
         new_obj.scope_rz = osmObject.scope_rz  # coordinate system orientation is inherited, but centroid is moved and
         new_obj.updateBBox(objOsmGeom)         # bbox is updated
         new_obj.updateScopeBBox(objOsmGeom)  # also Bbbox in local coordinates
         new_obj.relative_Ox = x0 + dx / 2
         new_obj.relative_Oy = 0
+        copyBuildingPartTags(new_obj, osmObject)
+        new_obj.osmtags["building:part"] = Lengths[i][1]
         Objects2.append(new_obj)
-        x0 = x0 + dx
-
+            
     return Objects2
 
-# Split the object along Y axis
+## Split the object along Y axis    
 def split_y(osmObject, objOsmGeom, split_pattern):
+    
+    if osmObject.type == "relation":
+        raise Exception("relation is not yet supported in the split_x/y operation")
+    
+    if len(split_pattern)<2:
+        print(split_pattern)
+        raise Exception("Split pattern should have at least one element")    
+    
     Objects2 = []
     scope_sx = osmObject.scope_sx
     scope_sy = osmObject.scope_sy
 
     Lengths = calculateDimensionsForSplitPattern(scope_sy, split_pattern)
-    n = len(Lengths)
+    remaining_nodes = copy(osmObject.NodeRefs)
     y0 = osmObject.scope_min_y
+    #print("object scope", osmObject.scope_min_x , osmObject.scope_max_x)
 
-    for i in range(n):
+    for i in range(len(Lengths)):
+        
         new_obj = T3DObject()
         new_obj.id = getID()
         new_obj.type = "way"
         new_obj.split_index = i
-
-        copyBuildingPartTags(new_obj, osmObject)
-        new_obj.osmtags["building:part"] = Lengths[i][1]
-
         dy = Lengths[i][0]
+        y0 = y0 + dy
+         
+        left_nodes = []
+        right_nodes = []
+        #print('segment No '+str(i), y0, dy)
+        #print(remaining_nodes)
+        for j in range(len(remaining_nodes)-1):
+            # we should cycle EDGES, not nodes
+            node1 = remaining_nodes[j]
+            lat1 = objOsmGeom.nodes[node1].lat
+            lon1 = objOsmGeom.nodes[node1].lon
+            x1, y1 = osmObject.LatLon2LocalXY(lat1, lon1)
+            
+            node2 = remaining_nodes[j+1]
+            lat2 = objOsmGeom.nodes[node2].lat
+            lon2 = objOsmGeom.nodes[node2].lon
+            x2, y2 = osmObject.LatLon2LocalXY(lat2, lon2)
+            #print(node1, node2)
+            
+            
+            if y1<=y0 and y2<=y0: 
+                left_nodes.append(node2)
+                
+            elif y1<=y0 and y2>y0:      
+                #find crossing point
+                x0 = x1+(x2-x1)/(y2-y1)*(y0-y1)
+                lat0, lon0 = osmObject.localXY2LatLon(x0, y0)
+                node0 = objOsmGeom.AddNode(getID(), lat0, lon0)
+                
+                left_nodes.append(node0)
+                right_nodes.append(node0)
+                right_nodes.append(node2)
 
-        # todo: cut actual geometry, not bbox only
-        insert_Quad(osmObject, objOsmGeom, new_obj.NodeRefs,  scope_sx, dy, (osmObject.scope_min_x+osmObject.scope_max_x)/2, y0+dy/2)
-
+            elif y1>y0 and y2<=y0: 
+                #find crossing point
+                x0 = x1+(x2-x1)/(y2-y1)*(y0-y1)
+                lat0, lon0 = osmObject.localXY2LatLon(x0, y0)
+                node0 = objOsmGeom.AddNode(getID(), lat0, lon0)
+                
+                left_nodes.append(node0)
+                left_nodes.append(node2)
+                right_nodes.append(node0)
+                
+            else:
+                right_nodes.append(node2)
+        
+        if not left_nodes:        
+           raise Exception("Split operation ended abruptly") # no more nodes to split
+        if left_nodes[0]!= left_nodes[-1]:
+            left_nodes = [left_nodes[-1]] + left_nodes
+        if right_nodes:            
+            if right_nodes[0]!= right_nodes[-1]:
+                right_nodes.insert(0,right_nodes[-1])    
+            
+        #print("segment results:")        
+        #print(left_nodes)
+        #if right_nodes:
+        #    print(right_nodes) 
+        #print()
+        remaining_nodes = right_nodes
+        
+        new_obj.NodeRefs=left_nodes
         new_obj.scope_rz = osmObject.scope_rz  # coordinate system orientation is inherited, but centroid is moved and
         new_obj.updateBBox(objOsmGeom)         # bbox is updated
         new_obj.updateScopeBBox(objOsmGeom)  # also Bbbox in local coordinates
-        new_obj.relative_Ox = 0
-        new_obj.relative_Oy = y0+dy/2
-
+        new_obj.relative_Ox = y0 + dy / 2
+        new_obj.relative_Oy = 0
+        copyBuildingPartTags(new_obj, osmObject)
+        new_obj.osmtags["building:part"] = Lengths[i][1]
         Objects2.append(new_obj)
-        y0 = y0 + dy
+            
+    return Objects2    
 
+## Split the object along Y axis
+#def split_y(osmObject, objOsmGeom, split_pattern):
+#    Objects2 = []
+#    scope_sx = osmObject.scope_sx
+#    scope_sy = osmObject.scope_sy
+#
+#    Lengths = calculateDimensionsForSplitPattern(scope_sy, split_pattern)
+#    n = len(Lengths)
+#    y0 = osmObject.scope_min_y
+#
+#    for i in range(n):
+#        new_obj = T3DObject()
+#        new_obj.id = getID()
+#        new_obj.type = "way"
+#        new_obj.split_index = i
+#
+#        copyBuildingPartTags(new_obj, osmObject)
+#        new_obj.osmtags["building:part"] = Lengths[i][1]
+#
+#        dy = Lengths[i][0]
+#
+#        # todo: cut actual geometry, not bbox only
+#        insert_Quad(osmObject, objOsmGeom, new_obj.NodeRefs,  scope_sx, dy, (osmObject.scope_min_x+osmObject.scope_max_x)/2, y0+dy/2)
+#
+#        new_obj.scope_rz = osmObject.scope_rz  # coordinate system orientation is inherited, but centroid is moved and
+#        new_obj.updateBBox(objOsmGeom)         # bbox is updated
+#        new_obj.updateScopeBBox(objOsmGeom)  # also Bbbox in local coordinates
+#        new_obj.relative_Ox = 0
+#        new_obj.relative_Oy = y0+dy/2
+#
+#        Objects2.append(new_obj)
+#        y0 = y0 + dy
+#
+#    return Objects2
+
+#somewhat similar to (older) split_x but with single child
+def outer_rectangle(osmObject, objOsmGeom, rule_name):
+    Objects2 = []
+    scope_sx = osmObject.scope_sx
+    scope_sy = osmObject.scope_sy
+    
+    y0 = osmObject.scope_min_y
+    dy = scope_sy
+
+    new_obj = T3DObject()
+    new_obj.id = getID()
+    new_obj.type = "way"
+    new_obj.split_index = 0
+
+    copyBuildingPartTags(new_obj, osmObject)
+    new_obj.osmtags["building:part"] = rule_name
+
+    insert_Quad(osmObject, objOsmGeom, new_obj.NodeRefs,  scope_sx, dy, (osmObject.scope_min_x+osmObject.scope_max_x)/2, y0+dy/2)
+
+    new_obj.scope_rz = osmObject.scope_rz  # coordinate system orientation is inherited, but centroid is moved and
+    new_obj.updateBBox(objOsmGeom)         # bbox is updated
+    new_obj.updateScopeBBox(objOsmGeom)  # also Bbbox in local coordinates
+    new_obj.relative_Ox = 0
+    new_obj.relative_Oy = y0+dy/2
+    Objects2.append(new_obj)
     return Objects2
-
+    
+def assignSplitIndexByMinX(Objects2): 
+    if Objects2:
+        min_index=0
+        min_x = Objects2[0].relative_Ox
+        for j in range(len(Objects2)):
+            #print(Objects2[j].id)
+            if Objects2[j].relative_Ox < min_x: 
+                min_x = Objects2[j].relative_Ox
+                min_index=j
+        
+        #print("min_j ", min_index)
+        Objects2=Objects2[min_index:]+Objects2[:min_index]
+        
+        for i, object2 in enumerate(Objects2):
+            object2.split_index=i
+   
 
 # some kind of hybrid between offset and comp(edges) operations
 # we create geometry along edges of our roof, to create decorative elements
@@ -269,7 +480,6 @@ def comp_edges(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
         new_obj = T3DObject()
         new_obj.id = getID()
         new_obj.type = "way"
-        new_obj.split_index=i
 
         lat0 = objOsmGeom.nodes[osmObject.NodeRefs[i]].lat
         lon0 = objOsmGeom.nodes[osmObject.NodeRefs[i]].lon
@@ -298,12 +508,17 @@ def comp_edges(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
 
         insert_Quad(new_obj, objOsmGeom, new_obj.NodeRefs,  facade_len, distance, 0, 0)
         new_obj.updateScopeBBox(objOsmGeom)
+        new_obj.relative_Ox = (x0 + x1)/2
+        new_obj.relative_Oy = (y0 + y1)/2
         copyBuildingPartTags(new_obj, osmObject) # tags are inherited
         new_obj.osmtags["building:part"] = rule_name
         if roof_only:
             new_obj.osmtags["min_height"] = str(
                 osmObject.osmtags["height"] - osmObject.osmtags["roof:height"])
         Objects2.append(new_obj)
+        
+    # some reording, because otherwise split_index gets random start value
+    assignSplitIndexByMinX(Objects2)    
     return Objects2
 
 # currently simplified/mock up operation. 
@@ -328,7 +543,7 @@ def comp_border(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
         new_obj = T3DObject()
         new_obj.id = getID()
         new_obj.type = "way"
-        new_obj.split_index=i
+        
         
         if i==0:
             prev=2 #seems that in closed polygon first node = last node
@@ -403,10 +618,14 @@ def comp_border(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
         new_obj.scope_rz = osmObject.scope_rz + atan2(y1 - y0, x1 - x0)
         new_obj.updateBBox(objOsmGeom)
         new_obj.updateScopeBBox(objOsmGeom)
-        #new_obj.osmtags["building:part:split_index"] = str(i)
-        
+        new_obj.relative_Ox = (x0 + x1)/2
+        new_obj.relative_Oy = (y0 + y1)/2
+     
         Objects2.append(new_obj)
-    return Objects2
+        
+    # some reording, because otherwise split_index gets random start value
+    assignSplitIndexByMinX(Objects2) 
+    return Objects2 
 
 #  we cannot really do comp, because building parts are individable,
 #  but we will create one more object with the same geometry and height by roof height
@@ -654,20 +873,41 @@ def bevel(osmObject, objOsmGeom, r, node_list=None):
     else:
         closed_way_flag = 0
         raise Exception ("Bevel is allowed only for closed polygons")
+        
 
-    new_node_refs = []
-    #print (osmObject.NodeRefs)
     if node_list is None:
-        node_list = range(len(osmObject.NodeRefs) - closed_way_flag)
-    for i in range(len(osmObject.NodeRefs) - closed_way_flag):
+        node_list = range(len(osmObject.NodeRefs) - closed_way_flag)    
+
+    #print(osmObject.NodeRefs)
+    new_node_refs = []
+    old_node_refs = copy(osmObject.NodeRefs[:len(osmObject.NodeRefs)-1])
+    
+    # we need to somehow reoder nodes, in relation to object scope, otherwise node numbers become random
+    min_index=0
+    min_x, min_y = osmObject.LatLon2LocalXY(objOsmGeom.nodes[old_node_refs[0]].lat, objOsmGeom.nodes[old_node_refs[0]].lon)
+    min_alfa=atan2(min_y, min_x)
+    for j in range(len(old_node_refs)):
+        node_x, node_y = osmObject.LatLon2LocalXY(objOsmGeom.nodes[old_node_refs[j]].lat, objOsmGeom.nodes[old_node_refs[j]].lon)
+        node_alfa=atan2(node_y, node_x)
+
+        #print(old_node_refs[j].id)
+        if node_alfa < min_alfa: 
+            min_alfa = node_alfa
+            min_index=j
+    
+    #print("min_j ", min_index)
+    old_node_refs=old_node_refs[min_index:]+old_node_refs[:min_index]
+    old_node_refs = old_node_refs +[old_node_refs[0]]
+    
+    for i in range(len(old_node_refs) - closed_way_flag):
         if i in node_list:
             if i == 0:
                 magic = 1
             else:
                 magic = 0
-            nodeA = osmObject.NodeRefs[i-1-magic]
-            nodeO = osmObject.NodeRefs[i]
-            nodeB = osmObject.NodeRefs[i+1]
+            nodeA = old_node_refs[i-1-magic]
+            nodeO = old_node_refs[i]
+            nodeB = old_node_refs[i+1]
             #print (nodeA,nodeO, nodeB)
 
             x0, y0 = osmObject.LatLon2LocalXY(objOsmGeom.nodes[nodeO].lat, objOsmGeom.nodes[nodeO].lon)
@@ -700,7 +940,7 @@ def bevel(osmObject, objOsmGeom, r, node_list=None):
             node_ref = objOsmGeom.AddNode(getID(), lat, lon)
             new_node_refs.append(node_ref)
         else:
-            node_ref=osmObject.NodeRefs[i]
+            node_ref=old_node_refs[i]
             new_node_refs.append(node_ref)
 
     if closed_way_flag == 1:
@@ -869,7 +1109,11 @@ class OCGAContext:
     # ===========================================================================
     def outer_rectangle(self, rule_name):
         """Creates an outer (bbox) rectangle in replacement of the current shape"""
-        self.split_x((("~1", rule_name),))
+        new_objects = outer_rectangle(self.current_object, self.objOsmGeom, rule_name)
+        self.nil()
+        self.Objects2.extend(new_objects)
+        setParentChildRelationship(self.current_object, new_objects)
+        self.unprocessed_rules_exist = True
 
         if self.current_object.isBuilding():
             # we cannot really delete building outline.
@@ -991,6 +1235,13 @@ class OCGAContext:
         self.split_z_preserve_roof((("~1", rule_name),))
         self.restore()
         
+    def continue1(self, rule_name): 
+        
+        if self.current_object.isBuilding():
+            raise Exception("continue operation is NOT allowed for buildings")
+            
+        self.split_z_preserve_roof((("~1", rule_name),))
+        
     def nope(self):
         """Just and empty operation, to let all operations be defined """
         pass
@@ -1047,6 +1298,7 @@ class OCGAContext:
                 if self.current_object.isBuilding() and self.Objects2.count(self.current_object) == 0:
                     #we cannot delete building outline, it is required as part of the model
                     raise Exception("Destruction of the building outline is not allowed")
+                    
 
             self.Objects = self.Objects2
             cycles_passed=cycles_passed+1
