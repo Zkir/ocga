@@ -85,7 +85,7 @@ rule rotunda_collonade_pre:
 
 rule rotunda_collonade:
     if split_index%4==1 then
-        split_x  COLUMN_WIDTH: half_column_pre 
+        continue half_column_pre 
     else
         nil    
     endif  
@@ -131,37 +131,37 @@ rule porticoL:
     # there are porticos on front and outer sides
     
     if split_index == 1  then
-        split_x ~1: small_portico
+        continue small_portico
     endif    
     
     if split_index == 2  then
-        split_x ~1: NIL
+        continue NIL
     endif    
     
     if split_index == 3  then
-        split_x ~1: portico
+        continue portico
     endif    
     
     if split_index == 0  then
-        split_x ~1: portico
+        continue portico
     endif    
     
 rule porticoR:
     # there are porticos on front and outer sides
     if split_index == 0  then
-        split_x ~1: NIL
+        continue NIL
     endif        
     
     if split_index == 1  then
-        split_x ~1: small_portico
+        continue small_portico
     endif    
     
     if split_index == 2  then
-        split_x ~1: portico
+        continue portico
     endif    
     
     if split_index == 3  then
-        split_x ~1: portico
+        continue portico
     endif    
     
     
