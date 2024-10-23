@@ -195,8 +195,16 @@ rule side_head_layer1:
     bevel 2.5, [0] 
 
 rule side_head_layer2:
-    scale '0.8, '0.8 
-    bevel 1.5 
+    scale '0.9, '0.9
+    comp_edges 2, side_head_portico
+    restore 
+    scale '0.7, '0.7 
+
+    
+rule side_head_portico:
+    scale '0.7, '1, '1
+    create_roof gabled, 2 
+    tag roof:orientation, across     
 
 rule side_head_onion_base_pre:
     primitive_cylinder '1 

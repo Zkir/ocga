@@ -33,11 +33,12 @@ rule roof:
 rule roof1:
     colour white
     scale scope_sx+0.2, scope_sy+0.2
+
 rule roof2:
     nope
+
 rule roof3:    
     colour white
-
 	
 rule cornice:
 	colour white
@@ -67,7 +68,6 @@ rule wall_border:
 rule stylobate:
 	colour grey
     tag window, no
-    
 	
 rule rotunda:
     tag window, no 		
@@ -82,6 +82,10 @@ rule rotunda:
 	
 rule rotunda_collonade_pre:
 	comp_edges COLUMN_WIDTH, rotunda_collonade	
+    restore
+    translate '-0.025, 0
+    scale '0.95, '0.95
+    comp_border 0.5, rotunda_wall
 
 rule rotunda_collonade:
     if split_index%4==1 then
@@ -111,7 +115,32 @@ rule steps_collonade_pre:
             endif   
         endif     
     endif     
+
+rule rotunda_wall:
+    if split_index==0 then 
+       nil
+    endif
     
+    if split_index%4==1 then
+        nope
+    endif     
+
+    if split_index%4==2 then
+        translate 0, 0, 3.5
+        scale '1, '1, 1.5
+    endif 
+    
+    if split_index%4==3 then
+        translate 0, 0, 4.0
+        scale '1, '1, 1.5
+    endif 
+    
+    if split_index%4==0 then
+        translate 0, 0, 3.5
+        scale '1, '1, 1.5
+    endif 
+    
+                
 	
 rule chamberL:
     comp_edges 1, porticoL	
@@ -135,7 +164,7 @@ rule porticoL:
     endif    
     
     if split_index == 2  then
-        continue NIL
+        nil
     endif    
     
     if split_index == 3  then
@@ -149,7 +178,7 @@ rule porticoL:
 rule porticoR:
     # there are porticos on front and outer sides
     if split_index == 0  then
-        continue NIL
+        nil
     endif        
     
     if split_index == 1  then
@@ -197,20 +226,20 @@ rule column_pre:
     
 rule half_column_pre:  
     translate  0, '0.1  
-    scale '1, '0.8  
+    scale '0.5, '0.8  
     colour white
     split_z 0.10: abacus | ~1: half_column_fust 
 
     
 rule abacus:
-    scale scope_sx+0.2, scope_sy+0.2
+    scale scope_sx+0.3, scope_sy+0.3
     #translate 0, -0.1
     
 rule column_fust:
     primitive_cylinder '0.9
     
 rule half_column_fust:
-    nope    
+    nope
    
     
 rule steps_pre:

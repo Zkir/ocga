@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='595387031' timestamp='2017-07-20T23:52:55Z' uid='830106' user='literan' visible='true' version='7' changeset='50444578' lat='55.7423304' lon='37.6290117' />
+  <node id='595387032' timestamp='2023-10-28T08:53:07Z' uid='599809' user='ig4map' visible='true' version='16' changeset='143249093' lat='55.7424902' lon='37.6290501'>
+    <tag k='entrance' v='exit' />
+    <tag k='network' v='Московский метрополитен' />
+    <tag k='railway' v='subway_entrance' />
+    <tag k='ref' v='1' />
+    <tag k='wheelchair' v='no' />
+  </node>
+  <node id='595387034' timestamp='2017-07-20T23:52:55Z' uid='830106' user='literan' visible='true' version='7' changeset='50444578' lat='55.742441' lon='37.6290014' />
+  <node id='595387036' timestamp='2023-10-28T08:53:07Z' uid='599809' user='ig4map' visible='true' version='19' changeset='143249093' lat='55.7422843' lon='37.6290691'>
+    <tag k='entrance' v='exit' />
+    <tag k='network' v='Московский метрополитен' />
+    <tag k='railway' v='subway_entrance' />
+    <tag k='ref' v='1' />
+    <tag k='wheelchair' v='no' />
+  </node>
+  <node id='595387038' timestamp='2017-07-20T23:52:55Z' uid='830106' user='literan' visible='true' version='7' changeset='50444578' lat='55.7423852' lon='37.628988' />
+  <node id='595387040' timestamp='2017-07-20T23:52:55Z' uid='830106' user='literan' visible='true' version='7' changeset='50444578' lat='55.7425284' lon='37.6291352' />
+  <node id='595387042' timestamp='2017-07-20T23:52:55Z' uid='830106' user='literan' visible='true' version='7' changeset='50444578' lat='55.7422838' lon='37.6294448' />
+  <node id='595387044' timestamp='2017-07-20T23:52:55Z' uid='830106' user='literan' visible='true' version='7' changeset='50444578' lat='55.742251' lon='37.6293528' />
+  <node id='595387046' timestamp='2021-04-19T16:56:36Z' uid='371263' user='augxcgrwxo' visible='true' version='10' changeset='103213009' lat='55.7422413' lon='37.6292453'>
+    <tag k='colour' v='darkgreen' />
+    <tag k='entrance' v='yes' />
+    <tag k='network' v='Московский метрополитен' />
+    <tag k='operator' v='ГУП «Московский метрополитен»' />
+    <tag k='railway' v='subway_entrance' />
+    <tag k='ref' v='1' />
+    <tag k='wheelchair' v='no' />
+  </node>
+  <node id='595387048' timestamp='2017-07-20T23:52:55Z' uid='830106' user='literan' visible='true' version='7' changeset='50444578' lat='55.7423343' lon='37.6295063' />
+  <node id='595387050' timestamp='2017-07-20T23:52:55Z' uid='830106' user='literan' visible='true' version='7' changeset='50444578' lat='55.7425446' lon='37.6292402' />
+  <node id='595387052' timestamp='2017-07-20T23:52:55Z' uid='830106' user='literan' visible='true' version='7' changeset='50444578' lat='55.7425361' lon='37.629348' />
+  <node id='595387054' timestamp='2017-07-20T23:52:55Z' uid='830106' user='literan' visible='true' version='7' changeset='50444578' lat='55.7425043' lon='37.6294411' />
+  <node id='595387055' timestamp='2017-07-20T23:52:55Z' uid='830106' user='literan' visible='true' version='7' changeset='50444578' lat='55.7422537' lon='37.6291502' />
+  <node id='595387056' timestamp='2017-07-20T23:52:55Z' uid='830106' user='literan' visible='true' version='7' changeset='50444578' lat='55.7424544' lon='37.6295043' />
+  <node id='595387057' timestamp='2017-07-20T23:52:55Z' uid='830106' user='literan' visible='true' version='7' changeset='50444578' lat='55.7423945' lon='37.6295273' />
+  <way id='46581053' action='modify' timestamp='2024-10-10T09:28:43Z' uid='21226868' user='dingoy29' visible='true' version='13' changeset='157705928'>
+    <nd ref='595387050' />
+    <nd ref='595387052' />
+    <nd ref='595387054' />
+    <nd ref='595387056' />
+    <nd ref='595387057' />
+    <nd ref='595387048' />
+    <nd ref='595387042' />
+    <nd ref='595387044' />
+    <nd ref='595387046' />
+    <nd ref='595387055' />
+    <nd ref='595387036' />
+    <nd ref='595387031' />
+    <nd ref='595387038' />
+    <nd ref='595387034' />
+    <nd ref='595387032' />
+    <nd ref='595387040' />
+    <nd ref='595387050' />
+    <tag k='addr:housenumber' v='25' />
+    <tag k='addr:street' v='Пятницкая улица' />
+    <tag k='building' v='train_station' />
+    <tag k='building:architecture' v='stalinist_neoclassicism' />
+    <tag k='building:levels' v='1' />
+    <tag k='description' v='Наземный вестибюль станции метро Новокузнецкая' />
+    <tag k='height' v='5' />
+    <tag k='historic' v='yes' />
+    <tag k='roof:levels' v='1' />
+    <tag k='roof:shape' v='dome' />
+    <tag k='start_date' v='1943' />
+    <tag k='wikidata' v='Q1365632' />
+  </way>
+</osm>

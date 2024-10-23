@@ -11,7 +11,7 @@ const: CONST LITERAL EQ expr;
 operator:
     сonditional |
     ALIGNSCOPE ('geometry' | 'x_to_longer_side') |  
-    TAG key_name COMMA tag_value |
+    TAG key_name (COMMA|EQ) tag_value |
     ROOFCOLOUR tag_value |
     ROOFMATERIAL tag_value |
     COLOUR tag_value |
@@ -29,6 +29,7 @@ operator:
     ROTATE expr |
     PRIMITIVECYLINDER expr |
     PRIMITIVECYLINDER expr COMMA expr | 
+    PRIMITIVECYLINDER expr COMMA expr COMMA list | 
     PRIMITIVEHALFCYLINDER expr |
     PRIMITIVEHALFCYLINDER expr COMMA expr | 
     ROOF roof_shape COMMA expr |  
@@ -38,11 +39,14 @@ operator:
     COMPROOF rule_name |     
     BEVEL expr |
     BEVEL expr COMMA list |
+    INSERT2 expr COMMA  expr |
+    INSERT2 expr COMMA  expr COMMA list |
     RESTORE |
     NIL |
     NOPE |
     CONTINUE rule_name |
     PRINT expr
+    
     ;  
 
 сonditional: IF lexpr THEN operator+ ENDIF | 
@@ -130,7 +134,8 @@ NOPE:                 'nope';
 ROTATE:               'rotate';
 BEVEL:                'bevel';
 PRINT:                'print';  
-CONTINUE:             'continue';  
+CONTINUE:             'continue'; 
+INSERT2:              'insert2';
 
 NUMBER
     : ('0' .. '9')+ ('.' ('0' .. '9')+)?

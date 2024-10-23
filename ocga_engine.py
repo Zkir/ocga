@@ -465,6 +465,25 @@ def assignSplitIndexByMinX(Objects2):
         
         for i, object2 in enumerate(Objects2):
             object2.split_index=i
+            
+def reorderedNodes(osmObject, objOsmGeom): 
+    old_node_refs = copy(osmObject.NodeRefs[:len(osmObject.NodeRefs)-1])
+    min_index=0
+    min_x, min_y = osmObject.LatLon2LocalXY(objOsmGeom.nodes[old_node_refs[0]].lat, objOsmGeom.nodes[old_node_refs[0]].lon)
+    min_alfa=atan2(min_y, min_x)
+    for j in range(len(old_node_refs)):
+        node_x, node_y = osmObject.LatLon2LocalXY(objOsmGeom.nodes[old_node_refs[j]].lat, objOsmGeom.nodes[old_node_refs[j]].lon)
+        node_alfa=atan2(node_y, node_x)
+
+        #print(old_node_refs[j].id)
+        if node_alfa < min_alfa: 
+            min_alfa = node_alfa
+            min_index=j
+    
+    #print("min_j ", min_index)
+    old_node_refs=old_node_refs[min_index:]+old_node_refs[:min_index]
+    old_node_refs = old_node_refs +[old_node_refs[0]] 
+    return  old_node_refs   
    
 
 # some kind of hybrid between offset and comp(edges) operations
@@ -667,7 +686,27 @@ def insert_Quad(osmObject, objOsmGeom, NodeRefs, width, length, x0, y0):
 
 # todo: insert_circle should be NON-DESTRUCTIVE OPERATION
 # object remain, but geometry is changed
-def primitiveCircle(osmObject, objOsmGeom,  nVertices=12, radius="'1"):
+def primitiveCircle(osmObject, objOsmGeom,  nVertices=12, radius="'1", pattern=None):
+    if pattern is None:
+        pattern=[1,]
+        
+    pattern=pattern*(nVertices//len(pattern))
+    s=0
+    for pattern_element in pattern:
+        s=s+pattern_element
+        
+    for i in range (len(pattern)):
+        pattern[i]=pattern[i]/s
+    
+    vertice_angles = []
+   
+    alpha = 0 
+    for pattern_element in pattern:
+        vertice_angles+= [alpha]
+        alpha=alpha + pattern_element*  2 * pi 
+    
+    #print(pattern) 
+    #print(vertice_angles)     
 
     new_obj = osmObject
     #new_obj = T3DObject()
@@ -679,18 +718,19 @@ def primitiveCircle(osmObject, objOsmGeom,  nVertices=12, radius="'1"):
 
     R = parseRelativeValue(radius, min(osmObject.scope_sx, osmObject.scope_sy)/2)
 
-    Lat = [None] * nVertices
-    Lon = [None] * nVertices
-    ids = [None] * nVertices
+    Lat = [None] * len(vertice_angles)
+    Lon = [None] * len(vertice_angles)
+    ids = [None] * len(vertice_angles)
 
-    for i in range(nVertices):
-        alpha = 2 * pi / nVertices * i
+    for i in range(len(vertice_angles)):
+        alpha =  vertice_angles[i]
 
         Lat[i], Lon[i] = osmObject.localXY2LatLon(R * cos(alpha), R * sin(alpha))
         ids[i] = getID()
         # print(ids[i], x[i], y[i])
         intNodeNo= objOsmGeom.AddNode(ids[i], Lat[i], Lon[i])
         new_obj.NodeRefs.append(intNodeNo)
+        
     # objOsmGeom.AddNode(ids[0], Lat[0], Lon[0])
     intNodeNo = objOsmGeom.FindNode(ids[0])
     new_obj.NodeRefs.append(intNodeNo)
@@ -880,24 +920,10 @@ def bevel(osmObject, objOsmGeom, r, node_list=None):
 
     #print(osmObject.NodeRefs)
     new_node_refs = []
-    old_node_refs = copy(osmObject.NodeRefs[:len(osmObject.NodeRefs)-1])
     
     # we need to somehow reoder nodes, in relation to object scope, otherwise node numbers become random
-    min_index=0
-    min_x, min_y = osmObject.LatLon2LocalXY(objOsmGeom.nodes[old_node_refs[0]].lat, objOsmGeom.nodes[old_node_refs[0]].lon)
-    min_alfa=atan2(min_y, min_x)
-    for j in range(len(old_node_refs)):
-        node_x, node_y = osmObject.LatLon2LocalXY(objOsmGeom.nodes[old_node_refs[j]].lat, objOsmGeom.nodes[old_node_refs[j]].lon)
-        node_alfa=atan2(node_y, node_x)
-
-        #print(old_node_refs[j].id)
-        if node_alfa < min_alfa: 
-            min_alfa = node_alfa
-            min_index=j
+    old_node_refs = reorderedNodes(osmObject, objOsmGeom)
     
-    #print("min_j ", min_index)
-    old_node_refs=old_node_refs[min_index:]+old_node_refs[:min_index]
-    old_node_refs = old_node_refs +[old_node_refs[0]]
     
     for i in range(len(old_node_refs) - closed_way_flag):
         if i in node_list:
@@ -949,6 +975,94 @@ def bevel(osmObject, objOsmGeom, r, node_list=None):
     osmObject.NodeRefs = new_node_refs
     osmObject.updateBBox(objOsmGeom)
     osmObject.updateScopeBBox(objOsmGeom)
+    
+    
+def insert2(osmObject, objOsmGeom, a, b, edge_list=None):  
+
+
+    if osmObject.type == "relation":
+        raise Exception("todo: relations is not supported")
+        # we should not transfer the same node twice
+
+    if osmObject.NodeRefs[0] == osmObject.NodeRefs[-1]:
+        closed_way_flag = 1
+    else:
+        closed_way_flag = 0
+        raise Exception ("Bevel is allowed only for closed polygons")
+
+    if edge_list is None:
+        edge_list = list( range(len(osmObject.NodeRefs) - closed_way_flag))
+        
+    new_node_refs = []
+    old_node_refs = reorderedNodes(osmObject, objOsmGeom)
+    
+    
+    for i in range(len(old_node_refs) - closed_way_flag):
+        if i in edge_list:
+            
+            nodeA = old_node_refs[i]
+            nodeB = old_node_refs[i+1]
+            #print (nodeA,nodeO, nodeB)
+
+            xa, ya = osmObject.LatLon2LocalXY(objOsmGeom.nodes[nodeA].lat, objOsmGeom.nodes[nodeA].lon)
+            xb, yb = osmObject.LatLon2LocalXY(objOsmGeom.nodes[nodeB].lat, objOsmGeom.nodes[nodeB].lon)
+            dxab = xb - xa 
+            dyab = yb - ya 
+            rab = (dxab*dxab+dyab*dyab)**0.5
+            a = parseRelativeValue(a, rab)
+            if a>rab/2:
+                raise Exception("a = "+str(a)+" is too long. Maximum is "+str(rab/2))
+            
+            c = rab - 2*a
+            assert c>0
+                
+            dxab = dxab / rab
+            dyab = dyab / rab
+
+            x1 = xa + dxab* a
+            y1 = ya + dyab* a
+            
+            x2 = x1 - dyab * (-b) 
+            y2 = y1 + dxab * (-b)  
+            
+            x3 =  x2 + dxab* c
+            y3 =  y2 + dyab* c
+            
+            x4 = x3 + dyab * (-b) 
+            y4 = y3 - dxab * (-b) 
+
+            # we add the first node of the edge
+            node_ref=old_node_refs[i]
+            new_node_refs.append(node_ref)    
+            
+            # and four newly created nodes
+            lat, lon = osmObject.localXY2LatLon(x1, y1)
+            node_ref = objOsmGeom.AddNode(getID(), lat, lon)
+            new_node_refs.append(node_ref)
+
+            lat, lon = osmObject.localXY2LatLon(x2, y2)
+            node_ref = objOsmGeom.AddNode(getID(), lat, lon)
+            new_node_refs.append(node_ref)
+            
+            lat, lon = osmObject.localXY2LatLon(x3, y3)
+            node_ref = objOsmGeom.AddNode(getID(), lat, lon)
+            new_node_refs.append(node_ref)
+            
+            lat, lon = osmObject.localXY2LatLon(x4, y4)
+            node_ref = objOsmGeom.AddNode(getID(), lat, lon)
+            new_node_refs.append(node_ref)
+        else:
+            node_ref=old_node_refs[i]
+            new_node_refs.append(node_ref)    
+        
+        
+
+    if closed_way_flag == 1:
+        new_node_refs.append(new_node_refs[0])
+
+    osmObject.NodeRefs = new_node_refs
+    osmObject.updateBBox(objOsmGeom)
+    osmObject.updateScopeBBox(objOsmGeom)      
 
 
 def setParentChildRelationship(old_obj, new_objects):
@@ -1119,13 +1233,13 @@ class OCGAContext:
             # we cannot really delete building outline.
             self.restore()
 
-    def primitive_cylinder(self, radius, nVertices=12):
+    def primitive_cylinder(self, radius, nVertices=12, pattern=None):
         """replaces the geometry of the current object with cylinder/circle"""
         
         if type(nVertices) is str:
             nVertices=int(nVertices)
 
-        primitiveCircle(self.current_object, self.objOsmGeom, nVertices, radius)
+        primitiveCircle(self.current_object, self.objOsmGeom, nVertices, radius, pattern)
         if radius is None:
             scale(self.current_object, self.objOsmGeom, self.current_object.scope_sx,self.current_object.scope_sy)
 
@@ -1222,6 +1336,9 @@ class OCGAContext:
     def bevel(self, r, node_list=None):
         """bevel operation -- """
         bevel(self.current_object, self.objOsmGeom, r, node_list)
+        
+    def insert2 (self, a, b,  edge_list=None):    
+        insert2(self.current_object, self.objOsmGeom, a, b, edge_list)    
 
     # ===========================================================================
     # flow control operations
