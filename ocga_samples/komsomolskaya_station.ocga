@@ -132,6 +132,11 @@ rule dormer:
     scale '1, 5.0, scope_sx/1.75
     create_roof round, '0.99
     tag roof:orientation, along
+    
+    tag window, yes
+	tag window:shape,    semicircle
+	tag	window:height,  0.9
+    tag	window:width,  1.4
 
 rule wall_block:
     split_z 4: entablement | ~1: wall | 0.6: stylobate
@@ -140,13 +145,25 @@ rule wall:
     colour tan
     material plaster
     scale scope_sx-0.5, scope_sy-0.5
+    split_z ~1: wall1 | ~2: wall2
+    
+rule wall1:
+    tag window, yes
+	tag window:shape, circle
+	tag	window:height,  2
+	tag	window:width,   2
+	tag	window:breast,  0.3
+	tag window:panes,   2x1    
 
+rule wall2:
     tag window, yes
 	tag window:shape, rectangle
-	tag	window:height,  4
-	tag	window:width,   3
+	tag	window:height,  3
+	tag	window:width,   2
 	tag	window:breast,  1
 	tag window:panes,   4x5
+    
+
 
 
 rule portico:
