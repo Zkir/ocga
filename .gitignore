@@ -5,3 +5,4 @@ ocga_samples/alexander_column_ocga.py
 ocga_output/*.osm
 ocga_output/*.py
 ocga_output/*.gltf
+/.venv
