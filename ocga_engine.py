@@ -988,7 +988,11 @@ def insert2(osmObject, objOsmGeom, a, b, edge_list=None):
         closed_way_flag = 1
     else:
         closed_way_flag = 0
-        raise Exception ("Bevel is allowed only for closed polygons")
+        raise Exception ("Insert2 is allowed only for closed polygons")
+    
+        
+    if abs(b) < 0.1:      
+        raise Exception("'b' parameter of Insert2 operation is too small: "+str(b))
 
     if edge_list is None:
         edge_list = list( range(len(osmObject.NodeRefs) - closed_way_flag))
@@ -1010,6 +1014,12 @@ def insert2(osmObject, objOsmGeom, a, b, edge_list=None):
             dyab = yb - ya 
             rab = (dxab*dxab+dyab*dyab)**0.5
             a = parseRelativeValue(a, rab)
+            #if abs(a) < 0.1:
+            #    this is no longer needed, because duplicates are removed on osm-file save    
+            #    raise Exception("'a' parameter of Insert2 operation is too small: "+str(a))
+            
+            
+            
             if a>rab/2:
                 raise Exception("a = "+str(a)+" is too long. Maximum is "+str(rab/2))
             
@@ -1491,6 +1501,9 @@ def ocga_process(input_file, output_file, checkRulesMy, updatable=False, rebuild
     # we need to remove them from ways only, unused nodes will be dropped automatically.
     
     for osmObject in ctx.Objects:
+        if osmObject.osmtags.get("roof:shape","") == "flat":
+            osmObject.osmtags.pop ("roof:height")
+            
         if osmObject.type == "way":
             for i in range(len(osmObject.NodeRefs)):
                 if osmObject.NodeRefs[i] in duplicated_nodes:
@@ -1498,8 +1511,19 @@ def ocga_process(input_file, output_file, checkRulesMy, updatable=False, rebuild
                     #    ctx.objOsmGeom.removeNode(osmObject.NodeRefs[i])
                     osmObject.NodeRefs[i] = duplicated_nodes[osmObject.NodeRefs[i]]
                     
-        if osmObject.osmtags.get("roof:shape","") == "flat":
-            osmObject.osmtags.pop ("roof:height")
+            new_nodes = []
+            j=0            
+            new_nodes.append(osmObject.NodeRefs[0])
+            
+            #possibly several cycles are needed?
+            for i in range(1, len(osmObject.NodeRefs)):        
+                if osmObject.NodeRefs[i]!=new_nodes[j]:
+                    new_nodes.append(osmObject.NodeRefs[i])
+                    j += 1
+                
+            osmObject.NodeRefs = new_nodes    
+                
+
     
     # todo: also we need to optimize geometry somehow, remove duplicated WAYS and create multypolygons    
                 

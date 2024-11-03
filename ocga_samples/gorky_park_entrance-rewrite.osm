@@ -1575,7 +1575,6 @@
     <nd ref="-899" />
     <nd ref="-900" />
     <nd ref="-901" />
-    <nd ref="-901" />
     <nd ref="-898" />
     <tag k="building:part" v="porch_column_top" />
     <tag k="height" v="13.369" />
@@ -1599,7 +1598,6 @@
     <nd ref="-564" />
     <nd ref="-565" />
     <nd ref="-566" />
-    <nd ref="-567" />
     <nd ref="-567" />
     <nd ref="-564" />
     <tag k="building:part" v="obelisk_pre" />
@@ -1720,7 +1718,6 @@
   </way>
   <way id="-576" version="1" >
     <nd ref="-963" />
-    <nd ref="-963" />
     <nd ref="-965" />
     <nd ref="-966" />
     <nd ref="-967" />
@@ -1744,7 +1741,6 @@
     <tag k="roof:orientation" v="across" />
   </way>
   <way id="-321" version="1" >
-    <nd ref="-581" />
     <nd ref="-581" />
     <nd ref="-583" />
     <nd ref="-584" />
@@ -1867,7 +1863,6 @@
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-593" version="1" >
-    <nd ref="-1028" />
     <nd ref="-1028" />
     <nd ref="-1030" />
     <nd ref="-1031" />
@@ -2015,7 +2010,6 @@
   </way>
   <way id="-609" version="1" >
     <nd ref="-1093" />
-    <nd ref="-1093" />
     <nd ref="-1095" />
     <nd ref="-1096" />
     <nd ref="-1097" />
@@ -2119,7 +2113,6 @@
   </way>
   <way id="-624" version="1" >
     <nd ref="-1122" />
-    <nd ref="-1122" />
     <nd ref="-1124" />
     <nd ref="-1125" />
     <nd ref="-1126" />
@@ -2130,7 +2123,6 @@
     <tag k="roof:shape" v="flat" />
   </way>
   <way id="-625" version="1" >
-    <nd ref="-1127" />
     <nd ref="-1127" />
     <nd ref="-1129" />
     <nd ref="-1130" />
@@ -2337,7 +2329,6 @@
     <nd ref="-638" />
     <nd ref="-437" />
     <nd ref="-20" />
-    <nd ref="-20" />
     <nd ref="-639" />
     <tag k="building:part" v="pylon_top1_obelisk" />
     <tag k="height" v="20.108" />
@@ -2347,7 +2338,6 @@
     <tag k="roof:direction" v="330.852" />
   </way>
   <way id="-643" version="1" >
-    <nd ref="-438" />
     <nd ref="-438" />
     <nd ref="-641" />
     <nd ref="-642" />

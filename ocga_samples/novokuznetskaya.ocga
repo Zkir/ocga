@@ -59,13 +59,13 @@ rule colonade:
     endif    
     
 rule column:
-    #insert2 '0.75, -0.25, [0]   
     insert2 '0.3, -0.25, [0]   
     insert2 0.20, 0.15, [5,7]   
     insert2 0.20, 0.15, [9,15]   
     
 rule inner_wall:
     insert2 0, -0.25, [1,3,5,7,9,11,13,15,17,19,21,23] 
+    
     tag window, yes
     tag window:shape, rectangle
     
@@ -73,3 +73,14 @@ rule inner_wall:
 	tag	window:height,  4.4
 	tag	window:breast,  1.0
     tag window:panes,   4x3
+    
+
+rule entablature1:
+    nope    
+    
+rule entablature2:
+    nope
+    
+rule stylobate:
+    nope
+    

@@ -32,5 +32,7 @@ assert test("main_cathedral_of_russian_army.ocga",    "main_cathedral_of_russian
 assert test("alexander_column.ocga",                  "alexander_column.osm")
 assert test("moscow_manege.ocga",                     "moscow_manege.osm")
 assert test("komsomolskaya_station.ocga",             "komsomolskaya_station.osm")
+assert test("novokuznetskaya.ocga",                   "novokuznetskaya.osm")
+ 
 
 print("Tests passed OK")
