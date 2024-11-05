@@ -487,18 +487,17 @@ def reorderedNodes(osmObject, objOsmGeom):
    
 
 # some kind of hybrid between offset and comp(edges) operations
-# we create geometry along edges of our roof, to create decorative elements
+    
 def comp_edges(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
     Objects2 = []
     distance = float(distance)
     
     if osmObject.type == "relation":
-        raise Exception("relation is not yet supported in the comp_edges operation")
-
+        raise Exception("relation is not yet supported in the comp_border operation")
+        
+    # check that edges oriented clockwise
+    s = 0
     for i in range(len(osmObject.NodeRefs) - 1):
-        new_obj = T3DObject()
-        new_obj.id = getID()
-        new_obj.type = "way"
 
         lat0 = objOsmGeom.nodes[osmObject.NodeRefs[i]].lat
         lon0 = objOsmGeom.nodes[osmObject.NodeRefs[i]].lon
@@ -507,40 +506,74 @@ def comp_edges(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
         lat1 = objOsmGeom.nodes[osmObject.NodeRefs[i + 1]].lat
         lon1 = objOsmGeom.nodes[osmObject.NodeRefs[i + 1]].lon
         x1, y1 = osmObject.LatLon2LocalXY(lat1, lon1)
+        
+        s += (x1-x0) * (y1+y0)
+    
+    if s>0:
+        print("WARNING: polygon for EDGES operation should be counterclockwise oriented")
 
-        xc = (x0 + x1) / 2
-        yc = (y0 + y1) / 2
-        facade_len = ((x1 - x0) ** 2 + (y1 - y0) ** 2) ** 0.5
+    for i in range(len(osmObject.NodeRefs) - 1):
+        new_obj = T3DObject()
+        new_obj.id = getID()
+        new_obj.type = "way"
+      
 
+        lat0 = objOsmGeom.nodes[osmObject.NodeRefs[i]].lat
+        lon0 = objOsmGeom.nodes[osmObject.NodeRefs[i]].lon
+        x0, y0 = osmObject.LatLon2LocalXY(lat0, lon0)
+
+        lat1 = objOsmGeom.nodes[osmObject.NodeRefs[i + 1]].lat
+        lon1 = objOsmGeom.nodes[osmObject.NodeRefs[i + 1]].lon
+        x1, y1 = osmObject.LatLon2LocalXY(lat1, lon1)
+        
+        if i+2<len(osmObject.NodeRefs):
+            nexti=i+2
+        else:
+            nexti=1    
+        #print(len(osmObject.NodeRefs), i+1, nexti )   
+        r = ((x1-x0) ** 2 + (y1-y0) ** 2) ** 0.5
+        # Perpendicular to the vector is very simple, but we also need to move inwards
+        dx = -(y1-y0)* distance / r     
+        dy = +(x1-x0)* distance / r     
+        
+        
+        
+        xn1 =  x1+dx 
+        yn1 =  y1+dy 
+        lat2, lon2 = osmObject.localXY2LatLon(xn1, yn1)
+        
+        
+        xn0 = x0+dx 
+        yn0 = y0+dy 
+        lat3, lon3 = osmObject.localXY2LatLon(xn0, yn0)
+
+        # 0
+        node_no_0 = objOsmGeom.AddNode(getID(), lat0, lon0)
+        new_obj.NodeRefs.append(node_no_0)
+        # 1
+        new_obj.NodeRefs.append(objOsmGeom.AddNode(getID(), lat1, lon1))
+        # 2
+        new_obj.NodeRefs.append(objOsmGeom.AddNode(getID(), lat2, lon2))
+        # 3
+        new_obj.NodeRefs.append(objOsmGeom.AddNode(getID(), lat3, lon3))
+        # 4  -- closed ring, same as the first one 
+        new_obj.NodeRefs.append(node_no_0)
+        
+        copyBuildingPartTags(new_obj, osmObject)
+        new_obj.osmtags["building:part"] = rule_name
         new_obj.scope_rz = osmObject.scope_rz + atan2(y1 - y0, x1 - x0)
-
-        # todo: individual shift for each vertex/edge
-        rc = (xc * xc + yc * yc) ** 0.5
-        dlat, dlon = osmObject.localXY2LatLon(xc / rc * distance/2, yc / rc * distance/2)
-        dlat = dlat - (osmObject.bbox.minLat + osmObject.bbox.maxLat) / 2
-        dlon = dlon - (osmObject.bbox.minLon + osmObject.bbox.maxLon) / 2
-
-        new_obj.bbox.minLat = min(lat0, lat1) - dlat
-        new_obj.bbox.maxLat = max(lat0, lat1) - dlat
-        new_obj.bbox.minLon = min(lon0, lon1) - dlon
-        new_obj.bbox.maxLon = max(lon0, lon1) - dlon
-
-        insert_Quad(new_obj, objOsmGeom, new_obj.NodeRefs,  facade_len, distance, 0, 0)
+        new_obj.updateBBox(objOsmGeom)
         new_obj.updateScopeBBox(objOsmGeom)
         new_obj.relative_Ox = (x0 + x1)/2
         new_obj.relative_Oy = (y0 + y1)/2
-        copyBuildingPartTags(new_obj, osmObject) # tags are inherited
-        new_obj.osmtags["building:part"] = rule_name
-        if roof_only:
-            new_obj.osmtags["min_height"] = str(
-                osmObject.osmtags["height"] - osmObject.osmtags["roof:height"])
+     
         Objects2.append(new_obj)
         
     # some reording, because otherwise split_index gets random start value
-    assignSplitIndexByMinX(Objects2)    
-    return Objects2
+    assignSplitIndexByMinX(Objects2) 
+    return Objects2     
 
-# currently simplified/mock up operation. 
+
 # should work OK for symmetrical objects
 def comp_border(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
     Objects2 = []
@@ -549,7 +582,7 @@ def comp_border(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
     if osmObject.type == "relation":
         raise Exception("relation is not yet supported in the comp_border operation")
     
-    # for some reason, which i cannot fully explain,
+    # for some reason, which i cannot fully explain here,
     # orign of the local coordinates (x=0, y=0) is not good enough.
     # xc, yc = osmObject.LatLon2LocalXY((osmObject.bbox.minLat + osmObject.bbox.maxLat)/2, (osmObject.bbox.minLon + osmObject.bbox.maxLon) / 2 )
     # so we need to find centorid in local coordinates
@@ -594,13 +627,13 @@ def comp_border(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
         
         r1 = ((x1-x0) ** 2 + (y1-y0) ** 2) ** 0.5
         r2 = ((x2-x0) ** 2 + (y2-y0) ** 2) ** 0.5
-        x0c=x0+(x1-x0)/r1+(x2-x0)/r2
-        y0c=y0+(y1-y0)/r1+(y2-y0)/r2
+        x0c= x0+(x1-x0)/r1+(x2-x0)/r2
+        y0c= y0+(y1-y0)/r1+(y2-y0)/r2
         
         r0 = ((x0-x1) ** 2 + (y0-y1) ** 2) ** 0.5
         r3 = ((x3-x1) ** 2 + (y3-y1) ** 2) ** 0.5
-        x1c=x1+(x0-x1)/r0+(x3-x1)/r3
-        y1c=y1+(y0-y1)/r0+(y3-y1)/r3
+        x1c= x1+(x0-x1)/r0+(x3-x1)/r3
+        y1c= y1+(y0-y1)/r0+(y3-y1)/r3
         
           
         # we just create a new node, by moving from the current one to object centroid
@@ -612,13 +645,10 @@ def comp_border(osmObject, objOsmGeom, rule_name, distance=1, roof_only=False):
         yn1 =  y1+(y1c-y1)/ rc * distance
         lat2, lon2 = osmObject.localXY2LatLon(xn1, yn1)
         
-        
-        
         rc = ((x0c-x0) ** 2 + (y0c-y0) ** 2) ** 0.5
         xn0 = x0+(x0c-x0) / rc * distance
         yn0 = y0+(y0c-y0) / rc * distance
         lat3, lon3 = osmObject.localXY2LatLon(xn0, yn0)
-        
 
         # 0
         node_no_0 = objOsmGeom.AddNode(getID(), lat0, lon0)
