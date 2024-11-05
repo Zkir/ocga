@@ -15,20 +15,25 @@ rule building:
 	
 rule mass_model:
 	scale 24, 15, 8
+    tag window, no 
 	split_y ~5: rotunda | ~5: main_part
 	
 rule main_part: 	
 	split_x 7.5: chamberL | ~1: middle_part | 7.5: chamberR
 	
 rule middle_part:
-    tag window, no 
+    
 	scale scope_sx+2, '0.65	
-	split_z 1.2: roof | 0.25: cornice| 0.75:entablature | ~6:collonade_pre | 1.2:stylobate
+	split_z 0.5:roof_top | 1.2: roof | 0.25: cornice| 0.75:entablature | ~6:collonade_pre | 1.2:stylobate
     comp_edges -2.5, steps_pre
 
 rule roof:
-    tag window, no
-    split_z ~1: roof1 | ~8:roof2 | ~2:roof3
+    split_z ~1: roof1 | ~8:roof2 | 0.2:roof3
+    
+rule roof_top:
+    create_roof hipped, '1 
+    roof_colour darkgrey
+    roof_material metal
     
 rule roof1:
     colour white
@@ -42,49 +47,55 @@ rule roof3:
 	
 rule cornice:
 	colour white
-    tag window, no
 	scale scope_sx+1, scope_sy+1
 	
 rule entablature:
-    tag window, no
 	colour white
 	
 rule collonade_pre:
 	split_y COLUMN_WIDTH:collonade | ~4:NIL | COLUMN_WIDTH:collonade
     
 rule wall:
-    tag window:center:shape, rectangle
+    tag window, yes
+    tag window:center:shape, rectangle 
 	tag window:top:shape, semicircle
     tag window:width,   1.9
-	tag	window:height,  3.25
+	tag	window:height,  2.75
 	tag	window:breast,  0.7
     tag window:panes,   2x2
 	#tag	window:shutter, both    
 
 rule wall_border:
     colour white
-    tag window, no
 	
 rule stylobate:
-	colour grey
-    tag window, no
+    tag roof:shape, flat
+    colour grey
+    roof_colour grey
+    material stone
+    roof_material stone
 	
 rule rotunda:
-    tag window, no 		
     scale 12, 6
     rotate_scope -90
 	primitive_halfcylinder '1, 22	
 	translate -2, 0, 0
-	split_z 0.6: NIL| 0.6: roof | 0.25: cornice | 0.75:entablature | ~6:rotunda_collonade_pre | 1.2:stylobate
+	split_z 0.7: NIL |0.6: rotunda_roof_top | 0.4: roof | 0.25: cornice | 0.75:entablature | ~6:rotunda_collonade_pre | 1.2:stylobate
     comp_border -2.5, steps_collonade_pre
-    #comp_edges -2, steps_collonade_pre
-    
+
+
+rule rotunda_roof_top:
+    roof_colour darkgrey
+    roof_material metal
+    #create_roof skillion, '1
+    #roof_direction 90
+    create_roof half_dome, '0.95
 	
 rule rotunda_collonade_pre:
-	comp_edges COLUMN_WIDTH, rotunda_collonade	
+	comp_edges COLUMN_WIDTH/3, rotunda_collonade	
     restore
-    translate '-0.025, 0
-    scale '0.95, '0.95
+    translate '-0.012, 0
+    scale '0.975, '0.975
     comp_border 0.5, rotunda_wall
 
 rule rotunda_collonade:
@@ -96,9 +107,10 @@ rule rotunda_collonade:
 
 rule steps_collonade_pre:
     colour grey
-    material stone
     roof_colour grey
+    material stone
     roof_material stone
+    
     scale '1, '1, 1.2
     
     if split_index==0 then 
@@ -106,12 +118,12 @@ rule steps_collonade_pre:
     else
         if split_index<=4 or split_index>=18  then
             
-            split_y ~2: NIL  | ~1:rotunda_outer
+            split_y ~2: NIL  | ~1:stylobate
         else    
             if split_index%4!=1 then
-                split_y ~2: steps  | ~1:rotunda_outer
+                split_y ~2: steps  | ~1:stylobate
             else 
-                split_y ~1:steps_side | ~1:steps_side | ~1:rotunda_outer   
+                split_y ~1:steps_side | ~1:steps_side | ~1:stylobate  
             endif   
         endif     
     endif     
@@ -126,17 +138,17 @@ rule rotunda_wall:
     endif     
 
     if split_index%4==2 then
-        translate 0, 0, 3.5
+        translate 0, 0, 3.3
         scale '1, '1, 1.5
     endif 
     
     if split_index%4==3 then
-        translate 0, 0, 4.0
+        translate 0, 0, 3.8
         scale '1, '1, 1.5
     endif 
     
     if split_index%4==0 then
-        translate 0, 0, 3.5
+        translate 0, 0, 3.3
         scale '1, '1, 1.5
     endif 
     
@@ -145,16 +157,16 @@ rule rotunda_wall:
 rule chamberL:
     comp_edges 1, porticoL	
 	restore
-	scale scope_sx-2, scope_sy-2
-	split_z 1.2: roof | 0.25: cornice | 0.75:entablature | ~6:wall | 0.3: wall_border | 1.2:stylobate
-    
+    continue chamber
     
 rule chamberR:    
     comp_edges 1, porticoR	
 	restore
-	scale scope_sx-2, scope_sy-2
-	split_z 1.2: roof | 0.25: cornice | 0.75:entablature | ~6:wall | 0.3: wall_border |  1.2:stylobate
+    continue chamber
     
+rule chamber:    
+    scale scope_sx-2, scope_sy-2
+	split_z 0.5:roof_top | 1.2: roof | 0.25: cornice | 0.75:entablature | ~6:wall | 0.3: wall_border |  1.2:stylobate
 	
 rule porticoL:
     # there are porticos on front and outer sides
@@ -195,17 +207,14 @@ rule porticoR:
     
     
     
-    
-    
-    
 rule portico:    
     scale '0.45, '1
-    split_z 1.2: portico_roof| 0.25: cornice|0.75:entablature|~6:collonade|1.2:stylobate
+    split_z 0.5: NIL |1.2: portico_roof| 0.25: cornice|0.75:entablature|~6:collonade|1.2:stylobate
     
 rule small_portico:    
     translate    0, '0.35
     scale     '0.45, '0.3
-    split_z 1.2: roof | 0.25: cornice | 0.75:entablature | ~6:small_collonade | 1.2:stylobate
+    split_z 0.5: NIL | 1.2: roof | 0.25: cornice | 0.75:entablature | ~6:small_collonade | 1.2:stylobate
 
 rule portico_roof:
 	scale '1.075, '1, '0.8
@@ -254,9 +263,6 @@ rule steps_pre:
     else
         nil
     endif    
-
-rule rotunda_outer:
-    nope    
 
 rule steps:
     create_roof skillion, '0.9
