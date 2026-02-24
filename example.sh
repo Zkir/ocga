@@ -3,7 +3,7 @@
 MODEL_NAME=komsomolskaya_station
 # ===========  Step 1.  =================================================================================================
 # Apply ocga rules to building outline(s)
-python ocga_engine.py -i ocga_samples/$MODEL_NAME.osm -r ocga_samples/$MODEL_NAME.ocga -o ocga_output/$MODEL_NAME-rewrite.osm
+ocga -i ocga_samples/$MODEL_NAME.osm -r ocga_samples/$MODEL_NAME.ocga -o ocga_output/$MODEL_NAME-rewrite.osm
 
 # ===========  Step 2.  =================================================================================================
 # Generate 3D model

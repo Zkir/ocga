@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='891613231' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='4' changeset='178073365' lat='55.7112206' lon='37.6304642' />
+  <node id='891613239' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='6' changeset='178073365' lat='55.7113311' lon='37.6305175' />
+  <node id='891613311' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='4' changeset='178073365' lat='55.711217' lon='37.6304875' />
+  <node id='891620601' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='4' changeset='178073365' lat='55.7111733' lon='37.6307958' />
+  <node id='891620612' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='5' changeset='178073365' lat='55.7112688' lon='37.6308419' />
+  <node id='1404369831' timestamp='2026-02-04T01:17:59Z' uid='100812' user='Zkir' visible='true' version='18' changeset='178073386' lat='55.7112988' lon='37.6306756'>
+    <tag k='barrier' v='gate' />
+    <tag k='bicycle' v='no' />
+    <tag k='entrance' v='main' />
+    <tag k='foot' v='yes' />
+    <tag k='motor_vehicle' v='private' />
+    <tag k='opening_hours' v='Mo-Su 06:00-21:00' />
+  </node>
+  <node id='1697454719' timestamp='2026-02-04T01:17:59Z' uid='100812' user='Zkir' visible='true' version='4' changeset='178073386' lat='55.7113209' lon='37.6305374' />
+  <node id='4597826325' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='3' changeset='178073365' lat='55.711202' lon='37.6306309' />
+  <node id='5233015742' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='3' changeset='178073365' lat='55.7111795' lon='37.63077' />
+  <node id='5233015776' timestamp='2026-02-04T01:17:59Z' uid='100812' user='Zkir' visible='true' version='4' changeset='178073386' lat='55.7112087' lon='37.6305872' />
+  <node id='7503293734' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='2' changeset='178073365' lat='55.7111742' lon='37.6307674' />
+  <node id='7503293736' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='2' changeset='178073365' lat='55.7113276' lon='37.6305408' />
+  <node id='7503293737' timestamp='2026-02-04T01:17:59Z' uid='100812' user='Zkir' visible='true' version='3' changeset='178073386' lat='55.7112774' lon='37.6308165' />
+  <node id='7503293738' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='2' changeset='178073365' lat='55.7112848' lon='37.6308203' />
+  <node id='7503293739' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='2' changeset='178073365' lat='55.7112806' lon='37.6308476' />
+  <node id='7503293740' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='2' changeset='178073365' lat='55.7112237' lon='37.6304908' />
+  <node id='13523140513' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='1' changeset='178073365' lat='55.7111701' lon='37.6307943' />
+  <node id='13523140514' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='1' changeset='178073365' lat='55.7111894' lon='37.6307047' />
+  <node id='13523140515' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='1' changeset='178073365' lat='55.7111842' lon='37.6307022' />
+  <node id='13523140516' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='1' changeset='178073365' lat='55.711188' lon='37.630677' />
+  <node id='13523140517' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='1' changeset='178073365' lat='55.7111941' lon='37.6306799' />
+  <node id='13523140518' timestamp='2026-02-04T01:17:59Z' uid='100812' user='Zkir' visible='true' version='2' changeset='178073386' lat='55.7112873' lon='37.6307517' />
+  <node id='13523140519' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='1' changeset='178073365' lat='55.7112947' lon='37.6307555' />
+  <node id='13523140520' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='1' changeset='178073365' lat='55.7112986' lon='37.6307302' />
+  <node id='13523140521' timestamp='2026-02-04T01:17:59Z' uid='100812' user='Zkir' visible='true' version='2' changeset='178073386' lat='55.711291' lon='37.6307264' />
+  <node id='13523140522' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='1' changeset='178073365' lat='55.71121' lon='37.630579' />
+  <node id='13523140523' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='1' changeset='178073365' lat='55.7112137' lon='37.6305565' />
+  <node id='13523140524' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='1' changeset='178073365' lat='55.7112039' lon='37.630576' />
+  <node id='13523140525' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='1' changeset='178073365' lat='55.711207' lon='37.6305533' />
+  <node id='13523140526' timestamp='2026-02-04T01:17:59Z' uid='100812' user='Zkir' visible='true' version='2' changeset='178073386' lat='55.7113068' lon='37.6306255' />
+  <node id='13523140527' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='1' changeset='178073365' lat='55.7113144' lon='37.6306293' />
+  <node id='13523140528' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='1' changeset='178073365' lat='55.7113175' lon='37.6306066' />
+  <node id='13523140529' timestamp='2026-02-04T01:17:59Z' uid='100812' user='Zkir' visible='true' version='2' changeset='178073386' lat='55.7113108' lon='37.6306032' />
+  <way id='75512437' timestamp='2026-02-04T01:16:43Z' uid='100812' user='Zkir' visible='true' version='46' changeset='178073365'>
+    <nd ref='891620601' />
+    <nd ref='891620612' />
+    <nd ref='7503293739' />
+    <nd ref='7503293738' />
+    <nd ref='7503293737' />
+    <nd ref='13523140518' />
+    <nd ref='13523140519' />
+    <nd ref='13523140520' />
+    <nd ref='13523140521' />
+    <nd ref='1404369831' />
+    <nd ref='13523140526' />
+    <nd ref='13523140527' />
+    <nd ref='13523140528' />
+    <nd ref='13523140529' />
+    <nd ref='1697454719' />
+    <nd ref='7503293736' />
+    <nd ref='891613239' />
+    <nd ref='891613231' />
+    <nd ref='891613311' />
+    <nd ref='7503293740' />
+    <nd ref='13523140523' />
+    <nd ref='13523140525' />
+    <nd ref='13523140524' />
+    <nd ref='13523140522' />
+    <nd ref='5233015776' />
+    <nd ref='4597826325' />
+    <nd ref='13523140517' />
+    <nd ref='13523140516' />
+    <nd ref='13523140515' />
+    <nd ref='13523140514' />
+    <nd ref='5233015742' />
+    <nd ref='7503293734' />
+    <nd ref='13523140513' />
+    <nd ref='891620601' />
+    <tag k='addr:housenumber' v='22 с3' />
+    <tag k='addr:street' v='улица Даниловский Вал' />
+    <tag k='amenity' v='place_of_worship' />
+    <tag k='building' v='yes' />
+    <tag k='building:colour' v='#f09090' />
+    <tag k='denomination' v='orthodox' />
+    <tag k='name' v='Колокольня с храмом прп. Симеона Столпника' />
+    <tag k='name:pl' v='Dzwonnica i świątynia Symeona Słupnika Starszego' />
+    <tag k='religion' v='christian' />
+	<tag k='roof:colour' v='brown' />
+    <tag k='wheelchair' v='yes' />
+  </way>
+</osm>

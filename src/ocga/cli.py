@@ -10,12 +10,10 @@ from pathlib import Path
 
 from copy import copy
 from math import cos, sin, atan2, pi
-from mdlOsmParser import readOsmXml, writeOsmXml, parseHeightValue, roundHeight
-from mdlOsmParser import T3DObject 
-
-#ocga parser and translator 
-from ocgaparser import * #ocga2py
-from osmparser  import DEGREE_LENGTH_M
+from .mdlOsmParser import T3DObject, parseHeightValue, readOsmXml, roundHeight, writeOsmXml
+# ocga parser and translator
+from .ocgaparser import *  # ocga2py
+from .osmparser import DEGREE_LENGTH_M
 
 _id_counter=0
 
@@ -1553,7 +1551,10 @@ def ocga_process(input_file, output_file, checkRulesMy, updatable=False, rebuild
                 
             osmObject.NodeRefs = new_nodes    
                 
-
+    #for osmObject in ctx.Objects:
+    #    if "building:part" in osmObject.osmtags:
+    #        osmObject.osmtags["building:part"] = "yes"
+            
     
     # todo: also we need to optimize geometry somehow, remove duplicated WAYS and create multypolygons    
                 

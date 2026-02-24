@@ -1,10 +1,10 @@
 # Simple OSM Parser.
 # It reads "objects" and geometry references into set []
 
-from mdlMisc import getColourName
+from .mdlMisc import getColourName
 from math import pi, sin, cos
 
-from osmparser import readOsmXml0,encodeXmlString, Bbox,DEGREE_LENGTH_M
+from .osmparser import readOsmXml0,encodeXmlString, Bbox,DEGREE_LENGTH_M
 
 #base version of T3DObject, should be the same as in OsmParser
 class T3DObject0:

@@ -1,11 +1,11 @@
 import filecmp
 from pathlib import Path
 
-from ocga_engine import ocga_process2
+from ocga.cli import ocga_process2
 
 print("ocga test")
-SAMPLES_DIR="./ocga_samples"
-OUTPUT_DIR="./ocga_output"
+SAMPLES_DIR="./docs/ocga_samples"
+OUTPUT_DIR="./docs/ocga_output"
 
 def test(rules_file1, input_file1):
 

@@ -4,4 +4,4 @@ for further use in ocga engine
 """
 
 # init file for ocgaparser package
-from ocgaparser.main import ocga2py
+from .main import ocga2py

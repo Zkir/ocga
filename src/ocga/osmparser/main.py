@@ -1,5 +1,5 @@
-from osmparser.osmGeometry import *
-from osmparser.mdlXmlParser import *
+from .osmGeometry import *
+from .mdlXmlParser import *
 #from math import pi, sin, cos
 
 def readOsmXml0(strSrcOsmFile):

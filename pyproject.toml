@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ocga"
+version = "0.1.0"
+authors = [
+  { name="Zkir", email="zkir@zkir.ru" },
+]
+description = "A procedural modeling engine for OpenStreetMap building generation."
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Development Status :: 3 - Alpha",
+    "Topic :: Scientific/Engineering :: GIS",
+    "Topic :: Multimedia :: Graphics :: 3D Modeling",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "antlr4-python3-runtime",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Zkir/ocga"
+"Bug Tracker" = "https://github.com/Zkir/ocga/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+ocga = "ocga.cli:main"

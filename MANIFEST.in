@@ -1,0 +1,17 @@
+# Include essential documentation, license, and example files
+include README.md
+include LICENSE
+include OCGA.md
+include example.bat
+include example.sh
+
+# Recursively include the source code directory
+graft src
+
+# include tests and docs. Not that tests require samples in the doc foloder
+graft docs
+graft tests
+
+#exclude something (nothing to exclude currently).
+#prune ocga_samples
+#prune ocga_output

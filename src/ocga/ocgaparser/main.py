@@ -4,8 +4,8 @@ very simple, antlr4-based parser for  .ocga files.
 """
 import sys
 from antlr4 import *
-from ocgaparser.ocgaLexer import ocgaLexer
-from ocgaparser.ocgaParser import ocgaParser
+from .ocgaLexer import ocgaLexer
+from .ocgaParser import ocgaParser
 
 built_in_immutables = {"scope_sx":    "ctx.scope_sx()",
                        "scope_sy":    "ctx.scope_sy()",
