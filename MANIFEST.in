@@ -1,7 +1,6 @@
 # Include essential documentation, license, and example files
 include README.md
 include LICENSE
-include OCGA.md
 include example.bat
 include example.sh
 
@@ -12,6 +11,8 @@ graft src
 graft docs
 graft tests
 
-#exclude something (nothing to exclude currently).
-#prune ocga_samples
-#prune ocga_output
+# Exclude generated output from the docs folder
+prune docs/ocga_output
+
+global-exclude *.py[co]
+global-exclude __pycache__

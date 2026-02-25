@@ -27,6 +27,7 @@ dependencies = [
 [project.urls]
 "Homepage" = "https://github.com/Zkir/ocga"
 "Bug Tracker" = "https://github.com/Zkir/ocga/issues"
+"Documentation" = "https://github.com/Zkir/ocga/blob/main/docs/OCGA.md"
 
 [tool.setuptools.packages.find]
 where = ["src"]

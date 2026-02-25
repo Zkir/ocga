@@ -11,7 +11,7 @@ This project is largely inspired by ESRI City Engine. However, many things are q
 
 Install the package from PyPI:
 ```bash
-pip install ocga-procedural
+pip install ocga
 ```
 
 ## Usage

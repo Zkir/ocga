@@ -7,12 +7,12 @@ SET MODEL_NAME=danilov_belltower
 
 rem ===========  Step 1.  =================================================================================================
 rem Apply ocga rules to building outline(s)
-ocga -i ocga_samples\%MODEL_NAME%.osm -r ocga_samples\%MODEL_NAME%.ocga -o ocga_output\%MODEL_NAME%-rewrite.osm
+ocga -i docs\ocga_samples\%MODEL_NAME%.osm -r docs\ocga_samples\%MODEL_NAME%.ocga -o docs\ocga_output\%MODEL_NAME%-rewrite.osm
 IF %ERRORLEVEL% NEQ 0 goto :error
 
 rem ===========  Step 2.  =================================================================================================
-rem Generate 3D model 
-curl -s -o nul "http://localhost:8111/open_file?filename=d:/ocga/ocga_output/danilov_belltower-rewrite.osm&new_layer=true"
+rem Open the generated file in JOSM (if it's running)
+curl -s -o nul "http://localhost:8111/open_file?filename=d:/ocga/docs/ocga_output/%MODEL_NAME%-rewrite.osm&new_layer=true"
 
 
 goto :end
