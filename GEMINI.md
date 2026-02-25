@@ -2,22 +2,6 @@
 
 This document provides an overview of the OCGA (osm-cga, or Computer Generated Architecture for OSM) project, its architecture, how to build and run it, and development conventions. This information is intended to serve as contextual knowledge for the Gemini CLI agent to interact with the project effectively.
 
-## Recent Accomplishments (24-Feb-2026)
-
-**Goal:** Prepare the project for publication on the Python Package Index (PyPI).
-
-To make the `ocga` tool easily distributable and installable for other users, the project was refactored into a standard Python package.
-
-**Key Changes:**
-
-*   **Project Restructuring:** The project was converted to a modern `src` layout, with all source code moved into `src/ocga`.
-*   **Packaging Metadata:** A `pyproject.toml` file was created to define project metadata, dependencies, and the command-line entry point.
-*   **Command-Line Tool:** A proper command-line script entry point was created, so the tool can now be run with the simple `ocga` command after installation.
-*   **Code Adaptation:** All internal imports were updated to be relative, making the code function correctly as a package.
-*   **Standardization:** A `LICENSE` file was added, and the `README.md` was updated with installation and usage instructions.
-*   **Testing:** Tests were moved to a dedicated `tests` directory and updated to work with the new package structure. The package was installed locally in editable mode (`pip install -e .`) and all tests were confirmed to pass.
-*   **Build:** The project was successfully built into standard distribution formats (`.whl` and `.tar.gz`) located in the `dist/` directory.
-
 ## Project Overview
 
 The OCGA project is a procedural modeling engine designed to generate detailed 3D building models for OpenStreetMap from simple 2D footprints. Inspired by ESRI CityEngine, it utilizes a custom, declarative "shape grammar" language with the `.ocga` file extension to define generation rules.
@@ -72,7 +56,24 @@ This script will execute various OCGA rule sets on sample OSM files and compare 
 
 *   **Language:** Python
 *   **Code Structure:** The project uses a standard `src` layout. The main package code is located in `src/ocga`, and tests are in `tests/`.
-*   **OCGA Language:** A custom domain-specific language for defining procedural architectural rules. The grammar is defined in `src/ocga/ocgaparser/ocga.g4`.
+*   **OCGA Language:** A custom domain-specific language for defining procedural architectural rules. The grammar is defined in [ocga.g4](src/ocga/ocgaparser/ocga.g4). Human readable description of the language and avalible operations are described in [OCGA.md](docs/OCGA.md).
 *   **Dependencies:** Managed via `pyproject.toml`.
 *   **Testing:** Functional tests are implemented in `tests/test_main.py`.
 *   **Comments and Documentation:** Comments within the code should explain *why* certain decisions were made, especially for complex logic. External documentation, like this `GEMINI.md`, should provide a high-level overview and usage instructions.
+
+
+## Recent Accomplishments (24-Feb-2026)
+
+**Goal:** Prepare the project for publication on the Python Package Index (PyPI).
+
+To make the `ocga` tool easily distributable and installable for other users, the project was refactored into a standard Python package.
+
+**Key Changes:**
+
+*   **Project Restructuring:** The project was converted to a modern `src` layout, with all source code moved into `src/ocga`.
+*   **Packaging Metadata:** A `pyproject.toml` file was created to define project metadata, dependencies, and the command-line entry point.
+*   **Command-Line Tool:** A proper command-line script entry point was created, so the tool can now be run with the simple `ocga` command after installation.
+*   **Code Adaptation:** All internal imports were updated to be relative, making the code function correctly as a package.
+*   **Standardization:** A `LICENSE` file was added, and the `README.md` was updated with installation and usage instructions.
+*   **Testing:** Tests were moved to a dedicated `tests` directory and updated to work with the new package structure. The package was installed locally in editable mode (`pip install -e .`) and all tests were confirmed to pass.
+*   **Build:** The project was successfully built into standard distribution formats (`.whl` and `.tar.gz`) located in the `dist/` directory.
