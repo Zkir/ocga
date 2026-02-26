@@ -1,7 +1,7 @@
 import filecmp
 from pathlib import Path
 
-from ocga.cli import ocga_process2
+from ocga import ocga_process2
 
 print("ocga test")
 SAMPLES_DIR="./docs/ocga_samples"
