@@ -219,7 +219,7 @@ def main(argv):
     py_lines = ocga2py(ocga_lines)
     print(py_lines)
     exec(py_lines, globals())
-    print(id(checkRulesMy))
+    print(id(checkRulesMy))  # pylint: disable=undefined-variable
     with open(output_file,"w") as f:
         f.write(py_lines)
 

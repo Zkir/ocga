@@ -60,6 +60,7 @@ This script will execute various OCGA rule sets on sample OSM files and compare 
 *   **Dependencies:** Managed via `pyproject.toml`.
 *   **Testing:** Functional tests are implemented in `tests/test_main.py`.
 *   **Comments and Documentation:** Comments within the code should explain *why* certain decisions were made, especially for complex logic. External documentation, like this `GEMINI.md`, should provide a high-level overview and usage instructions.
+* `pylint -E src`
 
 
 ## Recent Accomplishments (24-Feb-2026)

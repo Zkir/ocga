@@ -1,9 +1,6 @@
 # Generated from ocga.g4 by ANTLR 4.13.2
 from antlr4 import *
-if "." in __name__:
-    from .ocgaParser import ocgaParser
-else:
-    from ocgaParser import ocgaParser
+from .ocgaParser import ocgaParser
 
 # This class defines a complete generic visitor for a parse tree produced by ocgaParser.
 
