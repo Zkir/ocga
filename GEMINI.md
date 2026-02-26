@@ -77,3 +77,9 @@ To make the `ocga` tool easily distributable and installable for other users, th
 *   **Standardization:** A `LICENSE` file was added, and the `README.md` was updated with installation and usage instructions.
 *   **Testing:** Tests were moved to a dedicated `tests` directory and updated to work with the new package structure. The package was installed locally in editable mode (`pip install -e .`) and all tests were confirmed to pass.
 *   **Build:** The project was successfully built into standard distribution formats (`.whl` and `.tar.gz`) located in the `dist/` directory.
+
+## Versioning Notes
+
+- The latest version uploaded to **test.pypi.org** is `0.1.2`.
+- **Reminder:** Before the next upload to TestPyPI, the `version` in `pyproject.toml` must be manually incremented.
+- **Future Improvement Note:** For more automated versioning (especially for development builds), consider implementing `setuptools_scm`. This tool can generate unique versions like `0.1.2.dev1` automatically based on Git history, removing the need for manual edits.
