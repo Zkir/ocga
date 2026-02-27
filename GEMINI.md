@@ -1,6 +1,6 @@
 # OCGA Project Documentation for Gemini CLI
 
-This document provides an overview of the OCGA (osm-cga, or Computer Generated Architecture for OSM) project, its architecture, how to build and run it, and development conventions. This information is intended to serve as contextual knowledge for the Gemini CLI agent to interact with the project effectively.
+This document provides an overview of the OCGA (osm-cga, or Computer Generated Architecture for OSM) project, and mandatory operating instructions intended to serve as contextual knowledge for the Gemini CLI agent to interact with the project effectively.
 
 ## Project Overview
 
@@ -15,52 +15,34 @@ The OCGA project is a procedural modeling engine designed to generate detailed 3
 5.  **Execution (`src/ocga/cli.py`):** The main engine executes the generated Python function, which applies geometric manipulations to `T3DObject`s via an `OCGAContext` object.
 6.  **Output:** The result is a new, detailed `.osm` file containing the generated 3D building parts.
 
-## Building and Running
+## Operation instructions
 
-### Prerequisites
+* **Python version**: use Python 12
+*   **Code Structure:** The project uses a standard `src` layout. The main package code is located in `src/ocga`, and tests are in `tests/`.
+* **Local installation:** For development, install the package in editable mode from the project root. This will also install all required dependencies: `pip install -e`
+* **Automated tests** can be run via `pytest` or via runing the test script directly from the project root: `python tests/test_main.py`
+* **Manual testing** can be done via running the `ocga` command-line tool. It takes an input OSM file, an OCGA rules file, and an output path. `ocga -i <input.osm> -r <rules.ocga> -o <output.osm>`
+* **Definition of Done**: A task is considered DONE only when:
+    * pylint reveals no errors: run `pylint -E src tests`
+	* all the autotests passed successfully: run `pytest`
+	* successful execution of manual test confirmed by the human.
+	* GEMINI.md file is updated, including (but not limiting to) the following sections: "Recent Accomplishments", and if necessary, "Next Steps".
+* Do not suggest git commits. Git commits in this project are allowed for protein-based developers only.	
+*   **OCGA Language:** A custom domain-specific language for defining procedural architectural rules. The grammar is defined in [ocga.g4](src/ocga/ocgaparser/ocga.g4). Human readable description of the language and avalible operations are described in [OCGA.md](docs/OCGA.md).
+*   **Comments and Documentation:** Comments within the code should explain *why* certain decisions were made, especially for complex logic. External documentation, like this `GEMINI.md`, should provide a high-level overview and usage instructions.
 
-*   Python 3.x
-*   For development, install the package in editable mode from the project root. This will also install all required dependencies.
-    ```bash
-    pip install -e .
-    ```
 
-### Running the OCGA Engine
-
-The core of the project is the `ocga` command-line tool. It takes an input OSM file, an OCGA rules file, and an output path.
-
-```bash
-ocga -i <input.osm> -r <rules.ocga> -o <output.osm>
-```
-
-**Example:**
+## Command Line Example
 To process `gorky_park_entrance.osm` using `gorky_park_entrance.ocga` rules and output to `ocga_output/gorky_park_entrance-rewrite.osm`:
 
 ```bash
-ocga -i ocga_samples/gorky_park_entrance.osm -r ocga_samples/gorky_park_entrance.ocga -o ocga_output/gorky_park_entrance-rewrite.osm
+ocga -i docs/ocga_samples/gorky_park_entrance.osm -r docs/ocga_samples/gorky_park_entrance.ocga -o docs/ocga_output/gorky_park_entrance-rewrite.osm
 ```
 
 You can find example usage in `example.bat` (for Windows) and `example.sh` (for Linux/macOS).
 
-### Running Tests
-
-The project includes a test suite in the `tests/` directory. To run all tests, you can use `pytest` or run the test script directly from the project root:
-
-```bash
-python tests/test_main.py
-```
-
 This script will execute various OCGA rule sets on sample OSM files and compare the generated output against reference files.
 
-## Development Conventions
-
-*   **Language:** Python
-*   **Code Structure:** The project uses a standard `src` layout. The main package code is located in `src/ocga`, and tests are in `tests/`.
-*   **OCGA Language:** A custom domain-specific language for defining procedural architectural rules. The grammar is defined in [ocga.g4](src/ocga/ocgaparser/ocga.g4). Human readable description of the language and avalible operations are described in [OCGA.md](docs/OCGA.md).
-*   **Dependencies:** Managed via `pyproject.toml`.
-*   **Testing:** Functional tests are implemented in `tests/test_main.py`.
-*   **Comments and Documentation:** Comments within the code should explain *why* certain decisions were made, especially for complex logic. External documentation, like this `GEMINI.md`, should provide a high-level overview and usage instructions.
-* `pylint -E src`
 
 
 ## Recent Accomplishments (24-Feb-2026)
