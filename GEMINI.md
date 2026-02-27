@@ -63,6 +63,6 @@ To make the `ocga` tool easily distributable and installable for other users, th
 
 ## Versioning Notes
 
-- The latest version uploaded to **test.pypi.org** is `0.1.2`.
+- The latest version uploaded to **test.pypi.org** is `0.1.3`.
 - **Reminder:** Before the next upload to TestPyPI, the `version` in `pyproject.toml` must be manually incremented.
 - **Future Improvement Note:** For more automated versioning (especially for development builds), consider implementing `setuptools_scm`. This tool can generate unique versions like `0.1.2.dev1` automatically based on Git history, removing the need for manual edits.
