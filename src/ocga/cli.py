@@ -20,7 +20,7 @@ def main():
     output_file_name = args.output
     rules_file_name = args.rules
     
-    ocga_process2(input_file_name, output_file_name, rules_file_name,output_file_name+'.py')
+    ocga_process2(input_file_name, output_file_name, rules_file_name,output_file_name+'.py', strip_rules_names=True)
 
 if __name__ == '__main__':
     main()

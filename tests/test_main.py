@@ -14,7 +14,7 @@ SAMPLES_DIR = ROOT_DIR / "docs" / "ocga_samples"
 OUTPUT_DIR = ROOT_DIR / "docs" / "ocga_output"
 
 
-def run_single_test(rules_file: str, input_file: str) -> bool:
+def run_single_test(rules_file: str, input_file: str, strip_rules_names:bool=False) -> bool:
     """Helper function to run one test case and compare the output."""
     input_path = SAMPLES_DIR / input_file
     output_path = OUTPUT_DIR / f"{input_path.stem}-rewrite.osm"
@@ -59,7 +59,8 @@ def test_komsomolskaya_station():
 def test_novokuznetskaya():
     assert run_single_test("novokuznetskaya.ocga", "novokuznetskaya.osm")
 
-# --- Block for direct execution (`python tests/test_main.py`) ---
+def test_church_at_the_kaluga_gate():
+    assert run_single_test("church_at_the_kaluga_gate.ocga", "church_at_the_kaluga_gate.osm", True)
 
 if __name__ == "__main__":
     print("--- Running tests as a standalone script ---")

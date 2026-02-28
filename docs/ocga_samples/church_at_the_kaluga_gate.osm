@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <bounds minlat='55.7304571' minlon='37.6127136' maxlat='55.7306217' maxlon='37.613014' origin='openstreetmap-cgimap 2.1.0 (29020 spike-08.openstreetmap.org)' />
+  <node id='4630220786' timestamp='2017-01-26T14:06:57Z' uid='260756' user='Felis Pimeja' visible='true' version='2' changeset='45513780' lat='55.7305964' lon='37.6127897' />
+  <node id='4630221892' timestamp='2017-01-26T14:06:57Z' uid='260756' user='Felis Pimeja' visible='true' version='2' changeset='45513780' lat='55.7304812' lon='37.6129474' />
+  <node id='4630221893' timestamp='2017-01-26T14:06:57Z' uid='260756' user='Felis Pimeja' visible='true' version='2' changeset='45513780' lat='55.7304886' lon='37.612965' />
+  <node id='4630221894' timestamp='2017-01-26T14:06:57Z' uid='260756' user='Felis Pimeja' visible='true' version='2' changeset='45513780' lat='55.7305873' lon='37.6129643' />
+  <node id='4630221895' timestamp='2017-01-26T14:06:57Z' uid='260756' user='Felis Pimeja' visible='true' version='2' changeset='45513780' lat='55.7305968' lon='37.612948' />
+  <node id='4630221896' timestamp='2017-01-26T14:06:57Z' uid='260756' user='Felis Pimeja' visible='true' version='2' changeset='45513780' lat='55.7305963' lon='37.6127664' />
+  <node id='4630221897' timestamp='2017-01-26T14:06:57Z' uid='260756' user='Felis Pimeja' visible='true' version='2' changeset='45513780' lat='55.7305888' lon='37.61275' />
+  <node id='4630221898' timestamp='2017-01-26T14:06:57Z' uid='260756' user='Felis Pimeja' visible='true' version='2' changeset='45513780' lat='55.7304902' lon='37.6127508' />
+  <node id='4630221899' timestamp='2017-01-26T14:06:57Z' uid='260756' user='Felis Pimeja' visible='true' version='2' changeset='45513780' lat='55.7304808' lon='37.6127658' />
+  <node id='4630221900' timestamp='2017-01-26T14:06:57Z' uid='260756' user='Felis Pimeja' visible='true' version='2' changeset='45513780' lat='55.7305889' lon='37.6127664' />
+  <node id='4630221901' timestamp='2017-01-26T14:06:57Z' uid='260756' user='Felis Pimeja' visible='true' version='2' changeset='45513780' lat='55.7304903' lon='37.6127658' />
+  <node id='4630221918' timestamp='2017-01-26T14:06:57Z' uid='260756' user='Felis Pimeja' visible='true' version='2' changeset='45513780' lat='55.7304885' lon='37.6129474' />
+  <node id='4630221919' timestamp='2017-01-26T14:06:57Z' uid='260756' user='Felis Pimeja' visible='true' version='2' changeset='45513780' lat='55.7305872' lon='37.612948' />
+  <node id='4630221923' timestamp='2017-01-26T14:06:58Z' uid='260756' user='Felis Pimeja' visible='true' version='2' changeset='45513780' lat='55.7305392' lon='37.6127504'>
+    <tag k='entrance' v='main' />
+  </node>
+  <way id='53756197' timestamp='2017-01-26T14:07:03Z' uid='260756' user='Felis Pimeja' visible='true' version='9' changeset='45513780'>
+    <nd ref='4630220786' />
+    <nd ref='4630221896' />
+    <nd ref='4630221900' />
+    <nd ref='4630221897' />
+  </way>
+  <way id='469067620' timestamp='2017-01-26T14:06:28Z' uid='260756' user='Felis Pimeja' visible='true' version='1' changeset='45513780'>
+    <nd ref='4630221898' />
+    <nd ref='4630221901' />
+    <nd ref='4630221899' />
+  </way>
+  <way id='469067621' timestamp='2017-01-26T14:06:28Z' uid='260756' user='Felis Pimeja' visible='true' version='1' changeset='45513780'>
+    <nd ref='4630221897' />
+    <nd ref='4630221923' />
+    <nd ref='4630221898' />
+  </way>
+  <way id='469067623' timestamp='2017-01-26T14:06:28Z' uid='260756' user='Felis Pimeja' visible='true' version='1' changeset='45513780'>
+    <nd ref='4630221899' />
+    <nd ref='4630221892' />
+    <nd ref='4630221918' />
+    <nd ref='4630221893' />
+    <nd ref='4630221894' />
+    <nd ref='4630221919' />
+    <nd ref='4630221895' />
+    <nd ref='4630220786' />
+  </way>
+  <relation id='6913357' timestamp='2023-03-28T09:50:33Z' uid='3199858' user='Mateusz Konieczny - bot account' visible='true' version='2' changeset='134212472'>
+    <member type='way' ref='469067622' role='outer' />
+    <member type='way' ref='469067621' role='outer' />
+    <tag k='area:highway' v='steps' />
+    <tag k='material' v='granite' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+  <relation id='6913365' timestamp='2023-03-28T09:50:40Z' uid='3199858' user='Mateusz Konieczny - bot account' visible='true' version='2' changeset='134212472'>
+    <member type='way' ref='469067622' role='outer' />
+    <member type='way' ref='53756197' role='outer' />
+    <member type='way' ref='468489467' role='outer' />
+    <member type='way' ref='469067627' role='outer' />
+    <member type='way' ref='468489470' role='outer' />
+    <member type='way' ref='469067625' role='outer' />
+    <member type='way' ref='468489473' role='outer' />
+    <member type='way' ref='469067626' role='outer' />
+    <member type='way' ref='468489469' role='outer' />
+    <member type='way' ref='469067620' role='outer' />
+    <tag k='area:highway' v='footway' />
+    <tag k='material' v='granite' />
+    <tag k='type' v='multipolygon' />
+  </relation>
+  <relation id='6913366' timestamp='2023-11-15T21:13:14Z' uid='346125' user='Глеб' visible='true' version='41' changeset='144069187'>
+    <member type='way' ref='469067620' role='outer' />
+    <member type='way' ref='469067621' role='outer' />
+    <member type='way' ref='53756197' role='outer' />
+    <member type='way' ref='469067623' role='outer' />
+    <tag k='addr:housenumber' v='18' />
+    <tag k='addr:street' v='Житная улица' />
+    <tag k='amenity' v='place_of_worship' />
+    <tag k='building' v='church' />
+    <tag k='denomination' v='russian_orthodox' />
+    <tag k='name' v='Церковь Казанской Божией Матери' />
+    <tag k='official_name' v='Церковь Казанской иконы Божией Матери у Калужских ворот' />
+    <tag k='religion' v='christian' />
+    <tag k='type' v='multipolygon' />
+    <tag k='wheelchair' v='limited' />
+    <tag k='wikidata' v='Q21011873' />
+  </relation>
+</osm>

@@ -1504,7 +1504,7 @@ def checkDuplicatedNodes(objOsmGeom):
     return duplicated_nodes
 
 
-def ocga_process(input_file, output_file, checkRulesMy, updatable=False, rebuild_outline=True):
+def ocga_process(input_file, output_file, checkRulesMy, updatable=False, rebuild_outline=True, strip_rules_names=False):
     resetID()
 
     objOsmGeom, Objects = readOsmXml(input_file)
@@ -1550,10 +1550,11 @@ def ocga_process(input_file, output_file, checkRulesMy, updatable=False, rebuild
                     j += 1
                 
             osmObject.NodeRefs = new_nodes    
-                
-    #for osmObject in ctx.Objects:
-    #    if "building:part" in osmObject.osmtags:
-    #        osmObject.osmtags["building:part"] = "yes"
+            
+    if strip_rules_names:            
+        for osmObject in ctx.Objects:
+            if "building:part" in osmObject.osmtags:
+                osmObject.osmtags["building:part"] = "yes"
             
     
     # todo: also we need to optimize geometry somehow, remove duplicated WAYS and create multypolygons    
@@ -1563,7 +1564,7 @@ def ocga_process(input_file, output_file, checkRulesMy, updatable=False, rebuild
 # for pylint, it will be defined in exec(lines) below
 checkRulesMy = None  
     
-def ocga_process2(input_file, output_file, rules_file, compiled_rules_file=None, updatable=False, rebuild_outline=True):     
+def ocga_process2(input_file, output_file, rules_file, compiled_rules_file=None, updatable=False, rebuild_outline=True, strip_rules_names=False):     
     print("processing file ", input_file)
     global checkRulesMy
     
@@ -1586,4 +1587,4 @@ def ocga_process2(input_file, output_file, rules_file, compiled_rules_file=None,
     # we expect that the rules file contains the funtion checkRulesMy(), 
     # (either written manually or created by compiler)
     # and we will pass it to the ocga engine
-    ocga_process(input_file, output_file, checkRulesMy)
+    ocga_process(input_file, output_file, checkRulesMy, strip_rules_names=strip_rules_names)

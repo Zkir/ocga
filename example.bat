@@ -3,7 +3,7 @@ rem example file to quickly convert and see 3d model
 rem SET MODEL_NAME=rossi_pavilion
 rem SET MODEL_NAME=komsomolskaya_station
 rem SET MODEL_NAME=main_cathedral_of_russian_army
-SET MODEL_NAME=danilov_belltower
+SET MODEL_NAME=church_at_the_kaluga_gate
 
 rem ===========  Step 1.  =================================================================================================
 rem Apply ocga rules to building outline(s)

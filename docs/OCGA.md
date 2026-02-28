@@ -2,9 +2,20 @@
 
 This document describes the OCGA (OpenStreetMap Computer Generated Architecture) language, its syntax, and supported operations.
 
-## 1. Language Syntax
 
-OCGA is a declarative shape grammar language used to define rules for generating 3D building models from 2D OpenStreetMap data.
+## Execution Model
+
+OCGA is a declarative language used to define rules for generating 3D building models (building:part's) from 2D OpenStreetMap data.
+
+OCGA processes shapes through a series of rule applications. The workflow operates as follows:
+
+1.  **Input:** The engine starts with an `.osm` file containing one or more building outlines.
+2.  **Entry Point:** The special rule named **`building`** is the entry point, which is automatically applied to all objects with a `building` tag found in the input file.
+3.  **Transformation and Subdivision:** When a rule is applied to an object, it can perform various operations: modify geometry, assign tags, or, most importantly, subdivide the object into new parts using operators like `split`, `comp`, or `continue`.
+4.  **Rule Chaining:** When an object is subdivided, each new part is assigned a new rule name. This new rule will be applied to the corresponding part on a subsequent cycle.
+5.  **Termination:** The engine runs in a loop. It continues processing as long as there are objects with unprocessed rules. When a full processing cycle completes and there are no more new parts with rules to apply, the execution stops, and the final geometry is produced.
+
+## 1. Language Syntax
 
 ### Program Structure
 
@@ -27,8 +38,9 @@ rule <ANOTHER_RULE_NAME> :
 
 *   **`ocga <VERSION_NUMBER>`**: The program must start with an `ocga` keyword followed by a version number.
 *   **`const <CONSTANT_NAME> = <expression>`**: (Optional) Defines a constant that can be used in expressions.
-*   **`rule <RULE_NAME> :`**: Defines a rule. A rule is a named block of one or more operators. Execution starts from a default rule (often implicitly defined or the first rule in the file).
-    *   `<RULE_NAME>`: An identifier for the rule (e.g., `Start`, `MainWall`, `Window`).
+*   **`rule <RULE_NAME> :`**: Defines a named block of one or more operators. The engine applies rules to objects when their conditions are met.
+    *   **Entry Point:** The rule named **`building`** is the special entry point. It is automatically applied to top-level objects from the input `.osm` file that have a `building` tag.
+    *   `<RULE_NAME>`: An identifier for the rule (e.g., `building`, `MainWall`, `Window`). Other rules are typically applied to the new objects created by `split` or `comp` operations.
 
 ### Conditional Statements
 
@@ -133,7 +145,11 @@ These operations modify the scale, position, or rotation of the current object.
 ### Flow Control Operations
 
 *   **`massModel <rule_name>`**: For a building outline, it applies a `split_z` operation to generate a mass model part and then applies `rule_name` to it.
-*   **`continue <rule_name>`**: Continues processing with the specified `rule_name` on the current object. Not allowed for top-level buildings.
+*   **`continue <rule_name>`**: This is a fundamental object transformation, not a subroutine call. It performs the following steps:
+    1.  A new object, identical to the current one, is created.
+    2.  This new object is scheduled to be processed by `<rule_name>` on the next cycle of the engine.
+    3.  The original object remains in the current context, and subsequent operations within the same rule block can still act on it.
+    This allows for powerful, non-destructive transformations. For example, using `continue` twice with different rules will result in two new, identical objects being created from the original, each scheduled for a different rule. Not allowed for top-level buildings.
 *   **`nope`**: A no-operation, effectively doing nothing. Can be useful as a placeholder.
 *   **`restore`**: Ensures the current object remains in the list of active objects, useful if it was previously removed (e.g., by a `split` operation).
 *   **`nil`**: Removes the current object from the list of active objects. Useful for creating holes.

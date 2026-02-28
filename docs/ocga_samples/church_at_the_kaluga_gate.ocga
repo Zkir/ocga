@@ -1,0 +1,93 @@
+	ocga 0.1
+
+rule building:
+
+    align_scope geometry
+	tag height, 23
+    outer_rectangle mass_model
+	
+	
+rule mass_model:
+    split_z  ~0.3: spire |
+			~1: tholobate |
+			~0.1: tholobate_base |
+            4: middle |
+			10:  cube
+
+rule spire: 
+    primitive_cylinder '0.07, 8
+    create_roof pyramidal, '0.8
+	colour gold
+	material metal
+	roof_colour gold
+	roof_material metal
+	translate 0,0, -0.25
+	
+			
+rule tholobate:
+    primitive_cylinder '0.4, 8
+    create_roof dome, 3
+	roof_colour gold
+	roof_material metal
+	rotate 22.5
+	
+rule tholobate_base:
+    primitive_cylinder '0.45, 8
+	scale '1, '1, '3
+	translate 0, 0, '-0.5
+	rotate 22.5
+	
+rule middle:	
+	roof_colour brown
+	continue middle1
+	continue middle2
+	continue cube_roof
+	comp_edges 0.75, decorative_side
+	
+	
+rule decorative_side:
+    scale scope_sx-2, '1, '1.25
+    split_x	 ~1: decorative_side_A | ~3:decorative_side_B | ~1: decorative_side_C |  ~1: decorative_side_D | ~3: decorative_side_E | ~1: decorative_side_D | ~1: decorative_side_C | ~3:decorative_side_B | ~1:decorative_side_A
+	
+
+rule middle1:
+	scale '0.4, scope_sx-1, '1
+	create_roof round, '1
+	
+rule middle2:	
+    scale scope_sx-1, '0.4, '1
+	create_roof round, '1
+
+
+rule decorative_side_A: 
+    if relative_Ox < 0 then 
+        rotate_scope 180 
+    endif
+    scale '1, '1, '0.3 
+    create_roof skillion, '1
+	roof_direction 90
+	
+rule decorative_side_B: 
+    scale '1, '1, '0.3 		
+	
+rule decorative_side_C: 
+    scale '1, '1, '0.6 	
+
+rule decorative_side_D: 
+    if relative_Ox < 0 then 
+        rotate_scope 180 
+    endif
+
+    scale '1, '1, '1	
+	create_roof skillion, '0.4
+	roof_direction 90
+	
+rule decorative_side_E: 
+    scale '1, '1, '1		
+	
+rule cube_roof:
+    scale scope_sx-1, scope_sy-1, '0.75
+    create_roof pyramidal, '1	
+	
+rule cube:
+    bevel 1
