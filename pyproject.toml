@@ -10,7 +10,7 @@ authors = [
 ]
 description = "A procedural modeling engine for OpenStreetMap building generation."
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 license = "MIT"
 classifiers = [
     "Programming Language :: Python :: 3",
