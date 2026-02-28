@@ -36,3 +36,15 @@ jobs:
     - name: Test with Pytest
       run: |
         pytest
+    - name: Diagnose Test Failure
+      if: failure()
+      run: |
+        echo "::group::Difference for gorky_park_entrance"
+        diff -u "docs/ocga_samples/gorky_park_entrance-rewrite.osm" "docs/ocga_output/gorky_park_entrance-rewrite.osm" || true
+        echo "::endgroup::"
+        echo "::group::Difference for main_cathedral_of_russian_army"
+        diff -u "docs/ocga_samples/main_cathedral_of_russian_army-rewrite.osm" "docs/ocga_output/main_cathedral_of_russian_army-rewrite.osm" || true
+        echo "::endgroup::"
+        echo "::group::Difference for komsomolskaya_station"
+        diff -u "docs/ocga_samples/komsomolskaya_station-rewrite.osm" "docs/ocga_output/komsomolskaya_station-rewrite.osm" || true
+        echo "::endgroup::"
