@@ -454,7 +454,7 @@ def assignSplitIndexByMinX(Objects2):
         min_x = Objects2[0].relative_Ox
         for j in range(len(Objects2)):
             #print(Objects2[j].id)
-            if Objects2[j].relative_Ox < min_x: 
+            if round(Objects2[j].relative_Ox, 8) < round(min_x, 8): 
                 min_x = Objects2[j].relative_Ox
                 min_index=j
         
@@ -468,13 +468,13 @@ def reorderedNodes(osmObject, objOsmGeom):
     old_node_refs = copy(osmObject.NodeRefs[:len(osmObject.NodeRefs)-1])
     min_index=0
     min_x, min_y = osmObject.LatLon2LocalXY(objOsmGeom.nodes[old_node_refs[0]].lat, objOsmGeom.nodes[old_node_refs[0]].lon)
-    min_alfa=atan2(min_y, min_x)
+    min_alfa=round(atan2(min_y, min_x), 8)
     for j in range(len(old_node_refs)):
         node_x, node_y = osmObject.LatLon2LocalXY(objOsmGeom.nodes[old_node_refs[j]].lat, objOsmGeom.nodes[old_node_refs[j]].lon)
-        node_alfa=atan2(node_y, node_x)
+        node_alfa=round(atan2(node_y, node_x),8)
 
         #print(old_node_refs[j].id)
-        if node_alfa < min_alfa: 
+        if node_alfa < min_alfa:
             min_alfa = node_alfa
             min_index=j
     
