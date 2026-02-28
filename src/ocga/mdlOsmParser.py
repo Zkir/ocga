@@ -3,8 +3,9 @@
 
 from .mdlMisc import getColourName
 from math import pi, sin, cos
-
 from .osmparser import readOsmXml0,encodeXmlString, Bbox,DEGREE_LENGTH_M
+
+OUTPUT_PRECISION = 8
 
 #base version of T3DObject, should be the same as in OsmParser
 class T3DObject0:
@@ -407,8 +408,8 @@ def writeOsmXml(objOsmGeom, Objects, strOutputOsmFileName, blnUpdatable):
             else:
                 action=''
 
-            fo.write('  <node id="' + obj_id + '"' + action + ' version="' + obj_ver + '"  lat="' + str(node_lat) + '" lon="' + str(
-                      node_lon) + '"/>' + '\n')
+            fo.write('  <node id="' + obj_id + '"' + action + ' version="' + obj_ver + '"  lat="' + str(round(node_lat, OUTPUT_PRECISION)) + '" lon="' + str(
+                      round(node_lon, OUTPUT_PRECISION)) + '"/>' + '\n')
 
     for osmObject in Objects:
         if osmObject.type == "way":
