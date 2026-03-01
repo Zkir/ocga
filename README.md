@@ -37,6 +37,25 @@ The intended cycle for using OCGA is as follows:
 
 5.  **Upload to OpenStreetMap:** Once you are satisfied, you can upload the data from JOSM. You may need to merge the layer containing the generated model with your main data layer before uploading.
 
+## Usage as a Library
+
+While the primary use case for OCGA is the command-line tool, its core engine can be imported and used directly in your own Python projects, as permitted by the MIT license.
+
+The main entry point function is `ocga_process2`, which can be imported from the top-level package. Its function is analogous to the CLI tool:
+
+```python
+from ocga import ocga_process2
+
+input_file = "path/to/building.osm"
+rules_file = "path/to/rules.ocga"
+output_file = "path/to/generated.osm"
+
+# The other arguments are optional
+ocga_process2(input_file, output_file, rules_file)
+```
+
+Other functions from the engine modules (e.g., from `ocga.ocga_engine`) can also be imported, but their APIs are not guaranteed to be stable and may change. Use them at your own risk.
+
 ## Language and Examples
 
 - For a complete guide to the syntax and operations, see the **[OCGA Language Reference](https://github.com/Zkir/ocga/blob/main/docs/OCGA.md)**.

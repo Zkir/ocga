@@ -12,7 +12,7 @@ from copy import copy
 from math import cos, sin, atan2, pi
 from .mdlOsmParser import T3DObject, parseHeightValue, readOsmXml, roundHeight, writeOsmXml
 # ocga parser and translator
-from .ocgaparser import *  # ocga2py
+from .ocgaparser import ocga2py
 from .osmparser import DEGREE_LENGTH_M
 
 _id_counter=0
