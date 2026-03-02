@@ -20,7 +20,6 @@ classifiers = [
     "Topic :: Multimedia :: Graphics :: 3D Modeling",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
 ]
 dependencies = [
     "antlr4-python3-runtime",
