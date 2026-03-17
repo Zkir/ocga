@@ -15,7 +15,7 @@ While certain ideas were adopted from ESRI's CityEngine, OCGA is not its clone, 
 
 Install the package from PyPI:
 ```bash
-pip install ocga
+pip install ocga-cli
 ```
 
 ## Workflow
